@@ -1,0 +1,26 @@
+.container{
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    display: flex;
+}
+.container-wrapper{
+    width: calc(100% - 280px);
+}
+.hide{
+    display: none;
+}
+.active{
+    display: block;
+}
+.small-wrapper{
+    width: calc(100% - 280px);
+}
+.large-wrapper{
+    width: 100%;
+}
+@media(max-width:800px){
+    .container-wrapper{
+        width: 100%;
+    }
+}

@@ -1,0 +1,42 @@
+<header>
+  <div class="container">
+      <section>
+          <p class="number">
+              <i class="fa-solid fa-phone"></i>
+              123456789q    
+          </p>
+          <p class="email">
+              <i class="fa-regular fa-envelope"></i>
+              smartschool@gmail.com
+          </p>
+      </section>
+
+      <section *ngIf="logoutflag">
+          <p (click)="openlogin()">Login</p>
+          <p (click)="openregister()">Register</p>
+      </section>
+      <div *ngIf="!logoutflag">
+        <p (click)="logout()">Logout</p>
+      </div>
+  </div>
+</header>
+<nav>
+  <div class="container">
+      <div class="logo">
+          <img src="../../../../assets/images/logo.webp" alt="">
+      </div>
+      <section>
+          <ul>
+              <li class="active"><a class="active" href="">home</a></li>
+              <li><a href=""> pages</a></li>
+              <li><a href=""> courses</a></li>
+              <li><a href=""> events</a></li>
+              <li><a href=""> blog</a></li>
+              <li><a href=""> contact</a></li>
+          </ul>
+          <!-- <i class="fa-solid fa-magnifying-glass"></i>
+          <i class="fa-solid fa-bars-staggered bars"></i>
+          <button>Apply as a Teacher</button> -->
+      </section>
+  </div>
+</nav>

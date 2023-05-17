@@ -1,0 +1,58 @@
+.pages{
+    display: flex;
+    justify-content: center;
+}
+.pages span{
+    display: block;
+    width: fit-content;
+    text-align: center;
+    margin: 0.4rem 1.5rem;
+    cursor: pointer;
+}
+.pages span p:nth-child(1){
+    margin: auto;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    background-color: gray;
+}
+.active{
+    background-color: var(--main-color)!important;
+}
+.row{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.form-group{
+    margin: auto;
+}
+.col{
+    width: 45%;
+    margin: 0;
+}
+.hide{
+    height: 0;
+    visibility: hidden;
+}
+.studentimage,.parentimage,.birthdateimage{
+    text-align: center;
+    margin:1rem 0;
+}
+.studentimage label img,.parentimage label img,.birthdateimage label img {
+    width: 10rem;
+    height: 10rem;
+}
+input[type="file"]{
+    position: absolute;
+    z-index: -1000;
+}
+@media screen and (max-width: 700px){
+    .col{
+        width: 100%;
+    }
+    .container{
+        width: 100%;
+    }
+}

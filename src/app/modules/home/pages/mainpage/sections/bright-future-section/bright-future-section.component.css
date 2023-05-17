@@ -1,0 +1,71 @@
+/* kids-future */
+.bright-future{
+  padding-block: 80px;
+  position: relative;
+  overflow: hidden;
+  background-repeat: no-repeat;
+  background-image: url(../../../../../../../assets/images/wave.svg);
+  background-size: cover;
+}
+.bright-future .container {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  align-items: center;
+  text-align: center;
+}
+.bright-future .container p {
+  color: var(--gray-color);
+}
+.bright-future .container h2{
+  font-weight: 100;
+  width: 100%;
+  font-size: 35px;
+}
+.bright-future .container .content{
+  display: flex;
+  gap: 50px;
+  align-items: center;
+  flex-direction: column;
+}
+.bright-future .container .content img{
+  width: 400px;
+  border-radius:1px;
+  order: -1;
+}
+
+.bright-future .container .content p{
+  line-height: 2;
+  margin-block: 0;
+  text-align: center;
+  margin-bottom: 20px;
+}
+.bright-future .container .content button:hover{
+  background-color: var(--main-color-dark);
+}
+
+@media (min-width: 768px) {
+
+  .bright-future .container p {
+      font-size: 20px;
+  }
+  .bright-future .container h2{
+  font-size: 45px;
+  width: 500px;
+  }
+}
+
+
+/* Medium */
+@media (min-width: 992px) {
+  .bright-future .container .content{
+      flex-direction: row;
+  }
+  .bright-future .container .content img{
+      order:10
+  }
+  .bright-future .container .content p{
+  margin-block: 40px;
+  text-align: left;
+  }
+}

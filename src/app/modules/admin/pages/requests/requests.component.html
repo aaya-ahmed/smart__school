@@ -1,0 +1,34 @@
+<div class="header">
+    <h2>Requests</h2>
+</div>
+<div class="data">
+    <table  class="table table-hover text-left">
+        <thead class="bg-black text-white">
+            <tr>
+                <th>Student Name</th>
+                <th>student gender</th>
+                <th>Parent Name</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <ng-container *ngIf="allRequests.length>0">
+            <tr *ngFor="let item of allRequests">
+                <td>{{item.studentFirstName}}</td>
+                <td>{{item.studentGender==1?'female':'male'}}</td>
+                <td>{{item.parentFullName}}</td>
+                <td>
+                    <button class="showbtn" (click)="showdetails(item.id)">Show Details</button>
+                </td>
+            </tr>
+        </ng-container>
+        <ng-container *ngIf="allRequests.length==0">
+            <tr>
+                <td colspan="3" class="text-center">no Data</td>
+            </tr>
+        </ng-container>
+        </tbody>
+    </table>
+</div>
+
+

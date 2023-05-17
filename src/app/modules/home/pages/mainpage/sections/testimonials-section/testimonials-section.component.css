@@ -1,0 +1,106 @@
+
+/* testimonials */
+.testimonials{
+  background-image: url(../../../../../../../assets/images/bg-rev-1.jpg);
+  color: white;
+  padding-block: 80px;
+  text-align: center;
+  background-position: 75%
+}
+.testimonials .container{
+
+  display: flex;
+  gap: 30px;
+  flex-direction: column;
+}
+.testimonials .btn-group img {
+  width: 60px;
+  border-radius: 50%;
+  height: 60px;
+  visibility: hidden;
+}
+.testimonials .arrow{
+  color: black;
+  background-color: white;
+  padding: 15px;
+  border-radius: 50%;
+  font-size: 14px;
+  cursor: pointer;
+  position: relative;
+  z-index: 20;
+}
+.testimonials .fa-chevron-right{
+  left: -30px;
+}
+.testimonials .fa-chevron-left{
+  right: -30px;
+}
+.testimonials h2{
+  font-size: 40px;
+}
+.testimonials button{
+  display: flex;
+  display: none;
+  align-items: center;
+  border-radius: 50px;
+  gap: 20px;
+  text-align: left;
+  background-color: #0003;
+  margin-inline: -50px;
+  font-size: 20px;
+  width: 100%;
+}
+
+.testimonials button.active{
+  background-color: var(--main-color);
+  margin-inline: 0;
+  z-index: 10;
+  position: relative;
+  display: flex;
+}
+.testimonials button.active::after{
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: -10px;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  background-color: var(--main-color);
+
+}
+.testimonials button.active img{
+  visibility: visible;
+}
+.testimonials .btn-group{
+  display: flex;
+  align-items: center;
+  margin-top: 50px;
+}
+.testimonials button.hidden{
+  display: none;
+}
+.testimonials button .text p:last-of-type{
+  margin-top: 10px;
+  font-size: 16px;
+}
+.testimonials button:not(.active) .text p:last-of-type{
+  color: var(--main-color);
+}
+@media (min-width: 768px) {
+
+}
+
+
+/* Medium */
+@media (min-width: 992px) {
+  .testimonials{
+      background-position: 50% 0%;
+  }
+  .testimonials button{
+      display: flex;
+      max-width: 50%;
+      width: 400px;
+  }
+
+}

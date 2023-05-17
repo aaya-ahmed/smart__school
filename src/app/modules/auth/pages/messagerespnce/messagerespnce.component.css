@@ -1,0 +1,8 @@
+.mess-sec{
+    text-align: center;
+    padding: 1rem;
+    overflow-wrap: break-word;
+}
+.mess-sec img{
+    width: 100px;
+}

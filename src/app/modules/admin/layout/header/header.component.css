@@ -1,0 +1,65 @@
+header{
+    width: 95%;
+    height: 3.5rem;
+    margin: 1rem auto;
+    line-height: 2.5rem;
+    vertical-align: ce;
+    padding: 0.5rem 1rem;
+    background-color: aliceblue;
+    border-radius: 10px;
+    display: flex;
+}
+#togglebtn{
+    position: absolute;
+    z-index: -9999;
+}
+.search{
+    width: 150px;
+    border: 0;
+    background-color: transparent;
+    outline: 0;
+}
+.searchsec{
+    width: 80%;
+}
+i{
+    font-size: 15px;
+    padding:0 1rem;
+}
+
+button{
+    background-color: transparent;
+    border: 0;
+    border-radius: 0;
+    outline: 0;
+    padding: 0;
+}
+.logoutsec{
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    text-align: right;
+    width: 20%;
+    color: black;
+}
+.logoutsec label i{
+    color: black;
+}
+.logoutsec ul{
+    display: none;
+}
+.logoutsec input{
+    position: absolute;
+    z-index: -1000;
+}
+.logoutsec input:checked + ul {
+    display: block;
+    width: fit-content;
+    margin: 1rem 0 0 0;
+    line-height: 2;
+    box-shadow: 5px 3px 8px 0px #00000026;
+}
+.logoutsec input:checked + ul li{
+    padding: 1rem;
+}

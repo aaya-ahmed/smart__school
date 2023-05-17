@@ -1,0 +1,144 @@
+section{
+    padding: 100px 0px;
+}
+.row{
+    display: block;
+}
+h5{
+    font-family: 'Baloo';
+    font-style: normal;
+    font-weight: 400;
+    margin-top: 10px;
+    margin-bottom: 10px
+}
+.row_header{
+    font-size: 0.875em;
+    display: block;
+}
+.image{
+    width: 100%;
+    height: 100%;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
+}
+.activity-video .header h1{
+    font-size: 40px;
+    color: #333333;
+    line-height: 44px;
+    text-align: left;
+}
+.activity-video .header h4{
+    font-size: 18px;
+    color: #666666;
+    line-height: 24px;
+    text-align: left;
+}
+.activity-topic-row{
+    position: relative;
+    margin: 1.5rem 0px;
+}
+.activity-topic-row > input[type="checkbox"]{
+    position: absolute;
+    z-index: -5;
+    top:0px;
+}
+.topic-header label h5{
+    background-color: var(--main-color);
+    color: white;
+    padding: 0.6rem;
+    margin: 0px;
+    border-radius: 5px;
+    font-size: 18px;
+    font-weight: 500;
+}
+.topic-header label h5:hover{
+    background-color: var(--secondary-color);
+}
+.topic-body{
+    display: none;
+}
+input[type="checkbox"]:checked ~ .topic-body{
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    margin: 1rem 0;
+    padding: 0 1.2rem;
+}
+
+.topic-icon{
+    font-size: 18px;
+    color: #fff;
+    padding: 0.4rem;
+}
+.video{
+    background-image: url(../../../../../../../assets/images/rand2.jpg);
+    position: relative;
+    width: 100%;
+    height: 40vh;
+    margin: 2rem 0;
+}
+svg#play {
+ display:block;
+  cursor: pointer;
+  position: absolute;
+  top:50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  width: 100px;
+}
+
+svg#play #triangle {
+  fill:rgba(22,22,22,0);
+  transition:500ms;
+  transform-origin: 50% 50%;
+}
+svg#play:hover #triangle {
+  fill:var(--secondary-color);
+  transform-origin: 50% 50%;
+}
+
+ svg #lineOne, svg #lineTwo {
+  transform-origin: 50% 50%;
+  transition: 1s;
+} 
+
+ svg:hover #lineOne {
+  transform: rotate(260deg);
+   -webkit-transform: rotate(260deg);
+-moz-transform: rotate(260deg);
+-o-transform: rotate(260deg);
+   transform-origin: 50% 50%;
+} 
+
+ svg:hover #lineTwo {
+  transform: rotate(-450deg);
+   transform-origin: 50% 50%;
+} 
+.playvideo{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+.playvideo button{
+    position: absolute;
+    z-index: 999;
+    right: 0;
+    margin: 1rem 1rem 0 0;
+}
+@media (min-width: 768px) {
+    .row{
+        display: flex;
+        justify-content: space-between;
+    }
+    .activity-video{
+        width: 50%;
+    }
+    .activity-topic{
+        width: 40%;
+    }
+
+}
