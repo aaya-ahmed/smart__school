@@ -2,3 +2,47 @@
     <h2>Schadules</h2>
     <button (click)="add()">Add</button>
 </div>
+<div>
+    <form [formGroup]="formdata" #form="ngForm">
+        <div class="row">
+            <div class="form-group">
+                <label>Date</label>
+                <input type="date" class="form-control" formControlName="date"
+                [ngClass]="{'is-invalid':(datecontrol.errors&&datecontrol.touched)||(datecontrol.errors&&form.submitted)}"/>
+            </div>
+            <div class="form-group">
+                <label>Class</label>
+                <input type="text" list="codes" formControlName="classid" class="form-control"
+                [ngClass]="{'is-invalid':(classcontrol.errors&&classcontrol.touched)||(classcontrol.errors&&form.submitted)}"/>
+                <datalist id="codes" >
+                    <option *ngFor="let item of classrooms" [value]="item.name" >{{item.name}}</option>
+                </datalist>
+            </div>
+            <div class="form-group">
+                <button (click)="getschadule()"><i class="fa-solid fa-search"></i></button>
+            </div>
+        </div>
+    </form>
+</div>
+<div>
+    <table>
+        <thead>
+            <th>No</th>
+            <th>Day</th>
+            <th>Subject</th>
+            <th>Teacher</th>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of sessions">
+                <td>{{item.sessionNo}}</td>
+                <td>{{item.scheduleDay}}</td>
+                <td>{{item.subjectName}}</td>
+                <td>{{item.teacherName}}</td>
+                <td>
+                    <button (click)="edit(item)"><i class="fa-solid fa-edit"></i></button>
+                    <button (click)="delete(item.scheduleID)"><i class="fa-solid fa-trash"></i></button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

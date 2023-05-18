@@ -1,6 +1,6 @@
 <div class="container">
     <div class="container-wraperr">
-        <header>Grade Year</header>
+        <header>Schadule</header>
         <button class="closebtn" (click)="close()"><i class="fa-solid fa-close"></i></button>
     <div>
     <form [formGroup]="schadule"  #form="ngForm" (ngSubmit)="addschadule()">
@@ -16,7 +16,7 @@
         </div>
         <div class="form-group">
             <label>Teacher</label>
-            <select formControlName="teacherID" class="form-control"
+            <select formControlName="teacherID" class="form-control" (change)="setsubject()"
             [ngClass]="{'is-invalid':(teachercontrol.errors&&teachercontrol.touched)||(teachercontrol.errors&&form.submitted)}">
                 <option *ngFor="let item of teachers" value="{{item.id}}">{{item.fullName}}</option>
             </select>
@@ -26,11 +26,11 @@
         </div>
         <div class="form-group">
             <label>Subject</label>
-           <input type="text" disabled value="subject" class="form-control" disabled/>
+           <input type="text" disabled value="{{subject}}" class="form-control" disabled/>
         </div>
         <div class="form-group">
             <label>Day</label>
-            <input type="date" formControlName="day" class="form-control"
+            <input type="date" formControlName="day" class="form-control" 
             [ngClass]="{'is-invalid':(daycontrol.errors&&daycontrol.touched)||(daycontrol.errors&&form.submitted)}"/>
             <div *ngIf="(daycontrol.errors&&form.submitted)||(daycontrol.errors&&daycontrol.touched)" class="invalid">
                 <p *ngIf="daycontrol.errors['required']" class="invalid-feedback">day is required</p>
@@ -43,6 +43,9 @@
             <div *ngIf="(sessionNocontrol.errors&&form.submitted)||(sessionNocontrol.errors&&sessionNocontrol.touched)" class="invalid">
                 <p *ngIf="sessionNocontrol.errors['required']" class="invalid-feedback">day is required</p>
             </div>
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Add"/>
         </div>
     </form>
     <app-scadules [schadule]="schaduleitem"></app-scadules>

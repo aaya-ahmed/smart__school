@@ -1,5 +1,5 @@
 export interface sessions{
-    id: number,
+    id: 0,
     sessionNo: number,
     scheduleID: number,
     teacherID: string,

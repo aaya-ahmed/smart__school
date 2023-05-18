@@ -17,7 +17,6 @@ import { SubjectsComponent } from './pages/subjects/subjects.component';
 import { SubjectformComponent } from './pages/subjects/subjectform/subjectform.component';
 import { TeachersComponent } from './pages/teachers/teachers.component';
 import { StudentsComponent } from './pages/students/students.component';
-import { ParentsComponent } from './pages/parents/parents.component';
 import { ComplainsComponent } from './pages/complains/complains.component';
 import { TeacherformComponent } from './pages/teachers/teacherform/teacherform.component';
 import { ClassroomComponent } from './pages/classroom/classroom.component';
@@ -43,7 +42,6 @@ import { ScadulesComponent } from './pages/schadule/scadules/scadules.component'
     SubjectformComponent,
     TeachersComponent,
     StudentsComponent,
-    ParentsComponent,
     ComplainsComponent,
     TeacherformComponent,
     ClassroomComponent,

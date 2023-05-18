@@ -6,7 +6,6 @@ import { GradeyearComponent } from './pages/gradeyear/gradeyear.component';
 import { RequestsComponent } from './pages/requests/requests.component';
 import { SubjectsComponent } from './pages/subjects/subjects.component';
 import { TeachersComponent } from './pages/teachers/teachers.component';
-import { ParentsComponent } from './pages/parents/parents.component';
 import { StudentsComponent } from './pages/students/students.component';
 import { ComplainsComponent } from './pages/complains/complains.component';
 import { ClassroomComponent } from './pages/classroom/classroom.component';
@@ -38,10 +37,6 @@ const routes: Routes = [
     {
       path:'classroom',
       component:ClassroomComponent
-    },
-    {
-      path:'parents',
-      component:ParentsComponent
     },
     {
       path:'students',
