@@ -18,7 +18,7 @@ export class SchaduleSessionService {
     return this.http.post<sessions>(environment.URL+"Session/Create",session)
   }
   public getsessions(id:number,date:Date):Observable<sessions[]>{
-    return this.http.get<sessions[]>(environment.URL+"Session/Getsessions/classanddate?classid="+id+"&date="+date)
+    return this.http.get<sessions[]>(environment.URL+"Session/Getsessions/classanddate/"+id+"/"+date)
   }
   public getschadule(id:number):Observable<schadule>{
     return this.http.get<schadule>(environment.URL+"Schedule/GetById/"+id)

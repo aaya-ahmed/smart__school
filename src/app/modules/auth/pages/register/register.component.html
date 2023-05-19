@@ -1,5 +1,4 @@
-<ng-container *ngIf="formresponce==false">
-    <div class="container">
+<div class="container">
         <div class="pic">
             <i class="fas fa-user"></i>
         </div>
@@ -26,15 +25,15 @@
                         <label for="parentname" class="input-group-text">
                             <span class="fa-sharp fa-solid fa-mail-user"></span>
                         </label>
-                        <input type="text" class="form-control"   
+                        <input type="text" class="form-control"   (change)="validateparentname($event)"
                         placeholder="parent name" id="parentname" formControlName="parentFullName"
-                        [ngClass]="{'is-invalid':(patFNameControl.errors&&patFNameControl.touched)||(patFNameControl.errors&&submitted)}"/>
+                        [ngClass]="{'is-invalid':(patFNameControl.hasError('notvalid'))||(patFNameControl.errors&&patFNameControl.touched)||(patFNameControl.errors&&submitted)}"/>
                     </div>
                     <div *ngIf="(patFNameControl.errors&&submitted)||(patFNameControl.errors&&patFNameControl.touched)" class="invalid">
                         <p *ngIf="patFNameControl.errors['required']" class="invalid-feedback">parent name is required</p>
-                        <p *ngIf="patFNameControl.errors['minlength']" class="invalid-feedback">minlength is 3 char</p>
-                        <p *ngIf="patFNameControl.errors['maxlength']" class="invalid-feedback">maxlength is 15 char</p>
-
+                        <p *ngIf="patFNameControl.errors['minlength']" class="invalid-feedback">minlength is 11 char</p>
+                        <p *ngIf="patFNameControl.errors['maxlength']" class="invalid-feedback">maxlength is 23 char</p>
+                        <p *ngIf="patFNameControl.errors['notvalid']" class="invalid-feedback">enter 3 names</p>
                     </div>
                 </div>
             </div>
@@ -203,15 +202,9 @@
             </div>
             <p style="text-align: center;">You Have Account? <a [routerLink]="'../login'">login</a></p>
     </form>
+</div>
+<ng-container *ngIf="formresponce">
+    <div class="responce">
+        <app-messagerespnce [message]="message" [type]="typemess" ></app-messagerespnce>
     </div>
 </ng-container>
-<ng-container *ngIf="formresponce==true">
-    <div *ngIf="typemess=='success'then success;else failed"></div>
-    <ng-template #success>
-        <app-messagerespnce [message]="message" [type]="typemess"></app-messagerespnce>
-    </ng-template>
-    <ng-template #failed>
-        <app-messagerespnce [message]="message" [type]="typemess"></app-messagerespnce>
-    </ng-template>
-</ng-container>
-

@@ -1,7 +1,7 @@
 <div class="container">
-    <app-navbar [ngClass]="{'show':!toggle,'hide':toggle}"></app-navbar>
-    <div class="container-wrapper" [ngClass]="{'small-wrapper':!toggle,'large-wrapper':toggle}">
-        <app-header (toggleevent)="toggleview($event)" ></app-header>
+    <app-navbar [toggleflag]="toggle"></app-navbar>
+    <div class="container-wrapper">
+        <app-header (toggleevent)="toggleview()" ></app-header>
         <app-sidehost></app-sidehost>
         <router-outlet></router-outlet>
     </div>

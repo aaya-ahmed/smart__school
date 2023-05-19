@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { AdminRoutingModule } from './admin-routing.module';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { GradeyearComponent } from './pages/gradeyear/gradeyear.component';
@@ -8,7 +7,7 @@ import { GradeyearformComponent } from './pages/gradeyear/gradeyearform/gradeyea
 import { HeaderComponent } from './layout/header/header.component';
 import { NavbarComponent } from './layout/navbar/navbar.component';
 import { AdminComponent } from './admin.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RequestsComponent } from './pages/requests/requests.component';
 import { RequestdetailsComponent } from './pages/requests/requestdetails/requestdetails.component';
 import { SidehostComponent } from './sidehost/sidehost.component';
@@ -24,6 +23,7 @@ import { ClassroomformComponent } from './pages/classroom/classroomform/classroo
 import { SchaduleComponent } from './pages/schadule/schadule.component';
 import { SchaduleformComponent } from './pages/schadule/schaduleform/schaduleform.component';
 import { ScadulesComponent } from './pages/schadule/scadules/scadules.component';
+import { AttandanceComponent } from './pages/teachers/attandance/attandance.component';
 
 
 @NgModule({
@@ -48,12 +48,14 @@ import { ScadulesComponent } from './pages/schadule/scadules/scadules.component'
     ClassroomformComponent,
     SchaduleComponent,
     SchaduleformComponent,
-    ScadulesComponent
+    ScadulesComponent,
+    AttandanceComponent
   ],
   imports: [
     CommonModule,
     AdminRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule
   ],
   bootstrap:[AdminComponent]
 })

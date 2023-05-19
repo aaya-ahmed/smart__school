@@ -1,52 +1,63 @@
 <div class="container">
     <div class="container-wraperr">
-        <header>Schadule</header>
-        <button class="closebtn" (click)="close()"><i class="fa-solid fa-close"></i></button>
-    <div>
-    <form [formGroup]="schadule"  #form="ngForm" (ngSubmit)="addschadule()">
-        <div class="form-group">
-            <label>Class Room</label>
-            <select formControlName="classId"  class="form-control" 
-            [ngClass]="{'is-invalid':(classcontrol.errors&&classcontrol.touched)||(classcontrol.errors&&form.submitted)}">
-                <option *ngFor="let item of classrooms" value="{{item.id}}">{{item.name}}-{{item.gradeYearName}}</option>
-            </select>
-            <div *ngIf="(classcontrol.errors&&form.submitted)||(classcontrol.errors&&classcontrol.touched)" class="invalid">
-                <p *ngIf="classcontrol.errors['required']" class="invalid-feedback">classroom is required</p>
+        <header>
+            <div>
+                Add Schadule
             </div>
-        </div>
-        <div class="form-group">
-            <label>Teacher</label>
-            <select formControlName="teacherID" class="form-control" (change)="setsubject()"
-            [ngClass]="{'is-invalid':(teachercontrol.errors&&teachercontrol.touched)||(teachercontrol.errors&&form.submitted)}">
-                <option *ngFor="let item of teachers" value="{{item.id}}">{{item.fullName}}</option>
-            </select>
-            <div *ngIf="(teachercontrol.errors&&form.submitted)||(teachercontrol.errors&&teachercontrol.touched)" class="invalid">
-                <p *ngIf="teachercontrol.errors['required']" class="invalid-feedback">teacher is required</p>
+            <div>
+                <button (click)="close()"><i class="fa-solid fa-close"></i></button>
             </div>
+        </header>
+        <div class="schadule-data">
+            <form [formGroup]="schadule"  #form="ngForm" (ngSubmit)="addschadule()">
+                <div class="form-group">
+                    <label>Class Room</label>
+                    <select formControlName="classId"  class="form-control" 
+                    [ngClass]="{'is-invalid':(classcontrol.errors&&classcontrol.touched)||(classcontrol.errors&&form.submitted)}">
+                        <option *ngFor="let item of classrooms" value="{{item.id}}">{{item.name}}-{{item.gradeYearName}}</option>
+                    </select>
+                    <div *ngIf="(classcontrol.errors&&form.submitted)||(classcontrol.errors&&classcontrol.touched)" class="invalid">
+                        <p *ngIf="classcontrol.errors['required']" class="invalid-feedback">classroom is required</p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Teacher</label>
+                    <select formControlName="teacherID" class="form-control" (change)="setsubject()"
+                    [ngClass]="{'is-invalid':(teachercontrol.errors&&teachercontrol.touched)||(teachercontrol.errors&&form.submitted)}">
+                        <option *ngFor="let item of teachers" value="{{item.Id}}">{{item.FullName}}</option>
+                    </select>
+                    <div *ngIf="(teachercontrol.errors&&form.submitted)||(teachercontrol.errors&&teachercontrol.touched)" class="invalid">
+                        <p *ngIf="teachercontrol.errors['required']" class="invalid-feedback">teacher is required</p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Subject</label>
+                   <input type="text" disabled value="{{subject}}" class="form-control" disabled/>
+                </div>
+                <div class="form-group">
+                    <label>Day</label>
+                    <input type="date" formControlName="day" class="form-control" (change)="validatedate($event)"
+                    [ngClass]="{'is-invalid':(daycontrol.errors&&daycontrol.touched)||(daycontrol.errors&&form.submitted)}"/>
+                    <div *ngIf="(daycontrol.errors&&form.submitted)||(daycontrol.errors&&daycontrol.touched)" class="invalid">
+                        <p *ngIf="daycontrol.errors['required']" class="invalid-feedback">day is required</p>
+                        <p *ngIf="daycontrol.errors['notvalid']" class="invalid-feedback">day is not valid</p>
+                    
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Session Num</label>
+                    <input type="text" formControlName="sessionNo" class="form-control"
+                    [ngClass]="{'is-invalid':(sessionNocontrol.errors&&sessionNocontrol.touched)||(sessionNocontrol.errors&&form.submitted)}"/>
+                    <div *ngIf="(sessionNocontrol.errors&&form.submitted)||(sessionNocontrol.errors&&sessionNocontrol.touched)" class="invalid">
+                        <p *ngIf="sessionNocontrol.errors['required']" class="invalid-feedback">day is required</p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Add" class="btn" *ngIf="!data"/>
+                    <input type="submit" value="Update" class="btn" *ngIf="data"/>
+                </div>
+            </form>
+            <app-scadules class="schadule-table" [schadule]="schaduleitem"></app-scadules>
         </div>
-        <div class="form-group">
-            <label>Subject</label>
-           <input type="text" disabled value="{{subject}}" class="form-control" disabled/>
-        </div>
-        <div class="form-group">
-            <label>Day</label>
-            <input type="date" formControlName="day" class="form-control" 
-            [ngClass]="{'is-invalid':(daycontrol.errors&&daycontrol.touched)||(daycontrol.errors&&form.submitted)}"/>
-            <div *ngIf="(daycontrol.errors&&form.submitted)||(daycontrol.errors&&daycontrol.touched)" class="invalid">
-                <p *ngIf="daycontrol.errors['required']" class="invalid-feedback">day is required</p>
-            </div>
-        </div>
-        <div class="form-group">
-            <label>Session Num</label>
-            <input type="text" formControlName="sessionNo" class="form-control"
-            [ngClass]="{'is-invalid':(sessionNocontrol.errors&&sessionNocontrol.touched)||(sessionNocontrol.errors&&form.submitted)}"/>
-            <div *ngIf="(sessionNocontrol.errors&&form.submitted)||(sessionNocontrol.errors&&sessionNocontrol.touched)" class="invalid">
-                <p *ngIf="sessionNocontrol.errors['required']" class="invalid-feedback">day is required</p>
-            </div>
-        </div>
-        <div class="form-group">
-            <input type="submit" value="Add"/>
-        </div>
-    </form>
-    <app-scadules [schadule]="schaduleitem"></app-scadules>
+    </div>
 </div>

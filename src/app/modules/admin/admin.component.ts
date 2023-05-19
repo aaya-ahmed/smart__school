@@ -8,9 +8,8 @@ import { Component } from '@angular/core';
 export class AdminComponent {
   toggle:boolean=false;
 
-  toggleview($event:any){
-    console.log($event);
-    this.toggle=$event;
+  toggleview(){
+    this.toggle=!this.toggle;
 
   }
 }

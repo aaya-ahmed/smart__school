@@ -1,42 +1,41 @@
-<div class="header">
+ <div class="header">
     <h2>Teachers</h2>
-    <button (click)="add()">Add</button>
+    <span>
+        <button (click)="add()" class="addbtn">Add</button>
+        <button (click)="takeattandance()" class="addbtn">Take Attandance</button>
+    </span>
 </div>
-<div class="data">
-    <table  class="table table-hover text-left">
-        <thead class="bg-black text-white">
-            <tr>
-                <th>Name</th>
-                <th>email</th>
-                <th>phone</th>
-                <th>subject</th>
-                <td>absence Days</td>
-                <th>salary</th>
-                <th>Action</th>
-            </tr>
-        </thead>
-        <tbody>
-            <ng-container *ngIf="teachers.length>0">
-            <tr *ngFor="let item of teachers">
-                <td>{{item.fullName}}</td>
-                <td>{{item.email}}</td>
-                <td>{{item.phone}}</td>
-                <td>{{item.subjectName}}</td>
-                <td>{{item.absenceDays}}</td>
-                <td>{{item.salary}}</td>
-                <td>
-                    <button (click)="update(item)"><i class="fa-solid fa-edit fa-2" style="color: green;"></i></button>
-                    <button (click)="delete(item.id)"><i class="fa-solid fa-trash fa-2" style="color: red;"></i></button>
-                </td>
-            </tr>
-        </ng-container>
-        <ng-container *ngIf="teachers.length==0">
-            <tr>
-                <td colspan="6" class="text-center">no Data</td>
-            </tr>
-        </ng-container>
-        </tbody>
-    </table>
-</div>
-
-
+<ng-container *ngIf="teachers.length>0">
+    <div class="tableheader">
+        <div>Name</div>
+        <div>subject</div>
+        <div>absence Days</div>
+        <div>salary</div>
+        <div>Action</div>
+    </div>
+    <div class="data">
+        <div *ngFor="let item of teachers" class="tablebody">
+        <div>
+            {{item.FullName}}
+        </div>
+        <div>
+            {{item.SubjectName}}
+        </div>
+        <div>
+            {{item.AbsenceDays}}
+        </div>
+        <div>
+            {{item.Salary}}
+        </div>
+        <div>
+            <button (click)="update(item)"><i class="fa-solid fa-edit fa-2" style="color: green;"></i></button>
+            <button (click)="delete(item.Id)"><i class="fa-solid fa-trash fa-2" style="color: red;"></i></button>
+        </div>
+        </div>
+    </div>  
+</ng-container>        
+<ng-container *ngIf="teachers.length==0">
+    <div class="notfoundbody">
+        Not Found
+    </div>
+</ng-container>

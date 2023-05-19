@@ -16,10 +16,10 @@ const routes: Routes = [
     path:'',
     component:AdminComponent,
     children:[
-      {path:'profile',
-      component:ProfileComponent
+      {path:'',
+      component:RequestsComponent
     },
-    {path:'requests',
+      {path:'requests',
     component:RequestsComponent
   },
     {

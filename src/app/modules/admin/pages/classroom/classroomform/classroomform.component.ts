@@ -9,11 +9,13 @@ import { HostmanagerService } from 'src/app/services/hostmanager.service';
 @Component({
   selector: 'app-classroomform',
   templateUrl: './classroomform.component.html',
-  styleUrls: ['./classroomform.component.css']
+  styleUrls: ['./classroomform.component.css','../../form.style.css']
 })
 export class ClassroomformComponent {
   id:number=-1;
   gradeyears:gradyear[]=[];
+  classies:classroom[]=[];
+  mess:string='';
   classroom:FormGroup=new FormGroup({
     name:new FormControl('',[Validators.required,Validators.minLength(1),Validators.maxLength(15)]),
     gradeYearId:new FormControl('',[Validators.required]),  
@@ -46,31 +48,29 @@ export class ClassroomformComponent {
   }
   addclassroom(){
     if(this.classroom.valid){
-      if(this.id!=-1){
-
-      }
-      else{
+      let index=this.gradeyears.findIndex(p=>p.id==+this.gradecontrol.value)
         let classroom:classroom={
           id:0,
           name: this.namecontrol.value,
           gradeYearId: +this.gradecontrol.value,
-          gradeYearName: this.gradeyears[+this.gradecontrol.value].name
+          gradeYearName: this.gradeyears[index].name
         }
-        console.log(classroom)
         this.classroomservices.post(classroom).subscribe({
           next:data=>{
             classroom.id=data.id;
-            this.hostman.load({data:'',open:false,returndata:classroom,type:''})
+            this.classies.push(classroom);
+            this.mess='Success'
           },
           error:err=>{
-            this.errormess=err.message;
-            console.log(err)
+            this.mess='Failed'
           }
         })
-      }
+        setTimeout(() => {
+          this.mess=''
+        }, 1000);
       }
   }
   close(){
-    this.hostman.load({open:false,data:'',returndata:'',type:''});
+    this.hostman.load({open:false,data:'',returndata:this.classies,type:''});
   }
 }

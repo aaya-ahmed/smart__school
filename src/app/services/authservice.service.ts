@@ -20,20 +20,32 @@ export class AuthserviceService {
     return this.http.post<register>(this.url+"Auth/login",user);
   }
   public setuser(user:register){
-    localStorage.setItem('user',JSON.stringify(user.token));
+    console.log(user)
+    localStorage.setItem('schooltoken',JSON.stringify(user.token));
+    let userinfo=this.decodetoken(user.token)
+    localStorage.setItem('schoolexp',JSON.stringify(userinfo.exp));
     this.logoutflag.next(false);
-    this.profile(user.roles[0].toLocaleLowerCase());
+    this.profile(userinfo.roles);
   }
   public userexist():boolean{
-    let user=JSON.parse(localStorage.getItem('user')||'{}');
-    if(user.roles?.length>0){
+    let user=localStorage.getItem('schooltoken');
+    if(user){
       return true;
     }
     return false;
   }
   public gotoprofile(){
-    let user=JSON.parse(localStorage.getItem('user')||'{}');
-    this.profile(user?.roles[0].toLocaleLowerCase());
+    let token=JSON.parse(localStorage.getItem('schooltoken')||'');
+    let role=this.decodetoken(token).roles
+    this.profile(role);
+  }
+  private decodetoken(token:string){
+    let base64Url = token.split('.')[1];
+    let base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+    let jsonPayload = decodeURIComponent(window.atob(base64).split('').map(function(c) {
+        return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+    }).join(''));
+    return JSON.parse(jsonPayload);
   }
   private profile(role:string):void{
     switch(role.toLocaleLowerCase()){
@@ -51,10 +63,14 @@ export class AuthserviceService {
         break;
     }
   }
-  logout(){
-    localStorage.removeItem('user');
+  logout(path:string){
+    localStorage.removeItem('schooltoken');
+    localStorage.removeItem('schoolexp');
     localStorage.removeItem('remember');
     this.logoutflag.next(true);
+    if(path=='home')
     this.route.navigate(['home']);
+    else
+    this.route.navigate(['auth']);
   }
 }

@@ -1,58 +1,53 @@
-.container{
+.container-wraperr{
     width: 100vw;
     height: 100vh;
-    top:0;
-    left: 0;
-    z-index: 10;
-    position: fixed;
-    background-color: rgba(0, 0, 0, 0.642);
 }
-.container-wraperr{
-    width: 90vw;
-    height: 90vh;
-    background-color: white;
-    border-radius: 10px;
-    position: relative;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
-    overflow: auto;
-}
-.closebtn{
-    background-color: transparent;
-    display: block;
-    color: black;
-    position: absolute;
-    top: 0;
-    right: 0;
-    border-radius: 0;
-    font-size: 15px;
-}
-
-.container-wraperr p{
-    text-align: center;
-    font-size: 2em;
-    padding: 1rem 0;
-}
-.row{
+main{
     display: flex;
-    justify-content:space-evenly;    
+    width: 100%;
+    margin: 1rem auto;
 }
-.col-md-4{
-    width: 30%;
+main div:nth-child(1){
+    display: flex;
+    width: 50%;
 }
-.row .col-md-4 table{
+main div:nth-child(2){
+    width: 50%;
+}
+main div:nth-child(1) button{
+    display: block;
+    background-color: transparent;
+    height: 100%;
+    color: black;
+    border-radius: 0;
+}
+main div:nth-child(1) img{
+    display: block;
     width: 90%;
-    height: 20vh;
-    overflow-x: auto;
-    overflow-y: auto;
 }
-.row .col-md-4 table tr td  p,.row .col-md-4 table tr th{
+table{
     text-align: left;
-    font-size: 1em;
-    padding: 0.5rem 0;
+    display: block;
+    width: 80%;
+    margin: auto;
 }
-.rowbtn{
+table tr td,table tr th{
+    width: 200px;
+}
+table tr td{
+    padding-left:1rem ;
+}
+table tr td input[type='text']{
+    padding: 0.5rem 0.3rem;
+}
+table tr th{
+    padding: 1rem;
+    background-color: black;
+    color: white;
+    font-weight: 700;
+    border-bottom: 1px solid white;
+}
+form .rowbtn{
     display: flex;
     justify-content:end; 
     padding: 0 1rem; 
@@ -60,10 +55,17 @@
 .btnaccept{
     border-radius: 0;
     background-color: green;
-    margin: 0 0.3rem ;
+    margin: 0 0.3rem;
+    padding: 0.7rem 1.6rem;
+    box-shadow: 1px 1px 1px 1px #0000004d;
+    border-radius: 10px;
 }
 .btnrefuse{
     border-radius: 0;
     background-color: rgb(143, 4, 4);
-    margin: 0 0.3rem ;
+    margin: 0 0.3rem;
+    padding: 0.7rem 1.6rem;
+    box-shadow: 1px 1px 1px 1px #0000004d;
+    border-radius: 10px;
+
 }

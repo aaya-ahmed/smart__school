@@ -1,7 +1,13 @@
 <div class="container">
     <div class="container-wraperr">
-        <header>Subject</header>
-        <button class="closebtn" (click)="close()"><i class="fa-solid fa-close"></i></button>
+        <header>
+            <div>
+                Add Subject
+            </div>
+            <div>
+                <button (click)="close()"><i class="fa-solid fa-close"></i></button>
+            </div>
+        </header>
         <form [formGroup]="subject" #form="ngForm" (ngSubmit)="addsubject()">
             <div class="form-group">
                 <label>Name</label>
@@ -24,6 +30,7 @@
                 </div>
             </div>
             <div class="form-group submit">
+                <span [ngClass]="{'success':mess=='Success','failed':mess=='Failed'}">{{mess}}</span>
                 <input type="submit" value="Submit" class="btn"/>
             </div>
         </form>

@@ -1,46 +1,30 @@
-table {
-    caption-side: bottom;
-    border-collapse: collapse;
-
-  }
-  .table {
-    width: 100%;
-    margin-bottom: 1rem;
-    color: #212529;
-    vertical-align: top;
-    border-color: #dee2e6;
-  }
-  .table > :not(caption) > * > * {
-    padding: 0.5rem 0.5rem;
-    background-color: transparent;
-    border-bottom-width: 1px;
-    box-shadow: inset 0 0 0 9999px transparent;
-  }
-  .table > tbody {
-    vertical-align: middle;
-  }
-  .table > thead {
-    vertical-align: middle;
-  }
-  .table-hover > tbody > tr{
-    border-bottom: 1px solid black;
-  }
-  .table-hover > tbody > tr:hover > * {
-    background-color: #dee2e6;
-    color: rgba(0, 0, 0, 0.66);
-  }
-  .bg-black {
-    background-color: black;
-  }
-  .text-white{
-    color:white;
-  }
-  .text-center{
-    text-align: center;
-  }
-  .text-left{
-    text-align: left;
-  }
-  i{
-    font-size: 20px;
-  }
+.data{
+  height: 50vh!important;
+}
+.tablebody div:nth-child(2),
+.tablebody div:nth-child(4),
+.tableheader div:nth-child(2),
+.tableheader div:nth-child(4)
+{
+  width: calc(70% / 2)!important;
+}
+.tablebody div:nth-child(1),
+.tablebody div:nth-child(3),
+.tablebody div:nth-child(5),
+.tableheader div:nth-child(1),
+.tableheader div:nth-child(3),
+.tableheader div:nth-child(5){
+  width: 10%!important;
+}
+.save{
+  text-align: right;
+  padding: 0 2rem;
+}
+.save button{
+  border-radius: 0;
+  background-color: green;
+  margin: 0 0.3rem;
+  padding: 0.7rem 1.6rem;
+  box-shadow: 1px 1px 1px 1px #0000004d;
+  border-radius: 10px;
+}

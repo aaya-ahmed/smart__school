@@ -12,8 +12,6 @@ export class MessagerespnceComponent implements OnInit{
   constructor(private route:Router){
   }
   ngOnInit(): void {
-    setTimeout(() => {
-      this.route.navigate(['/home'])
-    }, 2000);
+
   }
 }

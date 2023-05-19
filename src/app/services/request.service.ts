@@ -20,8 +20,8 @@ export class RequestService {
     ); 
   }
 
-  acceptRequest(id:number): Observable<any> {
-    return this._HttpClient.post<request>(environment.URL+ `Request/Save/${id}`,id);
+  acceptRequest(id:number,classId:number): Observable<any> {
+    return this._HttpClient.post<request>(environment.URL+ `Request/Save/${id}/${classId}`,id);
   }
 
   refuseRequest(id:number): Observable<any> {

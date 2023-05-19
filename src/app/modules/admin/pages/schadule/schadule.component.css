@@ -1,8 +1,21 @@
+.data {
+    height: 50vh!important;
+}
 .row{
     display: flex;
+    width: 100%;
+}
+.search{
+    width: 95%;
+    margin: auto;
+}
+.search form{
+    display: flex;
+    width: 100%;
+
 }
 .form-group{
-    width: 33.33333%;
+    width: 45%;
     margin: 1rem auto;
 }
 .form-control{
@@ -21,8 +34,17 @@
 
 }
 .submit{
-    text-align: right;
+    padding: 35px 0;
 }
+.submit button{
+    color: black;
+    text-align: right;
+    background-color: transparent;
+    padding: 0;
+}
+
+/*
+
 .btn{
     background-color: var(--secondary-color);
     color: white;
@@ -41,4 +63,4 @@
     right: 0;
     border-radius: 0;
     font-size: 15px;
-}
+} */

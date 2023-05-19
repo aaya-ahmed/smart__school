@@ -1,77 +1,89 @@
 <div class="container">
   <div class="container-wraperr">
-    <p>Request Details</p>
-    <button class="closebtn" (click)="close()"><i class="fa-solid fa-close"></i></button>
-    <div class="row">
-    <div class="col-md-4">
-    <img [src]="requestDetails?.identityParentPhotoUrl" alt="" class="w-100 my-2">
-    </div>
-    <div class="col-md-4">
-    <img [src]="requestDetails?.studentPhotoUrl" alt="" class="w-100 my-2">
-    </div>
-    </div>
-    <div class="row">
-    <div class="col-md-4">
-    <table>
-      <tr>
-        <th>Student name</th>
-        <td>
-          <p>{{requestDetails?.studentFirstName}}</p>
-        </td>
-      </tr>
-      <tr>
-        <th>Student Email</th>
-        <td>
-          <p>{{requestDetails?.studentEmail}}</p>
-        </td>
-      </tr>
-      <tr>
-        <th>Student Phone</th>
-        <td>
-          <p>{{requestDetails?.studentPhone}}</p>
-        </td>
-      </tr>
-      <tr>
-        <th>Student Gender</th>
-        <td>
-          <p>{{requestDetails?.studentGender==1?'female':'male'}}</p>
-        </td>
-      </tr>  
-      <tr>
-        <th>Student Birth Date</th>
-        <td>
-          <p>{{requestDetails?.studentBirthDate|date:'yyyy-MM-dd'}}</p>
-        </td>
-      </tr>    
-    </table>
-    </div>
-    <div class="col-md-4">
-    <table>
-      <tr>
-        <th>Parent name</th>
-        <td>
-          <p>{{requestDetails?.parentFullName}}</p>
-        </td>
-      </tr>
-      <tr>
-        <th>Parent Email</th>
-        <td>
-          <p>{{requestDetails?.parentEmail}}</p>
-        </td>
-      </tr>
-      <tr>
-        <th>Parent Phone</th>
-        <td>
-          <p>{{requestDetails?.parentPhone}}</p>
-        </td>
-      </tr>   
-    </table>
-    </div>
-    </div>
-    <p>{{errorMessage}}</p>
-    <div class="rowbtn">
-    <button class="btnaccept" (click)="addRequest()">Accept</button>
-    <button class="btnrefuse" (click)="deleteRequest()">Refuse</button>
-    </div>
+      <header>
+          <div>
+            Request Details
+          </div>
+          <div>
+              <button (click)="close()"><i class="fa-solid fa-close"></i></button>
+          </div>
+      </header>
+      <main>
+        <div>
+          <button (click)="prev()"><i class="fa-solid fa-arrow-left"></i></button>
+          <img [src]="selectedimage"/>
+          <button (click)="next()"><i class="fa-solid fa-arrow-right"></i></button>
+        </div>
+        <div>
+          <table>
+            <tr>
+              <th>Student name</th>
+              <td>
+                <p>{{requestDetails?.studentFirstName}}</p>
+              </td>
+            </tr>
+            <tr>
+              <th>Student Email</th>
+              <td>
+                <p>{{requestDetails?.studentEmail}}</p>
+              </td>
+            </tr>
+            <tr>
+              <th>Student Phone</th>
+              <td>
+                <p>{{requestDetails?.studentPhone}}</p>
+              </td>
+            </tr>
+            <tr>
+              <th>Student Gender</th>
+              <td>
+                <p>{{requestDetails?.studentGender==1?'female':'male'}}</p>
+              </td>
+            </tr>  
+            <tr>
+              <th>Student Birth Date</th>
+              <td>
+                <p>{{requestDetails?.studentBirthDate|date:'yyyy-MM-dd'}}</p>
+              </td>
+            </tr>    
+          </table>
+          <form [formGroup]="classform" #cform="ngForm">
+          <table>
+            <tr>
+              <th>Parent name</th>
+              <td>
+                <p>{{requestDetails?.parentFullName}}</p>
+              </td>
+            </tr>
+            <tr>
+              <th>Parent Email</th>
+              <td>
+                <p>{{requestDetails?.parentEmail}}</p>
+              </td>
+            </tr>
+            <tr>
+              <th>Parent Phone</th>
+              <td>
+                <p>{{requestDetails?.parentPhone}}</p>
+              </td>
+            </tr> 
+            <tr>
+              <th>Grade</th>
+              <td>
+                  <input list="classies" type="text" formControlName="class"
+                  [ngStyle]="{'color:red':cform.submitted&&classform.controls['class'].errors}"/>
+                  <datalist id="classies">
+                    <option *ngFor="let item of classies;let i=index" [value]="i">{{item.gradeYearName}}-{{item.name}}</option>
+                  </datalist>
+              </td>
+            </tr>  
+          </table>
+          <div class="rowbtn">
+            <button class="btnaccept" (click)="addRequest()">Accept</button>
+            <button class="btnrefuse" (click)="deleteRequest()">Refuse</button>
+          </div>
+        </form>
+        </div>
+      </main>
   </div>
 </div>

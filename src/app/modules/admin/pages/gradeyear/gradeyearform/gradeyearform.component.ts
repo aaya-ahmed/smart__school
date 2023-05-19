@@ -1,32 +1,25 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { gradyear } from 'src/app/data/gradyear';
 import { GradyearService } from 'src/app/services/gradyear.service';
 import { HostmanagerService } from 'src/app/services/hostmanager.service';
 
 @Component({
   selector: 'app-gradeyearform',
   templateUrl: './gradeyearform.component.html',
-  styleUrls: ['./gradeyearform.component.css']
+  styleUrls: ['../../form.style.css']
 })
-export class GradeyearformComponent implements OnInit{
-  id:number=-1;
+export class GradeyearformComponent implements OnInit , OnDestroy{
+  newgrades:gradyear[]=[]
+  loadflag:boolean=false;
+  mess:string=''
+  subscriber:any;
   gradeyear:FormGroup=new FormGroup({
     name:new FormControl('',[Validators.required,Validators.minLength(3),Validators.maxLength(15)]),
     fees:new FormControl(0,[Validators.required,Validators.pattern("^[0-9]{2,}$")])
   });
-  errormess:string=''
   constructor(private gradeyearservice:GradyearService,private hostman:HostmanagerService){}
   ngOnInit(): void {
-    let subscriber=this.hostman.data.subscribe({
-      next:res=>{
-        if(res.data.id){
-          this.id=res.data.id;
-          this.namecontrol.setValue(res.data.name);
-          this.feescontrol.setValue(res.data.fees);
-        }
-        subscriber.unsubscribe()
-      }
-    })
   }
   get namecontrol(){
     return this.gradeyear.controls['name']
@@ -36,31 +29,28 @@ export class GradeyearformComponent implements OnInit{
   }
   addgradeyear(){
     if(this.gradeyear.valid){
-      if(this.id!=-1){
-        // this.gradeyearservice.(this.gradeyear.value).subscribe({
-        //   next:data=>{
-        //     this.hostman.load({data:'',open:false,returndata:data,type:''})
-        //   },
-        //   error:err=>{
-        //     this.errormess=err.message;
-        //     console.log(err)
-        //   }
-        // })
-      }
-      else{
-        this.gradeyearservice.post(this.gradeyear.value).subscribe({
-          next:data=>{
-            this.hostman.load({data:'',open:false,returndata:data,type:''})
+       this.subscriber= this.gradeyearservice.post(this.gradeyear.value).subscribe({
+          next:(data:any)=>{
+            let grade={
+              ...this.gradeyear.value,
+              id:data.id
+            }
+            this.newgrades.push(grade);
+            this.mess='Success';
           },
           error:err=>{
-            this.errormess=err.message;
-            console.log(err)
+            this.mess='Failed';
           }
-        })
-      }
+        });
+        setTimeout(() => {
+          this.mess='';
+        }, 1000);
       }
   }
   close(){
-    this.hostman.load({open:false,data:'',returndata:'',type:''});
+    this.hostman.load({open:false,data:'',returndata:this.newgrades,type:''});
+  }
+  ngOnDestroy(): void {
+    this.subscriber.unsubscribe();
   }
 }

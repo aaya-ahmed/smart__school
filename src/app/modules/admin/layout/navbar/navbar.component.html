@@ -1,62 +1,54 @@
-<nav>
-
-    <div class="logo">
-        <label for="closebtn">
-            <i class="fa-solid fa-close"></i>
-        </label>
-        <input type="checkbox" id="closebtn"/>
-        <img src="../../../../../assets/images/logo.webp"/>
-    </div>
-    <ul>
-        <li class="active" (click)="gottopage('dashboard')">
-            <i class="fa-solid fa-dashboard"></i>
-            Dahboard
-        </li>
-        <li (click)="gottopage('requests')">
-            <i class="fa-solid fa-user"></i>
-            requests
-        </li>
-        <li (click)="gottopage('gradyear')">
-            <i class="fa-solid fa-graduation-cap"></i>
-            Grad Year
-        </li>
-        <li (click)="gottopage('subjects')">
-            <i class="fa-solid fa-book"></i>
-            Subjects
-        </li>
-        <li (click)="gottopage('teachers')">
-            <i class="fa-solid fa-chalkboard-teacher"></i>
-            Teacher
-        </li>
-        <li (click)="gottopage('classroom')">
-            <i class="fa-solid fa-child"></i>
-            class rooms
-        </li>
-        <li (click)="gottopage('students')">
-            <i class="fa-solid fa-child"></i>
-            Students
-        </li>
-        <li (click)="gottopage('schadule')">
-            <i class="fa-solid fa-calendar"></i>
-            schadule
-        </li>
-        <li (click)="gottopage('complians')">
-            <i class="fa-solid fa-note-sticky"></i>
-            Complians
-        </li>
-        <li (click)="gottopage('profile')">
-            <i class="fa-solid fa-user"></i>
-            profile
-        </li>
-
-        <li>
-            <i class="fa-solid fa-gear"></i>
-            Settings
-            <ul>
-                <li (click)="gottopage('changepassword')">Change Password</li>
-                <li (click)="gottopage('changeemail')">Change Email</li>
-                <li (click)="gottopage('updateprofile')">Update profile</li>
-            </ul>
-        </li>
-    </ul>
-</nav>
+<input type="checkbox" id="closebtn" (change)="toggleview()"/>
+<div class="container" [ngClass]="{'hide':toggleflag}">
+    <nav>
+        <div class="logo">
+            <span class="togglebtnsec">
+                <label for="closebtn" >
+                    <i class="fa-solid fa-close"></i>
+                </label>
+            </span>
+            <span>
+                <img src="../../../../../favicon.ico"/>
+                <h4>School</h4>
+            </span>
+        </div>
+        <ul>
+            <li [ngClass]="{'active':currentpage=='requests'}" (click)="gottopage('requests')">
+                <i class="fa-solid fa-user"></i>
+               <span> requests</span>
+            </li>
+            <li [ngClass]="{'active':currentpage=='gradyear'}" (click)="gottopage('gradyear')">
+                <i class="fa-solid fa-graduation-cap"></i>
+               <span> Grad Year</span>
+            </li>
+            <li [ngClass]="{'active':currentpage=='subjects'}" (click)="gottopage('subjects')">
+                <i class="fa-solid fa-book"></i>
+               <span> Subjects</span>
+            </li>
+            <li [ngClass]="{'active':currentpage=='classroom'}" (click)="gottopage('classroom')">
+                <i class="fa-solid fa-child"></i>
+               <span> class rooms</span>
+            </li>
+            <li [ngClass]="{'active':currentpage=='teachers'}" (click)="gottopage('teachers')">
+                <i class="fa-solid fa-chalkboard-teacher"></i>
+               <span> Teacher</span>
+            </li>
+            <li [ngClass]="{'active':currentpage=='students'}" (click)="gottopage('students')">
+                <i class="fa-solid fa-child"></i>
+               <span> Students</span>
+            </li>
+            <li [ngClass]="{'active':currentpage=='schadule'}" (click)="gottopage('schadule')">
+                <i class="fa-solid fa-calendar"></i>
+               <span> schadule</span>
+            </li>
+            <li [ngClass]="{'active':currentpage=='complians'}" (click)="gottopage('complians')">
+                <i class="fa-solid fa-note-sticky"></i>
+               <span> Complians</span>
+            </li>
+            <li [ngClass]="{'active':currentpage=='profile'}" (click)="gottopage('profile')">
+                <i class="fa-solid fa-user"></i>
+               <span> profile</span>
+            </li>
+        </ul>
+    </nav>
+</div>

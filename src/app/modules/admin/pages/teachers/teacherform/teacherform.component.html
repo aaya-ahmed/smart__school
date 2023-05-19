@@ -1,22 +1,28 @@
 <div class="container">
     <div class="container-wraperr">
-        <header>Teacher</header>
-        <button class="closebtn" (click)="close()"><i class="fa-solid fa-close"></i></button>
-        <form [formGroup]="teacher" #form="ngForm" (ngSubmit)="addteacher()">
-            <div class="form-group image-sec">
+        <header>
+            <div>
+                Teacher
+            </div>
+            <div>
+                <button (click)="close()"><i class="fa-solid fa-close"></i></button>
+            </div>
+        </header>
+        <form [formGroup]="teacher" #form="ngForm" (ngSubmit)="save()">
+            <div class="form-group image-sec" *ngIf="operationtype==0" >
                 <label for="imageteacher">
-                    <img  [src]="teacherimage!=''?'data:image/jpeg;base64,'+teacherimage:'../../../../../assets/images/studentreg.png'"
+                    <img [src]="teacherimage!=''?'data:image/jpeg;base64,'+teacherimage:'../../../../../assets/images/studentreg.png'"
                     [ngClass]="{'is-invalid':(photocontrol.errors&&photocontrol.touched)||(photocontrol.errors&&form.submitted)}"/>
                     teacher photo
                 </label>
-                <input type="file" id="imageteacher" (change)="changephoto($event)" accept="images/*" formControlName="photo" class="form-control"/>
+                <input type="file" id="imageteacher" (change)="changephoto($event)" accept="images/*" formControlName="Photo" class="form-control"/>
                 <div *ngIf="(photocontrol.errors&&form.submitted)||(photocontrol.errors&&photocontrol.touched)" class="invalid">
                     <p *ngIf="photocontrol.errors['required']" class="invalid-feedback">image is required</p>
                 </div>
             </div>
             <div class="form-group">
                 <label>Name</label>
-                <input type="text" formControlName="fullName" class="form-control"
+                <input type="text" formControlName="FullName" class="form-control"
                 [ngClass]="{'is-invalid':(namecontrol.errors&&namecontrol.touched)||(namecontrol.errors&&form.submitted)}"/>
                 <div *ngIf="(namecontrol.errors&&form.submitted)||(namecontrol.errors&&namecontrol.touched)" class="invalid">
                     <p *ngIf="namecontrol.errors['required']" class="invalid-feedback">name is required</p>
@@ -24,18 +30,18 @@
                     <p *ngIf="namecontrol.errors['maxlength']" class="invalid-feedback">minlength is 15 char</p>
                 </div>
             </div>
-            <div class="form-group">
+            <div class="form-group" *ngIf="operationtype==0">
                 <label>Email</label>
-                <input type="text" formControlName="email" class="form-control"
+                <input type="text" formControlName="Email" class="form-control"
                 [ngClass]="{'is-invalid':(emailcontrol.errors&&emailcontrol.touched)||(emailcontrol.errors&&form.submitted)}"/>
                 <div *ngIf="(emailcontrol.errors&&form.submitted)||(emailcontrol.errors&&emailcontrol.touched)" class="invalid">
                     <p *ngIf="emailcontrol.errors['required']" class="invalid-feedback">email is required</p>
                     <p *ngIf="emailcontrol.errors['email']" class="invalid-feedback">invalid email</p>
                 </div>
             </div>
-            <div class="form-group">
+            <div class="form-group" *ngIf="operationtype==0">
                 <label>Password</label>
-                <input type="text" formControlName="password" class="form-control"
+                <input type="text" formControlName="Password" class="form-control"
                 [ngClass]="{'is-invalid':(passwordcontrol.errors&&passwordcontrol.touched)||(passwordcontrol.errors&&form.submitted)}"/>
                 <div *ngIf="(passwordcontrol.errors&&form.submitted)||(passwordcontrol.errors&&passwordcontrol.touched)" class="invalid">
                     <p *ngIf="passwordcontrol.errors['required']" class="invalid-feedback">password is required</p>
@@ -44,19 +50,18 @@
             </div>
             <div class="form-group">
                 <label>Gender</label>
-                <select formControlName="gender" class="form-control"
-                [ngClass]="{'is-invalid':(emailcontrol.errors&&emailcontrol.touched)||(emailcontrol.errors&&form.submitted)}">
-                    <option value="0">Male</option>
-                    <option value="1">Female</option>
+                <select formControlName="Gender" class="form-control"
+                [ngClass]="{'is-invalid':(gendercontrol.errors&&gendercontrol.touched)||(gendercontrol.errors&&form.submitted)}">
+                    <option value=0>Male</option>
+                    <option value=1>Female</option>
                 </select>
-                <div *ngIf="(emailcontrol.errors&&form.submitted)||(emailcontrol.errors&&emailcontrol.touched)" class="invalid">
-                    <p *ngIf="emailcontrol.errors['required']" class="invalid-feedback">email is required</p>
-                    <p *ngIf="emailcontrol.errors['email']" class="invalid-feedback">invalid email</p>
+                <div *ngIf="(gendercontrol.errors&&form.submitted)||(gendercontrol.errors&&gendercontrol.touched)" class="invalid">
+                    <p *ngIf="gendercontrol.errors['required']" class="invalid-feedback">gender is required</p>
                 </div>
             </div>
-            <div class="form-group">
+            <div class="form-group" >
                 <label>salary</label>
-                <input type="text" formControlName="salary" class="form-control"
+                <input type="text" formControlName="Salary" class="form-control"
                 [ngClass]="{'is-invalid':(salarycontrol.errors&&salarycontrol.touched)||(salarycontrol.errors&&form.submitted)}"/>
                 <div *ngIf="(salarycontrol.errors&&form.submitted)||(salarycontrol.errors&&salarycontrol.touched)" class="invalid">
                     <p *ngIf="salarycontrol.errors['required']" class="invalid-feedback">name is required</p>
@@ -65,7 +70,7 @@
             </div>
             <div class="form-group">
                 <label>Phone</label>
-                <input type="text" formControlName="phone" class="form-control"
+                <input type="text" formControlName="Phone" class="form-control"
                 [ngClass]="{'is-invalid':(phonecontrol.errors&&phonecontrol.touched)||(phonecontrol.errors&&form.submitted)}"/>
                 <div *ngIf="(phonecontrol.errors&&form.submitted)||(phonecontrol.errors&&phonecontrol.touched)" class="invalid">
                     <p *ngIf="phonecontrol.errors['required']" class="invalid-feedback">name is required</p>
@@ -74,7 +79,7 @@
             </div>
             <div class="form-group">
                 <label>Address</label>
-                <input type="text" formControlName="address" class="form-control"
+                <input type="text" formControlName="Address" class="form-control"
                 [ngClass]="{'is-invalid':(addresscontrol.errors&&addresscontrol.touched)||(addresscontrol.errors&&form.submitted)}"/>
                 <div *ngIf="(addresscontrol.errors&&form.submitted)||(addresscontrol.errors&&addresscontrol.touched)" class="invalid">
                     <p *ngIf="addresscontrol.errors['required']" class="invalid-feedback">address is required</p>
@@ -84,7 +89,7 @@
             </div>
             <div class="form-group">
                 <label>hire Date</label>
-                <input type="date" formControlName="hireDate" class="form-control" (change)="validatehiredate($event)"
+                <input type="date" formControlName="HireDate" class="form-control" (change)="validatehiredate($event)"
                 [ngClass]="{'is-invalid':(hireDatecontrol.errors&&hireDatecontrol.touched)||(hireDatecontrol.errors&&form.submitted)}"/>
                 <div *ngIf="(hireDatecontrol.errors&&form.submitted)||(hireDatecontrol.errors&&hireDatecontrol.touched)" class="invalid">
                     <p *ngIf="hireDatecontrol.errors['required']" class="invalid-feedback">hireDate is required</p>
@@ -92,19 +97,38 @@
 
                 </div>
             </div>
-            <div class="form-group">
+            <div class="form-group" *ngIf="operationtype==0">
                 <label>subject </label>
-                <select formControlName="subjectId" class="form-control"
+                <select formControlName="SubjectId" class="form-control"
                 [ngClass]="{'is-invalid':(subjectIdcontrol.errors&&subjectIdcontrol.touched)||(subjectIdcontrol.errors&&form.submitted)}">
-                    <option *ngFor="let item of subjects" value="{{item.id}}">{{item.name}}-{{item.gradeYearName}}</option>
+                    <option *ngFor="let item of subjects;let i=index" value="{{i}}">{{item.name}}-{{item.gradeYearName}}</option>
                 </select>
                 <div *ngIf="(subjectIdcontrol.errors&&form.submitted)||(subjectIdcontrol.errors&&subjectIdcontrol.touched)" class="invalid">
                     <p *ngIf="subjectIdcontrol.errors['required']" class="invalid-feedback">Subject is required</p>
                 </div>
             </div>
+            <div class="form-group">
+                <label>Max Day Off</label>
+                <input type="text" formControlName="MaxDayOff" class="form-control"
+                [ngClass]="{'is-invalid':(MaxDayOffcontrol.errors&&MaxDayOffcontrol.touched)||(MaxDayOffcontrol.errors&&form.submitted)}"/>
+                <div *ngIf="(MaxDayOffcontrol.errors&&form.submitted)||(MaxDayOffcontrol.errors&&MaxDayOffcontrol.touched)" class="invalid">
+                    <p *ngIf="MaxDayOffcontrol.errors['pattern']" class="invalid-feedback">must be number</p>
+                </div>
+            </div>
+            <div class="form-group" *ngIf="operationtype==1">
+                <label>Absence Days</label>
+                <input type="text" formControlName="AbsenceDays" class="form-control" 
+                [ngClass]="{'is-invalid':(AbsenceDayscontrol.errors&&AbsenceDayscontrol.touched)||(AbsenceDayscontrol.errors&&form.submitted)}"/>
+                <div *ngIf="(AbsenceDayscontrol.errors&&form.submitted)||(AbsenceDayscontrol.errors&&AbsenceDayscontrol.touched)" class="invalid">
+                    <p *ngIf="AbsenceDayscontrol.errors['pattern']" class="invalid-feedback">must be number</p>
+
+                </div>
+            </div>
             <p class="invalid-feedback">{{errormess}}</p>
             <div class="form-group submit">
-                <input type="submit" value="Submit" class="btn"/>
+                <input type="submit" value="Add" class="btn" *ngIf="operationtype==0"/>
+                <input type="submit" value="Update" class="btn" *ngIf="operationtype==1"/>
+
             </div>
         </form>
     </div>

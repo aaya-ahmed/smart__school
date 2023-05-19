@@ -19,13 +19,13 @@ export class RegisterComponent {
   birthimage:any="";
 
   registerform:FormGroup=new FormGroup({
-    studentFirstName: new FormControl('',[Validators.required,Validators.minLength(3),Validators.maxLength(10)]),
+    studentFirstName: new FormControl('',[Validators.pattern('^[a-z A-Z]{3,10}$'),Validators.required,Validators.minLength(3),Validators.maxLength(10)]),
     studentEmail: new FormControl('',[Validators.required,Validators.email]),
     studentGender: new FormControl(0,[Validators.required]),
     studentPhone: new FormControl('',[Validators.required,Validators.pattern("^(010|011|012|015)[0-9]{8}$")]),
     studentBirthDate: new FormControl('',[Validators.required]),
     address: new FormControl('',[Validators.required,Validators.minLength(5),Validators.maxLength(25)]),
-    parentFullName: new FormControl('',[Validators.required,Validators.minLength(3),Validators.maxLength(15)]),
+    parentFullName: new FormControl('',[Validators.pattern('^[a-z A-Z]{11,23}$'),Validators.required,Validators.minLength(11),Validators.maxLength(23)]),
     parentEmail: new FormControl('',[Validators.required,Validators.email]),
     parentPhone: new FormControl('',[Validators.required,Validators.pattern("^(010|011|012|015)[0-9]{8}$")]),
     StudentPhoto: new FormControl('',[Validators.required]),
@@ -113,11 +113,30 @@ export class RegisterComponent {
     let today=new Date();
     let birth=new Date(dob.target.value)
     if(birth.getFullYear()>1999&&today.getFullYear()-birth.getFullYear()>=6){
-      this.stdBDControl.setErrors(null);
+      this.stdBDControl.setErrors({
+        ...this.stdBDControl.errors,
+        'notvalid':null
+      })
+      this.stdBDControl.updateValueAndValidity(); 
     }
     else{
       this.stdBDControl.setErrors({'notvalid':true})
     }
+  }
+  validateparentname(name:any){
+    if(name.target.value.split(' ').length!=3){
+      this.patFNameControl.setErrors({
+        ...this.patFNameControl.errors,
+        'notvalid':true
+      })
+    }else{
+      this.patFNameControl.setErrors({
+        ...this.patFNameControl.errors,
+        'notvalid':null
+      })
+      this.patFNameControl.updateValueAndValidity(); 
+    }
+    console.log(this.patFNameControl.errors)
   }
   register(){
     this.submitted=true;
@@ -131,22 +150,21 @@ export class RegisterComponent {
         user.IdentityParentPhoto=this.patimage;
         user.StudentBirthCertPhoto=this.birthimage;
         user.studentGender=+user.studentGender;
-        console.log(user);
         this.authservice.createrequest(user).subscribe(
           {
             next:val=>{
-              console.log(val);
               this.formresponce=true;
               this.typemess='success';
-              this.message='Registration was successful. We will contact with you in 24 hour';
+              this.message='Registration was successful';
             },
             error:err=>{
-              console.log(err)
               this.formresponce=true;
               this.typemess='failed';
-              this.message='Registration was faild!';
             }
           });
+          setTimeout(() => {
+            this.formresponce=false;
+          }, 2000);
     }
   }
 }

@@ -24,6 +24,6 @@ export class NavbarComponent implements OnInit {
     this.Route.navigate(['auth/register'])
   }
   public logout(){
-    this.auth.logout();
+    this.auth.logout('home');
   }
 }

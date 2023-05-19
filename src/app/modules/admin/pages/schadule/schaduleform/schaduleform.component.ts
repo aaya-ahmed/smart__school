@@ -1,18 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { classroom } from 'src/app/data/classroom';
-import { subject } from 'src/app/data/subject';
 import { teacher } from 'src/app/data/teacher';
 import { ClassroomService } from 'src/app/services/classroom.service';
 import { HostmanagerService } from 'src/app/services/hostmanager.service';
 import { SchaduleSessionService } from 'src/app/services/schadule.session.service';
-import { SubjectService } from 'src/app/services/subject.service';
 import { TeacherService } from 'src/app/services/teacher.service';
 
 @Component({
   selector: 'app-schaduleform',
   templateUrl: './schaduleform.component.html',
-  styleUrls: ['./schaduleform.component.css']
+  styleUrls: ['./schaduleform.component.css','../../form.style.css']
 })
 export class SchaduleformComponent implements OnInit {
   classrooms:classroom[]=[];
@@ -67,22 +65,22 @@ export class SchaduleformComponent implements OnInit {
     return this.schadule.controls['teacherID']
   }
   setsubject(){
-    this.subject=this.teachers.find(p=>p.id==this.teachercontrol.value)?.subjectName||''
+    this.subject=this.teachers.find(p=>p.Id==this.teachercontrol.value)?.SubjectName||''
   }
   close(){
     this.hostman.load({open:false,data:'',returndata:'',type:''});
   }
   addschadule(){
     if(this.schadule.valid){
-      let teacher=this.teachers[this.teachers.findIndex(p=>p.id==this.schadule.value.teacherID)];
-      if(this.data.session.id){
+      let teacher=this.teachers[this.teachers.findIndex(p=>p.Id==this.schadule.value.teacherID)];
+      if(this.data){
         let session={
           id: this.data.session.id,
           sessionNo: this.sessionNocontrol.value,
           scheduleID: this.data.session.scheduleID,
-          teacherID: teacher.id,
-          subjectName: teacher.subjectName,
-          teacherName: teacher.fullName,
+          teacherID: teacher.Id,
+          subjectName: teacher.SubjectName,
+          teacherName: teacher.FullName,
           scheduleDay: this.schadule.value.day
       }
       let schadule={
@@ -105,13 +103,28 @@ export class SchaduleformComponent implements OnInit {
           classId:+this.schadule.value.classId,
           ClassRoom:this.classrooms[this.classrooms.findIndex(p=>p.id==this.schadule.value.classId)].name,
           Teacherid:this.schadule.value.teacherID,
-          Teacher:teacher.fullName,
-          Subject:teacher.subjectName,
+          Teacher:teacher.FullName,
+          Subject:teacher.SubjectName,
           SessionNum:this.schadule.value.sessionNo,
           gradeyear:this.classrooms[this.classrooms.findIndex(p=>p.id==this.schadule.value.classId)].gradeYearName
         }
         this.schaduleitem=schadule;
       }
     }
+  }
+  validatedate($event:any){
+    let today=new Date().toISOString();
+    console.log(today)
+    console.log($event.target.value)
+    if($event.target.value>today){
+      this.daycontrol.setErrors({
+      ...this.daycontrol.errors,
+      'notvalid':null
+    })
+    this.daycontrol.updateValueAndValidity(); 
+  }
+  else{
+    this.daycontrol.setErrors({'notvalid':true})
+  }
   }
 }

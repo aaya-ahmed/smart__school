@@ -9,16 +9,17 @@ import { SubjectService } from 'src/app/services/subject.service';
 @Component({
   selector: 'app-subjectform',
   templateUrl: './subjectform.component.html',
-  styleUrls: ['./subjectform.component.css']
+  styleUrls: ['../../form.style.css']
 })
 export class SubjectformComponent {
   id:number=-1;
   gradeyears:gradyear[]=[];
+  subjects:subject[]=[];
   subject:FormGroup=new FormGroup({
     subname:new FormControl('',[Validators.required,Validators.minLength(3),Validators.maxLength(15)]),
     gradeYearId:new FormControl('',[Validators.required]),  
   });
-  errormess:string=''
+  mess:string=''
   constructor(private gradeyearservice:GradyearService,private subjectservice:SubjectService,private hostman:HostmanagerService){}
   ngOnInit(): void {
     let subscriber1=this.gradeyearservice.getall().subscribe({
@@ -56,20 +57,23 @@ export class SubjectformComponent {
           gradeYearId: +this.gradecontrol.value,
           gradeYearName: this.gradeyears[gradeindex].name
         }
-        console.log(subject)
         this.subjectservice.post(subject).subscribe({
           next:data=>{
             subject.id=data.id;
-            this.hostman.load({data:'',open:false,returndata:subject,type:''})
+            this.subjects.push(subject);
+            this.mess="Success";
           },
           error:err=>{
-            this.errormess="not allow";
+            this.mess="Failed";
           }
-        })
+        });
+        setTimeout(() => {
+          this.mess=''
+        }, 1000);
       }
       }
   }
   close(){
-    this.hostman.load({open:false,data:'',returndata:'',type:''});
+    this.hostman.load({open:false,data:'',returndata:this.subjects,type:''});
   }
 }

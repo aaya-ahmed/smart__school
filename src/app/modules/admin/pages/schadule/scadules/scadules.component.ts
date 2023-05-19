@@ -1,29 +1,30 @@
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { schadule, tempschadule } from 'src/app/data/schadule';
 import { sessions } from 'src/app/data/sessions';
+import { HostmanagerService } from 'src/app/services/hostmanager.service';
 import { SchaduleSessionService } from 'src/app/services/schadule.session.service';
 
 @Component({
   selector: 'app-scadules',
   templateUrl: './scadules.component.html',
-  styleUrls: ['./scadules.component.css']
+  styleUrls: ['../../styles.css','./scadules.component.css']
 })
 export class ScadulesComponent implements OnChanges {
   @Input()schadule:any;
   @Output()message:EventEmitter<string>=new EventEmitter();
   schadules:tempschadule[]=[];
   exist:boolean=false;
-  constructor(private schaduleservice:SchaduleSessionService){}
+  constructor(private schaduleservice:SchaduleSessionService,private hostman:HostmanagerService){}
   ngOnChanges(changes: SimpleChanges): void {
     if(changes['schadule'].firstChange==false){
       let currentschadule=changes['schadule'].currentValue;
       this.schadules.forEach(ele => {
-        if(ele.day==currentschadule.Day&&currentschadule.Teacherid==ele.sessions.teacherID){
+        if(ele.sessions.sessionNo==currentschadule.SessionNum&&currentschadule.Teacherid==ele.sessions.teacherID&&ele.sessions.scheduleDay==currentschadule.Day){
               this.exist=true;
               return;
             }
       });
-      let schaduleindex=this.schadules.findIndex(p=>p.gradeyear==currentschadule.gradeyear&&p.day==currentschadule.Day&&p.classId==currentschadule.classId);
+      let schaduleindex=this.schadules.findIndex(p=>p.sessions.sessionNo==currentschadule.SessionNum&&p.classId==currentschadule.classId&&p.sessions.scheduleDay==currentschadule.Day);
       
       if(schaduleindex==-1&&this.exist==false){
         let session1:sessions={
@@ -63,11 +64,13 @@ export class ScadulesComponent implements OnChanges {
           ele.sessions.scheduleID=res.id;
           this.schaduleservice.postsession(ele.sessions).subscribe({
             next:res=>{
-
+              this.hostman.load({open:false,data:'',returndata:'',type:''})
             }
           })
         },
-        error:err=>{}
+        error:err=>{
+
+        }
       })
     });
   }

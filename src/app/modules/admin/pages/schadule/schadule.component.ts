@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { classroom } from 'src/app/data/classroom';
 import { sessions } from 'src/app/data/sessions';
@@ -9,15 +9,16 @@ import { SchaduleSessionService } from 'src/app/services/schadule.session.servic
 @Component({
   selector: 'app-schadule',
   templateUrl: './schadule.component.html',
-  styleUrls: ['./schadule.component.css']
+  styleUrls: ['./schadule.component.css','../styles.css']
 })
-export class SchaduleComponent {
+export class SchaduleComponent implements OnInit , OnDestroy{
   formdata:FormGroup=new FormGroup({
     date:new FormControl('',[Validators.required]),
     classid:new FormControl('',[Validators.required])
   });
   classrooms:classroom[]=[]
   sessions:sessions[]=[]
+  subscriber:any;
   get datecontrol(){
     return this.formdata.controls['date'];
   }
@@ -25,8 +26,9 @@ export class SchaduleComponent {
     return this.formdata.controls['classid'];
   }
   constructor(private schaduleservice:SchaduleSessionService,private classroomservice:ClassroomService,private hostman:HostmanagerService){}
+
   ngOnInit(): void {
-    this.classroomservice.getall().subscribe({
+    this.subscriber=this.classroomservice.getall().subscribe({
       next:res=>{
         this.classrooms=res;
       }
@@ -37,12 +39,13 @@ export class SchaduleComponent {
     this.hostman.load({data:'',open:true,returndata:'',type:'schadule'})
     let subscriber=this.hostman.data.subscribe({
       next:res=>{
-        
+        if(res.returndata!='')
+        this.getschadule();
       }
     })
   }
   getschadule(){
-    let classid:number=this.classrooms.find(p=>p.name==this.classcontrol.value)?.id||0
+    let classid:number=this.classrooms[+this.classcontrol.value-1].id
     this.schaduleservice.getsessions(classid,this.datecontrol.value).subscribe({
       next:res=>{
         this.sessions=res;
@@ -50,8 +53,7 @@ export class SchaduleComponent {
     })
   }
   edit(item:sessions){
-    let index:number=this.classrooms.findIndex(p=>p.name==this.classcontrol.value)
-    this.hostman.load({data:{session:item,classid:this.classrooms[index].id},open:true,returndata:'',type:'schadule'})
+    this.hostman.load({data:{session:item,classid:this.classrooms[+this.classcontrol.value-1].id},open:true,returndata:'',type:'schadule'})
     let subscriber=this.hostman.data.subscribe({
       next:res=>{
         
@@ -59,10 +61,22 @@ export class SchaduleComponent {
     })
   }
   delete(id:number){
-    this.schaduleservice.deleteschadule(id).subscribe({
+    this.hostman.load({data:'',open:true,returndata:'',type:'confirm'});
+    this.subscriber=this.hostman.data.subscribe({
       next:res=>{
-        this.sessions.splice(this.sessions.findIndex(p=>p.scheduleID==id),1)
+        this.subscriber.unsubscribe()
+        if(res.returndata==true){
+          this.schaduleservice.deleteschadule(id).subscribe({
+            next:res=>{
+              this.sessions.splice(this.sessions.findIndex(p=>p.scheduleID==id),1)
+            }
+          })
+        }
       }
-    })
+    }) 
+  }
+  ngOnDestroy(): void {
+    if(this.subscriber)
+    this.subscriber.unsubscribe()
   }
 }

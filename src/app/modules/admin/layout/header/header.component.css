@@ -3,11 +3,12 @@ header{
     height: 3.5rem;
     margin: 1rem auto;
     line-height: 2.5rem;
-    vertical-align: ce;
+    vertical-align: middle;
     padding: 0.5rem 1rem;
-    background-color: aliceblue;
+    background-color: #324864;
     border-radius: 10px;
     display: flex;
+    color: white;
 }
 #togglebtn{
     position: absolute;
@@ -18,6 +19,7 @@ header{
     border: 0;
     background-color: transparent;
     outline: 0;
+    color: white;
 }
 .searchsec{
     width: 80%;
@@ -44,7 +46,7 @@ button{
     color: black;
 }
 .logoutsec label i{
-    color: black;
+    color: white!important;
 }
 .logoutsec ul{
     display: none;
@@ -52,14 +54,19 @@ button{
 .logoutsec input{
     position: absolute;
     z-index: -1000;
+    color: white;
 }
+
 .logoutsec input:checked + ul {
+    z-index: 1000;
     display: block;
     width: fit-content;
     margin: 1rem 0 0 0;
+    background-color: white;
     line-height: 2;
     box-shadow: 5px 3px 8px 0px #00000026;
 }
 .logoutsec input:checked + ul li{
     padding: 1rem;
+    cursor: pointer;
 }

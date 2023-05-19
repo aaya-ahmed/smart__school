@@ -8,8 +8,13 @@ import { Component, HostListener, OnInit} from '@angular/core';
 export class AppComponent implements OnInit{
   ngOnInit(): void {
     window.onunload = () => {
-      if(localStorage.getItem('remember')==null)
-        localStorage.removeItem('user');
+      let exp=localStorage.getItem('schoolexp')||'';
+      const now = Math.floor(Date.now() / 1000)
+      if(now>+exp){
+        localStorage.removeItem('schooltoken');
+        localStorage.removeItem('schoolexp');
+      }
+
    }
   }
 

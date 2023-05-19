@@ -1,21 +1,26 @@
 <ng-container *ngIf="schadules.length>0">
-    <table class="table">
-        <thead>
-            <th>Class Room</th>
-            <th>Day</th>
-            <th>Subject</th>
-            <th>Teacher</th>
-            <th>Session Num</th>
-        </thead>
-        <tbody>
-                <tr *ngFor="let item of schadules">
-                    <td>{{item.classRoomName}}</td>
-                    <td>{{item.day|date:'short'}}</td>
-                    <td>{{item.sessions.subjectName}}</td>
-                    <td>{{item.sessions.teacherName}}</td>
-                    <td>{{item.sessions.sessionNo}}</td>
-                </tr>
-        </tbody>
-    </table>
-    <button (click)="save()">submit</button>
+    <div class="tableheader">
+        <div>Class</div>
+        <div>Day</div>
+        <div>Subject</div>
+        <div>Teacher</div>
+        <div>Session</div>
+    </div>
+    <div class="data">
+        <div *ngFor="let item of schadules" class="tablebody">
+            <div>{{item.classRoomName}}</div>
+            <div>{{item.day|date:'short'}}</div>
+            <div>{{item.sessions.subjectName}}</div>
+            <div>{{item.sessions.teacherName}}</div>
+            <div>{{item.sessions.sessionNo}}</div>
+        </div>
+    </div>  
+    <div class="save">
+        <button (click)="save()">Save</button>
+    </div>
+</ng-container>        
+<ng-container *ngIf="schadules.length==0">
+    <div class="notfoundbody">
+        Not Found
+    </div>
 </ng-container>
