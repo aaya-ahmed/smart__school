@@ -4,6 +4,7 @@
 .row{
     display: flex;
     width: 100%;
+    align-items: center;
 }
 .search{
     width: 95%;
@@ -33,34 +34,29 @@
     outline: none;
 
 }
-.submit{
-    padding: 35px 0;
-}
 .submit button{
     color: black;
     text-align: right;
     background-color: transparent;
     padding: 0;
 }
-
-/*
-
-.btn{
-    background-color: var(--secondary-color);
-    color: white;
-    padding: 0.5rem 1rem;
-    border: none;
-    outline: none;
-    border-radius: 10px;
-
-}
-.closebtn{
-    background-color: transparent;
-    display: block;
-    color: black;
-    position: absolute;
-    top: 0;
-    right: 0;
-    border-radius: 0;
-    font-size: 15px;
-} */
+@media (max-width:650px){
+    .search form,.row{
+        display: block!important;
+    }
+    .form-group{
+        width: 100%!important;
+    }
+    .tableheader{
+      display: none!important;
+    }
+    .tablebody{
+      display: block!important;
+    }
+    .tablebody div{
+        width: 100%!important;
+      }
+    .submit,.tablebody div:nth-child(5){
+        text-align: center!important;
+      }
+  }

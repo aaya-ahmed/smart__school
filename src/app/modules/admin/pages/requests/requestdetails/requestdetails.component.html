@@ -9,12 +9,7 @@
           </div>
       </header>
       <main>
-        <div>
-          <button (click)="prev()"><i class="fa-solid fa-arrow-left"></i></button>
-          <img [src]="selectedimage"/>
-          <button (click)="next()"><i class="fa-solid fa-arrow-right"></i></button>
-        </div>
-        <div>
+        <div class="information">
           <table>
             <tr>
               <th>Student name</th>
@@ -70,20 +65,30 @@
             <tr>
               <th>Grade</th>
               <td>
-                  <input list="classies" type="text" formControlName="class"
-                  [ngStyle]="{'color:red':cform.submitted&&classform.controls['class'].errors}"/>
-                  <datalist id="classies">
-                    <option *ngFor="let item of classies;let i=index" [value]="i">{{item.gradeYearName}}-{{item.name}}</option>
-                  </datalist>
+                  <select formControlName="class"
+                  [ngStyle]="{'color:red':cform.submitted&&classform.controls['class'].errors}">
+                    <option *ngFor="let item of classies;let i=index" value="{{i}}">{{item.gradeYearName}}-{{item.name}}</option>
+                  </select>
               </td>
             </tr>  
           </table>
-          <div class="rowbtn">
-            <button class="btnaccept" (click)="addRequest()">Accept</button>
-            <button class="btnrefuse" (click)="deleteRequest()">Refuse</button>
+          </form>
+        </div>
+        <div class="images">
+          <div>
+            <button (click)="prev()"><i class="fa-solid fa-arrow-left"></i></button>
           </div>
-        </form>
+          <div>
+            <img [src]="selectedimage"/>
+          </div>
+          <div>
+            <button (click)="next()"><i class="fa-solid fa-arrow-right"></i></button>
+          </div>
         </div>
       </main>
+        <div class="rowbtn">
+          <button class="btnaccept" (click)="acceptRequest()">Accept</button>
+          <button class="btnrefuse" (click)="deleteRequest()">Refuse</button>
+        </div>
   </div>
 </div>

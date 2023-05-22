@@ -1,7 +1,7 @@
 <div class="container">
-    <app-navbar [toggleflag]="toggle"></app-navbar>
+    <admin-navbar [toggleflag]="toggle"></admin-navbar>
     <div class="container-wrapper">
-        <app-header (toggleevent)="toggleview()" ></app-header>
+        <profile-header (toggleevent)="toggleview()" ></profile-header>
         <app-sidehost></app-sidehost>
         <router-outlet></router-outlet>
     </div>

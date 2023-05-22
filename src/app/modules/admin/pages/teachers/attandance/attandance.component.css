@@ -30,3 +30,11 @@
   header div:nth-child(2) button {
     padding: 0.2rem 0!important;
 }
+@media (max-width:500px){
+  .tableheader{
+    display: none!important;
+  }
+  .tablebody{
+  margin-top: 0.4rem!important;
+}
+}

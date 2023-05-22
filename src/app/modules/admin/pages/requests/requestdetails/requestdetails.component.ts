@@ -5,6 +5,7 @@ import { classroom } from 'src/app/data/classroom';
 import { ClassroomService } from 'src/app/services/classroom.service';
 import { HostmanagerService } from 'src/app/services/hostmanager.service';
 import { RequestService } from 'src/app/services/request.service';
+import { StudentserviceService } from 'src/app/services/studentservice.service';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -27,6 +28,7 @@ export class RequestdetailsComponent {
     private hostman:HostmanagerService,
     private classiesservice:ClassroomService,
     private _RequestService: RequestService,
+    private studentservice:StudentserviceService
   ) {}
   ngOnInit(): void {
     let subscriber1=this.classiesservice.getall().subscribe({
@@ -57,13 +59,22 @@ export class RequestdetailsComponent {
       }
     )
   }
-  addRequest() {
+  acceptRequest() {
     if(this.classform.valid){
-      let id=this.classies[+this.classform.controls['class'].value].id
-      this._RequestService.acceptRequest(this.requestDetails.id,id).subscribe({
+      this._RequestService.acceptRequest(this.requestDetails.id).subscribe({
         next: (response) => {
-          this.requeststatus=1;
-          this.close()
+          this.studentservice.get(response.studentid).subscribe({
+            next:res=>{
+              res.ClassRoomID=this.classies[this.classform.controls['class'].value].id;
+              res.ClassRoomName=this.classies[this.classform.controls['class'].value].name;
+              this.studentservice.update(res).subscribe({
+                next:res=>{
+                  this.requeststatus=1;
+                  this.close()
+                }
+              })
+            }
+          })
         },
         error:err=>{
           this.errorMessage="request not accepted"

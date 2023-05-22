@@ -12,13 +12,10 @@ export class AuthInterceptor implements HttpInterceptor {
   constructor(private auth:AuthserviceService) {
   }
   intercept(request: HttpRequest<any>, next: HttpHandler): any {
-    console.log(Math.floor(Date.now() / 1000))
     if(this.isvalidforinterceptor(request.url)){
       let token=localStorage.getItem('schooltoken');
       token=token?.substring(1,token.length-1)||''
       let exp=localStorage.getItem('schoolexp');  
-      console.log(token)
-      console.log("1 -  "+exp)
 
       if(exp&&(!token||token!='')){
         const now = Math.floor(Date.now() / 1000)
@@ -26,7 +23,6 @@ export class AuthInterceptor implements HttpInterceptor {
         if(now<+exp){
           let clonerequest=request;
           clonerequest=request.clone({headers:request.headers.set('Authorization', `Bearer ${token}`)})
-          console.log(clonerequest)
           return next.handle(clonerequest);
         }
         else{

@@ -22,12 +22,13 @@
             </div>
             <div class="form-group">
                 <label>Name</label>
-                <input type="text" formControlName="FullName" class="form-control"
+                <input type="text" formControlName="FullName" class="form-control" (change)="validatename($event)"
                 [ngClass]="{'is-invalid':(namecontrol.errors&&namecontrol.touched)||(namecontrol.errors&&form.submitted)}"/>
                 <div *ngIf="(namecontrol.errors&&form.submitted)||(namecontrol.errors&&namecontrol.touched)" class="invalid">
                     <p *ngIf="namecontrol.errors['required']" class="invalid-feedback">name is required</p>
-                    <p *ngIf="namecontrol.errors['minlength']" class="invalid-feedback">minlength is 3 char</p>
-                    <p *ngIf="namecontrol.errors['maxlength']" class="invalid-feedback">minlength is 15 char</p>
+                    <p *ngIf="namecontrol.errors['minlength']" class="invalid-feedback">minlength is 11 char</p>
+                    <p *ngIf="namecontrol.errors['maxlength']" class="invalid-feedback">minlength is 23 char</p>
+                    <p *ngIf="namecontrol.errors['notvalid']" class="invalid-feedback">enter three names</p>
                 </div>
             </div>
             <div class="form-group" *ngIf="operationtype==0">
@@ -124,7 +125,6 @@
 
                 </div>
             </div>
-            <p class="invalid-feedback">{{errormess}}</p>
             <div class="form-group submit">
                 <input type="submit" value="Add" class="btn" *ngIf="operationtype==0"/>
                 <input type="submit" value="Update" class="btn" *ngIf="operationtype==1"/>
@@ -132,4 +132,7 @@
             </div>
         </form>
     </div>
+    <ng-container *ngIf="mess!=''" >
+        <app-messagerespnce [message]="mess" [type]="type" class="message"></app-messagerespnce>
+    </ng-container>
 </div>

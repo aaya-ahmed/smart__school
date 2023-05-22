@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { classroom } from 'src/app/data/classroom';
 import { teacher } from 'src/app/data/teacher';
@@ -12,12 +12,13 @@ import { TeacherService } from 'src/app/services/teacher.service';
   templateUrl: './schaduleform.component.html',
   styleUrls: ['./schaduleform.component.css','../../form.style.css']
 })
-export class SchaduleformComponent implements OnInit {
+export class SchaduleformComponent implements OnInit,OnDestroy {
   classrooms:classroom[]=[];
   teachers:teacher[]=[];
   schaduleitem:any;
   subject:string='';
-  data:any;
+  data:any='';
+  hostSubscriber:any
   schadule:FormGroup=new FormGroup({
     day:new FormControl('',[Validators.required]) ,
     classId:new FormControl('',[Validators.required]) ,
@@ -25,20 +26,17 @@ export class SchaduleformComponent implements OnInit {
     teacherID:new FormControl('',[Validators.required]) 
   })
   constructor(private schaduleservice:SchaduleSessionService,private classroomservice:ClassroomService,private teacherservice:TeacherService,private hostman:HostmanagerService){}
+  ngOnDestroy(): void {
+    this.hostSubscriber.unsubscribe()
+  }
   ngOnInit(): void {
-    let subscriber=this.classroomservice.getall().subscribe({
-      next:res=>{
-        this.classrooms=res
-        subscriber.unsubscribe()
-      }
-    });
-    let subscriber2=this.teacherservice.getall().subscribe({
+    let teacherSubscriber=this.teacherservice.getall().subscribe({
       next:res=>{
         this.teachers=res
-        subscriber2.unsubscribe()
+        teacherSubscriber.unsubscribe()
       }
     });
-    let subscriber3=this.hostman.data.subscribe({
+    this.hostSubscriber=this.hostman.data.subscribe({
       next:res=>{
         if(res.data!=''){
           this.daycontrol.setValue(res.data.session.scheduleDay );
@@ -64,8 +62,18 @@ export class SchaduleformComponent implements OnInit {
   get teachercontrol(){
     return this.schadule.controls['teacherID']
   }
-  setsubject(){
-    this.subject=this.teachers.find(p=>p.Id==this.teachercontrol.value)?.SubjectName||''
+  setsubjectAndclass(){
+    let teacher=this.teachers.find(p=>p.Id==this.teachercontrol.value);
+    this.subject=teacher?.SubjectName||'';
+    let subjectid=teacher?.SubjectId
+    if(subjectid){
+      this.classroomservice.getallbysubject(subjectid).subscribe({
+        next:res=>{
+          this.classrooms=res;
+        }
+      })
+    }
+
   }
   close(){
     this.hostman.load({open:false,data:'',returndata:'',type:''});
@@ -92,7 +100,9 @@ export class SchaduleformComponent implements OnInit {
         this.schaduleservice.updateschadule(schadule).subscribe({
           next:res=>{
             this.schaduleservice.updatesession(session).subscribe({
-
+              next:res=>{
+                this.hostman.load({open:false,data:'',returndata:res,type:''})
+              }
             })
           }
         })

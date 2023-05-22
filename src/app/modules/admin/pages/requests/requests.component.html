@@ -1,12 +1,5 @@
 <div class="header">
     <h2>Requests</h2>
-    <span>
-        grade year
-        <input list="grades" type="text" (change)="getdatabygradeyear($event)"/>
-        <datalist placeholder="grade years" id="grades">
-            <option *ngFor="let item of gradeyear" [value]="item.name">{{item.name}}</option>
-        </datalist>
-    </span>
 </div>
 <ng-container *ngIf="allRequests.length>0">
     <div class="tableheader">
@@ -25,7 +18,7 @@
             {{item.studentFirstName}}
         </div>
         <div>
-            {{item.studentGender==1?'female':'male'}}
+            {{item.studentGender}}
         </div>
         <div>
             {{item.parentFullName}}

@@ -14,6 +14,7 @@ export class ScadulesComponent implements OnChanges {
   @Output()message:EventEmitter<string>=new EventEmitter();
   schadules:tempschadule[]=[];
   exist:boolean=false;
+  errorflag:boolean=false;
   constructor(private schaduleservice:SchaduleSessionService,private hostman:HostmanagerService){}
   ngOnChanges(changes: SimpleChanges): void {
     if(changes['schadule'].firstChange==false){
@@ -69,9 +70,15 @@ export class ScadulesComponent implements OnChanges {
           })
         },
         error:err=>{
-
+          this.errorflag=true;
+          setTimeout(() => {
+            this.errorflag=false
+          }, 1000);
         }
       })
     });
+  }
+  delete(index:number){
+    this.schadules.splice(index,1)
   }
 }

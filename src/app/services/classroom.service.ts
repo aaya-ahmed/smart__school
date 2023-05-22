@@ -18,6 +18,9 @@ export class ClassroomService {
   public getall():Observable<classroom[]>{
     return this.http.get<classroom[]>(environment.URL+"ClassRoom/GetAll")
   }
+  public getallbysubject(id:number):Observable<classroom[]>{
+    return this.http.get<classroom[]>(environment.URL+"ClassRoom/GetBySubjectId/"+id)
+  }
   public delete(id:any){
     return this.http.delete(environment.URL+"ClassRoom?id="+id)
   }

@@ -1,13 +1,13 @@
 <input type="checkbox" id="closebtn" (change)="toggleview()"/>
 <div class="container" [ngClass]="{'hide':toggleflag}">
     <nav>
-        <div class="logo">
+        <div class="logo"  >
             <span class="togglebtnsec">
                 <label for="closebtn" >
                     <i class="fa-solid fa-close"></i>
                 </label>
             </span>
-            <span>
+            <span (click)="gottohome()">
                 <img src="../../../../../favicon.ico"/>
                 <h4>School</h4>
             </span>

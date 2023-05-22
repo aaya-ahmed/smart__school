@@ -63,3 +63,9 @@ header{
     border-radius: 0;
     font-size: 15px;
 }
+.message{
+    position: absolute;
+    top: 1rem;
+    right: 0;
+    background-color: aliceblue;
+}

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { teacher } from 'src/app/data/teacher';
 import { HostmanagerService } from 'src/app/services/hostmanager.service';
 import { TeacherService } from 'src/app/services/teacher.service';
@@ -10,53 +11,70 @@ import { TeacherService } from 'src/app/services/teacher.service';
 })
 export class TeachersComponent {
   teachers:any[]=[];
-  subscriber:any;
+  teacherSubscriber:Subscription=new Subscription();
+  hostSubscribtion:Subscription=new Subscription();
   constructor(private teacher:TeacherService,private hostman:HostmanagerService){}
   ngOnInit(): void {
-    this.teacher.getall().subscribe({
+    this.getteachers();
+  }
+  getteachers(){
+    this.teacherSubscriber=this.teacher.getall().subscribe({
       next:res=>{
-        if(res.length>0)
+        if(res.length>0){
           this.teachers=res;
-          console.log(this.teachers)
+          this.teacherSubscriber.unsubscribe();
+        }
+      },
+      error:err=>{
+        this.teacherSubscriber.unsubscribe();
       }
     })
   }
   add(){
     this.hostman.load({data:'',open:true,returndata:'',type:'teacher'})
-    let subscriber=this.hostman.data.subscribe({
+    this.hostSubscribtion=this.hostman.data.subscribe({
       next:res=>{
-        if(res.returndata!=''){
-          this.teachers=this.teachers.concat(res.returndata)
-          subscriber.unsubscribe()
+        if(res.open==false){
+          this.getteachers();
+          this.hostSubscribtion.unsubscribe()
         }
+        }
+      })
+  }
+  takeattandance(){
+    this.hostman.load({data:'',open:true,returndata:'',type:'teacherattandance'});
+    this.hostSubscribtion=this.hostman.data.subscribe({
+      next:res=>{
+        if(res.open=false){
+          this.getteachers();
+          this.hostSubscribtion.unsubscribe()
+        }
+        
       }
     })
   }
-  takeattandance(){
-    this.hostman.load({data:'',open:true,returndata:'',type:'teacherattandance'})
-  }
   update(item:teacher){
     this.hostman.load({data:item,open:true,returndata:'',type:'teacher'})
-    this.subscriber=this.hostman.data.subscribe({
+    this.hostSubscribtion=this.hostman.data.subscribe({
       next:res=>{
         if(res.returndata!=''){
           let index=this.teachers.findIndex(p=>res.returndata.Id==p.Id);
           this.teachers[index]=res.returndata;
-          this.subscriber.unsubscribe()
+          this.hostSubscribtion.unsubscribe()
         }
       }
     })
   }
   delete(id:string){
     this.hostman.load({data:'',open:true,returndata:'',type:'confirm'});
-    this.subscriber=this.hostman.data.subscribe({
+    this.teacherSubscriber=this.hostman.data.subscribe({
       next:res=>{
-        this.subscriber.unsubscribe()
         if(res.returndata==true){
           this.teacher.delete(id).subscribe({
             next:res=>{
               let index=this.teachers.findIndex(p=>p.Id==id);
               this.teachers.splice(index,1)
+              this.teacherSubscriber.unsubscribe()
             },
             error:err=>{
               console.log(err)
@@ -66,5 +84,9 @@ export class TeachersComponent {
       }
     }) 
           
+  }
+  showdetails(teacher:any){
+    this.hostman.load({data:teacher,open:true,returndata:'',type:'teacherdetails'})
+
   }
 }

@@ -20,10 +20,11 @@ export class AuthserviceService {
     return this.http.post<register>(this.url+"Auth/login",user);
   }
   public setuser(user:register){
-    console.log(user)
     localStorage.setItem('schooltoken',JSON.stringify(user.token));
     let userinfo=this.decodetoken(user.token)
     localStorage.setItem('schoolexp',JSON.stringify(userinfo.exp));
+    localStorage.setItem('uid',JSON.stringify(userinfo.uid));
+    console.log(localStorage.getItem('uid'))
     this.logoutflag.next(false);
     this.profile(userinfo.roles);
   }
@@ -67,6 +68,7 @@ export class AuthserviceService {
     localStorage.removeItem('schooltoken');
     localStorage.removeItem('schoolexp');
     localStorage.removeItem('remember');
+    localStorage.removeItem('uid');
     this.logoutflag.next(true);
     if(path=='home')
     this.route.navigate(['home']);

@@ -9,6 +9,9 @@ import { ClassroomformComponent } from '../pages/classroom/classroomform/classro
 import { SchaduleformComponent } from '../pages/schadule/schaduleform/schaduleform.component';
 import { ConfirmComponent } from 'src/app/shared/components/confirm/confirm.component';
 import { AttandanceComponent } from '../pages/teachers/attandance/attandance.component';
+import { DetailsComponent } from '../pages/students/details/details.component';
+import { TeacherDetailsComponent } from '../pages/teachers/teacherDetails/teacher.details.component';
+import { ModifyComponent } from '../pages/students/modify/modify.component';
 
 @Component({
   selector: 'app-sidehost',
@@ -59,6 +62,15 @@ export class SidehostComponent implements OnInit {
           break;
       case 'teacherattandance':
         this.component=this.viewContainerRef.createComponent(AttandanceComponent);
+        break;
+      case 'studentdetails':
+        this.component=this.viewContainerRef.createComponent(DetailsComponent);
+        break;
+      case 'teacherdetails':
+        this.component=this.viewContainerRef.createComponent(TeacherDetailsComponent);
+        break;
+      case 'modifystudent':
+        this.component=this.viewContainerRef.createComponent(ModifyComponent);
         break;
     }
 

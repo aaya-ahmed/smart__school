@@ -17,6 +17,9 @@ export class NavbarComponent implements OnInit {
       this.logoutflag=false;
     }
   }
+  gotoprofile(){
+    this.auth.gotoprofile();
+  }
   public openlogin(){
     this.Route.navigate(['auth/login'])
   }

@@ -6,9 +6,7 @@ import { ChangepasswordComponent } from './pages/changepassword/changepassword.c
 import { LoginComponent } from './pages/login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ForgetPasswordComponent } from './pages/forgetPassword/forgetPassword.component';
-import { MessagerespnceComponent } from './pages/messagerespnce/messagerespnce.component';
 import { HttpClientModule } from '@angular/common/http';
-import { AuthserviceService } from '../../services/authservice.service';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { LayoutauthComponent } from './pages/layoutauth/layoutauth.component';
 
@@ -18,7 +16,6 @@ import { LayoutauthComponent } from './pages/layoutauth/layoutauth.component';
     RegisterComponent,
     ChangepasswordComponent,
     ForgetPasswordComponent,
-    MessagerespnceComponent,
     LayoutauthComponent
   ],
   imports: [

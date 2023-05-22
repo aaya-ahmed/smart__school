@@ -38,4 +38,7 @@ export class SchaduleSessionService {
   public updatesession(session:sessions):Observable<sessions>{
     return this.http.put<sessions>(environment.URL+"Session/Edit",session)
   }
+  public getteachersession(id:string,start:string,end:string):Observable<sessions[]>{
+    return this.http.get<sessions[]>(environment.URL+`Teacher/Getsessions/${id}/${start}/${end}`)
+  }
 }

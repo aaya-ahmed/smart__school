@@ -46,8 +46,8 @@
                         <select class="form-control"  
                         placeholder="gender" id="stdgender" formControlName="studentGender"
                         [ngClass]="{'is-invalid':(stdGenderControl.errors&&stdGenderControl.touched)||(stdGenderControl.errors&&submitted)}">
-                            <option value=0>Male</option>
-                            <option value=1>Female</option>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
                         </select>
                     </div>
                     <div *ngIf="(stdGenderControl.errors&&submitted)||(stdGenderControl.errors&&stdGenderControl.touched)" class="invalid">

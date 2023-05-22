@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-navbar',
+  selector: 'admin-navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css']
 })
@@ -18,6 +18,9 @@ export class NavbarComponent {
     this.currentpage=pagename;
     if(window.innerWidth<1000)
     this.toggleflag=!this.toggleflag;
+  }
+  gottohome(){
+    this.route.navigate(['']);
   }
   toggleview(){
     this.toggleflag=!this.toggleflag;

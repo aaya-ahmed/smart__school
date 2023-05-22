@@ -1,20 +1,39 @@
+*{
+    overflow: hidden;
+}
 .container-wraperr{
-    width: 100vw;
-    height: 100vh;
+    width: 90vw;
+    height: 95vh;
+}
+.container-wraperr::-webkit-scrollbar{
+    width: 0px;
 }
 main{
     display: flex;
     width: 100%;
+    height: fit-content;
     margin: 1rem auto;
+    justify-content: space-evenly;
 }
-main div:nth-child(1){
+.images{
     display: flex;
-    width: 50%;
+    width: 45%;
 }
-main div:nth-child(2){
-    width: 50%;
+.images div:nth-child(1),.images div:nth-child(3){
+    width: 10%;
 }
-main div:nth-child(1) button{
+.images div:nth-child(2){
+    width: 80%;
+}
+.images div:nth-child(2) img{
+    display: block;
+    width: 100%;
+    height:600px;
+} 
+.information{
+    width: 45%;
+}
+.images div:nth-child(1) button,.images div:nth-child(3) button{
     display: block;
     background-color: transparent;
     height: 100%;
@@ -37,7 +56,7 @@ table tr td,table tr th{
 table tr td{
     padding-left:1rem ;
 }
-table tr td input[type='text']{
+table tr td select{
     padding: 0.5rem 0.3rem;
 }
 table tr th{
@@ -47,10 +66,12 @@ table tr th{
     font-weight: 700;
     border-bottom: 1px solid white;
 }
-form .rowbtn{
+.rowbtn{
     display: flex;
     justify-content:end; 
-    padding: 0 1rem; 
+    padding:1rem 0 0 0 ; 
+    margin: 1rem 0;
+
 }
 .btnaccept{
     border-radius: 0;
@@ -59,6 +80,7 @@ form .rowbtn{
     padding: 0.7rem 1.6rem;
     box-shadow: 1px 1px 1px 1px #0000004d;
     border-radius: 10px;
+    outline: none;
 }
 .btnrefuse{
     border-radius: 0;
@@ -67,5 +89,67 @@ form .rowbtn{
     padding: 0.7rem 1.6rem;
     box-shadow: 1px 1px 1px 1px #0000004d;
     border-radius: 10px;
+    outline: none;
+}
+@media (max-width:1000px){
+    main{
+        display: block!important;
+    }
+    .images{
+        display: flex;
+        width: 100%;
+        margin: 1rem 0;
+    }
+    .images div:nth-child(1),.images div:nth-child(3){
+        width: 10%;
+    }
+    .images div:nth-child(2){
+        width: 80%;
+        margin: auto;
+    }
+    .images div:nth-child(2) img{
+        display: block;
+        width: 80%;
+        height:600px;
+        margin: auto;
+    } 
+    .information{
+        width: 80%;
+        margin: auto;
 
+    }
+    .rowbtn{
+        margin-bottom:1rem ;
+    }
+}
+@media (max-width:600px){
+    main{
+        display: block!important;
+    }
+    .images{
+        display: flex;
+        width: 100%;
+        margin: 1rem 0;
+    }
+    .images div:nth-child(1),.images div:nth-child(3){
+        width: 10%;
+    }
+    .images div:nth-child(2){
+        width: 80%;
+        margin: auto;
+    }
+    .images div:nth-child(2) img{
+        display: block;
+        width: 100%;
+        height:600px;
+        margin: auto;
+    } 
+    .information{
+        width: 100%;
+        margin: auto;
+
+    }
+    .rowbtn{
+        margin-bottom:1rem ;
+    }
 }

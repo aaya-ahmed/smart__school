@@ -51,3 +51,8 @@ header div{
     background-color: rgb(194, 191, 191)!important;
 }
 
+@media(max-width:500px){
+    .container-wraperr{
+        width: 70vw;
+    }
+}

@@ -4,7 +4,6 @@ import { AdminRoutingModule } from './admin-routing.module';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { GradeyearComponent } from './pages/gradeyear/gradeyear.component';
 import { GradeyearformComponent } from './pages/gradeyear/gradeyearform/gradeyearform.component';
-import { HeaderComponent } from './layout/header/header.component';
 import { NavbarComponent } from './layout/navbar/navbar.component';
 import { AdminComponent } from './admin.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -24,6 +23,10 @@ import { SchaduleComponent } from './pages/schadule/schadule.component';
 import { SchaduleformComponent } from './pages/schadule/schaduleform/schaduleform.component';
 import { ScadulesComponent } from './pages/schadule/scadules/scadules.component';
 import { AttandanceComponent } from './pages/teachers/attandance/attandance.component';
+import { ModifyComponent } from './pages/students/modify/modify.component';
+import { TeacherDetailsComponent } from './pages/teachers/teacherDetails/teacher.details.component';
+import { DetailsComponent } from './pages/students/details/details.component';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 
 @NgModule({
@@ -32,12 +35,10 @@ import { AttandanceComponent } from './pages/teachers/attandance/attandance.comp
     GradeyearComponent,
     GradeyearformComponent,
     AdminComponent,
-    HeaderComponent,
     NavbarComponent,
     RequestsComponent,
     RequestdetailsComponent,
     SidehostComponent,
-    DynamicloaderDirective,
     SubjectsComponent,
     SubjectformComponent,
     TeachersComponent,
@@ -49,13 +50,17 @@ import { AttandanceComponent } from './pages/teachers/attandance/attandance.comp
     SchaduleComponent,
     SchaduleformComponent,
     ScadulesComponent,
-    AttandanceComponent
+    AttandanceComponent,
+    DetailsComponent,
+    TeacherDetailsComponent,
+    ModifyComponent
   ],
   imports: [
     CommonModule,
     AdminRoutingModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    SharedModule
   ],
   bootstrap:[AdminComponent]
 })

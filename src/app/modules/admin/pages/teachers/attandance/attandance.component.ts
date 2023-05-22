@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { IteacherAttendance } from 'src/app/data/iteacher-attendance';
 import { AttendeceService } from 'src/app/services/attendece.service';
 import { HostmanagerService } from 'src/app/services/hostmanager.service';
@@ -12,9 +13,10 @@ import { HostmanagerService } from 'src/app/services/hostmanager.service';
 export class AttandanceComponent {
   attendenceList: IteacherAttendance[] = [];
   isBoolValue:boolean=false;
+  attandanceSubscriber:Subscription=new Subscription();
   constructor(private _teacherAttendanceService: AttendeceService,private hostman:HostmanagerService) {}
   ngOnInit(): void {
-      this._teacherAttendanceService.generateTeacherAttendnce().subscribe({
+      this.attandanceSubscriber=this._teacherAttendanceService.generateTeacherAttendnce().subscribe({
       next: (response) => {
         this.attendenceList = response;
         for (let index = 0; index < this.attendenceList.length; index++) {
@@ -28,17 +30,23 @@ export class AttandanceComponent {
               this.isBoolValue=true;
           }
         }
+        this.attandanceSubscriber.unsubscribe()
       },
-      error:(error) =>console.log(error)
+      error:(error) =>{
+        this.attandanceSubscriber.unsubscribe()
+      }
     });
 }
 save(){
-  console.log(this.attendenceList)
-  this._teacherAttendanceService.saveTeacherAttendnce(this.attendenceList).subscribe({
+  this.attandanceSubscriber=this._teacherAttendanceService.saveTeacherAttendnce(this.attendenceList).subscribe({
     next: (response) => {
       this.hostman.load({open:false,data:'',returndata:'',type:''});
+      this.attandanceSubscriber.unsubscribe()
     },
-    error: (error) => console.log(error),
+    error: (error) => {
+      this.hostman.load({open:false,data:'',returndata:'',type:''});
+      this.attandanceSubscriber.unsubscribe()
+    }
   });
 }
 close(){

@@ -1,14 +1,17 @@
 <div class="container">
-    <div class="container-wraperr">
+    <div class="container-wraperr" [ngClass]="{'container-wraperr2':data!=''}">
         <header>
-            <div>
+            <div *ngIf="data==''">
                 Add Schadule
+            </div>
+            <div *ngIf="data!=''">
+                Update Schadule
             </div>
             <div>
                 <button (click)="close()"><i class="fa-solid fa-close"></i></button>
             </div>
         </header>
-        <div class="schadule-data">
+        <div class="schadule-data" [ngClass]="{'formonly':data!=''}">
             <form [formGroup]="schadule"  #form="ngForm" (ngSubmit)="addschadule()">
                 <div class="form-group">
                     <label>Class Room</label>
@@ -22,7 +25,7 @@
                 </div>
                 <div class="form-group">
                     <label>Teacher</label>
-                    <select formControlName="teacherID" class="form-control" (change)="setsubject()"
+                    <select formControlName="teacherID" class="form-control" (change)="setsubjectAndclass()"
                     [ngClass]="{'is-invalid':(teachercontrol.errors&&teachercontrol.touched)||(teachercontrol.errors&&form.submitted)}">
                         <option *ngFor="let item of teachers" value="{{item.Id}}">{{item.FullName}}</option>
                     </select>
@@ -57,7 +60,9 @@
                     <input type="submit" value="Update" class="btn" *ngIf="data"/>
                 </div>
             </form>
-            <app-scadules class="schadule-table" [schadule]="schaduleitem"></app-scadules>
+            <ng-container *ngIf="data==''">
+                <app-scadules class="schadule-table" [schadule]="schaduleitem"></app-scadules>
+            </ng-container>
         </div>
     </div>
 </div>

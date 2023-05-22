@@ -51,6 +51,7 @@ export class GradeyearformComponent implements OnInit , OnDestroy{
     this.hostman.load({open:false,data:'',returndata:this.newgrades,type:''});
   }
   ngOnDestroy(): void {
+    if(this.subscriber)
     this.subscriber.unsubscribe();
   }
 }

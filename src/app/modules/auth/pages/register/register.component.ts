@@ -149,22 +149,27 @@ export class RegisterComponent {
         user.StudentPhoto=this.stdimage;
         user.IdentityParentPhoto=this.patimage;
         user.StudentBirthCertPhoto=this.birthimage;
-        user.studentGender=+user.studentGender;
         this.authservice.createrequest(user).subscribe(
           {
             next:val=>{
               this.formresponce=true;
               this.typemess='success';
               this.message='Registration was successful';
+              this.resetform();
             },
             error:err=>{
               this.formresponce=true;
               this.typemess='failed';
+              this.message='Failed';
+              this.resetform();
             }
           });
-          setTimeout(() => {
-            this.formresponce=false;
-          }, 2000);
     }
   }
+resetform(){
+  setTimeout(() => {
+    this.formresponce=false;
+    this.loadflag=false;
+  }, 2000);
+}
 }

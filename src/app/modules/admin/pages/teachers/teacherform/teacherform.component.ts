@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Subscription } from 'rxjs';
 import { subject } from 'src/app/data/subject';
 import { teacher } from 'src/app/data/teacher';
 import { HostmanagerService } from 'src/app/services/hostmanager.service';
@@ -17,16 +18,24 @@ export class TeacherformComponent {
   subjects:subject[]=[];
   teacher:FormGroup=new FormGroup({});
   teacherimage:any='';
-  errormess:string=''
+  mess:string='';
+  type:string='';
+  teacherSubscriber:Subscription=new Subscription();
+  hostSubscribtion:Subscription=new Subscription();
   constructor(private subjectservice:SubjectService,private fb:FormBuilder,private teacherservice:TeacherService,private hostman:HostmanagerService){
   }
   ngOnInit(): void {
-    this.hostman.data.subscribe({
+    this.subjectservice.getall().subscribe({
+      next:res=>{
+        this.subjects=res;
+      }
+    });
+    this.hostSubscribtion=this.hostman.data.subscribe({
       next:res=>{
         if(res.data!=''){
           this.data=res.data;
           this.teacher=this.fb.group({
-            FullName : new FormControl('',[Validators.minLength(3),Validators.maxLength(15)]),
+            FullName : new FormControl('',[Validators.minLength(11),Validators.maxLength(23)]),
             Gender : new FormControl(0,[Validators.required]),
             Salary : new FormControl(0,[Validators.pattern("^[1-9][0-9]{1,}$")]),
             Phone : new FormControl('',[Validators.pattern("^(010|011|012|015)[0-9]{8}$")]),
@@ -47,15 +56,11 @@ export class TeacherformComponent {
             AbsenceDays :res.data.AbsenceDays
           });
           this.operationtype=1;
+          this.hostSubscribtion.unsubscribe();
         }
         else{
-          this.subjectservice.getall().subscribe({
-            next:res=>{
-              this.subjects=res;
-            }
-          });
           this.teacher=this.fb.group({
-            FullName: new FormControl('',[Validators.required,Validators.minLength(3),Validators.maxLength(15)]),
+            FullName: new FormControl('',[Validators.required,Validators.minLength(11),Validators.maxLength(23)]),
             Email: new FormControl('',[Validators.required,Validators.email]),
             Password: new FormControl('',[Validators.required,Validators.pattern("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$")]),
             Gender: new FormControl('',[Validators.required]),
@@ -67,6 +72,7 @@ export class TeacherformComponent {
             HireDate: new FormControl('',[Validators.required]),
             SubjectId: new FormControl(0,[Validators.required]),
           });
+          this.hostSubscribtion.unsubscribe()
         }
       }
     })
@@ -146,7 +152,14 @@ export class TeacherformComponent {
         }
         this.teacherservice.update(this.data).subscribe({
           next:res=>{
-            this.hostman.load({open:false,data:'',returndata:this.data,type:''});
+            this.mess='Successfuly'
+            this.type='success';
+            this.reset()
+          },
+          error:err=>{
+            this.mess='Failed'
+            this.type='failed'
+            this.reset()
           }
         })
       }
@@ -163,21 +176,41 @@ export class TeacherformComponent {
         }
         this.teacherservice.post(teacher).subscribe({
           next:data=>{
-            teacher.Id=data.Id;
-            teacher.AbsenceDays=0;
-            this.hostman.load({data:'',open:false,returndata:teacher,type:''})
-          },
+            this.mess='Successfuly'
+            this.type='success';
+            this.reset()
+            },
           error:err=>{
             console.log(err)
-            teacher.Id=err.error.text;
-            teacher.AbsenceDays=0;
-            this.hostman.load({data:'',open:false,returndata:teacher,type:''})
+            this.mess='Failed'
+            this.type='failed';
+            this.reset()
           }
         })
       }
       }
   }
+  validatename(name:any){
+    if(name.target.value.split(' ').length!=3){
+      this.namecontrol.setErrors({
+        ...this.namecontrol.errors,
+        'notvalid':true
+      })
+    }else{
+      this.namecontrol.setErrors({
+        ...this.namecontrol.errors,
+        'notvalid':null
+      })
+      this.namecontrol.updateValueAndValidity(); 
+    }
+  }
   close(){
-    this.hostman.load({open:false,data:'',returndata:'',type:''});
+    this.hostman.load({open:false,data:'',returndata:this.data,type:''});
+  }
+  reset(){
+    setTimeout(() => {
+      this.mess=''
+      this.type=''
+    }, 1000);
   }
 }

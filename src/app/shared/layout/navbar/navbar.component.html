@@ -15,9 +15,10 @@
           <p (click)="openlogin()">Login</p>
           <p (click)="openregister()">Register</p>
       </section>
-      <div *ngIf="!logoutflag">
+      <section *ngIf="!logoutflag">
+        <p (click)="gotoprofile()">profile</p>
         <p (click)="logout()">Logout</p>
-      </div>
+      </section>
   </div>
 </header>
 <nav>

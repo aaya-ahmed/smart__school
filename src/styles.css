@@ -16,6 +16,9 @@
   font-family: 'Baloo', sans-serif;
 
 }
+.container-wraperr::-webkit-scrollbar{
+  width: 0px;
+}
 img{
   max-width: 100%;
 }
