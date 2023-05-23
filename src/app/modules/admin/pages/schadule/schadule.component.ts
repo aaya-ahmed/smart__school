@@ -10,7 +10,7 @@ import { SchaduleSessionService } from 'src/app/services/schadule.session.servic
 @Component({
   selector: 'app-schadule',
   templateUrl: './schadule.component.html',
-  styleUrls: ['./schadule.component.css','../styles.css']
+  styleUrls: ['./schadule.component.css','../../../../styles/modulesStyle.css']
 })
 export class SchaduleComponent implements OnInit , OnDestroy{
   formdata:FormGroup=new FormGroup({

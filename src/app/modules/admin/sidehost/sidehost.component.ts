@@ -12,6 +12,7 @@ import { AttandanceComponent } from '../pages/teachers/attandance/attandance.com
 import { DetailsComponent } from '../pages/students/details/details.component';
 import { TeacherDetailsComponent } from '../pages/teachers/teacherDetails/teacher.details.component';
 import { ModifyComponent } from '../pages/students/modify/modify.component';
+import { AbsenceComponent } from '../pages/students/absence/absence.component';
 
 @Component({
   selector: 'app-sidehost',
@@ -71,6 +72,9 @@ export class SidehostComponent implements OnInit {
         break;
       case 'modifystudent':
         this.component=this.viewContainerRef.createComponent(ModifyComponent);
+        break;
+      case 'absance':
+        this.component=this.viewContainerRef.createComponent(AbsenceComponent);
         break;
     }
 

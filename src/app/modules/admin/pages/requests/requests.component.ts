@@ -9,7 +9,7 @@ import { RequestService } from 'src/app/services/request.service';
 @Component({
   selector: 'app-requests',
   templateUrl: './requests.component.html',
-  styleUrls: ['../styles.css','./requests.component.css']
+  styleUrls: ['../../../../styles/modulesStyle.css','./requests.component.css']
 })
 export class RequestsComponent {
   allRequests: any[] = [];

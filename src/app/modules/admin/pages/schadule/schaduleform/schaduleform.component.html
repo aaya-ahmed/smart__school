@@ -27,7 +27,7 @@
                     <label>Teacher</label>
                     <select formControlName="teacherID" class="form-control" (change)="setsubjectAndclass()"
                     [ngClass]="{'is-invalid':(teachercontrol.errors&&teachercontrol.touched)||(teachercontrol.errors&&form.submitted)}">
-                        <option *ngFor="let item of teachers" value="{{item.Id}}">{{item.FullName}}</option>
+                        <option *ngFor="let item of teachers" value="{{item.id}}">{{item.fullName}}</option>
                     </select>
                     <div *ngIf="(teachercontrol.errors&&form.submitted)||(teachercontrol.errors&&teachercontrol.touched)" class="invalid">
                         <p *ngIf="teachercontrol.errors['required']" class="invalid-feedback">teacher is required</p>

@@ -10,7 +10,7 @@ import { TeacherService } from 'src/app/services/teacher.service';
 @Component({
   selector: 'app-schaduleform',
   templateUrl: './schaduleform.component.html',
-  styleUrls: ['./schaduleform.component.css','../../form.style.css']
+  styleUrls: ['./schaduleform.component.css','../../../../../styles/form.style.css']
 })
 export class SchaduleformComponent implements OnInit,OnDestroy {
   classrooms:classroom[]=[];
@@ -63,9 +63,9 @@ export class SchaduleformComponent implements OnInit,OnDestroy {
     return this.schadule.controls['teacherID']
   }
   setsubjectAndclass(){
-    let teacher=this.teachers.find(p=>p.Id==this.teachercontrol.value);
-    this.subject=teacher?.SubjectName||'';
-    let subjectid=teacher?.SubjectId
+    let teacher=this.teachers.find(p=>p.id==this.teachercontrol.value);
+    this.subject=teacher?.subjectName||'';
+    let subjectid=teacher?.subjectId
     if(subjectid){
       this.classroomservice.getallbysubject(subjectid).subscribe({
         next:res=>{
@@ -80,15 +80,15 @@ export class SchaduleformComponent implements OnInit,OnDestroy {
   }
   addschadule(){
     if(this.schadule.valid){
-      let teacher=this.teachers[this.teachers.findIndex(p=>p.Id==this.schadule.value.teacherID)];
+      let teacher=this.teachers[this.teachers.findIndex(p=>p.id==this.schadule.value.teacherID)];
       if(this.data){
         let session={
           id: this.data.session.id,
           sessionNo: this.sessionNocontrol.value,
           scheduleID: this.data.session.scheduleID,
-          teacherID: teacher.Id,
-          subjectName: teacher.SubjectName,
-          teacherName: teacher.FullName,
+          teacherID: teacher.id,
+          subjectName: teacher.subjectName,
+          teacherName: teacher.fullName,
           scheduleDay: this.schadule.value.day
       }
       let schadule={
@@ -113,8 +113,8 @@ export class SchaduleformComponent implements OnInit,OnDestroy {
           classId:+this.schadule.value.classId,
           ClassRoom:this.classrooms[this.classrooms.findIndex(p=>p.id==this.schadule.value.classId)].name,
           Teacherid:this.schadule.value.teacherID,
-          Teacher:teacher.FullName,
-          Subject:teacher.SubjectName,
+          Teacher:teacher.fullName,
+          Subject:teacher.subjectName,
           SessionNum:this.schadule.value.sessionNo,
           gradeyear:this.classrooms[this.classrooms.findIndex(p=>p.id==this.schadule.value.classId)].gradeYearName
         }

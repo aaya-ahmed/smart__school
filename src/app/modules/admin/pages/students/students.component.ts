@@ -8,7 +8,7 @@ import { StudentserviceService } from 'src/app/services/studentservice.service';
 @Component({
   selector: 'app-students',
   templateUrl: './students.component.html',
-  styleUrls: ['./students.component.css','../styles.css']
+  styleUrls: ['./students.component.css','../../../../styles/modulesStyle.css']
 })
 export class StudentsComponent {
   allstudents: student[] = [];
@@ -27,13 +27,10 @@ getdata(index:any){
   let id;
   if(typeof index=='number'){
     id=index;
-    console.log(id)
-
   }
   else{
     id=this.gradeyear[index.target.value].id;
   }
-  console.log(id)
   this._subscriber=this.studentsservice.getallByGradeYear(id).subscribe({
     next: (response) => {
       this.allstudents = response;
@@ -42,7 +39,7 @@ getdata(index:any){
   });
 }
 showdetails(index:number){
-  this.hostman.load({data:this.allstudents[index].Id,returndata:'',type:'studentdetails',open:true});
+  this.hostman.load({data:this.allstudents[index].id,returndata:'',type:'studentdetails',open:true});
 }
 update(index:number){
   this.hostman.load({data:this.allstudents[index],returndata:'',type:'modifystudent',open:true})
@@ -58,10 +55,10 @@ delete(index:number){
     next:res=>{
       this._subscriber.unsubscribe();
       if(res.returndata==true){
-        let id=this.allstudents[index].Id;
+        let id=this.allstudents[index].id;
         this._subscriber=this.studentsservice.delete(id).subscribe({
           next:res=>{
-            let index=this.allstudents.findIndex(p=>p.Id==id);
+            let index=this.allstudents.findIndex(p=>p.id==id);
             this.allstudents.splice(index,1)
           },
           error:err=>{
@@ -72,5 +69,9 @@ delete(index:number){
     }
   }) 
         
+}
+showAbsence(){
+  this.hostman.load({data:'',returndata:'',type:'absance',open:true});
+
 }
 }

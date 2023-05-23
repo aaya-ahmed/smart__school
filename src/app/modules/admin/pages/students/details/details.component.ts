@@ -7,23 +7,23 @@ import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-details',
   templateUrl: './details.component.html',
-  styleUrls: ['../../form.style.css','./details.component.css']
+  styleUrls: ['../../../../../styles/form.style.css','./details.component.css']
 })
 export class DetailsComponent implements OnInit , OnDestroy {
   student:student={
-    Id: '',
-    StudentFirstName: '',
-    Gender: 0,
-    StudentPhone: '',
-    StudentBirthDate: '',
-    StudentPhotoUrl: '',
-    StudentPhoto: '',
-    MaxDayOff: 0,
-    AbsenceDays: 0,
-    Fees: false,
-    ParentID: '',
-    ClassRoomID: 0,
-    ClassRoomName: ''
+    id: '',
+    studentFirstName: '',
+    gender: 0,
+    studentPhone: '',
+    studentBirthDate: '',
+    studentPhotoUrl: '',
+    studentPhoto: '',
+    maxDayOff: 0,
+    absenceDays: 0,
+    fees: false,
+    parentID: '',
+    classRoomID: 0,
+    classRoomName: ''
   }
   _subscriber:any;
   constructor(
@@ -38,7 +38,7 @@ export class DetailsComponent implements OnInit , OnDestroy {
           this._subscriber=this.studentservice.get(res.data).subscribe({
             next:res=>{
               this.student=res;
-              this.student.StudentPhotoUrl=environment.imgeurl+this.student.StudentPhotoUrl;
+              this.student.studentPhotoUrl=environment.imgeurl+this.student.studentPhotoUrl;
               subscriber.unsubscribe();
             }
           })

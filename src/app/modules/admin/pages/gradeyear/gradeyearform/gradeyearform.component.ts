@@ -7,7 +7,7 @@ import { HostmanagerService } from 'src/app/services/hostmanager.service';
 @Component({
   selector: 'app-gradeyearform',
   templateUrl: './gradeyearform.component.html',
-  styleUrls: ['../../form.style.css']
+  styleUrls: ['../../../../../styles/form.style.css']
 })
 export class GradeyearformComponent implements OnInit , OnDestroy{
   newgrades:gradyear[]=[]

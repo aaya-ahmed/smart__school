@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { request } from 'src/app/data/request';
+import { imagebase64 } from 'src/app/imageclass/image';
 import { AuthserviceService } from 'src/app/services/authservice.service';
-
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -17,7 +17,7 @@ export class RegisterComponent {
   stdimage:any="";
   patimage:any="";
   birthimage:any="";
-
+  imageobj:imagebase64;
   registerform:FormGroup=new FormGroup({
     studentFirstName: new FormControl('',[Validators.pattern('^[a-z A-Z]{3,10}$'),Validators.required,Validators.minLength(3),Validators.maxLength(10)]),
     studentEmail: new FormControl('',[Validators.required,Validators.email]),
@@ -33,7 +33,9 @@ export class RegisterComponent {
     StudentBirthCertPhoto:new FormControl('',[Validators.required]),
     password: new FormControl('',[Validators.required,Validators.minLength(8),Validators.pattern("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$")])
   });
-  constructor(private authservice:AuthserviceService){}
+  constructor(private authservice:AuthserviceService){
+    this.imageobj=new imagebase64()
+  }
   get stdFnameControl(){
     return this.registerform.controls['studentFirstName']
   }
@@ -78,36 +80,28 @@ export class RegisterComponent {
 		reader.readAsDataURL(image.target.files[0]);
 		reader.onload = (_event) => {
       if(person==0){
-        this.getBase64(image.target.files[0]).then(
-          data => {
+        this.imageobj.getBase64(image.target.files[0]).then(
+          (data:any) => {
             this.stdimage=data;
             this.stdimage=this.stdimage.split(",").pop();
           });
       }
       else if(person==1){
-        this.getBase64(image.target.files[0]).then(
-          data => {
+        this.imageobj.getBase64(image.target.files[0]).then(
+          (data:any) => {
             this.patimage=data;
             this.patimage=this.patimage.split(",").pop();
              });
       }
       else{
-        this.getBase64(image.target.files[0]).then(
-          data => {
+        this.imageobj.getBase64(image.target.files[0]).then(
+          (data:any) => {
             this.birthimage=data;
             this.birthimage=this.birthimage.split(",").pop();
              });
       }
 
 		}
-  }
-  getBase64(file:any) {
-    return new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      reader.readAsDataURL(file);
-      reader.onload = () =>{ resolve(reader.result)};
-      reader.onerror = error => reject(error);
-    });
   }
   validateDOB(dob:any){
     let today=new Date();
@@ -149,6 +143,7 @@ export class RegisterComponent {
         user.StudentPhoto=this.stdimage;
         user.IdentityParentPhoto=this.patimage;
         user.StudentBirthCertPhoto=this.birthimage;
+        console.log(user)
         this.authservice.createrequest(user).subscribe(
           {
             next:val=>{
@@ -158,9 +153,10 @@ export class RegisterComponent {
               this.resetform();
             },
             error:err=>{
+              console.log(err)
               this.formresponce=true;
               this.typemess='failed';
-              this.message='Failed';
+              this.message=err.error;
               this.resetform();
             }
           });

@@ -1,15 +1,15 @@
 export interface student{
-    Id :string,
-    StudentFirstName:string,
-    Gender:number,
-    StudentPhone:string,
-    StudentBirthDate:string,
-    StudentPhotoUrl :string,
-    StudentPhoto :string,
-    MaxDayOff :number,
-    AbsenceDays :number,
-    Fees:boolean,
-    ParentID :string,
-    ClassRoomID :number,
-    ClassRoomName :string
+    id :string,
+    studentFirstName:string,
+    gender:number,
+    studentPhone:string,
+    studentBirthDate:string,
+    studentPhotoUrl :string,
+    studentPhoto :string,
+    maxDayOff :number,
+    absenceDays :number,
+    fees:boolean,
+    parentID :string,
+    classRoomID :number,
+    classRoomName :string
 }

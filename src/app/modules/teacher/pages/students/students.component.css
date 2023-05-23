@@ -54,12 +54,17 @@ i{
     line-height: 3;
 }
 .data{
-    height: 65vh;
-    overflow-y: auto;
+    height: 65vh!important;
+    overflow-y: auto!important;
 }
 .data::-webkit-scrollbar{
     width: 5px;
     background-color: gray;
+}
+.header2{
+  display: flex;
+  justify-content: flex-end;
+  margin: 1rem 2rem;
 }
 .stdimg{
     display: block;

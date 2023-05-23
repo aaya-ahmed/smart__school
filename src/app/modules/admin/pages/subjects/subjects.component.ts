@@ -6,7 +6,7 @@ import { SubjectService } from 'src/app/services/subject.service';
 @Component({
   selector: 'app-subjects',
   templateUrl: './subjects.component.html',
-  styleUrls: ['../styles.css']
+  styleUrls: ['../../../../styles/modulesStyle.css']
 })
 export class SubjectsComponent implements OnInit,OnDestroy{
   subjects:subject[]=[];

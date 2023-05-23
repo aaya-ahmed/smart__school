@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment.development';
-import { IAttendence } from '../data/iattendence.js';
+import {  studentAttendence } from '../data/istudentattendence.js';
 import { IteacherAttendance } from '../data/iteacher-attendance.js';
 
 // Observable
@@ -13,14 +13,14 @@ import { IteacherAttendance } from '../data/iteacher-attendance.js';
 export class AttendeceService {
   constructor(private _HttpClient: HttpClient) {}
 
-  generateStudentAttendnce(): Observable<IAttendence[]> {
-    return this._HttpClient.get<IAttendence[]>(
-      `${environment.URL}StudentAttendance/generateAttendance`
+  generateStudentAttendnce(classid:number): Observable<studentAttendence[]> {
+    return this._HttpClient.get<studentAttendence[]>(
+      `${environment.URL}StudentAttendance/generateAttendance/${classid}`
     );
   }
 
-  saveStudentAttendnce(attList:IAttendence[]): Observable<IAttendence[]> {
-    return this._HttpClient.put<IAttendence[]>(
+  saveStudentAttendnce(attList:studentAttendence[]): Observable<studentAttendence[]> {
+    return this._HttpClient.put<studentAttendence[]>(
       `${environment.URL}StudentAttendance/addStudentAttendance`,
       attList
     );

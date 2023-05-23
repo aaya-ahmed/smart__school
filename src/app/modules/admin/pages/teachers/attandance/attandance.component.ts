@@ -8,7 +8,7 @@ import { HostmanagerService } from 'src/app/services/hostmanager.service';
 @Component({
   selector: 'app-attandance',
   templateUrl: './attandance.component.html',
-  styleUrls: ['./attandance.component.css','../../form.style.css','../../styles.css']
+  styleUrls: ['./attandance.component.css','../../../../../styles/form.style.css','../../../../../styles/modulesStyle.css']
 })
 export class AttandanceComponent {
   attendenceList: IteacherAttendance[] = [];

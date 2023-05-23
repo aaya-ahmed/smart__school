@@ -13,6 +13,10 @@
             </span>
         </div>
         <ul>
+            <li [ngClass]="{'active':currentpage=='profile'}" (click)="gottopage('profile')">
+                <i class="fa-solid fa-chalkboard-teacher"></i>
+               <span> profile</span>
+            </li>
             <li [ngClass]="{'active':currentpage=='student'}" (click)="gottopage('student')">
                 <i class="fa-solid fa-child"></i>
                <span>Students</span>
@@ -29,10 +33,7 @@
                 <i class="fa-solid fa-square-poll-vertical"></i>
                <span>grads</span>
             </li>
-            <li [ngClass]="{'active':currentpage=='teachers'}" (click)="gottopage('profile')">
-                <i class="fa-solid fa-chalkboard-teacher"></i>
-               <span> profile</span>
-            </li>
+
         </ul>
     </nav>
 </div>

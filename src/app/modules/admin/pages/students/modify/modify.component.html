@@ -12,7 +12,7 @@
             <div class="form-group">
                 <label>Name</label>
                 <input type="text" class="form-control"   
-                placeholder="student name" id="stdfname" formControlName="StudentFirstName"
+                placeholder="student name" id="stdfname" formControlName="studentFirstName"
                 [ngClass]="{'is-invalid':(fnamecontrol.errors&&fnamecontrol.touched)||(fnamecontrol.errors&&form.submitted)}"/>
                 <div *ngIf="(fnamecontrol.errors&&form.submitted)||(fnamecontrol.errors&&fnamecontrol.touched)" class="invalid">
                     <p *ngIf="fnamecontrol.errors['required']" class="invalid-feedback">student first name is required</p>
@@ -22,7 +22,7 @@
             <div class="form-group">
                 <label>Gender</label>
                 <select class="form-control"  
-                placeholder="gender" id="stdgender" formControlName="Gender">
+                placeholder="gender" id="stdgender" formControlName="gender">
                     <option value="male">Male</option>
                     <option value="female">Female</option>
                 </select>
@@ -30,12 +30,12 @@
             <div class="form-group">
                 <label>Birth Day</label>
                 <input type="date" class="form-control"   
-                placeholder="Birth Date" id="birthdate" formControlName="StudentBirthDate">
+                placeholder="Birth Date" id="birthdate" formControlName="studentBirthDate">
             </div>
             <div class="form-group">
                 <label>Phone</label>
                 <input type="text" class="form-control"   
-                placeholder="student phone" id="stdphone" formControlName="StudentPhone"
+                placeholder="student phone" id="stdphone" formControlName="studentPhone"
                 [ngClass]="{'is-invalid':(StudentPhonecontrol.errors&&StudentPhonecontrol.touched)||(StudentPhonecontrol.errors&&form.submitted)}"/>
                 <div *ngIf="(StudentPhonecontrol.errors&&form.submitted)||(StudentPhonecontrol.errors&&StudentPhonecontrol.touched)" class="invalid">
                     <p *ngIf="StudentPhonecontrol.errors['required']" class="invalid-feedback">phone is required</p>
@@ -45,7 +45,7 @@
             <div class="form-group">
                 <label for="address" class="input-group-text">Address</label>
                 <input type="text" class="form-control"   
-                placeholder="home address" id="address" formControlName="Address"
+                placeholder="home address" id="address" formControlName="address"
                 [ngClass]="{'is-invalid':(Addresscontrol.errors&&Addresscontrol.touched)||(Addresscontrol.errors&&form.submitted)}"/>
                 <div *ngIf="(Addresscontrol.errors&&form.submitted)||(Addresscontrol.errors&&Addresscontrol.touched)" class="invalid">
                     <p *ngIf="Addresscontrol.errors['required']" class="invalid-feedback">address is required</p>
@@ -54,7 +54,7 @@
             </div>
             <div class="form-group">
                 <label>Class</label>
-                <select formControlName="ClassRoomID" class="form-control">
+                <select formControlName="classRoomID" class="form-control">
                     <option *ngFor="let item of class,let i=index" value="{{i}}">{{item.gradeYearName}}-{{item.name}}</option>
                 </select>
             </div>
@@ -62,11 +62,11 @@
                 <label>
                    Fees
                 </label>
-                <input type="checkbox" formControlName="Fees"/>
+                <input type="checkbox" formControlName="fees"/>
             </div>
             <div class="form-group">
                 <label>Max Day Off</label>
-                <input type="text" formControlName="MaxDayOff" class="form-control"
+                <input type="text" formControlName="maxDayOff" class="form-control"
                 [ngClass]="{'is-invalid':(MaxDayOffcontrol.errors&&MaxDayOffcontrol.touched)||(MaxDayOffcontrol.errors&&form.submitted)}"/>
                 <div *ngIf="(MaxDayOffcontrol.errors&&form.submitted)||(MaxDayOffcontrol.errors&&MaxDayOffcontrol.touched)" class="invalid">
                     <p *ngIf="MaxDayOffcontrol.errors['pattern']" class="invalid-feedback">must be number</p>
@@ -74,7 +74,7 @@
             </div>
             <div class="form-group">
                 <label>Absence Days</label>
-                <input type="text" formControlName="AbsenceDays" class="form-control" 
+                <input type="text" formControlName="absenceDays" class="form-control" 
                 [ngClass]="{'is-invalid':(AbsenceDayscontrol.errors&&AbsenceDayscontrol.touched)||(AbsenceDayscontrol.errors&&form.submitted)}"/>
                 <div *ngIf="(AbsenceDayscontrol.errors&&form.submitted)||(AbsenceDayscontrol.errors&&AbsenceDayscontrol.touched)" class="invalid">
                     <p *ngIf="AbsenceDayscontrol.errors['pattern']" class="invalid-feedback">must be number</p>

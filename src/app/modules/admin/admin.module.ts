@@ -10,7 +10,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RequestsComponent } from './pages/requests/requests.component';
 import { RequestdetailsComponent } from './pages/requests/requestdetails/requestdetails.component';
 import { SidehostComponent } from './sidehost/sidehost.component';
-import { DynamicloaderDirective } from 'src/app/directives/dynamicloader.directive';
 import { SubjectsComponent } from './pages/subjects/subjects.component';
 import { SubjectformComponent } from './pages/subjects/subjectform/subjectform.component';
 import { TeachersComponent } from './pages/teachers/teachers.component';
@@ -27,6 +26,7 @@ import { ModifyComponent } from './pages/students/modify/modify.component';
 import { TeacherDetailsComponent } from './pages/teachers/teacherDetails/teacher.details.component';
 import { DetailsComponent } from './pages/students/details/details.component';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { AbsenceComponent } from './pages/students/absence/absence.component';
 
 
 @NgModule({
@@ -53,7 +53,8 @@ import { SharedModule } from 'src/app/shared/shared.module';
     AttandanceComponent,
     DetailsComponent,
     TeacherDetailsComponent,
-    ModifyComponent
+    ModifyComponent,
+    AbsenceComponent
   ],
   imports: [
     CommonModule,

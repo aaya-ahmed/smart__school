@@ -7,7 +7,7 @@ import { TeacherService } from 'src/app/services/teacher.service';
 @Component({
   selector: 'app-teachers',
   templateUrl: './teachers.component.html',
-  styleUrls: ['./teachers.component.css','../styles.css']
+  styleUrls: ['./teachers.component.css','../../../../styles/modulesStyle.css']
 })
 export class TeachersComponent {
   teachers:any[]=[];

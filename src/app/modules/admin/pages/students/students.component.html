@@ -1,5 +1,8 @@
 <div class="header">
     <h2>All Students</h2>
+    <button (click)="showAbsence()" class="addbtn">Absence</button>
+</div>
+<div class="header2">
     <span>
         grade year
         <select (change)="getdata($event)">
@@ -18,16 +21,16 @@
     </div>
         <div *ngFor="let item of allstudents;let i=index" class="tablebody">
         <div>
-            <img src="https://localhost:44309/{{item.StudentPhotoUrl}}" class="stdimg"/>
+            <img src="http://localhost:5216/{{item.studentPhotoUrl}}" class="stdimg"/>
         </div>
         <div>
-            {{item.StudentFirstName}}
+            {{item.studentFirstName}}
         </div>
         <div>
-            {{item.Gender}}
+            {{item.gender}}
         </div>
         <div>
-            {{item.ClassRoomName}}
+            {{item.classRoomName}}
         </div>
         <div class="actions">
             <button (click)="showdetails(i)"><i class="fa-solid fa-display fa-2" style="color: #e7840e;"></i></button>

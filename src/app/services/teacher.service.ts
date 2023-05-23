@@ -26,30 +26,7 @@ export class TeacherService {
     return this.http.get<teacher>(environment.URL+"Teacher/GetByIdentity/"+id)
   }
   public getall():Observable<teacher[]>{
-    return this.http.get<teacher[]>(environment.URL+"Teacher/GetAll").pipe(
-      map((res:any[])=>{
-        return res.map(responce=>({
-          FullName:responce.fullName ,
-          Id: responce.id,
-          Email: responce.email,
-          Password: responce.password,
-          Gender: responce.gender,
-          Salary: responce.salary,
-          Phone: responce.phone,
-          Address: responce.address,
-          PhotoUrl: responce.photoUrl,
-          Photo: responce.photo,
-          HireDate: responce.hireDate,
-          MaxDayOff: responce.maxDayOff,
-          AbsenceDays: responce.absenceDays,
-          SubjectId: responce.subjectId,
-          SubjectName: responce.subjectName,
-          IdentityUserId: responce.identityUserId
-        }
-          ))
-        }
-      )
-    )
+    return this.http.get<teacher[]>(environment.URL+"Teacher/GetAll")
   }
   public delete(id:string){
     return this.http.delete(environment.URL+"Teacher/Delete?id="+id)

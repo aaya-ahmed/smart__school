@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { classroom } from 'src/app/data/classroom';
 import { student } from 'src/app/data/student';
 import { ClassroomService } from 'src/app/services/classroom.service';
+import { HostmanagerService } from 'src/app/services/hostmanager.service';
 import { StudentserviceService } from 'src/app/services/studentservice.service';
 import { TeacherService } from 'src/app/services/teacher.service';
 
@@ -14,7 +15,7 @@ export class StudentsComponent {
   teacher:any;
   classsies:classroom[]=[]
   allstudents:student[]=[]
-  constructor(private teacherservice:TeacherService,private classservice:ClassroomService,private studentservice:StudentserviceService) { }
+  constructor(private teacherservice:TeacherService,private hostman:HostmanagerService,private classservice:ClassroomService,private studentservice:StudentserviceService) { }
   ngOnInit() {
     let id=localStorage.getItem('uid')?.replace(/"/g,'')||'';
     this.teacherservice.getbyidentity(id).subscribe({
@@ -38,5 +39,8 @@ export class StudentsComponent {
         console.log(res)
       }
     })
+  }
+  takeattandance(){
+    this.hostman.load({data:this.classsies,open:true,returndata:'',type:'studentattandance'})
   }
 }

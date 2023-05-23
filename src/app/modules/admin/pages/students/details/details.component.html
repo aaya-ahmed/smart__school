@@ -10,56 +10,56 @@
         </header>
         <main>
           <div class="images">
-            <img [src]="student.StudentPhotoUrl"/>
+            <img [src]="student.studentPhotoUrl"/>
           </div>
           <div class="information">
             <table>
               <tr>
                 <th>Student name</th>
                 <td>
-                  <p>{{student.StudentFirstName}}</p>
+                  <p>{{student.studentFirstName}}</p>
                 </td>
               </tr>
               <tr>
                 <th>Student Phone</th>
                 <td>
-                  <p>{{student.StudentPhone}}</p>
+                  <p>{{student.studentPhone}}</p>
                 </td>
               </tr>
               <tr>
                 <th>Student Gender</th>
                 <td>
-                  <p>{{student.Gender}}</p>
+                  <p>{{student.gender}}</p>
                 </td>
               </tr>  
               <tr>
                 <th>Student Birth Date</th>
                 <td>
-                  <p>{{student.StudentBirthDate|date:'yyyy-MM-dd'}}</p>
+                  <p>{{student.studentBirthDate|date:'yyyy-MM-dd'}}</p>
                 </td>
               </tr> 
               <tr>
                 <th>Fees</th>
                 <td>
-                  <p>{{student.Fees==true?'yes':'no'}}</p>
+                  <p>{{student.fees==true?'yes':'no'}}</p>
                 </td>
               </tr> 
               <tr>
                 <th>Class Room</th>
                 <td>
-                  <p>{{student.ClassRoomName}}</p>
+                  <p>{{student.classRoomName}}</p>
                 </td>
               </tr> 
               <tr>
                 <th>Max Day Off</th>
                 <td>
-                  <p>{{student.MaxDayOff}}</p>
+                  <p>{{student.maxDayOff}}</p>
                 </td>
               </tr> 
               <tr>
                 <th>Absence Days</th>
                 <td>
-                  <p>{{student.AbsenceDays}}</p>
+                  <p>{{student.absenceDays}}</p>
                 </td>
               </tr>    
             </table>

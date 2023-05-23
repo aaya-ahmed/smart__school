@@ -1,6 +1,11 @@
 select{
     padding: 0.5rem 1rem;
 }
+.header2{
+  margin:1rem 2rem;
+  display: flex;
+  justify-content: flex-end;
+}
 .tableheader div:nth-child(1),.tablebody div:nth-child(1){
     width: 100px!important;
     line-height: 3;

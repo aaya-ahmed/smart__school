@@ -10,41 +10,41 @@ import { SubjectService } from 'src/app/services/subject.service';
 @Component({
   selector: 'app-modify',
   templateUrl: './modify.component.html',
-  styleUrls: ['./modify.component.css','../../form.style.css']
+  styleUrls: ['./modify.component.css','../../../../../styles/form.style.css']
 })
 export class ModifyComponent implements OnInit ,OnDestroy {
   class:classroom[]=[];
   data:any;
   subscriber:Subscription=Subscription.EMPTY;
   student:FormGroup=new FormGroup({
-    AbsenceDays :new FormControl(0,[Validators.required,Validators.pattern("^[0-9]{1,}$")]),
-    Address :new FormControl('',[Validators.required,Validators.minLength(5)]),
-    ClassRoomID :new FormControl(0),
-    Fees :new FormControl(false),
-    Gender :new FormControl(0),
-    MaxDayOff :new FormControl(0,[Validators.required,Validators.pattern("^[1-9][0-9]{1,}$")]),
-    StudentBirthDate :new FormControl(''),
-    StudentFirstName :new FormControl('',[Validators.required,Validators.pattern("^[a-z A-Z]{15,31}$")]),
-    StudentPhone :new FormControl('',[Validators.required,Validators.pattern("^01[0125][0-9]{8}$")])
+    absenceDays :new FormControl(0,[Validators.required,Validators.pattern("^[0-9]{1,}$")]),
+    address :new FormControl('',[Validators.required,Validators.minLength(5)]),
+    classRoomID :new FormControl(0),
+    fees :new FormControl(false),
+    gender :new FormControl(0),
+    maxDayOff :new FormControl(0,[Validators.required,Validators.pattern("^[1-9][0-9]{1,}$")]),
+    studentBirthDate :new FormControl(''),
+    studentFirstName :new FormControl('',[Validators.required,Validators.pattern("^[a-z A-Z]{15,31}$")]),
+    studentPhone :new FormControl('',[Validators.required,Validators.pattern("^01[0125][0-9]{8}$")])
   });
   mess:string=''
   type:string=''
   constructor(private classservice:ClassroomService,private studentservice:StudentserviceService,private hostman:HostmanagerService){}
 
   get fnamecontrol(){
-    return this.student.controls['StudentFirstName'];
+    return this.student.controls['studentFirstName'];
   }
   get AbsenceDayscontrol(){
-    return this.student.controls['AbsenceDays'];
+    return this.student.controls['absenceDays'];
   }
   get Addresscontrol(){
-    return this.student.controls['Address'];
+    return this.student.controls['address'];
   }
   get MaxDayOffcontrol(){
-    return this.student.controls['MaxDayOff'];
+    return this.student.controls['maxDayOff'];
   }
   get StudentPhonecontrol(){
-    return this.student.controls['StudentPhone'];
+    return this.student.controls['studentPhone'];
   }
   ngOnInit(): void {
     let subscriber=this.classservice.getall().subscribe({
@@ -62,15 +62,15 @@ export class ModifyComponent implements OnInit ,OnDestroy {
           this.data=res.data;
           let classindex=this.class.findIndex(p=>p.id== +this.data.ClassRoomID);
           this.student.patchValue({
-            AbsenceDays :this.data.AbsenceDays,
-            Address :this.data.Address,
-            ClassRoomID :classindex,
-            Fees :this.data.Fees,
-            Gender :this.data.Gender,
-            MaxDayOff :this.data.MaxDayOff,
-            StudentBirthDate :this.data.StudentBirthDate.substring(0,10),
-            StudentFirstName :this.data.StudentFirstName,
-            StudentPhone :this.data.StudentPhone
+            absenceDays :this.data.absenceDays,
+            address :this.data.address,
+            classRoomID :classindex,
+            fees :this.data.fees,
+            gender :this.data.gender,
+            maxDayOff :this.data.maxDayOff,
+            studentBirthDate :this.data.studentBirthDate.substring(0,10),
+            studentFirstName :this.data.studentFirstName,
+            studentPhone :this.data.studentPhone
           });
           this.subscriber.unsubscribe();
         }
@@ -83,8 +83,8 @@ export class ModifyComponent implements OnInit ,OnDestroy {
       this.data={
         ...this.data,
         ...this.student.value,
-        ClassRoomID: this.class[index].id,
-        ClassRoomName:  this.class[index].name
+        classRoomID: this.class[index].id,
+        classRoomName:  this.class[index].name
       }
       this.subscriber=this.studentservice.update(this.data).subscribe({
         next:res=>{

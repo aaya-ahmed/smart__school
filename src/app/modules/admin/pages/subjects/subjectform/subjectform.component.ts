@@ -9,7 +9,7 @@ import { SubjectService } from 'src/app/services/subject.service';
 @Component({
   selector: 'app-subjectform',
   templateUrl: './subjectform.component.html',
-  styleUrls: ['../../form.style.css']
+  styleUrls: ['../../../../../styles/form.style.css']
 })
 export class SubjectformComponent {
   id:number=-1;
@@ -17,7 +17,8 @@ export class SubjectformComponent {
   subjects:subject[]=[];
   subject:FormGroup=new FormGroup({
     subname:new FormControl('',[Validators.required,Validators.minLength(3),Validators.maxLength(15)]),
-    gradeYearId:new FormControl('',[Validators.required]),  
+    points:new FormControl('',[Validators.required,Validators.pattern("^[1-9]{1}[0-9]{1,}$")]),  
+    gradeYearId:new FormControl('',[Validators.required]) 
   });
   mess:string=''
   constructor(private gradeyearservice:GradyearService,private subjectservice:SubjectService,private hostman:HostmanagerService){}
@@ -41,6 +42,9 @@ export class SubjectformComponent {
   }
   get namecontrol(){
     return this.subject.controls['subname']
+  }
+  get pointcontrol(){
+    return this.subject.controls['points']
   }
   get gradecontrol(){
     return this.subject.controls['gradeYearId']

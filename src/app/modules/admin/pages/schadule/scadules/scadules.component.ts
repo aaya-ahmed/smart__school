@@ -7,7 +7,7 @@ import { SchaduleSessionService } from 'src/app/services/schadule.session.servic
 @Component({
   selector: 'app-scadules',
   templateUrl: './scadules.component.html',
-  styleUrls: ['../../styles.css','./scadules.component.css']
+  styleUrls: ['../../../../../styles/modulesStyle.css','./scadules.component.css']
 })
 export class ScadulesComponent implements OnChanges {
   @Input()schadule:any;

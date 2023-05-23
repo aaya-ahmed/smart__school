@@ -11,7 +11,7 @@ import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-requestdetails',
   templateUrl: './requestdetails.component.html',
-  styleUrls: ['../../form.style.css','./requestdetails.component.css']
+  styleUrls: ['../../../../../styles/form.style.css','./requestdetails.component.css']
 })
 export class RequestdetailsComponent {
   requestDetails: any;
@@ -42,15 +42,12 @@ export class RequestdetailsComponent {
         next:res=>{
           this._RequestService.getRequestDetails(res.data.id).subscribe({
             next: (response) => {
-              this.requestDetails = response
-              this.requestDetails.studentPhotoUrl=environment.imgeurl+this.requestDetails.studentPhotoUrl;
-              this.requestDetails.identityParentPhotoUrl=environment.imgeurl+this.requestDetails.identityParentPhotoUrl;
-              this.requestDetails.studentBirthCertPhotoUrl=environment.imgeurl+this.requestDetails.studentBirthCertPhotoUrl;
-              this.srcimage=[this.requestDetails.studentPhotoUrl,
-                this.requestDetails.identityParentPhotoUrl,
-                this.requestDetails.studentBirthCertPhotoUrl
+              this.requestDetails = response;
+              this.srcimage=[
+                environment.imgeurl+this.requestDetails.studentPhotoUrl,
+                environment.imgeurl+this.requestDetails.identityParentPhotoUrl,
+                environment.imgeurl+this.requestDetails.studentBirthCertPhotoUrl
               ];
-              console.log(this.srcimage)
               this.selectedimage=this.srcimage[0]
               subscribe.unsubscribe()
             }
@@ -60,13 +57,13 @@ export class RequestdetailsComponent {
     )
   }
   acceptRequest() {
-    if(this.classform.valid){
+    if(this.classform.valid){      
       this._RequestService.acceptRequest(this.requestDetails.id).subscribe({
         next: (response) => {
           this.studentservice.get(response.studentid).subscribe({
             next:res=>{
-              res.ClassRoomID=this.classies[this.classform.controls['class'].value].id;
-              res.ClassRoomName=this.classies[this.classform.controls['class'].value].name;
+              res.classRoomID=this.classies[this.classform.controls['class'].value].id;
+              res.classRoomName=this.classies[this.classform.controls['class'].value].name;
               this.studentservice.update(res).subscribe({
                 next:res=>{
                   this.requeststatus=1;

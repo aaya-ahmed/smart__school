@@ -16,16 +16,16 @@
     <div class="data">
         <div *ngFor="let item of teachers" class="tablebody">
         <div>
-            {{item.FullName}}
+            {{item.fullName}}
         </div>
         <div>
-            {{item.SubjectName}}
+            {{item.subjectName}}
         </div>
         <div>
-            {{item.AbsenceDays}}
+            {{item.absenceDays}}
         </div>
         <div>
-            {{item.Salary}}
+            {{item.salary}}
         </div>
         <div>
             <button (click)="showdetails(item)"><i class="fa-solid fa-display fa-2" style="color: #e7840e;"></i></button>

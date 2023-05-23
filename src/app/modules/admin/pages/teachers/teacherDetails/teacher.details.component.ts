@@ -7,26 +7,26 @@ import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-details',
   templateUrl: './teacher.details.component.html',
-  styleUrls: ['../../form.style.css','./teacher.details.component.css']
+  styleUrls: ['../../../../../styles/form.style.css','./teacher.details.component.css']
 })
 export class TeacherDetailsComponent implements OnInit,OnDestroy {
   teacher:teacher={
-    Id: '',
-    FullName: '',
-    Email: '',
-    Password: '',
-    Gender: 0,
-    Salary: 0,
-    Phone: '',
-    Address: '',
-    PhotoUrl: '',
-    Photo: '',
-    HireDate: '',
-    MaxDayOff: 0,
-    AbsenceDays: 0,
-    SubjectId: 0,
-    SubjectName: '',
-    IdentityUserId: ''
+    id: '',
+    fullName: '',
+    email: '',
+    password: '',
+    gender: 0,
+    salary: 0,
+    phone: '',
+    address: '',
+    photoUrl: '',
+    photo: '',
+    hireDate: '',
+    maxDayOff: 0,
+    absenceDays: 0,
+    subjectId: 0,
+    subjectName: '',
+    identityUserId: ''
   }
   teacherSubscriber:Subscription=new Subscription();
   hostSubscribtion:Subscription=new Subscription();
@@ -41,7 +41,7 @@ export class TeacherDetailsComponent implements OnInit,OnDestroy {
       next:res=>{
         if(res.data!=''){
           this.teacher=res.data;
-          this.image=environment.imgeurl+this.teacher.PhotoUrl;
+          this.image=environment.imgeurl+this.teacher.photoUrl;
           this.hostSubscribtion.unsubscribe();
         }
       },

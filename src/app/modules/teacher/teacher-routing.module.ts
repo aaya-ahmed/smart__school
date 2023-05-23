@@ -5,6 +5,7 @@ import { StudentsComponent } from './pages/students/students.component';
 import { SchaduleComponent } from './pages/schadule/schadule.component';
 import { GradsComponent } from './pages/grads/grads.component';
 import { MaterialsComponent } from './pages/materials/materials.component';
+import { ProfileComponent } from './pages/profile/profile.component';
 
 const routes: Routes = [
   {
@@ -13,7 +14,11 @@ const routes: Routes = [
     children:[
       {
         path:'',
-        component:StudentsComponent
+        component:ProfileComponent
+      },
+      {
+        path:'profile',
+        component:ProfileComponent
       },
       {
         path:'student',

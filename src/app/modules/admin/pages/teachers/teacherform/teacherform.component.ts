@@ -10,7 +10,7 @@ import { TeacherService } from 'src/app/services/teacher.service';
 @Component({
   selector: 'app-teacherform',
   templateUrl: './teacherform.component.html',
-  styleUrls: ['./teacherform.component.css','../../form.style.css']
+  styleUrls: ['./teacherform.component.css','../../../../../styles/form.style.css']
 })
 export class TeacherformComponent {
   data:any=undefined;
@@ -35,42 +35,42 @@ export class TeacherformComponent {
         if(res.data!=''){
           this.data=res.data;
           this.teacher=this.fb.group({
-            FullName : new FormControl('',[Validators.minLength(11),Validators.maxLength(23)]),
-            Gender : new FormControl(0,[Validators.required]),
-            Salary : new FormControl(0,[Validators.pattern("^[1-9][0-9]{1,}$")]),
-            Phone : new FormControl('',[Validators.pattern("^(010|011|012|015)[0-9]{8}$")]),
-            Address : new FormControl('',[Validators.minLength(5),Validators.maxLength(15)]),
-            HireDate : new FormControl(''),
-            MaxDayOff:new FormControl(0,[Validators.pattern("^[0-9]{1,3}$")]),
-            AbsenceDays :new FormControl(0,[Validators.pattern("^[0-9]{1,3}$")])
+            fullName : new FormControl('',[Validators.minLength(11),Validators.maxLength(23)]),
+            gender : new FormControl(0,[Validators.required]),
+            salary : new FormControl(0,[Validators.pattern("^[1-9][0-9]{1,}$")]),
+            phone : new FormControl('',[Validators.pattern("^(010|011|012|015)[0-9]{8}$")]),
+            address : new FormControl('',[Validators.minLength(5),Validators.maxLength(15)]),
+            hireDate : new FormControl(''),
+            maxDayOff:new FormControl(0,[Validators.pattern("^[0-9]{1,3}$")]),
+            absenceDays :new FormControl(0,[Validators.pattern("^[0-9]{1,3}$")])
           });
           this.teacher.patchValue({
-            FullName:res.data.FullName ,
-            Email: res.data.Email,
-            Gender: res.data.Gender,
-            Salary:res.data.Salary,
-            Phone: res.data.Phone,
-            Address: res.data.Address,
-            HireDate: res.data.HireDate.substring(0,10),
-            MaxDayOff:res.data.MaxDayOff,
-            AbsenceDays :res.data.AbsenceDays
+            fullName:res.data.fullName ,
+            email: res.data.email,
+            gender: res.data.gender,
+            salary:res.data.salary,
+            phone: res.data.phone,
+            address: res.data.address,
+            hireDate: res.data.hireDate.substring(0,10),
+            maxDayOff:res.data.maxDayOff,
+            absenceDays :res.data.absenceDays
           });
           this.operationtype=1;
           this.hostSubscribtion.unsubscribe();
         }
         else{
           this.teacher=this.fb.group({
-            FullName: new FormControl('',[Validators.required,Validators.minLength(11),Validators.maxLength(23)]),
-            Email: new FormControl('',[Validators.required,Validators.email]),
-            Password: new FormControl('',[Validators.required,Validators.pattern("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$")]),
-            Gender: new FormControl('',[Validators.required]),
-            Salary: new FormControl(0,[Validators.required,Validators.pattern("^[0-9]{2,}$")]),
-            Phone: new FormControl('',[Validators.required,Validators.pattern("^(010|011|012|015)[0-9]{8}$")]),
-            Address: new FormControl('',[Validators.required,Validators.minLength(5),Validators.maxLength(15)]),
-            Photo: new FormControl('',[Validators.required]),
-            MaxDayOff :new FormControl(1,[Validators.required,Validators.pattern("^[1-9][0-9]{1,}$")]),
-            HireDate: new FormControl('',[Validators.required]),
-            SubjectId: new FormControl(0,[Validators.required]),
+            fullName: new FormControl('',[Validators.required,Validators.minLength(11),Validators.maxLength(23)]),
+            email: new FormControl('',[Validators.required,Validators.email]),
+            password: new FormControl('',[Validators.required,Validators.pattern("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$")]),
+            gender: new FormControl('',[Validators.required]),
+            salary: new FormControl(0,[Validators.required,Validators.pattern("^[0-9]{2,}$")]),
+            phone: new FormControl('',[Validators.required,Validators.pattern("^(010|011|012|015)[0-9]{8}$")]),
+            ddress: new FormControl('',[Validators.required,Validators.minLength(5),Validators.maxLength(15)]),
+            photo: new FormControl('',[Validators.required]),
+            maxDayOff :new FormControl(1,[Validators.required,Validators.pattern("^[1-9][0-9]{1,}$")]),
+            hireDate: new FormControl('',[Validators.required]),
+            subjectId: new FormControl(0,[Validators.required]),
           });
           this.hostSubscribtion.unsubscribe()
         }
@@ -78,40 +78,40 @@ export class TeacherformComponent {
     })
   }
   get namecontrol(){
-    return this.teacher.controls['FullName']
+    return this.teacher.controls['fullName']
   }
   get emailcontrol(){
-    return this.teacher.controls['Email']
+    return this.teacher.controls['email']
   }
   get passwordcontrol(){
-    return this.teacher.controls['Password']
+    return this.teacher.controls['password']
   }
   get gendercontrol(){
-    return this.teacher.controls['Gender']
+    return this.teacher.controls['gender']
   }
   get salarycontrol(){
-    return this.teacher.controls['Salary']
+    return this.teacher.controls['salary']
   }
   get photocontrol(){
-    return this.teacher.controls['Photo']
+    return this.teacher.controls['photo']
   }
   get phonecontrol(){
-    return this.teacher.controls['Phone']
+    return this.teacher.controls['phone']
   }
   get addresscontrol(){
-    return this.teacher.controls['Address']
+    return this.teacher.controls['address']
   }
   get MaxDayOffcontrol(){
-    return this.teacher.controls['MaxDayOff']
+    return this.teacher.controls['maxDayOff']
   }
   get subjectIdcontrol(){
-    return this.teacher.controls['SubjectId']
+    return this.teacher.controls['subjectId']
   }
   get hireDatecontrol(){
-    return this.teacher.controls['HireDate']
+    return this.teacher.controls['hireDate']
   }
   get AbsenceDayscontrol(){
-    return this.teacher.controls['AbsenceDays']
+    return this.teacher.controls['absenceDays']
   }
   changephoto(image:any){
     var reader = new FileReader();
@@ -148,7 +148,7 @@ export class TeacherformComponent {
         this.data={
           ...this.data,
           ...this.teacher.value,
-          Gender:+this.gendercontrol.value
+          gender:+this.gendercontrol.value
         }
         this.teacherservice.update(this.data).subscribe({
           next:res=>{
@@ -166,13 +166,13 @@ export class TeacherformComponent {
       else{
         let teacher:teacher={
           ...this.teacher.value,
-          Id:new Date().getTime().toString(),
-          Gender:+this.gendercontrol.value,
-          Photo:this.teacherimage,
-          Salary:+this.salarycontrol.value,
-          MaxDayOff:+this.MaxDayOffcontrol.value,
-          SubjectId:this.subjects[+this.subjectIdcontrol.value].id,
-          SubjectName:this.subjects[+this.subjectIdcontrol.value].name
+          id:new Date().getTime().toString(),
+          gender:+this.gendercontrol.value,
+          photo:this.teacherimage,
+          salary:+this.salarycontrol.value,
+          maxDayOff:+this.MaxDayOffcontrol.value,
+          subjectId:this.subjects[+this.subjectIdcontrol.value].id,
+          subjectName:this.subjects[+this.subjectIdcontrol.value].name
         }
         this.teacherservice.post(teacher).subscribe({
           next:data=>{

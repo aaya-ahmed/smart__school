@@ -1,4 +1,4 @@
-export interface IAttendence {
+export interface studentAttendence {
   id: number;
   date: string;
   state: boolean;

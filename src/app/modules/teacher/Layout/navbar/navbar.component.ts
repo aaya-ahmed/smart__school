@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
 })
 export class NavbarComponent {
   @Input()toggleflag:boolean=false;
-  currentpage:string='student'
+  currentpage:string='profile'
   constructor(private route:Router){
     let index=route.url.lastIndexOf('/');
     this.currentpage=route.url.substring(index+1)

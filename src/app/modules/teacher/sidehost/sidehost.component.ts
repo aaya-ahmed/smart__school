@@ -2,6 +2,9 @@ import { Component, ViewChild } from '@angular/core';
 import { DynamicloaderDirective } from 'src/app/directives/dynamicloader.directive';
 import { HostmanagerService } from 'src/app/services/hostmanager.service';
 import { ViewvideoComponent } from '../pages/materials/viewvideo/viewvideo.component';
+import { StudentattandanceComponent } from '../pages/students/studentattandance/studentattandance.component';
+import { ChangephotoComponent } from '../pages/profile/changephoto/changephoto.component';
+import { UpdateprofileComponent } from '../pages/profile/updateprofile/updateprofile.component';
 
 @Component({
   selector: 'teacher-sidehost',
@@ -31,7 +34,17 @@ export class SidehostComponent {
     switch(data.type){
       case 'video':
         this.component=this.viewContainerRef.createComponent(ViewvideoComponent);
-        break;
+      break;
+      case 'studentattandance':
+          this.component=this.viewContainerRef.createComponent(StudentattandanceComponent);
+      break;
+      case 'changephoto':
+        this.component=this.viewContainerRef.createComponent(ChangephotoComponent);
+      break;
+      case 'updateprofile':
+        this.component=this.viewContainerRef.createComponent(UpdateprofileComponent);
+      break;
     }
+    this.component.instance.data=data.data;
   }
 }

@@ -9,7 +9,7 @@ import { HostmanagerService } from 'src/app/services/hostmanager.service';
 @Component({
   selector: 'app-classroomform',
   templateUrl: './classroomform.component.html',
-  styleUrls: ['./classroomform.component.css','../../form.style.css']
+  styleUrls: ['./classroomform.component.css','../../../../../styles/form.style.css']
 })
 export class ClassroomformComponent {
   id:number=-1;
@@ -17,7 +17,7 @@ export class ClassroomformComponent {
   classies:classroom[]=[];
   mess:string='';
   classroom:FormGroup=new FormGroup({
-    name:new FormControl('',[Validators.required,Validators.minLength(1),Validators.maxLength(15)]),
+    name:new FormControl('',[Validators.required,Validators.pattern('^[1-9]{1,2}/[1-9]{1,2}$')]),
     gradeYearId:new FormControl('',[Validators.required]),  
   });
   errormess:string=''
