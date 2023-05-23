@@ -1,10 +1,10 @@
 .mess-sec{
     display: flex;
     text-align: center;
-    padding: 1rem;
+    padding: 0 1rem;
     overflow-wrap: break-word;
     line-height: 3;
 }
 .mess-sec img{
-    width: 50px;
+    width: 30px;
 }

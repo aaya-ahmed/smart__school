@@ -1,1 +1,24 @@
-<p>materials works!</p>
+<div class="options">
+    <span (click)="getvideos()" class="videobtn" [ngClass]="{'active':type=='video'}">Videos</span>
+    <span (click)="getdocument()" class="documentbtn" [ngClass]="{'active':type=='document'}">Documents</span>
+</div>
+<div class="upload-section">
+    <form (ngSubmit)="save()">
+        <span>
+            <label for="file" *ngIf="fullData.file">
+                {{fullData.file?.name}}
+            </label>
+            <label for="file" *ngIf="!fullData.file">choose file</label>
+            <app-messagerespnce [type]="typemessage"></app-messagerespnce>
+        </span>
+        <input type="file" class="file" id="file" accept="video/mp4,application/pdf" (change)="uploadFile($event)"/>
+        <input type="submit" value="Upload"/>
+    </form>
+    <p>{{meesage}}</p>
+</div>
+<ng-container *ngIf="type=='video'">
+    <app-videos [subjectId]="teacher?.subjectId"></app-videos>
+</ng-container>
+<ng-container *ngIf="type=='document'">
+    <app-documents [subjectId]="teacher?.subjectId"></app-documents>
+</ng-container>

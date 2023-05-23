@@ -12,7 +12,9 @@ import { MaterialsComponent } from './pages/materials/materials.component';
 import { SchaduleComponent } from './pages/schadule/schadule.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { SidehostComponent } from './sidehost/sidehost.component';
-
+import { VideosComponent } from './pages/materials/videos/videos.component';
+import { DocumentsComponent } from './pages/materials/documents/documents.component';
+import { ViewvideoComponent } from './pages/materials/viewvideo/viewvideo.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,10 @@ import { SidehostComponent } from './sidehost/sidehost.component';
     GradsComponent,
     MaterialsComponent,
     SchaduleComponent,
-    SidehostComponent
+    SidehostComponent,
+    VideosComponent,
+    DocumentsComponent,
+    ViewvideoComponent
   ],
   imports: [
     CommonModule,

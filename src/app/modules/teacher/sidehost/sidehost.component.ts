@@ -1,6 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { DynamicloaderDirective } from 'src/app/directives/dynamicloader.directive';
 import { HostmanagerService } from 'src/app/services/hostmanager.service';
+import { ViewvideoComponent } from '../pages/materials/viewvideo/viewvideo.component';
 
 @Component({
   selector: 'teacher-sidehost',
@@ -27,8 +28,10 @@ export class SidehostComponent {
   public loadcomponent(data:any){
     this.viewContainerRef = this.adHost.viewContainerRef;
     this.viewContainerRef.clear();
-    // switch(data.type){
-    // }
-
+    switch(data.type){
+      case 'video':
+        this.component=this.viewContainerRef.createComponent(ViewvideoComponent);
+        break;
+    }
   }
 }

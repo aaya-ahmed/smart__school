@@ -1,1 +1,34 @@
-<p>students works!</p>
+<div class="header">
+    <h2>All Students</h2>
+    <span>
+        Class
+        <select (change)="getstudents($event)">
+            <option></option>
+            <option *ngFor="let item of classsies" value="{{item.id}}">{{item.gradeYearName}}-{{item.name}}</option>
+        </select>
+    </span>
+</div>
+
+<ng-container *ngIf="allstudents.length>0">
+    <div class="tableheader">
+        <div></div>
+        <div>Name</div>
+        <div>Gender</div>
+    </div>
+        <div *ngFor="let item of allstudents;let i=index" class="tablebody">
+        <div>
+            <img src="http://localhost:5216/{{item.StudentPhotoUrl}}" class="stdimg"/>
+        </div>
+        <div>
+            {{item.StudentFirstName}}
+        </div>
+        <div>
+            {{item.Gender}}
+        </div>
+    </div>
+</ng-container>        
+<ng-container *ngIf="allstudents.length==0">
+    <div class="notfoundbody">
+        Not Found
+    </div>
+</ng-container>

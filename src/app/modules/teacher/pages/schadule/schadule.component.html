@@ -1,44 +1,45 @@
-<div>
-    <button  (click)="getPrev()"><i class="fa-solid fa-arrow-left"></i></button>
-    <button (click)="getNext()"><i class="fa-solid fa-arrow-right"></i></button>
-</div>
-<div class="container" >
-
-
-    <div>
-        <table>
-            <thead>
-                <tr>
-                    <th colspan="8">
-                        Week Schedule
-                    </th>
-                </tr>
-                <tr>
-                    <th>
-                        <span>Session</span>
-                        <span>/Num</span>
-                      </th>
-                    <th *ngFor="let date of sevsnDays">{{date|date:"EEE"}}<br>{{date|date:"MM-dd"}}</th>
-                </tr>
-          </thead>
-          <ng-container *ngIf="sessions.length>0">
-            <tbody >
-                <tr *ngFor="let sessionNum of sessionNumbers">
-                    <td>{{sessionNum}}</td>
-                    <ng-container *ngFor="let date of sevsnDays" >
-                        <td Sessiondate [currentsession]="sessionNum" [session]="sessions" [currentDate]="date"></td>
-                    </ng-container>
-                </tr>
-              </tbody>
-          </ng-container>
-          <ng-container *ngIf="sessions.length==0">
-            <tbody>
-                <tr>
-                    <td colspan="8" rowspan="6"> Not Found</td>
-                </tr>
-            </tbody>
-          </ng-container>
-    
-        </table>
+<main>
+    <div class="prev-section">
+        <button  (click)="getPrev()"><i class="fa-solid fa-arrow-left"></i></button>
     </div>
-  </div>
+    <div class="table-section">
+        <header>
+            Week Schedule
+        </header>
+        <div class="table">
+            <table>
+                <thead>
+                    <tr>
+                        <th>
+                            <span>Session</span>
+                            <span>/Num</span>
+                          </th>
+                        <th *ngFor="let date of sevsnDays"><p>{{date|date:"EEE"}}<br>{{date|date:"MM-dd"}}</p></th>
+                    </tr>
+              </thead>
+              <ng-container *ngIf="sessions.length>0">
+                <tbody >
+                    <tr *ngFor="let sessionNum of sessionNumbers">
+                        <td>{{sessionNum}}</td>
+                        <ng-container *ngFor="let date of sevsnDays" >
+                            <td Sessiondate [currentsession]="sessionNum" [session]="sessions" [currentDate]="date">
+                            </td>
+                        </ng-container>
+                    </tr>
+                  </tbody>
+              </ng-container>
+              <ng-container *ngIf="sessions.length==0">
+                <tbody>
+                    <tr>
+                        <td colspan="8" rowspan="6" class="notfoundsection"> Not Found</td>
+                    </tr>
+                </tbody>
+              </ng-container>
+        
+        </table>
+        </div>
+    </div>
+    <div class="next-section">
+        <button (click)="getNext()"><i class="fa-solid fa-arrow-right"></i></button>
+    </div>
+</main>

@@ -15,48 +15,21 @@ export class SchaduleComponent implements OnInit,OnDestroy {
   currentDate:Date=new Date();
   sevsnDays:any[]=[];
   sessionNumbers:number[]=[];
-  nextDate:Date=new Date();;
-  teacher:teacher={
-    Id: '',
-    FullName: '',
-    Email: '',
-    Password: '',
-    Gender: 0,
-    Salary: 0,
-    Phone: '',
-    Address: '',
-    PhotoUrl: '',
-    Photo: '',
-    HireDate: '',
-    MaxDayOff: 0,
-    AbsenceDays: 0,
-    SubjectId: 0,
-    SubjectName: '',
-    IdentityUserId: ''
-  }
   schaduleSubscribtion:Subscription=new Subscription();
-  constructor(private sessionsservice:SchaduleSessionService){
-    let date=new Date();
-    this.currentDate=new Date(date.setTime(this.nextDate.getTime()))
-    this.nextDate=new Date(date.setTime(this.nextDate.getTime()+6*(24*60*60*1000)))
-  }
+  constructor(private sessionsservice:SchaduleSessionService){}
   ngOnInit(): void {
     this.getschadule();
   }
   getschadule(){
-    let id=localStorage.getItem('uid')?.replace(/"/g,'')||'';
-    let start=this.currentDate.toISOString().substring(0,10);
-    let end=this.nextDate.toISOString().substring(0,10)
     this.sessions=[];
-    console.log(start)
-    console.log(end)
-    this.schaduleSubscribtion=this.sessionsservice.getteachersession(id,start,end).subscribe({
+    let id=localStorage.getItem('uid')?.replace(/"/g,'')||'';
+    this.setDay();
+    this.schaduleSubscribtion=this.sessionsservice.getteachersession(id,this.sevsnDays[0],this.sevsnDays[this.sevsnDays.length-1]).subscribe({
       next:res=>{
         this.sessions=res;
         this.sessions.sort((a,b)=>{
           return new Date(a.scheduleDay).getTime() - new Date(b.scheduleDay).getTime()
         });
-        this.setDay();
         this.setSessionNumber();
         this.schaduleSubscribtion.unsubscribe();
       }
@@ -76,13 +49,11 @@ export class SchaduleComponent implements OnInit,OnDestroy {
   }
   getNext(){
     let date=new Date();
-    this.currentDate=new Date(date.setTime(this.nextDate.getTime()+(24*60*60*1000)))
-    this.nextDate=new Date(date.setTime(this.nextDate.getTime()+6*(24*60*60*1000)))
+    this.currentDate=new Date(date.setTime(this.currentDate.getTime()+7*(24*60*60*1000)))
     this.getschadule();
   }
   getPrev(){
     let date=new Date();
-    this.nextDate=new Date(date.setTime(this.currentDate.getTime()-(24*60*60*1000)));
     this.currentDate=new Date(date.setTime(this.currentDate.getTime()-7*(24*60*60*1000)));
     this.getschadule();
   }
