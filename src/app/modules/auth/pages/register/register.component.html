@@ -110,7 +110,7 @@
             <div *ngIf="(addressControl.errors&&submitted)||(addressControl.errors&&addressControl.touched)" class="invalid">
                 <p *ngIf="addressControl.errors['required']" class="invalid-feedback">address is required</p>
                 <p *ngIf="addressControl.errors['minlength']" class="invalid-feedback">minlength is 5 char</p>
-                <p *ngIf="addressControl.errors['maxlength']" class="invalid-feedback">maxlength is 15 char</p>
+                <p *ngIf="addressControl.errors['maxlength']" class="invalid-feedback">maxlength is 50 char</p>
             </div>
             <div class="form-group">
                 <label for="stdemail" class="input-group-text">

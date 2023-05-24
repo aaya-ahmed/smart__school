@@ -24,3 +24,11 @@
 .active{
     background-color: #eeeeee4a!important;
 }
+.subjectlist{
+    padding: 1rem;
+    display: flex;
+    justify-content: end;
+}
+.subjectlist select{
+    padding: 0.5rem 2rem;
+}

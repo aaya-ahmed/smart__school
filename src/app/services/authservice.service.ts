@@ -24,7 +24,7 @@ export class AuthserviceService {
     let userinfo=this.decodetoken(user.token)
     localStorage.setItem('schoolexp',JSON.stringify(userinfo.exp));
     localStorage.setItem('uid',JSON.stringify(userinfo.uid));
-    console.log(localStorage.getItem('uid'))
+    console.log(userinfo)
     this.logoutflag.next(false);
     this.profile(userinfo.roles);
   }

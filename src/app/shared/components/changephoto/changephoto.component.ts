@@ -1,12 +1,11 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component} from '@angular/core';
 import { imagebase64 } from 'src/app/imageclass/image';
 import { HostmanagerService } from 'src/app/services/hostmanager.service';
-import { TeacherService } from 'src/app/services/teacher.service';
 
 @Component({
   selector: 'app-changephoto',
   templateUrl: './changephoto.component.html',
-  styleUrls: ['./changephoto.component.css','../../../../../styles/form.style.css']
+  styleUrls: ['./changephoto.component.css','../../../styles/form.style.css']
 })
 export class ChangephotoComponent  {
   imageobj:imagebase64;

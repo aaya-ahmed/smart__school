@@ -73,6 +73,11 @@
             </tr>  
           </table>
           </form>
+          <div class="rowbtn">
+            <p>{{errorMessage}}</p>
+            <button class="btnaccept" (click)="acceptRequest()">Accept</button>
+            <button class="btnrefuse" (click)="deleteRequest()">Refuse</button>
+          </div>
         </div>
         <div class="images">
           <div>
@@ -86,9 +91,5 @@
           </div>
         </div>
       </main>
-        <div class="rowbtn">
-          <button class="btnaccept" (click)="acceptRequest()">Accept</button>
-          <button class="btnrefuse" (click)="deleteRequest()">Refuse</button>
-        </div>
   </div>
 </div>

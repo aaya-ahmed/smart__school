@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, NgModuleRef, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { sessions } from 'src/app/data/sessions';
 import { teacher } from 'src/app/data/teacher';
@@ -14,17 +14,45 @@ export class SchaduleComponent implements OnInit,OnDestroy {
   sessions:any[]=[];
   currentDate:Date=new Date();
   sevsnDays:any[]=[];
+  moduleName:string=''
   sessionNumbers:number[]=[];
   schaduleSubscribtion:Subscription=new Subscription();
-  constructor(private sessionsservice:SchaduleSessionService){}
+  constructor(private sessionsservice:SchaduleSessionService,private moduleRef: NgModuleRef<any>){}
   ngOnInit(): void {
-    this.getschadule();
+    this.moduleName = this.moduleRef.instance.constructor.name;
+      this.getschadule();
+
   }
   getschadule(){
     this.sessions=[];
-    let id=localStorage.getItem('uid')?.replace(/"/g,'')||'';
     this.setDay();
+    switch(this.moduleName){
+      case 'TeacherModule':
+        let id=localStorage.getItem('uid')?.replace(/"/g,'')||'';
+        this.getteacherschadule(id)
+        break;
+      case 'StudentModule':
+        let classid=JSON.parse(localStorage.getItem('user')||'').classRoomID;
+        this.getstudentschadule(classid);
+        break;
+    }
+
+
+  }
+  getteacherschadule(id:string){
     this.schaduleSubscribtion=this.sessionsservice.getteachersession(id,this.sevsnDays[0],this.sevsnDays[this.sevsnDays.length-1]).subscribe({
+      next:res=>{
+        this.sessions=res;
+        this.sessions.sort((a,b)=>{
+          return new Date(a.scheduleDay).getTime() - new Date(b.scheduleDay).getTime()
+        });
+        this.setSessionNumber();
+        this.schaduleSubscribtion.unsubscribe();
+      }
+    });
+  }
+  getstudentschadule(classid:number){
+    this.schaduleSubscribtion=this.sessionsservice.getstudentsession(classid,this.sevsnDays[0],this.sevsnDays[this.sevsnDays.length-1]).subscribe({
       next:res=>{
         this.sessions=res;
         this.sessions.sort((a,b)=>{

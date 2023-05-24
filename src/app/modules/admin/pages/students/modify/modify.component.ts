@@ -79,7 +79,7 @@ export class ModifyComponent implements OnInit ,OnDestroy {
   }
   modify(){
     if(this.student.valid){
-      let index=this.student.controls['ClassRoomID'].value;
+      let index=this.student.controls['classRoomID'].value;
       this.data={
         ...this.data,
         ...this.student.value,

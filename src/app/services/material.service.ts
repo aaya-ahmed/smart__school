@@ -11,7 +11,7 @@ export class MaterialService {
 
   constructor(private http:HttpClient) { }
   public postfile(file:any){
-    return this.http.post(environment.URL+'Materials/upload',file)
+    return this.http.post(environment.URL+'Materials/upload',file, {reportProgress: true, observe: 'events'})
   }
   public getfilebysubject(subjectid:number,type:string):Observable<material[]>{
     return this.http.get<material[]>(environment.URL+`Materials/getbysubject/${subjectid}/${type}`).pipe(

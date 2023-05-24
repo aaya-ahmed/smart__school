@@ -45,7 +45,6 @@ export class LoginComponent implements OnInit {
       let user={email:this.loginform.value.email,password:this.loginform.value.password}
       this.authservice.login(user).subscribe({
         next:(res)=>{
-          console.log(res)
           this.loadflag=false;
           this.authservice.setuser(res);
           if(this.loginform.value.remember==true){
@@ -53,7 +52,6 @@ export class LoginComponent implements OnInit {
           }
         },
         error:(err)=>{
-          console.log(err)
           this.errflag=true;
           this.loadflag=false;
         }

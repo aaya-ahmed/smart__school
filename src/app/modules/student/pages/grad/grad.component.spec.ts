@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ViewvideoComponent } from './viewvideo.component';
+import { GradComponent } from './grad.component';
 
-describe('ViewvideoComponent', () => {
-  let component: ViewvideoComponent;
-  let fixture: ComponentFixture<ViewvideoComponent>;
+describe('GradComponent', () => {
+  let component: GradComponent;
+  let fixture: ComponentFixture<GradComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [ViewvideoComponent]
+      declarations: [GradComponent]
     });
-    fixture = TestBed.createComponent(ViewvideoComponent);
+    fixture = TestBed.createComponent(GradComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -17,7 +17,7 @@ export class ClassroomformComponent {
   classies:classroom[]=[];
   mess:string='';
   classroom:FormGroup=new FormGroup({
-    name:new FormControl('',[Validators.required,Validators.pattern('^[1-9]{1,2}/[1-9]{1,2}$')]),
+    name:new FormControl('',[Validators.required,Validators.pattern('^[1-6]{1}/[1-9]{1}$')]),
     gradeYearId:new FormControl('',[Validators.required]),  
   });
   errormess:string=''

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { material } from 'src/app/data/material';
 import { HostmanagerService } from 'src/app/services/hostmanager.service';
 import { MaterialService } from 'src/app/services/material.service';
@@ -9,20 +9,24 @@ import { environment } from 'src/environments/environment';
   templateUrl: './documents.component.html',
   styleUrls: ['./documents.component.css']
 })
-export class DocumentsComponent {
+export class DocumentsComponent implements OnChanges {
   @Input()subjectId:number=-1;
   documents:material[]=[];
   constructor(private materialservice:MaterialService,private hostman:HostmanagerService) { }
-  ngOnInit(): void {
+  ngOnChanges(changes: SimpleChanges): void {
     if(this.subjectId!=null){
       this.getDocuments()
     }
   }
-  
   getDocuments(){
     this.materialservice.getfilebysubject(this.subjectId,"documents").subscribe({
       next:(res:any)=>{
-        this.documents=res;
+        if(res.length>0){
+          this.documents=res;
+        }
+        else{
+          this.documents=[]
+        }
     }
     })
   }

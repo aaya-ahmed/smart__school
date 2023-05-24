@@ -1,7 +1,39 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { StudentComponent } from './student.component';
+import { ProfileComponent } from './pages/profile/profile.component';
+import { GradComponent } from './pages/grad/grad.component';
+import { MaterialComponent } from './pages/material/material.component';
+import { SchaduleComponent } from 'src/app/shared/components/schadule/schadule.component';
 
-const routes: Routes = [];
+const routes: Routes = [
+  {
+    path:'',
+    component:StudentComponent,
+    children:[
+      {
+        path:'',
+        component:ProfileComponent
+      },
+      {
+        path:'profile',
+        component:ProfileComponent
+      },
+      {
+        path:'schadule',
+        component:SchaduleComponent
+      },
+      {
+        path:'grad',
+        component:GradComponent
+      },
+      {
+        path:'material',
+        component:MaterialComponent
+      }
+    ]
+  }
+];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],

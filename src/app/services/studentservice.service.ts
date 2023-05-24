@@ -18,6 +18,9 @@ export class StudentserviceService {
   public getall():Observable<student[]>{
     return this.http.get<student[]>(environment.URL+"Student/GetAll")
   }
+  public getallbyid(id:string):Observable<student>{
+    return this.http.get<student>(environment.URL+`Student/GetByIdentity/${id}`)
+  }
   public getallByGradeYear(id:number):Observable<student[]>{
     return this.http.get<student[]>(environment.URL+"Student/GetByGradeYear/"+id)
       

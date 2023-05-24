@@ -24,7 +24,7 @@ export class RegisterComponent {
     studentGender: new FormControl(0,[Validators.required]),
     studentPhone: new FormControl('',[Validators.required,Validators.pattern("^(010|011|012|015)[0-9]{8}$")]),
     studentBirthDate: new FormControl('',[Validators.required]),
-    address: new FormControl('',[Validators.required,Validators.minLength(5),Validators.maxLength(25)]),
+    address: new FormControl('',[Validators.required,Validators.minLength(5),Validators.maxLength(50)]),
     parentFullName: new FormControl('',[Validators.pattern('^[a-z A-Z]{11,23}$'),Validators.required,Validators.minLength(11),Validators.maxLength(23)]),
     parentEmail: new FormControl('',[Validators.required,Validators.email]),
     parentPhone: new FormControl('',[Validators.required,Validators.pattern("^(010|011|012|015)[0-9]{8}$")]),

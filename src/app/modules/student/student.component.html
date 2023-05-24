@@ -1,0 +1,8 @@
+<div class="container">
+    <student-navbar [toggleflag]="toggle"></student-navbar>
+    <div class="container-wrapper">
+        <profile-header (toggleevent)="toggleview()" ></profile-header>
+        <student-sidehost></student-sidehost>
+        <router-outlet></router-outlet>
+    </div>
+</div>
