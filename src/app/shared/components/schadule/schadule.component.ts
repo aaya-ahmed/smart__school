@@ -1,9 +1,7 @@
 import { Component, NgModuleRef, OnDestroy, OnInit } from '@angular/core';
+import { ActivatedRoute, Route, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { sessions } from 'src/app/data/sessions';
-import { teacher } from 'src/app/data/teacher';
 import { SchaduleSessionService } from 'src/app/services/schadule.session.service';
-import { TeacherService } from 'src/app/services/teacher.service';
 
 @Component({
   selector: 'app-schadule',
@@ -16,28 +14,30 @@ export class SchaduleComponent implements OnInit,OnDestroy {
   sevsnDays:any[]=[];
   moduleName:string=''
   sessionNumbers:number[]=[];
+  classid:string=''
   schaduleSubscribtion:Subscription=new Subscription();
-  constructor(private sessionsservice:SchaduleSessionService,private moduleRef: NgModuleRef<any>){}
+  constructor(private sessionsservice:SchaduleSessionService,private moduleRef: NgModuleRef<any>,private route:ActivatedRoute){}
   ngOnInit(): void {
     this.moduleName = this.moduleRef.instance.constructor.name;
       this.getschadule();
-
   }
   getschadule(){
     this.sessions=[];
     this.setDay();
     switch(this.moduleName){
       case 'TeacherModule':
-        let id=localStorage.getItem('uid')?.replace(/"/g,'')||'';
-        this.getteacherschadule(id)
+        this.classid=localStorage.getItem('uid')?.replace(/"/g,'')||'';
+        this.getteacherschadule(this.classid)
         break;
       case 'StudentModule':
-        let classid=JSON.parse(localStorage.getItem('user')||'').classRoomID;
-        this.getstudentschadule(classid);
+        this.classid=JSON.parse(localStorage.getItem('user')||'').classRoomID;
+        this.getstudentschadule(+this.classid);
+        break;
+      case 'ParentModule':
+        this.classid= this.route.snapshot.paramMap.get('id')||'';
+        this.getstudentschadule(+this.classid);
         break;
     }
-
-
   }
   getteacherschadule(id:string){
     this.schaduleSubscribtion=this.sessionsservice.getteachersession(id,this.sevsnDays[0],this.sevsnDays[this.sevsnDays.length-1]).subscribe({

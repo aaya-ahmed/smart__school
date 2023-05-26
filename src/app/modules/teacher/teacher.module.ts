@@ -14,6 +14,7 @@ import { UpdateprofileComponent } from './pages/profile/updateprofile/updateprof
 import { SharedModule } from 'src/app/shared/shared.module';
 import { UploadfileComponent } from './pages/materials/uploadfile/uploadfile.component';
 import { MaterialModule } from '../material/material.module';
+import { AuthModule } from '../auth/auth.module';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { MaterialModule } from '../material/material.module';
     FormsModule,
     ReactiveFormsModule,
     SharedModule,
-    MaterialModule
+    MaterialModule,
+    AuthModule
   ]
 })
 export class TeacherModule { }

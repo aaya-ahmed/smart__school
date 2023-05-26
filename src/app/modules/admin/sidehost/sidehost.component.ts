@@ -77,6 +77,7 @@ export class SidehostComponent implements OnInit {
         this.component=this.viewContainerRef.createComponent(AbsenceComponent);
         break;
     }
+    this.component.instance.data=data.data;
 
   }
 }

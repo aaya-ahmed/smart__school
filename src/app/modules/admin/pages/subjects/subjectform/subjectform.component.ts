@@ -12,15 +12,14 @@ import { SubjectService } from 'src/app/services/subject.service';
   styleUrls: ['../../../../../styles/form.style.css']
 })
 export class SubjectformComponent {
-  id:number=-1;
   gradeyears:gradyear[]=[];
   subjects:subject[]=[];
+  mess:string=''
   subject:FormGroup=new FormGroup({
     subname:new FormControl('',[Validators.required,Validators.minLength(3),Validators.maxLength(15)]),
-    points:new FormControl('',[Validators.required,Validators.pattern("^[1-9]{1}[0-9]{1,}$")]),  
+    TotalMark:new FormControl('',[Validators.required,Validators.pattern("^[1-9][0-9]{1,}$")]),  
     gradeYearId:new FormControl('',[Validators.required]) 
   });
-  mess:string=''
   constructor(private gradeyearservice:GradyearService,private subjectservice:SubjectService,private hostman:HostmanagerService){}
   ngOnInit(): void {
     let subscriber1=this.gradeyearservice.getall().subscribe({
@@ -29,35 +28,23 @@ export class SubjectformComponent {
         subscriber1.unsubscribe()
       }
     })
-    let subscriber2=this.hostman.data.subscribe({
-      next:res=>{
-        if(res.data.id){
-          this.id=res.data.id;
-          this.namecontrol.setValue(res.data.name);
-          subscriber2.unsubscribe()
-
-        }
-      }
-    })
   }
   get namecontrol(){
     return this.subject.controls['subname']
   }
-  get pointcontrol(){
-    return this.subject.controls['points']
+  get TotalMarkcontrol(){
+    return this.subject.controls['TotalMark']
   }
   get gradecontrol(){
     return this.subject.controls['gradeYearId']
   }
   addsubject(){
     if(this.subject.valid){
-      if(this.id!=-1){
-      }
-      else{
         let gradeindex=this.gradeyears.findIndex(p=>p.id==+this.gradecontrol.value)
         let subject:subject={
           id:0,
           name: this.namecontrol.value,
+          totalMark:this.TotalMarkcontrol.value,
           gradeYearId: +this.gradecontrol.value,
           gradeYearName: this.gradeyears[gradeindex].name
         }
@@ -68,13 +55,12 @@ export class SubjectformComponent {
             this.mess="Success";
           },
           error:err=>{
-            this.mess="Failed";
+            this.mess=err.error;
           }
         });
         setTimeout(() => {
           this.mess=''
         }, 1000);
-      }
       }
   }
   close(){

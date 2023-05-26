@@ -9,7 +9,8 @@
 }
 .container-wraperr{
     width: 40vw;
-    height: 45vh;
+    height: fit-content;
+    max-height: 90vh;
     background-color: white;
     position: relative;
     top: 50%;

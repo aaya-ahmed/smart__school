@@ -4,6 +4,8 @@ import { RegisterComponent } from './pages/register/register.component';
 import { LoginComponent } from './pages/login/login.component';
 import { ForgetPasswordComponent } from './pages/forgetPassword/forgetPassword.component';
 import { LayoutauthComponent } from './pages/layoutauth/layoutauth.component';
+import { ConfirmemailComponent } from './pages/confirmemail/confirmemail.component';
+import { RestpasswordComponent } from './pages/restpassword/restpassword.component';
 
 const routes: Routes = [
   {
@@ -18,7 +20,9 @@ const routes: Routes = [
       {path:'',component:LoginComponent},
       {path:"login",component:LoginComponent},
       {path:"register",component:RegisterComponent},
-      {path:'forgetpassword',component:ForgetPasswordComponent}
+      {path:'forgetpassword',component:ForgetPasswordComponent},
+      {path:'confirmemail/:userid/:token',component:ConfirmemailComponent},
+      {path:'resetpassword/:email/:ValidRPD',component:RestpasswordComponent}
     ]
   }
 ];

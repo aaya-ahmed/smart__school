@@ -19,10 +19,10 @@
         </div>
     </div>  
     <div class="save">
+        <span>{{mess}}</span>
         <button (click)="save()">Save</button>
     </div>
-</ng-container>   
-<app-messagerespnce *ngIf="errorflag" [message]="'Failed'" [type]="'failed'" ></app-messagerespnce>
+</ng-container>
 <ng-container *ngIf="schadules.length==0">
     <div class="notfoundbody">
         Not Found

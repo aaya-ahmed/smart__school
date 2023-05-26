@@ -1,0 +1,30 @@
+<input type="checkbox" id="closebtn" (change)="togglebtnfun()"/>
+<div class="container" [ngClass]="{'hide':toggleflag}">
+    <nav>
+        <div class="logo"  >
+            <span class="togglebtnsec">
+                <label for="closebtn" >
+                    <i class="fa-solid fa-close"></i>
+                </label>
+            </span>
+            <span (click)="gottohome()">
+                <img src="../../../../../favicon.ico"/>
+                <h4>School</h4>
+            </span>
+        </div>
+        <ul>
+            <li [ngClass]="{'active':currentpage=='myson'}" (click)="gottopage('myson')">
+                <i class="fa-solid fa-child"></i>
+               <span>My Son</span>
+            </li>
+            <li [ngClass]="{'active':currentpage=='complain'}" (click)="gottopage('complain')">
+                <i class="fa-solid fa-comment"></i>
+               <span>Complain</span>
+            </li>
+            <li [ngClass]="{'active':currentpage=='changepassword'}" (click)="gottopage('changepassword')">
+                <i class="fa-solid fa-lock"></i>
+               <span>Change Password</span>
+            </li>
+        </ul>
+    </nav>
+</div>

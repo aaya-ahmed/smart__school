@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthserviceService } from 'src/app/services/authservice.service';
 
 @Component({
   selector: 'app-forgetPassword',
@@ -11,15 +12,22 @@ export class ForgetPasswordComponent {
   formresponce:boolean=false;
   message:string='';
   typemess:string=''
-  constructor(private router:Router){}
+  constructor(private router:Router,private authservice:AuthserviceService){}
   changepassword(passwordform:any){
     if(passwordform.valid){
       this.loadflag=true;
-            setTimeout(()=>{
-        this.formresponce=true
-        this.typemess='success';
-        this.message='check your email'
-      },1000);
+      this.authservice.forgetpassword(passwordform.value.email).subscribe({
+        next:res=>{
+          this.formresponce=true;
+          this.typemess='success';
+          this.message='check your email'
+        },
+        error:err=>{
+          this.formresponce=true;
+          this.typemess='failed';
+          this.message=err.message
+        }
+      });
     }
   }
   gotologin(){

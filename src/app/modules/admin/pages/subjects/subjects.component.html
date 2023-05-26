@@ -6,6 +6,7 @@
     <div class="tableheader">
         <div>Name</div>
         <div>Grade Year</div>
+        <div>Mark</div>
         <div>Action</div>
     </div>
     <div class="data">
@@ -15,6 +16,9 @@
         </div>
         <div>
             {{item.gradeYearName}}
+        </div>
+        <div>
+            {{item.totalMark}}
         </div>
         <div>
             <button (click)="delete(item.id)"><i class="fa-solid fa-trash fa-2" style="color: red;"></i></button>

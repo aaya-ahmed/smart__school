@@ -9,6 +9,8 @@ import { ForgetPasswordComponent } from './pages/forgetPassword/forgetPassword.c
 import { HttpClientModule } from '@angular/common/http';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { LayoutauthComponent } from './pages/layoutauth/layoutauth.component';
+import { ConfirmemailComponent } from './pages/confirmemail/confirmemail.component';
+import { RestpasswordComponent } from './pages/restpassword/restpassword.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +18,9 @@ import { LayoutauthComponent } from './pages/layoutauth/layoutauth.component';
     RegisterComponent,
     ChangepasswordComponent,
     ForgetPasswordComponent,
-    LayoutauthComponent
+    LayoutauthComponent,
+    ConfirmemailComponent,
+    RestpasswordComponent
   ],
   imports: [
     CommonModule,
@@ -26,6 +30,7 @@ import { LayoutauthComponent } from './pages/layoutauth/layoutauth.component';
     HttpClientModule,
     SharedModule
   ],
-  bootstrap:[    LayoutauthComponent  ]
+  bootstrap:[    LayoutauthComponent  ],
+  exports:[    ChangepasswordComponent  ]
 })
 export class AuthModule { }

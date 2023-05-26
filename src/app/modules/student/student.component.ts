@@ -6,10 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./student.component.css']
 })
 export class StudentComponent {
-  toggle:boolean=false;
+  toggle:boolean=true;
 
-  toggleview(){
-    this.toggle=!this.toggle;
-
+  toggleview($event:any){
+    this.toggle=$event;
   }
 }

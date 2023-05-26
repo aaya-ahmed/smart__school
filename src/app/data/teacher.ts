@@ -3,7 +3,7 @@ export interface teacher{
     fullName: string,
     email: string,
     password: string,
-    gender: number,
+    gender: string,
     salary: number,
     phone: string,
     address: string,

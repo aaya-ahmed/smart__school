@@ -1,3 +1,6 @@
+.container {
+    width: 80%!important;
+}
 .pages{
     display: flex;
     justify-content: center;
@@ -29,6 +32,10 @@
     margin: auto;
 }
 .col{
+    width: calc(90% / 3);
+    margin: 0;
+}
+.col2{
     width: 45%;
     margin: 0;
 }
@@ -61,8 +68,8 @@ input[type="file"]{
         width: 75%!important;;
     }
 }
-@media screen and (max-width: 700px){
-    .col{
+@media screen and (max-width: 850px){
+    .col,.col2{
         width: 100%;
     }
     .container{

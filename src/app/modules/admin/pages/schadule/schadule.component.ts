@@ -64,7 +64,7 @@ export class SchaduleComponent implements OnInit , OnDestroy{
     this.hostman.load({data:{session:item,classid:this.classrooms[+this.classcontrol.value-1].id},open:true,returndata:'',type:'schadule'})
     this.hostSubscribtion=this.hostman.data.subscribe({
       next:res=>{
-        if(res==false){
+        if(res.open==false){
           this.getschadule();
           this.hostSubscribtion.unsubscribe()
         }

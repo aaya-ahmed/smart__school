@@ -59,6 +59,7 @@ export class TeachersComponent {
       next:res=>{
         if(res.returndata!=''){
           let index=this.teachers.findIndex(p=>res.returndata.Id==p.Id);
+          console.log(res.returndata)
           this.teachers[index]=res.returndata;
           this.hostSubscribtion.unsubscribe()
         }

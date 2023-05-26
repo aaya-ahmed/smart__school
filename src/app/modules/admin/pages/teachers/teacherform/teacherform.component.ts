@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { subject } from 'src/app/data/subject';
@@ -13,69 +13,49 @@ import { TeacherService } from 'src/app/services/teacher.service';
   styleUrls: ['./teacherform.component.css','../../../../../styles/form.style.css']
 })
 export class TeacherformComponent {
-  data:any=undefined;
-  operationtype:number=0; //0=>add , 1=>update
+  @Input()data:teacher | undefined;
   subjects:subject[]=[];
-  teacher:FormGroup=new FormGroup({});
   teacherimage:any='';
   mess:string='';
   type:string='';
   teacherSubscriber:Subscription=new Subscription();
-  hostSubscribtion:Subscription=new Subscription();
+  teacher:FormGroup=this.fb.group({
+    fullName: new FormControl('',[Validators.required,Validators.minLength(11),Validators.maxLength(23)]),
+    gender: new FormControl('',[Validators.required]),
+    salary: new FormControl(0,[Validators.required,Validators.pattern("^[0-9]{2,}$")]),
+    phone: new FormControl('',[Validators.required,Validators.pattern("^(010|011|012|015)[0-9]{8}$")]),
+    address: new FormControl('',[Validators.required,Validators.minLength(5),Validators.maxLength(50)]),
+    hireDate: new FormControl('',[Validators.required]),
+    maxDayOff :new FormControl(1,[Validators.required,Validators.pattern("^[1-9][0-9]{1,}$")]),
+    absenceDays :new FormControl(0,[Validators.pattern("^[0-9]{1,3}$")])
+  });
   constructor(private subjectservice:SubjectService,private fb:FormBuilder,private teacherservice:TeacherService,private hostman:HostmanagerService){
   }
   ngOnInit(): void {
+    if(this.data){
+      this.teacher.patchValue({
+        fullName:this.data.fullName ,
+        gender: this.data.gender,
+        salary:this.data.salary,
+        phone: this.data.phone,
+        address: this.data.address,
+        hireDate: this.data.hireDate.substring(0,10),
+        maxDayOff:this.data.maxDayOff,
+        absenceDays :this.data.absenceDays
+      });
+    }
+    else{
+      this.teacher.addControl('email', new FormControl('',[Validators.required,Validators.email]));
+      this.teacher.addControl('password',new FormControl('',[Validators.required,Validators.pattern("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$")]));
+      this.teacher.addControl('subjectId', new FormControl(0,[Validators.required]));
+      this.teacher.addControl('photo',new FormControl('',[Validators.required]));
+
+    }
     this.subjectservice.getall().subscribe({
       next:res=>{
         this.subjects=res;
       }
     });
-    this.hostSubscribtion=this.hostman.data.subscribe({
-      next:res=>{
-        if(res.data!=''){
-          this.data=res.data;
-          this.teacher=this.fb.group({
-            fullName : new FormControl('',[Validators.minLength(11),Validators.maxLength(23)]),
-            gender : new FormControl(0,[Validators.required]),
-            salary : new FormControl(0,[Validators.pattern("^[1-9][0-9]{1,}$")]),
-            phone : new FormControl('',[Validators.pattern("^(010|011|012|015)[0-9]{8}$")]),
-            address : new FormControl('',[Validators.minLength(5),Validators.maxLength(15)]),
-            hireDate : new FormControl(''),
-            maxDayOff:new FormControl(0,[Validators.pattern("^[0-9]{1,3}$")]),
-            absenceDays :new FormControl(0,[Validators.pattern("^[0-9]{1,3}$")])
-          });
-          this.teacher.patchValue({
-            fullName:res.data.fullName ,
-            email: res.data.email,
-            gender: res.data.gender,
-            salary:res.data.salary,
-            phone: res.data.phone,
-            address: res.data.address,
-            hireDate: res.data.hireDate.substring(0,10),
-            maxDayOff:res.data.maxDayOff,
-            absenceDays :res.data.absenceDays
-          });
-          this.operationtype=1;
-          this.hostSubscribtion.unsubscribe();
-        }
-        else{
-          this.teacher=this.fb.group({
-            fullName: new FormControl('',[Validators.required,Validators.minLength(11),Validators.maxLength(23)]),
-            email: new FormControl('',[Validators.required,Validators.email]),
-            password: new FormControl('',[Validators.required,Validators.pattern("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$")]),
-            gender: new FormControl('',[Validators.required]),
-            salary: new FormControl(0,[Validators.required,Validators.pattern("^[0-9]{2,}$")]),
-            phone: new FormControl('',[Validators.required,Validators.pattern("^(010|011|012|015)[0-9]{8}$")]),
-            ddress: new FormControl('',[Validators.required,Validators.minLength(5),Validators.maxLength(15)]),
-            photo: new FormControl('',[Validators.required]),
-            maxDayOff :new FormControl(1,[Validators.required,Validators.pattern("^[1-9][0-9]{1,}$")]),
-            hireDate: new FormControl('',[Validators.required]),
-            subjectId: new FormControl(0,[Validators.required]),
-          });
-          this.hostSubscribtion.unsubscribe()
-        }
-      }
-    })
   }
   get namecontrol(){
     return this.teacher.controls['fullName']
@@ -144,21 +124,23 @@ export class TeacherformComponent {
   }
   save(){
     if(this.teacher.valid){
-      if(this.data!=undefined){
-        this.data={
-          ...this.data,
-          ...this.teacher.value,
-          gender:+this.gendercontrol.value
+      if(this.data){
+        let data={
+          id:this.data.id,
+          ...this.teacher.value
         }
-        this.teacherservice.update(this.data).subscribe({
+        console.log(data)
+        this.teacherservice.update(data).subscribe({
           next:res=>{
             this.mess='Successfuly'
             this.type='success';
+            this.data=data;
             this.reset()
           },
           error:err=>{
-            this.mess='Failed'
-            this.type='failed'
+            console.log(err)
+            this.mess=err.error;
+            this.type='failed';
             this.reset()
           }
         })
@@ -167,10 +149,7 @@ export class TeacherformComponent {
         let teacher:teacher={
           ...this.teacher.value,
           id:new Date().getTime().toString(),
-          gender:+this.gendercontrol.value,
           photo:this.teacherimage,
-          salary:+this.salarycontrol.value,
-          maxDayOff:+this.MaxDayOffcontrol.value,
           subjectId:this.subjects[+this.subjectIdcontrol.value].id,
           subjectName:this.subjects[+this.subjectIdcontrol.value].name
         }

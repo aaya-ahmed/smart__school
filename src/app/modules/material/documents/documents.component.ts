@@ -11,10 +11,11 @@ import { environment } from 'src/environments/environment';
 })
 export class DocumentsComponent implements OnChanges {
   @Input()subjectId:number=-1;
+  @Input()reloaddocument:boolean=false;
   documents:material[]=[];
   constructor(private materialservice:MaterialService,private hostman:HostmanagerService) { }
   ngOnChanges(changes: SimpleChanges): void {
-    if(this.subjectId!=null){
+    if(this.subjectId!=null||this.reloaddocument==true){
       this.getDocuments()
     }
   }

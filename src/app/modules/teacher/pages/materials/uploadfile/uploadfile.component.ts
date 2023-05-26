@@ -1,5 +1,5 @@
 import { HttpEventType } from '@angular/common/http';
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { MaterialService } from 'src/app/services/material.service';
 export class ProfileExtraData {
@@ -19,6 +19,7 @@ export class UploadfileComponent {
   subscriber:Subscription=new Subscription();
   progress: number=0
   message: string=""
+  @Output()reload:EventEmitter<boolean>=new EventEmitter();
   constructor(private materialservice:MaterialService) { }
   uploadFile(event:any){
     let files=event.target.files;
@@ -33,7 +34,8 @@ export class UploadfileComponent {
     }
   }
   save(){
-    let formData= new FormData();    
+    if(this.fullData.file){
+      let formData= new FormData();    
     formData.append('file',this.fullData.file, this.fullData.file.name);
     formData.append('SubjectId',this.subject.toString());
     if(this.fullData.file.type.includes('video')){
@@ -42,7 +44,7 @@ export class UploadfileComponent {
     if(this.fullData.file.type.includes('application/pdf')){
       formData.append('Type',"Documents");
     }
-    this.subscriber=this.materialservice.postfile(formData,)
+    this.subscriber=this.materialservice.postfile(formData)
       .subscribe({
         next:(event:any) => {
           if (event.type === HttpEventType.UploadProgress&&event.total !== undefined) {
@@ -51,6 +53,7 @@ export class UploadfileComponent {
             this.typemessage="success";
             this.reset();
             this.subscriber.unsubscribe();
+            this.reload.emit(true)
           }
         },
       error:err=>{
@@ -60,12 +63,14 @@ export class UploadfileComponent {
       }
     });
     }
+    }
     reset(){
       let timer=setTimeout(() => {
         this.fullData.data='';
         this.fullData.file='';
         this.typemessage="";
-        this.meesage=''
+        this.meesage='';
+        this.progress=0;
         clearTimeout(timer)
       }, 1000);
     }

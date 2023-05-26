@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AdminRoutingModule } from './admin-routing.module';
-import { ProfileComponent } from './pages/profile/profile.component';
 import { GradeyearComponent } from './pages/gradeyear/gradeyear.component';
 import { GradeyearformComponent } from './pages/gradeyear/gradeyearform/gradeyearform.component';
 import { NavbarComponent } from './layout/navbar/navbar.component';
@@ -14,7 +13,6 @@ import { SubjectsComponent } from './pages/subjects/subjects.component';
 import { SubjectformComponent } from './pages/subjects/subjectform/subjectform.component';
 import { TeachersComponent } from './pages/teachers/teachers.component';
 import { StudentsComponent } from './pages/students/students.component';
-import { ComplainsComponent } from './pages/complains/complains.component';
 import { TeacherformComponent } from './pages/teachers/teacherform/teacherform.component';
 import { ClassroomComponent } from './pages/classroom/classroom.component';
 import { ClassroomformComponent } from './pages/classroom/classroomform/classroomform.component';
@@ -31,7 +29,6 @@ import { AbsenceComponent } from './pages/students/absence/absence.component';
 
 @NgModule({
   declarations: [
-    ProfileComponent,
     GradeyearComponent,
     GradeyearformComponent,
     AdminComponent,
@@ -43,7 +40,6 @@ import { AbsenceComponent } from './pages/students/absence/absence.component';
     SubjectformComponent,
     TeachersComponent,
     StudentsComponent,
-    ComplainsComponent,
     TeacherformComponent,
     ClassroomComponent,
     ClassroomformComponent,

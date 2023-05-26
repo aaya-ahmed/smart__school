@@ -1,6 +1,5 @@
 .container-wraperr{
     width: 80%!important;
-    height: 86vh!important;
     overflow: auto!important;
 }
 .container-wraperr::-webkit-scrollbar{

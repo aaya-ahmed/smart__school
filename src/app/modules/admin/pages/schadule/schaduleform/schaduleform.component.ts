@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { classroom } from 'src/app/data/classroom';
 import { teacher } from 'src/app/data/teacher';
@@ -12,43 +12,39 @@ import { TeacherService } from 'src/app/services/teacher.service';
   templateUrl: './schaduleform.component.html',
   styleUrls: ['./schaduleform.component.css','../../../../../styles/form.style.css']
 })
-export class SchaduleformComponent implements OnInit,OnDestroy {
+export class SchaduleformComponent implements OnInit {
+  @Input()data:any='';
   classrooms:classroom[]=[];
   teachers:teacher[]=[];
   schaduleitem:any;
   subject:string='';
-  data:any='';
   hostSubscriber:any
   schadule:FormGroup=new FormGroup({
     day:new FormControl('',[Validators.required]) ,
     classId:new FormControl('',[Validators.required]) ,
-    sessionNo:new FormControl('',[Validators.required,Validators.pattern("[1-9]{1,}")]) ,
+    sessionNo:new FormControl('',[Validators.required,Validators.pattern("[1-6]")]) ,
     teacherID:new FormControl('',[Validators.required]) 
   })
   constructor(private schaduleservice:SchaduleSessionService,private classroomservice:ClassroomService,private teacherservice:TeacherService,private hostman:HostmanagerService){}
-  ngOnDestroy(): void {
-    this.hostSubscriber.unsubscribe()
-  }
   ngOnInit(): void {
+    if(this.data){
+      this.schadule.patchValue({
+        day:this.data.session.scheduleDay,
+        classId:this.data.classid+'',
+        sessionNo:this.data.session.sessionNo,
+        teacherID:this.data.session.teacherID
+      });
+    }
     let teacherSubscriber=this.teacherservice.getall().subscribe({
       next:res=>{
-        this.teachers=res
+        this.teachers=res;
+        if(this.data){
+          this.setsubjectAndclass();
+          this.subject=this.data.session.subjectName; 
+        }
         teacherSubscriber.unsubscribe()
       }
     });
-    this.hostSubscriber=this.hostman.data.subscribe({
-      next:res=>{
-        if(res.data!=''){
-          this.daycontrol.setValue(res.data.session.scheduleDay );
-          this.classcontrol.setValue(res.data.classid+'');
-          this.sessionNocontrol.setValue(res.data.session.sessionNo);
-          this.teachercontrol.setValue(res.data.session.teacherID);
-          this.subject=res.data.session.subjectName; 
-          this.data=res.data;
-        }
-        
-      }
-    })
   }
   get daycontrol(){
     return this.schadule.controls['day']

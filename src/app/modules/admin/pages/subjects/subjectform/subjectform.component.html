@@ -30,18 +30,16 @@
                 </div>
             </div>
             <div class="form-group">
-                <label>Points</label>
-                <select  formControlName="gradeYearId" class="form-control"
-                [ngClass]="{'is-invalid':(pointcontrol.errors&&pointcontrol.touched)||(pointcontrol.errors&&form.submitted)}">
-                    <option *ngFor="let item of gradeyears" value="{{item.id}}">{{item.name}}</option>
-                </select>
-                <div *ngIf="(pointcontrol.errors&&form.submitted)||(pointcontrol.errors&&pointcontrol.touched)" class="invalid">
-                    <p *ngIf="pointcontrol.errors['required']" class="invalid-feedback">points is required</p>
-                    <p *ngIf="pointcontrol.errors['pattern']" class="invalid-feedback">must be number /not start with zero</p>
+                <label>Total Mark</label>
+                <input type="text" formControlName="TotalMark" class="form-control"
+                [ngClass]="{'is-invalid':(TotalMarkcontrol.errors&&TotalMarkcontrol.touched)||(TotalMarkcontrol.errors&&form.submitted)}"/>
+                <div *ngIf="(TotalMarkcontrol.errors&&form.submitted)||(TotalMarkcontrol.errors&&TotalMarkcontrol.touched)" class="invalid">
+                    <p *ngIf="TotalMarkcontrol.errors['required']" class="invalid-feedback">Total mark is required</p>
+                    <p *ngIf="TotalMarkcontrol.errors['pattern']" class="invalid-feedback">must be number/not start with zero</p>
                 </div>
             </div>
             <div class="form-group submit">
-                <span [ngClass]="{'success':mess=='Success','failed':mess=='Failed'}">{{mess}}</span>
+                <span [ngClass]="{'success':mess=='Success','failed':mess!='Success'}">{{mess}}</span>
                 <input type="submit" value="Submit" class="btn"/>
             </div>
         </form>

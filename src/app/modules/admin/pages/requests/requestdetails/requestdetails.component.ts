@@ -57,19 +57,27 @@ export class RequestdetailsComponent {
     )
   }
   acceptRequest() {
-    if(this.classform.valid){      
+    if(this.classform.valid){ 
+      console.log(this.classform)     
+      console.log(this.requestDetails.id)
       this._RequestService.acceptRequest(this.requestDetails.id).subscribe({
         next: (response) => {
+          console.log(response)
           this.studentservice.get(response.studentid).subscribe({
             next:res=>{
               res.classRoomID=this.classies[this.classform.controls['class'].value].id;
               res.classRoomName=this.classies[this.classform.controls['class'].value].name;
+              console.log(res)
+              //err
               this.studentservice.update(res).subscribe({
                 next:res=>{
                   this.requeststatus=1;
                   this.close()
                 }
               })
+            },
+            error:err=>{
+              console.log(err)
             }
           })
         },

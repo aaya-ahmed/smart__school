@@ -1,4 +1,4 @@
-<input type="checkbox" id="closebtn" (change)="toggleview()"/>
+<input type="checkbox" id="closebtn" (change)=" togglebtnfun()"/>
 <div class="container" [ngClass]="{'hide':toggleflag}">
     <nav>
         <div class="logo"  >
@@ -32,6 +32,10 @@
             <li [ngClass]="{'active':currentpage=='grad'}" (click)="gottopage('grad')">
                 <i class="fa-solid fa-square-poll-vertical"></i>
                <span>grads</span>
+            </li>
+            <li [ngClass]="{'active':currentpage=='changepassword'}" (click)="gottopage('changepassword')">
+                <i class="fa-solid fa-lock"></i>
+               <span>Change Password</span>
             </li>
 
         </ul>

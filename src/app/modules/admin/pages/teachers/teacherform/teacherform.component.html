@@ -9,7 +9,7 @@
             </div>
         </header>
         <form [formGroup]="teacher" #form="ngForm" (ngSubmit)="save()">
-            <div class="form-group image-sec" *ngIf="operationtype==0" >
+            <div class="form-group image-sec" *ngIf="!data" >
                 <label for="imageteacher">
                     <img [src]="teacherimage!=''?'data:image/jpeg;base64,'+teacherimage:'../../../../../assets/images/studentreg.png'"
                     [ngClass]="{'is-invalid':(photocontrol.errors&&photocontrol.touched)||(photocontrol.errors&&form.submitted)}"/>
@@ -31,7 +31,7 @@
                     <p *ngIf="namecontrol.errors['notvalid']" class="invalid-feedback">enter three names</p>
                 </div>
             </div>
-            <div class="form-group" *ngIf="operationtype==0">
+            <div class="form-group" *ngIf="!data">
                 <label>Email</label>
                 <input type="text" formControlName="email" class="form-control"
                 [ngClass]="{'is-invalid':(emailcontrol.errors&&emailcontrol.touched)||(emailcontrol.errors&&form.submitted)}"/>
@@ -40,7 +40,7 @@
                     <p *ngIf="emailcontrol.errors['email']" class="invalid-feedback">invalid email</p>
                 </div>
             </div>
-            <div class="form-group" *ngIf="operationtype==0">
+            <div class="form-group" *ngIf="!data">
                 <label>Password</label>
                 <input type="text" formControlName="password" class="form-control"
                 [ngClass]="{'is-invalid':(passwordcontrol.errors&&passwordcontrol.touched)||(passwordcontrol.errors&&form.submitted)}"/>
@@ -53,8 +53,8 @@
                 <label>Gender</label>
                 <select formControlName="gender" class="form-control"
                 [ngClass]="{'is-invalid':(gendercontrol.errors&&gendercontrol.touched)||(gendercontrol.errors&&form.submitted)}">
-                    <option value=0>Male</option>
-                    <option value=1>Female</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
                 </select>
                 <div *ngIf="(gendercontrol.errors&&form.submitted)||(gendercontrol.errors&&gendercontrol.touched)" class="invalid">
                     <p *ngIf="gendercontrol.errors['required']" class="invalid-feedback">gender is required</p>
@@ -85,7 +85,7 @@
                 <div *ngIf="(addresscontrol.errors&&form.submitted)||(addresscontrol.errors&&addresscontrol.touched)" class="invalid">
                     <p *ngIf="addresscontrol.errors['required']" class="invalid-feedback">address is required</p>
                     <p *ngIf="addresscontrol.errors['minlength']" class="invalid-feedback">minlength is 5 char</p>
-                    <p *ngIf="addresscontrol.errors['maxlength']" class="invalid-feedback">minlength is 15 char</p>
+                    <p *ngIf="addresscontrol.errors['maxlength']" class="invalid-feedback">minlength is 50 char</p>
                 </div>
             </div>
             <div class="form-group">
@@ -98,7 +98,7 @@
 
                 </div>
             </div>
-            <div class="form-group" *ngIf="operationtype==0">
+            <div class="form-group" *ngIf="!data">
                 <label>subject </label>
                 <select formControlName="subjectId" class="form-control"
                 [ngClass]="{'is-invalid':(subjectIdcontrol.errors&&subjectIdcontrol.touched)||(subjectIdcontrol.errors&&form.submitted)}">
@@ -116,7 +116,7 @@
                     <p *ngIf="MaxDayOffcontrol.errors['pattern']" class="invalid-feedback">must be number</p>
                 </div>
             </div>
-            <div class="form-group" *ngIf="operationtype==1">
+            <div class="form-group">
                 <label>Absence Days</label>
                 <input type="text" formControlName="absenceDays" class="form-control" 
                 [ngClass]="{'is-invalid':(AbsenceDayscontrol.errors&&AbsenceDayscontrol.touched)||(AbsenceDayscontrol.errors&&form.submitted)}"/>
@@ -126,8 +126,8 @@
                 </div>
             </div>
             <div class="form-group submit">
-                <input type="submit" value="Add" class="btn" *ngIf="operationtype==0"/>
-                <input type="submit" value="Update" class="btn" *ngIf="operationtype==1"/>
+                <input type="submit" value="Add" class="btn" *ngIf="!data"/>
+                <input type="submit" value="Update" class="btn" *ngIf="data"/>
 
             </div>
         </form>

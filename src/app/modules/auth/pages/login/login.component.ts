@@ -14,6 +14,7 @@ export class LoginComponent implements OnInit {
   loadflag:boolean=false;
   errflag:boolean=false;
   remember:boolean=false;
+  message:string=''
   loginform:FormGroup=new FormGroup({
     email:new FormControl('',[Validators.email,Validators.required]),
     password:new FormControl('',[Validators.required]),
@@ -47,13 +48,11 @@ export class LoginComponent implements OnInit {
         next:(res)=>{
           this.loadflag=false;
           this.authservice.setuser(res);
-          if(this.loginform.value.remember==true){
-            localStorage.setItem('remember','true');
-          }
         },
         error:(err)=>{
           this.errflag=true;
           this.loadflag=false;
+          this.message=err.error;
         }
       });
       

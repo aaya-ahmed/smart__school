@@ -21,7 +21,7 @@ export class RegisterComponent {
   registerform:FormGroup=new FormGroup({
     studentFirstName: new FormControl('',[Validators.pattern('^[a-z A-Z]{3,10}$'),Validators.required,Validators.minLength(3),Validators.maxLength(10)]),
     studentEmail: new FormControl('',[Validators.required,Validators.email]),
-    studentGender: new FormControl(0,[Validators.required]),
+    studentGender: new FormControl('',[Validators.required]),
     studentPhone: new FormControl('',[Validators.required,Validators.pattern("^(010|011|012|015)[0-9]{8}$")]),
     studentBirthDate: new FormControl('',[Validators.required]),
     address: new FormControl('',[Validators.required,Validators.minLength(5),Validators.maxLength(50)]),
@@ -143,10 +143,10 @@ export class RegisterComponent {
         user.StudentPhoto=this.stdimage;
         user.IdentityParentPhoto=this.patimage;
         user.StudentBirthCertPhoto=this.birthimage;
-        console.log(user)
         this.authservice.createrequest(user).subscribe(
           {
             next:val=>{
+              console.log(val)
               this.formresponce=true;
               this.typemess='success';
               this.message='Registration was successful';

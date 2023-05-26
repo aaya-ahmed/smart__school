@@ -46,7 +46,19 @@
                         <td>{{student.absenceDays}}</td>
                     </tr>
                 </tbody>
-            </table>
+            </table>         
+        </div>
+        <div>
+            <table>
+                <tbody>
+                    <tr>
+                        <th class="table-header">My Subject</th>
+                    </tr>
+                    <tr *ngFor="let item of subject">
+                        <th>{{item.name}}</th>
+                    </tr>
+                </tbody>
+            </table> 
         </div>
     </section>
 </main>

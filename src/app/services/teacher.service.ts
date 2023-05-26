@@ -23,7 +23,7 @@ export class TeacherService {
     return this.http.get<teacher>(environment.URL+"Teacher/GetById/"+id)
   }
   public getbyidentity(id:string){
-    return this.http.get<teacher>(environment.URL+"Teacher/GetByIdentity/"+id)
+    return this.http.get<teacher>(environment.URL+"TeacherUser/GetByIdentity/"+id)
   }
   public getall():Observable<teacher[]>{
     return this.http.get<teacher[]>(environment.URL+"Teacher/GetAll")

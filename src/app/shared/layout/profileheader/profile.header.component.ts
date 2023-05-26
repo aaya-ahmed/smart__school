@@ -7,13 +7,15 @@ import { AuthserviceService } from 'src/app/services/authservice.service';
   styleUrls: ['./profile.header.component.css']
 })
 export class ProfileHeaderComponent implements OnInit {
+  toggle=false
   @Output()toggleevent:EventEmitter<boolean>=new EventEmitter(false);
   constructor(private authservice:AuthserviceService){}
   ngOnInit(): void {
 
   }
   togglebtnfun(){
-      this.toggleevent.emit();
+    this.toggle=!this.toggle
+      this.toggleevent.emit( this.toggle);
   }
   logout(){
     this.authservice.logout('home');

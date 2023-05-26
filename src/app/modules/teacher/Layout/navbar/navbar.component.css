@@ -11,6 +11,7 @@
 nav{
     max-height: 100vh;
     min-height: 100vh;
+    position: fixed;
     width: 280px;
     overflow:hidden;
     background-color: #324864;;

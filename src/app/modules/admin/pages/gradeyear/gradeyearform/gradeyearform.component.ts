@@ -39,7 +39,7 @@ export class GradeyearformComponent implements OnInit , OnDestroy{
             this.mess='Success';
           },
           error:err=>{
-            this.mess='Failed';
+            this.mess=err.error;
           }
         });
         setTimeout(() => {

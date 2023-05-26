@@ -1,0 +1,41 @@
+<div class="header">
+    <h2>My Son</h2>
+</div>
+<ng-container *ngIf="students.length>0">
+    <div class="tableheader">
+        <div></div>
+        <div>Name</div>
+        <div>Max DayOff</div>
+        <div>Absence Day</div>
+        <div></div>
+    </div>
+    <div class="data">
+        <div *ngFor="let item of students;let i=index" class="tablebody">
+            <div>
+                <img src="https://localhost:44309/{{item.studentPhotoUrl}}" class="stdimg"/>
+            </div>
+            <div>
+                {{item.studentFirstName}}
+            </div>
+            <div>
+                {{item.maxDayOff}}
+            </div>
+            <div>
+                {{item.absenceDays}}
+            </div>
+            <div class="actions">
+                <button (click)="gotoschadule(item.classRoomID)">
+                    <i class="fa-solid fa-calendar"></i>
+                </button>
+                <button>
+                    <i class="fa-solid fa-square-poll-vertical"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+</ng-container>        
+<ng-container *ngIf="students.length==0">
+    <div class="notfoundbody">
+        Not Found
+    </div>
+</ng-container>

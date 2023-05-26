@@ -12,6 +12,7 @@ import { TeacherService } from 'src/app/services/teacher.service';
 export class MaterialsComponent {
   teacher:any;
   type:string='video';
+  reload:boolean=false;
   subscriber:Subscription=new Subscription();
   constructor(private teacherservice:TeacherService) { }
   ngOnInit() {
@@ -19,7 +20,6 @@ export class MaterialsComponent {
     this.subscriber=this.teacherservice.getbyidentity(id).subscribe({
       next:res=>{
         this.teacher=res;
-        console.log(this.teacher)
         this.subscriber.unsubscribe()
       }
     })
@@ -29,5 +29,8 @@ export class MaterialsComponent {
   }
   getdocument(){
     this.type='document';
+  }
+  reloadfiles(){
+      this.reload=true
   }
 }

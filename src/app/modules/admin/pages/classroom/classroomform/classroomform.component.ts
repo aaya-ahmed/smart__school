@@ -12,7 +12,6 @@ import { HostmanagerService } from 'src/app/services/hostmanager.service';
   styleUrls: ['./classroomform.component.css','../../../../../styles/form.style.css']
 })
 export class ClassroomformComponent {
-  id:number=-1;
   gradeyears:gradyear[]=[];
   classies:classroom[]=[];
   mess:string='';
@@ -20,23 +19,12 @@ export class ClassroomformComponent {
     name:new FormControl('',[Validators.required,Validators.pattern('^[1-6]{1}/[1-9]{1}$')]),
     gradeYearId:new FormControl('',[Validators.required]),  
   });
-  errormess:string=''
   constructor(private gradeyearservice:GradyearService,private classroomservices:ClassroomService,private hostman:HostmanagerService){}
   ngOnInit(): void {
     let subscriber1=this.gradeyearservice.getall().subscribe({
       next:res=>{
         this.gradeyears=res;
         subscriber1.unsubscribe()
-      }
-    })
-    let subscriber2=this.hostman.data.subscribe({
-      next:res=>{
-        if(res.data.id){
-          this.id=res.data.id;
-          this.namecontrol.setValue(res.data.name);
-          subscriber2.unsubscribe()
-
-        }
       }
     })
   }
@@ -62,7 +50,7 @@ export class ClassroomformComponent {
             this.mess='Success'
           },
           error:err=>{
-            this.mess='Failed'
+            this.mess=err.error;
           }
         })
         setTimeout(() => {

@@ -11,12 +11,14 @@ import { environment } from 'src/environments/environment';
 })
 export class VideosComponent implements OnChanges {
   @Input()subjectId:number=-1;
+  @Input()reloadvideo:boolean=false;
+
   tempvideos:material[]=[];
   videos:material[]=[];
   path:string='';
   constructor(private materialservice:MaterialService,private hostman:HostmanagerService) { }
   ngOnChanges(changes: SimpleChanges): void {
-    if(this.subjectId!=null){
+    if(this.subjectId!=null||this.reloadvideo==true){
       this.showVideos()
     }
   }  

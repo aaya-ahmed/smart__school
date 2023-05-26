@@ -5,7 +5,7 @@
         <h2 class="title">Register</h2>
         <form (ngSubmit)="register()" [formGroup]="registerform" class="form">
             <div class="row">
-                <div class="col">
+                <div class="col2">
                     <div class="form-group">
                         <label for="stdfname" class="input-group-text">
                             <span class="fa-sharp fa-solid fa-user"></span>
@@ -20,7 +20,7 @@
                         <p *ngIf="stdFnameControl.errors['maxlength']" class="invalid-feedback">max length is 10 char</p>
                     </div>
                 </div>
-                <div class="col">
+                <div class="col2">
                     <div class="form-group">
                         <label for="parentname" class="input-group-text">
                             <span class="fa-sharp fa-solid fa-mail-user"></span>
@@ -38,7 +38,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col">
+                <div class="col2">
                     <div class="form-group">
                         <label for="stdgender" class="input-group-text">
                             <span class="fa-sharp fa-solid fa-child"></span>
@@ -54,7 +54,7 @@
                         <p *ngIf="stdGenderControl.errors['required']" class="invalid-feedback">gender is required</p>
                     </div>
                 </div>
-                <div class="col">
+                <div class="col2">
                     <div class="form-group">
                         <label for="birthdate" class="input-group-text">
                             <span class="fa-sharp fa-solid fa-birthday-cake"></span>
@@ -70,7 +70,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col">
+                <div class="col2">
                     <div class="form-group">
                         <label for="stdphone" class="input-group-text">
                             <span class="fa-sharp fa-solid fa-phone"></span>
@@ -84,7 +84,7 @@
                         <p *ngIf="stdPhoneControl.errors['pattern']" class="invalid-feedback">invalid phone</p>
                     </div>
                 </div>
-                <div class="col">
+                <div class="col2">
                     <div class="form-group">
                         <label for="parentphone" class="input-group-text">
                             <span class="fa-sharp fa-solid fa-mail-bulk"></span>

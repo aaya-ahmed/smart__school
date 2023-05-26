@@ -21,7 +21,7 @@ export class RequestService {
   }
 
   acceptRequest(id:number): Observable<any> {
-    return this._HttpClient.post<request>(environment.URL+ `Request/Save/${id}`,id);
+    return this._HttpClient.post<any>(environment.URL+`Request/Save/${id}`,null);
   }
 
   refuseRequest(id:number): Observable<any> {

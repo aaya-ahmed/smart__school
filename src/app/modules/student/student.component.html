@@ -1,8 +1,12 @@
 <div class="container">
-    <student-navbar [toggleflag]="toggle"></student-navbar>
+    <student-navbar [toggleflag]="toggle" (toggleevent)="toggleview($event)"></student-navbar>
     <div class="container-wrapper">
-        <profile-header (toggleevent)="toggleview()" ></profile-header>
-        <student-sidehost></student-sidehost>
-        <router-outlet></router-outlet>
+        <div class="header"  [ngClass]="{'expand':toggle==true}">
+            <profile-header (toggleevent)="toggleview($event)" ></profile-header>
+        </div>
+        <div class="main">
+            <student-sidehost></student-sidehost>
+            <router-outlet></router-outlet>
+        </div>
     </div>
 </div>

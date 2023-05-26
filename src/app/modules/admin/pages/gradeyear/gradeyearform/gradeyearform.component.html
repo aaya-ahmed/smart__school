@@ -29,7 +29,7 @@
                 </div>
             </div>
             <div class="form-group submit">
-                <span [ngClass]="{'success':mess=='Success','failed':mess=='Failed'}">{{mess}}</span>
+                <span [ngClass]="{'success':mess=='Success','failed':mess!='Success'}">{{mess}}</span>
                 <input type="submit" value="Add" class="btn"/>
             </div>
         </form>

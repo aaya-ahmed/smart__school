@@ -8,8 +8,8 @@ import { SidehostComponent } from './sidehost/sidehost.component';
 import { MaterialComponent } from './pages/material/material.component';
 import { GradComponent } from './pages/grad/grad.component';
 import { SharedModule } from 'src/app/shared/shared.module';
-import { UpdateprofileComponent } from './pages/profile/updateprofile/updateprofile.component';
 import { MaterialModule } from '../material/material.module';
+import { AuthModule } from '../auth/auth.module';
 
 
 @NgModule({
@@ -19,14 +19,14 @@ import { MaterialModule } from '../material/material.module';
     NavbarComponent,
     SidehostComponent,
     MaterialComponent,
-    GradComponent,
-    UpdateprofileComponent
+    GradComponent
   ],
   imports: [
     CommonModule,
     StudentRoutingModule,
     SharedModule,
-    MaterialModule
+    MaterialModule,
+    AuthModule
     ]
 })
 export class StudentModule { }

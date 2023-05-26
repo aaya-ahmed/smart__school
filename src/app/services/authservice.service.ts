@@ -19,12 +19,22 @@ export class AuthserviceService {
   public login(user:any):Observable<register>{
     return this.http.post<register>(this.url+"Auth/login",user);
   }
+  public forgetpassword(email:string){
+    return this.http.post(environment.URL+`Auth/forgotpassword?email=${email}`,null);
+  }
+  public confirmemail(userid:string,token:string){
+    return this.http.get(environment.URL+`Auth/confirmemail?userId=${userid}&token=${token}`);
+  }
+  public restpassword(body:any){
+    return this.http.post(environment.URL+`Auth/resetpassword`,body);
+  }
+  public changepassword(body:any){
+    return this.http.post(environment.URL+`Auth/changepassword`,body);
+  }
   public setuser(user:register){
     localStorage.setItem('schooltoken',JSON.stringify(user.token));
     let userinfo=this.decodetoken(user.token)
-    localStorage.setItem('schoolexp',JSON.stringify(userinfo.exp));
     localStorage.setItem('uid',JSON.stringify(userinfo.uid));
-    console.log(userinfo)
     this.logoutflag.next(false);
     this.profile(userinfo.roles);
   }
@@ -66,8 +76,7 @@ export class AuthserviceService {
   }
   logout(path:string){
     localStorage.removeItem('schooltoken');
-    localStorage.removeItem('schoolexp');
-    localStorage.removeItem('remember');
+    localStorage.removeItem('user');
     localStorage.removeItem('uid');
     this.logoutflag.next(true);
     if(path=='home')

@@ -8,8 +8,8 @@ import { Component } from '@angular/core';
 export class TeacherComponent {
   toggle:boolean=false;
 
-  toggleview(){
-    this.toggle=!this.toggle;
+  toggleview(event:any){
+    this.toggle=event;
 
   }
 }

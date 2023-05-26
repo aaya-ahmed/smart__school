@@ -5,6 +5,7 @@ import { ProfileComponent } from './pages/profile/profile.component';
 import { GradComponent } from './pages/grad/grad.component';
 import { MaterialComponent } from './pages/material/material.component';
 import { SchaduleComponent } from 'src/app/shared/components/schadule/schadule.component';
+import { ChangepasswordComponent } from '../auth/pages/changepassword/changepassword.component';
 
 const routes: Routes = [
   {
@@ -30,6 +31,11 @@ const routes: Routes = [
       {
         path:'material',
         component:MaterialComponent
+      }
+      ,
+      {
+        path:'changepassword',
+        component:ChangepasswordComponent
       }
     ]
   }

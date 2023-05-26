@@ -1,18 +1,4 @@
-.tableheader div:nth-child(1),.tablebody div:nth-child(1){
-  width: 100px!important;
-  line-height: 3;
-  text-align: center;
-}
-input[type="text"]{
-  padding: 0.3rem 0;
-}
 @media (max-width:700px){
-  .tableheader{
-    display: none!important;
-  }
-  .tablebody{
-    display: block!important;
-  }
   .tablebody div,.tablebody div:nth-child(2){
     width: 100%!important;
     text-align: center!important;
@@ -21,13 +7,5 @@ input[type="text"]{
     display: block!important;
     width: 100%!important;
     text-align: center;
-  }
-  .tablebody div:nth-child(1) img{
-    display: inline-block;
-    width: 80px;
-    height: 80px;
-  }
-  .tablebody div:nth-child(3){
-    display: none!important;
   }
 }

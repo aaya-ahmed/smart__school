@@ -2,14 +2,13 @@ import { Component } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { componentconfig } from 'src/app/data/componentconfig';
 import { gradyear } from 'src/app/data/gradyear';
-import { GradyearService } from 'src/app/services/gradyear.service';
 import { HostmanagerService } from 'src/app/services/hostmanager.service';
 import { RequestService } from 'src/app/services/request.service';
 
 @Component({
   selector: 'app-requests',
   templateUrl: './requests.component.html',
-  styleUrls: ['../../../../styles/modulesStyle.css','./requests.component.css']
+  styleUrls: ['../../../../styles/modulesStyle.css','./requests.component.css','../../../../styles/liststyle.css']
 })
 export class RequestsComponent {
   allRequests: any[] = [];
