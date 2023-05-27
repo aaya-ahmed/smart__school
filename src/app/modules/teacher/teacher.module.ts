@@ -15,6 +15,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { UploadfileComponent } from './pages/materials/uploadfile/uploadfile.component';
 import { MaterialModule } from '../material/material.module';
 import { AuthModule } from '../auth/auth.module';
+import { ExamresultComponent } from './pages/examresult/examresult.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { AuthModule } from '../auth/auth.module';
     SidehostComponent,
     StudentattandanceComponent,
     UpdateprofileComponent,
-    UploadfileComponent
+    UploadfileComponent,
+    ExamresultComponent
   ],
   imports: [
     CommonModule,

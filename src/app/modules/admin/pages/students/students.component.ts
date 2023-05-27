@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { gradyear } from 'src/app/data/gradyear';
 import { student } from 'src/app/data/student';
+import { ExamserviceService } from 'src/app/services/examservice.service';
 import { GradyearService } from 'src/app/services/gradyear.service';
 import { HostmanagerService } from 'src/app/services/hostmanager.service';
 import { StudentserviceService } from 'src/app/services/studentservice.service';
@@ -8,13 +9,13 @@ import { StudentserviceService } from 'src/app/services/studentservice.service';
 @Component({
   selector: 'app-students',
   templateUrl: './students.component.html',
-  styleUrls: ['./students.component.css','../../../../styles/modulesStyle.css']
+  styleUrls: ['../../../../styles/modulesStyle.css','./students.component.css']
 })
 export class StudentsComponent {
   allstudents: student[] = [];
   gradeyear:gradyear[]=[];
   _subscriber:any;
-  constructor(private gradeyearservice:GradyearService,private studentsservice:StudentserviceService,private hostman:HostmanagerService) {}
+  constructor(private gradeyearservice:GradyearService,private examresultservice:ExamserviceService,private studentsservice:StudentserviceService,private hostman:HostmanagerService) {}
   ngOnInit(): void {
     let subscriber=this.gradeyearservice.getall().subscribe({
       next:res=>{
@@ -72,6 +73,15 @@ delete(index:number){
 }
 showAbsence(){
   this.hostman.load({data:'',returndata:'',type:'absance',open:true});
-
+}
+upgradestudents(){
+  this.examresultservice.upgradestudents().subscribe({
+    next:res=>{
+      this.getdata(0);
+    },
+    error:err=>{
+      console.log(err.error.message)
+    }
+  });
 }
 }

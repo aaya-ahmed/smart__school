@@ -1,0 +1,53 @@
+.header{
+    display: flex;
+    justify-content: flex-end;
+    margin: 1rem 2rem;
+  }
+  select{
+      padding: 0.5rem 1rem;
+  }
+.tableheader div:nth-child(1),.tablebody div:nth-child(1){
+    width: 30%!important;
+}
+.tableheader div:nth-child(2),.tablebody div:nth-child(2),
+.tableheader div:nth-child(3),.tablebody div:nth-child(3){
+    width: 25%!important;
+}
+.tableheader div:nth-child(4),.tablebody div:nth-child(4),.tableheader div:nth-child(5),.tablebody div:nth-child(5){
+    width: 10%!important;
+}
+input{
+    padding: 0.5rem 0;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    border-bottom: 1px solid black;
+}
+.fa-check{
+    display: none;
+}
+.fa-check,.fa-edit{
+    color: green;
+}
+footer{
+    display: flex;
+    justify-content: flex-end;
+    margin: 0 1rem;
+}
+.savebtn{
+    text-align: center;
+    border-radius: 0;
+    background-color: green;
+    margin: 0 0.3rem;
+    padding: 0.7rem 1.6rem;
+    box-shadow: 1px 1px 1px 1px #0000004d;
+    border-radius: 10px;
+    outline: none;
+}
+.message{
+    background-color: aliceblue;
+}
+.loader{
+    width: 20px;
+    height: 20px;
+}

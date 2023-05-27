@@ -1,0 +1,49 @@
+<div class="header">
+    <h2>Exam Result</h2>
+
+    <span>
+        <select (change)="getexamresult($event)">
+            <option></option>
+            <option *ngFor="let item of classies" value="{{item.id}}">{{item.gradeYearName}}-{{item.name}}</option>
+        </select>
+    </span>
+</div>
+<ng-container *ngIf="examresult.length>0">
+    <div class="tableheader">
+        <div>Name</div>
+        <div>first term</div>
+        <div>second term</div>
+        <div>total</div>
+        <div></div>
+    </div>
+    <div class="data">
+        <div *ngFor="let item of examresult;let i=index" class="tablebody">
+            <div>
+                {{item.studentName}}
+            </div>
+            <div>
+                <input type="text" value={{item.firstTermGrade}} (change)="updategrade(i,1,$event)"/>
+            </div>
+            <div>
+                <input type="text" value={{item.secondTermGrade}} (change)="updategrade(i,2,$event)"/>
+            </div>
+            <div>
+                {{item.total}}
+            </div>
+        </div>
+    </div>
+    <footer>
+        <ng-container *ngIf="type!=''">
+            <app-messagerespnce [message]="message" [type]="type" class="message"></app-messagerespnce>
+        </ng-container>
+        <button class="savebtn" (click)="saveresult()">
+            <img src="../../../../../assets/images/Spinner.svg" class="loader" *ngIf="loader"/>
+            <span *ngIf="!loader">save</span>
+        </button>
+    </footer>
+</ng-container>        
+<ng-container *ngIf="examresult.length==0">
+    <div class="notfoundbody">
+        Not Found
+    </div>
+</ng-container>

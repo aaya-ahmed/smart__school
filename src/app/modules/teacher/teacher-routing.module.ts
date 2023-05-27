@@ -7,6 +7,7 @@ import { MaterialsComponent } from './pages/materials/materials.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { SchaduleComponent } from 'src/app/shared/components/schadule/schadule.component';
 import { ChangepasswordComponent } from '../auth/pages/changepassword/changepassword.component';
+import { ExamresultComponent } from './pages/examresult/examresult.component';
 
 const routes: Routes = [
   {
@@ -41,6 +42,11 @@ const routes: Routes = [
       {
         path:'changepassword',
         component:ChangepasswordComponent
+      }
+      ,
+      {
+        path:'examresult',
+        component:ExamresultComponent
       }
     ]
   }

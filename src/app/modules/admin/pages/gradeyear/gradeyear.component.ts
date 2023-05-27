@@ -6,7 +6,7 @@ import { HostmanagerService } from 'src/app/services/hostmanager.service';
 @Component({
   selector: 'app-gradeyear',
   templateUrl: './gradeyear.component.html',
-  styleUrls: ['./gradeyear.component.css','../../../../styles/modulesStyle.css']
+  styleUrls: ['../../../../styles/modulesStyle.css']
 })
 export class GradeyearComponent implements OnInit,OnDestroy{
   gradyears:gradyear[]=[];

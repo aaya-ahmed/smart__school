@@ -1,3 +1,12 @@
+.header span .addbtn{
+  padding: 10px 30px!important;
+  border-radius: 5px!important;
+  margin:0 0.4rem!important;
+  box-shadow: 3px 1px 2px 0 #00000052;
+  color: black;
+  font-weight: 800;
+  background-color: #fcd2b1;
+}
 select{
     padding: 0.5rem 1rem;
 }

@@ -6,7 +6,7 @@ import { HostmanagerService } from 'src/app/services/hostmanager.service';
 @Component({
   selector: 'app-classroom',
   templateUrl: './classroom.component.html',
-  styleUrls: ['../../../../styles/modulesStyle.css','./classroom.component.css']
+  styleUrls: ['../../../../styles/modulesStyle.css']
 })
 export class ClassroomComponent implements OnInit,OnDestroy{
   classrooms:classroom[]=[];
