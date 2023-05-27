@@ -1,13 +1,18 @@
 <div class="header">
     <h2>Exam Result</h2>
-
+</div>
+<ng-template #options>
+    <section>
+    
+    </section>
+</ng-template>
+<ng-template #result>
     <span>
         <select (change)="getexamresult($event)">
             <option></option>
             <option *ngFor="let item of classies" value="{{item.id}}">{{item.gradeYearName}}-{{item.name}}</option>
         </select>
     </span>
-</div>
 <ng-container *ngIf="examresult.length>0">
     <div class="tableheader">
         <div>Name</div>
@@ -42,8 +47,9 @@
         </button>
     </footer>
 </ng-container>        
-<ng-container *ngIf="examresult.length==0">
-    <div class="notfoundbody">
-        Not Found
-    </div>
-</ng-container>
+    <ng-container *ngIf="examresult.length==0">
+        <div class="notfoundbody">
+            Not Found
+        </div>
+    </ng-container>
+</ng-template>
