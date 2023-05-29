@@ -13,9 +13,12 @@ import { StudentserviceService } from 'src/app/services/studentservice.service';
 })
 export class StudentsComponent {
   allstudents: student[] = [];
+  examresult:{first:number,second:number}[]=[]
   gradeyear:gradyear[]=[];
   _subscriber:any;
-  constructor(private gradeyearservice:GradyearService,private examresultservice:ExamserviceService,private studentsservice:StudentserviceService,private hostman:HostmanagerService) {}
+  first:number=0;
+  second:number=0;
+  constructor(private examservice:ExamserviceService,private gradeyearservice:GradyearService,private examresultservice:ExamserviceService,private studentsservice:StudentserviceService,private hostman:HostmanagerService) {}
   ngOnInit(): void {
     let subscriber=this.gradeyearservice.getall().subscribe({
       next:res=>{
@@ -25,7 +28,7 @@ export class StudentsComponent {
     })
 }
 getdata(index:any){
-  let id;
+  let id:number=0;
   if(typeof index=='number'){
     id=index;
   }
@@ -35,6 +38,19 @@ getdata(index:any){
   this._subscriber=this.studentsservice.getallByGradeYear(id).subscribe({
     next: (response) => {
       this.allstudents = response;
+
+      this.allstudents.forEach((item,i)=>{
+        this.examservice.getstudentfullresult(item.id,id).subscribe({
+          next:res=>{
+            res.forEach(item=>{
+              this.first=this.first+item.firstTermGrade;
+              this.second=this.second+item.secondTermGrade;
+            });
+            this.allstudents[i].firstterm=this.first;
+            this.allstudents[i].secondterm=this.second;
+          }
+        })
+      })
       this._subscriber.unsubscribe();
     }
   });

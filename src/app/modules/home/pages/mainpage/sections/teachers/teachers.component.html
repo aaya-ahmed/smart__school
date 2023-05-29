@@ -1,4 +1,4 @@
-<section class="teacher_section image">
+<!-- <section class="teacher_section image">
     <div class="container">
         <div class="row_header">
             <div class="teacher_column_container">
@@ -133,4 +133,33 @@
     
     </div>
     </div>
-</section>
+</section> -->
+<div class="bigContainer" id="Staff">
+    <div class="main-heading">
+        <h2>Our Staff</h2>
+        </div>
+    
+      <owl-carousel-o [options]="customOptions">
+    
+        <ng-container *ngFor="let t of teachers">
+          <ng-template carouselSlide [id]="t.id">
+            <div class="teacherContainer">
+                <div class="teacherImg"><img class="insideImg" [src]="prefix+t.photoUrl" alt="img" draggable="false"></div>
+                <div class="teacherInfo">
+                    <h4>{{t.fullName}}</h4>
+                     <span>Course : {{t.subjectName}}</span>
+                     <p title="{{t.email}}">{{t.email}}</p>  
+                </div>
+            </div>
+            
+          </ng-template>
+        </ng-container>
+    
+      </owl-carousel-o>
+  </div>
+  
+
+
+
+
+

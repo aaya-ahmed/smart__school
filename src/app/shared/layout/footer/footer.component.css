@@ -47,7 +47,7 @@ footer{
 }
 footer div>h5:nth-child(1){
     font-size: 24px;
-    color: #f0ff00;
+    color: var(--main-color-dark);
     line-height: 22px;
     text-align: left;
     font-family: 'Baloo';
@@ -68,7 +68,7 @@ footer div>h5:nth-child(3){
     margin-bottom: 10px;
 }
 .call_info_col1 span,.call_info_col2 span,.call_info_col3 span{
-    color: #ef7084;
+    color: var(--secondary-color);
     font-size: 25px;
 }
 .call_info_col1 h4,.call_info_col2 h4,.call_info_col3 h4{
@@ -103,7 +103,7 @@ input[type="email"]{
 input[type="submit"]{
         border-radius: 3px;
         border: none;
-        background: #ef7084;
+        background: var(--secondary-color);
         color: #fff;
         padding: 8px 12px;
         vertical-align: top;
@@ -233,6 +233,7 @@ footer .footer_col1>.social_row>.social a span{
     }
     .row{
         display: flex;
+        gap:2rem
     }
     .col-4{
         width: 33.333333333%;

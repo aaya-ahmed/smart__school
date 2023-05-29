@@ -21,6 +21,12 @@ export class NavbarComponent {
     if(window.innerWidth<1000)
     this.toggleflag=!this.toggleflag;
   }
+  gottopagewithparamter(pagename:string,paramter:string){
+    this.route.navigate(['student',pagename,paramter]);
+    this.currentpage=pagename+'/'+paramter;
+    if(window.innerWidth<1000)
+    this.toggleflag=!this.toggleflag;
+  }
   gottohome(){
     this.route.navigate(['']);
   }

@@ -1,6 +1,5 @@
-import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { material } from 'src/app/data/material';
-import { HostmanagerService } from 'src/app/services/hostmanager.service';
 import { MaterialService } from 'src/app/services/material.service';
 import { environment } from 'src/environments/environment';
 
@@ -16,9 +15,9 @@ export class VideosComponent implements OnChanges {
   tempvideos:material[]=[];
   videos:material[]=[];
   path:string='';
-  constructor(private materialservice:MaterialService,private hostman:HostmanagerService) { }
+  constructor(private materialservice:MaterialService) { }
   ngOnChanges(changes: SimpleChanges): void {
-    if(this.subjectId!=null||this.reloadvideo==true){
+    if(this.subjectId!=null){
       this.showVideos()
     }
   }  

@@ -11,5 +11,7 @@ export interface student{
     fees:boolean,
     parentID :string,
     classRoomID :number,
-    classRoomName :string
+    classRoomName :string,
+    firstterm?:number,
+    secondterm?:number
 }

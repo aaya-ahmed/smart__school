@@ -19,7 +19,7 @@ export class SchaduleformComponent implements OnInit {
   schaduleitem:any;
   subject:string='';
   hostSubscriber:any
-  schadule:FormGroup=new FormGroup({
+  schedule:FormGroup=new FormGroup({
     day:new FormControl('',[Validators.required]) ,
     classId:new FormControl('',[Validators.required]) ,
     sessionNo:new FormControl('',[Validators.required,Validators.pattern("[1-6]")]) ,
@@ -28,7 +28,7 @@ export class SchaduleformComponent implements OnInit {
   constructor(private schaduleservice:SchaduleSessionService,private classroomservice:ClassroomService,private teacherservice:TeacherService,private hostman:HostmanagerService){}
   ngOnInit(): void {
     if(this.data){
-      this.schadule.patchValue({
+      this.schedule.patchValue({
         day:this.data.session.scheduleDay,
         classId:this.data.classid+'',
         sessionNo:this.data.session.sessionNo,
@@ -47,16 +47,16 @@ export class SchaduleformComponent implements OnInit {
     });
   }
   get daycontrol(){
-    return this.schadule.controls['day']
+    return this.schedule.controls['day']
   }
   get classcontrol(){
-    return this.schadule.controls['classId']
+    return this.schedule.controls['classId']
   }
   get sessionNocontrol(){
-    return this.schadule.controls['sessionNo']
+    return this.schedule.controls['sessionNo']
   }
   get teachercontrol(){
-    return this.schadule.controls['teacherID']
+    return this.schedule.controls['teacherID']
   }
   setsubjectAndclass(){
     let teacher=this.teachers.find(p=>p.id==this.teachercontrol.value);
@@ -74,9 +74,9 @@ export class SchaduleformComponent implements OnInit {
   close(){
     this.hostman.load({open:false,data:'',returndata:'',type:''});
   }
-  addschadule(){
-    if(this.schadule.valid){
-      let teacher=this.teachers[this.teachers.findIndex(p=>p.id==this.schadule.value.teacherID)];
+  addschedule(){
+    if(this.schedule.valid){
+      let teacher=this.teachers[this.teachers.findIndex(p=>p.id==this.schedule.value.teacherID)];
       if(this.data){
         let session={
           id: this.data.session.id,
@@ -85,13 +85,13 @@ export class SchaduleformComponent implements OnInit {
           teacherID: teacher.id,
           subjectName: teacher.subjectName,
           teacherName: teacher.fullName,
-          scheduleDay: this.schadule.value.day
+          scheduleDay: this.schedule.value.day
       }
       let schadule={
         id:  this.data.session.scheduleID,
-        day: this.schadule.value.day,
-        classId:+this.schadule.value.classId,
-        classRoomName: this.classrooms[this.classrooms.findIndex(p=>p.id==this.schadule.value.classId)].name
+        day: this.schedule.value.day,
+        classId:+this.schedule.value.classId,
+        classRoomName: this.classrooms[this.classrooms.findIndex(p=>p.id==this.schedule.value.classId)].name
       }
         this.schaduleservice.updateschadule(schadule).subscribe({
           next:res=>{
@@ -105,14 +105,14 @@ export class SchaduleformComponent implements OnInit {
       }
       else{
         let schadule={
-          Day:this.schadule.value.day,
-          classId:+this.schadule.value.classId,
-          ClassRoom:this.classrooms[this.classrooms.findIndex(p=>p.id==this.schadule.value.classId)].name,
-          Teacherid:this.schadule.value.teacherID,
+          Day:this.schedule.value.day,
+          classId:+this.schedule.value.classId,
+          ClassRoom:this.classrooms[this.classrooms.findIndex(p=>p.id==this.schedule.value.classId)].name,
+          Teacherid:this.schedule.value.teacherID,
           Teacher:teacher.fullName,
           Subject:teacher.subjectName,
-          SessionNum:this.schadule.value.sessionNo,
-          gradeyear:this.classrooms[this.classrooms.findIndex(p=>p.id==this.schadule.value.classId)].gradeYearName
+          SessionNum:this.schedule.value.sessionNo,
+          gradeyear:this.classrooms[this.classrooms.findIndex(p=>p.id==this.schedule.value.classId)].gradeYearName
         }
         this.schaduleitem=schadule;
       }

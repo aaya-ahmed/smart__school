@@ -9,6 +9,8 @@ import { DynamicloaderDirective } from '../directives/dynamicloader.directive';
 import { SessiondateDirective } from '../directives/sessiondate.directive';
 import { ChangephotoComponent } from './components/changephoto/changephoto.component';
 import { SchaduleComponent } from './components/schadule/schadule.component';
+import { RouterModule } from '@angular/router';
+import { GradComponent } from './components/grad/grad.component';
 
 
 
@@ -21,9 +23,11 @@ import { SchaduleComponent } from './components/schadule/schadule.component';
                  ChangephotoComponent,
                  ConfirmComponent,
                  MessagerespnceComponent,
-                 ProfileHeaderComponent],
+                 ProfileHeaderComponent,
+                  GradComponent],
   imports: [
-    CommonModule
+    CommonModule,
+    RouterModule
   ],
   exports:[NavbarComponent,
            FooterComponent, 
@@ -32,7 +36,8 @@ import { SchaduleComponent } from './components/schadule/schadule.component';
            SchaduleComponent,
            ChangephotoComponent,
            MessagerespnceComponent,
-           ProfileHeaderComponent]
+           ProfileHeaderComponent,
+           GradComponent]
 
 })
 export class SharedModule { }

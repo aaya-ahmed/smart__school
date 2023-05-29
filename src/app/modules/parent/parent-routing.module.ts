@@ -1,17 +1,18 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { SonComponent } from './pages/son/son.component';
-import { ExamresultComponent } from './pages/examresult/examresult.component';
 import { ComplainComponent } from './pages/complain/complain.component';
-import { UpdateProfileComponent } from './pages/update-profile/update-profile.component';
 import { ParentComponent } from './parent.component';
 import { SchaduleComponent } from 'src/app/shared/components/schadule/schadule.component';
 import { ChangepasswordComponent } from '../auth/pages/changepassword/changepassword.component';
+import { GradComponent } from 'src/app/shared/components/grad/grad.component';
+import { parentGuard } from 'src/app/guards/parent.guard';
 
 const routes: Routes = [
   {
     path:'',
     component:ParentComponent,
+    canActivate:[parentGuard],
     children:[
       {
         path:'',
@@ -20,10 +21,6 @@ const routes: Routes = [
       {
         path:'myson',
         component:SonComponent
-      },
-      {
-        path:'result',
-        component:ExamresultComponent
       },
       {
         path:'schadule/:id',
@@ -37,6 +34,10 @@ const routes: Routes = [
       {
         path:'changepassword',
         component:ChangepasswordComponent
+      },
+      {
+        path:'grad/:type/:id',
+        component:GradComponent
       }
     ]
   }
@@ -44,6 +45,7 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
+  providers:[[parentGuard]]
 })
 export class ParentRoutingModule { }

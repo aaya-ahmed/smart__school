@@ -28,8 +28,10 @@ export class SonComponent implements OnInit {
      }) ;
   }
   gotoschadule(id:number){
-    console.log("hdsj")
     this.route.navigate(['parent/schadule/',id])
+  }
+  gotoresult(id:string,type:string){
+    this.route.navigate(['parent/grad/',type,id])
   }
 
 }

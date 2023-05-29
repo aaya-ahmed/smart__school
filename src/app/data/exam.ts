@@ -8,5 +8,7 @@ export interface examresult{
     subjectId: number,
     subjectName: string,
     classRoomName: string,
-    passed: boolean
+    passed: boolean,
+    totalSubjectMark:number,
+    year:number
 }

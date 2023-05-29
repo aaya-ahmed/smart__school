@@ -146,14 +146,12 @@ export class RegisterComponent {
         this.authservice.createrequest(user).subscribe(
           {
             next:val=>{
-              console.log(val)
               this.formresponce=true;
               this.typemess='success';
-              this.message='Registration was successful';
+              this.message='Registration was successful,waiting accepting email';
               this.resetform();
             },
             error:err=>{
-              console.log(err)
               this.formresponce=true;
               this.typemess='failed';
               this.message=err.error;

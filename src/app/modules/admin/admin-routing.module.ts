@@ -8,11 +8,13 @@ import { TeachersComponent } from './pages/teachers/teachers.component';
 import { StudentsComponent } from './pages/students/students.component';
 import { ClassroomComponent } from './pages/classroom/classroom.component';
 import { SchaduleComponent } from './pages/schadule/schadule.component';
+import { adminGuard } from 'src/app/guards/admin.guard';
 
 const routes: Routes = [
   {
     path:'',
     component:AdminComponent,
+    canActivate:[adminGuard],
     children:[
       {path:'',
       component:RequestsComponent
@@ -50,6 +52,7 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
+  providers:[[adminGuard]]
 })
 export class AdminRoutingModule { }

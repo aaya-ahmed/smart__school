@@ -69,15 +69,31 @@ export class ScadulesComponent implements OnChanges {
               this.mess='Successfully';
               this.type='success';
               this.schadules=[];
+              this.reset()
+            },
+            error:err=>{
+              this.mess=err.error;
+              this.type='failed';
+              //this.reset()
             }
           })
         },
         error:err=>{
           this.mess=err.error;
           this.type='failed';
+        //  this.reset()
+
         }
       })
     });
+  }
+  reset(){
+    let timer=setTimeout(()=>{
+      this.type='';
+      this.mess=''
+      clearTimeout(timer)
+    },1000)
+
   }
   delete(index:number){
     this.schadules.splice(index,1)

@@ -8,11 +8,13 @@ import { ProfileComponent } from './pages/profile/profile.component';
 import { SchaduleComponent } from 'src/app/shared/components/schadule/schadule.component';
 import { ChangepasswordComponent } from '../auth/pages/changepassword/changepassword.component';
 import { ExamresultComponent } from './pages/examresult/examresult.component';
+import { teacherGuard } from 'src/app/guards/teacher.guard';
 
 const routes: Routes = [
   {
     path:'',
     component:TeacherComponent,
+    canActivate:[teacherGuard],
     children:[
       {
         path:'',
@@ -45,7 +47,7 @@ const routes: Routes = [
       }
       ,
       {
-        path:'examresult',
+        path:'result',
         component:ExamresultComponent
       }
     ]
@@ -54,6 +56,7 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
+  providers:[[teacherGuard]]
 })
 export class TeacherRoutingModule { }

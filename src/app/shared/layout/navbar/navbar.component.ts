@@ -10,6 +10,7 @@ import { AuthserviceService } from 'src/app/services/authservice.service';
 })
 export class NavbarComponent implements OnInit {
   logoutflag:boolean=true;
+  togglebar:boolean=false;
   constructor(private Route:Router,private auth:AuthserviceService){}
   ngOnInit(): void {
     this.auth.logoutflag.subscribe(res=>{this.logoutflag=res;});
@@ -20,13 +21,14 @@ export class NavbarComponent implements OnInit {
   gotoprofile(){
     this.auth.gotoprofile();
   }
-  public openlogin(){
-    this.Route.navigate(['auth/login'])
+  public openpage(page:string){
+    this.Route.navigate([page])
   }
-  public openregister(){
-    this.Route.navigate(['auth/register'])
-  }
+
   public logout(){
     this.auth.logout('home');
+  }
+  settogglebar(){
+    this.togglebar=!this.togglebar;
   }
 }

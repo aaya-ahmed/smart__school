@@ -18,6 +18,9 @@ export class GradyearService {
   public getall(){
     return this.http.get<gradyear[]>(environment.URL+"GradeYear/GetAll");
   }
+  public getByClass(id:number):Observable<gradyear[]>{
+    return this.http.get<gradyear[]>(environment.URL+`GradeYear/GetByClassId/${id}`);
+  }
   public delete(id:number){
     return this.http.delete(environment.URL+"GradeYear?id="+id);
   }

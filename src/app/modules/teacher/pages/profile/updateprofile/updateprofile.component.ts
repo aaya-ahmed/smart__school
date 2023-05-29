@@ -16,7 +16,6 @@ export class UpdateprofileComponent {
   constructor(private fb:FormBuilder,private teacherservice:TeacherService,private hostman:HostmanagerService){
   }
   ngOnInit(): void {
-    console.log(this.data)
     this.teacher=this.fb.group({
       fullName : new FormControl(this.data.fullName,[Validators.minLength(11),Validators.maxLength(23)]),
       gender:new FormControl(this.data.gender,[Validators.required]),
@@ -54,16 +53,16 @@ export class UpdateprofileComponent {
     if(this.teacher.valid){
       this.data={
           ...this.data,
-          ...this.teacher.value,
-          gender:+this.gendercontrol.value
+          ...this.teacher.value
       }
         this.teacherservice.update(this.data).subscribe({
           next:(res:any)=>{
             this.mess='Successfuly';
             this.type='success';
-            //this.reset();
+            this.reset();
           },
           error:(err:any)=>{
+            console.log(err)
             this.mess=err.error;
             this.type='failed';
             this.reset();

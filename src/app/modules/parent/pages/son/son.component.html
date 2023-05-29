@@ -24,10 +24,13 @@
                 {{item.absenceDays}}
             </div>
             <div class="actions">
-                <button (click)="gotoschadule(item.classRoomID)">
+                <button title="schadule" (click)="gotoschadule(item.classRoomID)">
                     <i class="fa-solid fa-calendar"></i>
                 </button>
-                <button>
+                <button title="first term grade" (click)="gotoresult(item.id,'firstterm')">
+                    <i class="fa-solid fa-square-poll-vertical"></i>
+                </button>
+                <button title="full year grade" (click)="gotoresult(item.id,'fullyear')">
                     <i class="fa-solid fa-square-poll-vertical"></i>
                 </button>
             </div>

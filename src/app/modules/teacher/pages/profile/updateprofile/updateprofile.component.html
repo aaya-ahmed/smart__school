@@ -24,8 +24,8 @@
                 <label>Gender</label>
                 <select formControlName="gender" class="form-control"
                 [ngClass]="{'is-invalid':(gendercontrol.errors&&gendercontrol.touched)||(gendercontrol.errors&&form.submitted)}">
-                    <option value=0>Male</option>
-                    <option value=1>Female</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
                 </select>
                 <div *ngIf="(gendercontrol.errors&&form.submitted)||(gendercontrol.errors&&gendercontrol.touched)" class="invalid">
                     <p *ngIf="gendercontrol.errors['required']" class="invalid-feedback">gender is required</p>

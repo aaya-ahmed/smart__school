@@ -2,17 +2,17 @@
     <div class="container-wraperr" [ngClass]="{'container-wraperr2':data!=''}">
         <header>
             <div *ngIf="data==''">
-                Add Schadule
+                Add Schedule
             </div>
             <div *ngIf="data!=''">
-                Update Schadule
+                Update Schedule
             </div>
             <div>
                 <button (click)="close()"><i class="fa-solid fa-close"></i></button>
             </div>
         </header>
         <div class="schadule-data" [ngClass]="{'formonly':data!=''}">
-            <form [formGroup]="schadule"  #form="ngForm" (ngSubmit)="addschadule()">
+            <form [formGroup]="schedule"  #form="ngForm" (ngSubmit)="addschedule()">
                 <div class="form-group">
                     <label>Teacher</label>
                     <select formControlName="teacherID" class="form-control" (change)="setsubjectAndclass()"

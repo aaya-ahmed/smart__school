@@ -15,7 +15,7 @@ export class DocumentsComponent implements OnChanges {
   documents:material[]=[];
   constructor(private materialservice:MaterialService,private hostman:HostmanagerService) { }
   ngOnChanges(changes: SimpleChanges): void {
-    if(this.subjectId!=null||this.reloaddocument==true){
+    if(this.subjectId!=null){
       this.getDocuments()
     }
   }

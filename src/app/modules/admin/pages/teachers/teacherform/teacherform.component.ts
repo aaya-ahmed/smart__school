@@ -26,8 +26,8 @@ export class TeacherformComponent {
     phone: new FormControl('',[Validators.required,Validators.pattern("^(010|011|012|015)[0-9]{8}$")]),
     address: new FormControl('',[Validators.required,Validators.minLength(5),Validators.maxLength(50)]),
     hireDate: new FormControl('',[Validators.required]),
-    maxDayOff :new FormControl(1,[Validators.required,Validators.pattern("^[1-9][0-9]{1,}$")]),
-    absenceDays :new FormControl(0,[Validators.pattern("^[0-9]{1,3}$")])
+    maxDayOff :new FormControl(21,[Validators.required,Validators.pattern("^[1-9][0-9]{1,}$")]),
+    absenceDays:new FormControl(0,[Validators.pattern("^[0-9]{1,3}$")])
   });
   constructor(private subjectservice:SubjectService,private fb:FormBuilder,private teacherservice:TeacherService,private hostman:HostmanagerService){
   }
@@ -49,11 +49,11 @@ export class TeacherformComponent {
       this.teacher.addControl('password',new FormControl('',[Validators.required,Validators.pattern("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$")]));
       this.teacher.addControl('subjectId', new FormControl(0,[Validators.required]));
       this.teacher.addControl('photo',new FormControl('',[Validators.required]));
-
     }
-    this.subjectservice.getall().subscribe({
+    let subscriber=this.subjectservice.getall().subscribe({
       next:res=>{
         this.subjects=res;
+        subscriber.unsubscribe();
       }
     });
   }
@@ -94,6 +94,7 @@ export class TeacherformComponent {
     return this.teacher.controls['absenceDays']
   }
   changephoto(image:any){
+   if(image.target.files.length>0){
     var reader = new FileReader();
 		reader.readAsDataURL(image.target.files[0]);
 		reader.onload = (_event) => {
@@ -103,6 +104,7 @@ export class TeacherformComponent {
             this.teacherimage=this.teacherimage.split(",").pop();
           });
 		}
+   }
   }
   getBase64(file:any) {
     return new Promise((resolve, reject) => {
@@ -160,8 +162,7 @@ export class TeacherformComponent {
             this.reset()
             },
           error:err=>{
-            console.log(err)
-            this.mess='Failed'
+            this.mess=err.error;
             this.type='failed';
             this.reset()
           }

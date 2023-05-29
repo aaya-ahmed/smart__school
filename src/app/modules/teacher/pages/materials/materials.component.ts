@@ -31,6 +31,6 @@ export class MaterialsComponent {
     this.type='document';
   }
   reloadfiles(){
-      this.reload=true
+      this.reload=!this.reload
   }
 }

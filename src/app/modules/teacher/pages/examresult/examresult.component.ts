@@ -1,8 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
 import { classroom } from 'src/app/data/classroom';
 import { examresult } from 'src/app/data/exam';
-import { student } from 'src/app/data/student';
 import { teacher } from 'src/app/data/teacher';
 import { ClassroomService } from 'src/app/services/classroom.service';
 import { ExamserviceService } from 'src/app/services/examservice.service';
@@ -18,6 +16,7 @@ export class ExamresultComponent implements OnInit {
   classies:classroom[]=[];
   message:string='';
   type:string='';
+  resulttype:string='';
   loader:boolean=false;
   teacher:teacher={
     id: '',
@@ -57,6 +56,7 @@ export class ExamresultComponent implements OnInit {
   getexamresult(classid:any){
     this.examservice.getexamresultlist(classid.target.value,this.teacher.subjectId).subscribe({
       next:res=>{
+        console.log(res)
         if(res.length>0)
         this.examresult=res;
         else
@@ -64,27 +64,38 @@ export class ExamresultComponent implements OnInit {
       }
     });
   }
-  updategrade(index:number,term:number,result:any){
+  updategrade(index:number,result:any){
     let examresult=this.examresult[index];
-    if(term==1){
-      examresult.firstTermGrade=+result.target.value;
-    }
-    if(term==2){
-      examresult.secondTermGrade=+result.target.value;
-    }
-    examresult.total=+examresult.firstTermGrade + +examresult.secondTermGrade;
-    this.examresult[index]=examresult;
+      if(this.resulttype=='first'&&result.target.value<=examresult.totalSubjectMark/2){
+        examresult.firstTermGrade=+result.target.value;
+      }
+      else if(this.resulttype=='first'&&result.target.value>examresult.totalSubjectMark/2){
+        examresult.firstTermGrade=75;
+      }
+      if(this.resulttype=='second'&&result.target.value<=examresult.totalSubjectMark/2){
+        examresult.secondTermGrade=+result.target.value;
+      }
+      else if(this.resulttype=='second'&&result.target.value>examresult.totalSubjectMark/2){
+        examresult.secondTermGrade=75;
+      }
+      examresult.total=examresult.firstTermGrade + examresult.secondTermGrade;
+      this.examresult[index]=examresult;
+  }
+  setresulttype(type:string){
+    this.resulttype=type;
   }
   saveresult(){
     this.loader=true;
     this.examservice.updateexamresult(this.examresult).subscribe({
-      next:res=>{
+      next:(res:any)=>{
+        console.log(res)
+        this.examresult=res;
         this.message='success';
         this.type='success';
         this.loader=false;
         this.reset();
       },
-      error:err=>{
+      error:(err:any)=>{
         this.message='failed';
         this.type='failed';
         this.loader=false;
@@ -98,5 +109,9 @@ export class ExamresultComponent implements OnInit {
       this.type='';
       clearTimeout(timer)
     }, 1000);
+  }
+  resetresulttype(){
+    this.resulttype='';
+    this.examresult=[];
   }
 }

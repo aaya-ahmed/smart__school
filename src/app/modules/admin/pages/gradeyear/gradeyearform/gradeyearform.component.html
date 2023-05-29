@@ -15,8 +15,7 @@
                 [ngClass]="{'is-invalid':(namecontrol.errors&&namecontrol.touched)||(namecontrol.errors&&form.submitted)}"/>
                 <div *ngIf="(namecontrol.errors&&form.submitted)||(namecontrol.errors&&namecontrol.touched)" class="invalid">
                     <p *ngIf="namecontrol.errors['required']" class="invalid-feedback">name is required</p>
-                    <p *ngIf="namecontrol.errors['minlength']" class="invalid-feedback">minlength is 3 char</p>
-                    <p *ngIf="namecontrol.errors['maxlength']" class="invalid-feedback">minlength is 15 char</p>
+                    <p *ngIf="namecontrol.errors['pattern']" class="invalid-feedback">must be containt special char</p>
                 </div>
             </div>
             <div class="form-group">

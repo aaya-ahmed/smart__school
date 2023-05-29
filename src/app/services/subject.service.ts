@@ -24,4 +24,7 @@ export class SubjectService {
   public delete(id:number){
     return this.http.delete(environment.URL+"Subject?id="+id)
   }
+  public getbygradeyear(id:number):Observable<subject[]>{
+        return this.http.get<subject[]>(environment.URL+"Subject/GetByGradeYearId/"+id)
+      }
 }

@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Observable, Subscriber, Subscription } from 'rxjs';
 import { classroom } from 'src/app/data/classroom';
@@ -14,7 +14,7 @@ import { SubjectService } from 'src/app/services/subject.service';
 })
 export class ModifyComponent implements OnInit ,OnDestroy {
   class:classroom[]=[];
-  data:any;
+  @Input()data:any;
   subscriber:Subscription=Subscription.EMPTY;
   student:FormGroup=new FormGroup({
     absenceDays :new FormControl(0,[Validators.required,Validators.pattern("^[0-9]{1,}$")]),
@@ -56,26 +56,20 @@ export class ModifyComponent implements OnInit ,OnDestroy {
     });
   }
   setdata(){
-    this.subscriber=this.hostman.data.subscribe({
-      next:res=>{
-        if(res.data!=''){
-          this.data=res.data;
-          let classindex=this.class.findIndex(p=>p.id== +this.data.ClassRoomID);
-          this.student.patchValue({
-            absenceDays :this.data.absenceDays,
-            address :this.data.address,
-            classRoomID :classindex,
-            fees :this.data.fees,
-            gender :this.data.gender,
-            maxDayOff :this.data.maxDayOff,
-            studentBirthDate :this.data.studentBirthDate.substring(0,10),
-            studentFirstName :this.data.studentFirstName,
-            studentPhone :this.data.studentPhone
-          });
-          this.subscriber.unsubscribe();
-        }
-      }
-    });
+    if(this.data!=undefined){
+      let classindex=this.class.findIndex(p=>p.id== +this.data.classRoomID);
+      this.student.patchValue({
+        absenceDays :this.data.absenceDays,
+        address :this.data.address,
+        classRoomID :classindex,
+        fees :this.data.fees,
+        gender :this.data.gender,
+        maxDayOff :this.data.maxDayOff,
+        studentBirthDate :this.data.studentBirthDate.substring(0,10),
+        studentFirstName :this.data.studentFirstName,
+        studentPhone :this.data.studentPhone
+      });
+    }
   }
   modify(){
     if(this.student.valid){

@@ -57,10 +57,8 @@ export class TeachersComponent {
     this.hostman.load({data:item,open:true,returndata:'',type:'teacher'})
     this.hostSubscribtion=this.hostman.data.subscribe({
       next:res=>{
-        if(res.returndata!=''){
-          let index=this.teachers.findIndex(p=>res.returndata.Id==p.Id);
-          console.log(res.returndata)
-          this.teachers[index]=res.returndata;
+        if(res.open==false){
+          this.getteachers();
           this.hostSubscribtion.unsubscribe()
         }
       }

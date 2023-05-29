@@ -15,7 +15,7 @@ export class GradeyearformComponent implements OnInit , OnDestroy{
   mess:string=''
   subscriber:any;
   gradeyear:FormGroup=new FormGroup({
-    name:new FormControl('',[Validators.required,Validators.minLength(3),Validators.maxLength(15)]),
+    name:new FormControl('',[Validators.required,Validators.pattern("^[a-z A-Z 0-9]{3,}$")]),
     fees:new FormControl(0,[Validators.required,Validators.pattern("^[0-9]{2,}$")])
   });
   constructor(private gradeyearservice:GradyearService,private hostman:HostmanagerService){}

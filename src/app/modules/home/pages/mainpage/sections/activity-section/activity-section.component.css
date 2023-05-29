@@ -3,9 +3,10 @@ section{
 }
 .row{
     display: block;
+    width: 90%;
+    margin: auto;
 }
 h5{
-    font-family: 'Baloo';
     font-style: normal;
     font-weight: 400;
     margin-top: 10px;
@@ -54,6 +55,7 @@ h5{
 }
 .topic-header label h5:hover{
     background-color: var(--secondary-color);
+    color: black;
 }
 .topic-body{
     display: none;
@@ -76,7 +78,7 @@ input[type="checkbox"]:checked ~ .topic-body{
     background-image: url(../../../../../../../assets/images/rand2.jpg);
     position: relative;
     width: 100%;
-    height: 40vh;
+    height: 20rem;
     margin: 2rem 0;
 }
 

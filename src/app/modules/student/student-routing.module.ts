@@ -2,15 +2,17 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { StudentComponent } from './student.component';
 import { ProfileComponent } from './pages/profile/profile.component';
-import { GradComponent } from './pages/grad/grad.component';
 import { MaterialComponent } from './pages/material/material.component';
 import { SchaduleComponent } from 'src/app/shared/components/schadule/schadule.component';
 import { ChangepasswordComponent } from '../auth/pages/changepassword/changepassword.component';
+import { GradComponent } from 'src/app/shared/components/grad/grad.component';
+import { studentGuard } from 'src/app/guards/student.guard';
 
 const routes: Routes = [
   {
     path:'',
     component:StudentComponent,
+    canActivate:[studentGuard],
     children:[
       {
         path:'',
@@ -25,7 +27,7 @@ const routes: Routes = [
         component:SchaduleComponent
       },
       {
-        path:'grad',
+        path:'grad/:type',
         component:GradComponent
       },
       {
@@ -43,6 +45,7 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
+  providers:[[studentGuard]]
 })
 export class StudentRoutingModule { }

@@ -105,6 +105,9 @@ input[type="checkbox"]{
 .hide nav .logo{
     visibility: hidden;
 }
+nav ul li:hover{
+    cursor: pointer;
+}
 @media(max-width:1000px){
     .container{
     position: fixed;

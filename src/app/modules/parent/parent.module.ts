@@ -5,12 +5,13 @@ import { ParentRoutingModule } from './parent-routing.module';
 import { ComplainComponent } from './pages/complain/complain.component';
 import { UpdateProfileComponent } from './pages/update-profile/update-profile.component';
 import { SonComponent } from './pages/son/son.component';
-import { ExamresultComponent } from './pages/examresult/examresult.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NavbarComponent } from './Layout/navbar/navbar.component';
 import { ParentComponent } from './parent.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { AuthModule } from '../auth/auth.module';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from 'src/app/interceptor/auth.interceptor';
 
 
 @NgModule({
@@ -18,7 +19,6 @@ import { AuthModule } from '../auth/auth.module';
     ComplainComponent,
     UpdateProfileComponent,
     SonComponent,
-    ExamresultComponent,
     NavbarComponent,
     ParentComponent,
 
@@ -30,7 +30,8 @@ import { AuthModule } from '../auth/auth.module';
     ReactiveFormsModule,
     SharedModule,
     AuthModule
+  ],
+  providers:[{provide:HTTP_INTERCEPTORS,useClass:AuthInterceptor,multi:true}]
 
-  ]
 })
 export class ParentModule { }

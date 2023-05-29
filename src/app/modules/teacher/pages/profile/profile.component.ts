@@ -31,9 +31,13 @@ export class ProfileComponent implements OnInit {
   constructor(private teacherservice:TeacherService,private hostman:HostmanagerService){
   }
   ngOnInit(): void {
+    this.getteacher();
+  }
+  getteacher(){
     let id=localStorage.getItem("uid")?.replace(/"/g,'')||''
     this.teacherservice.getbyidentity(id).subscribe({
       next:res=>{
+        console.log(res)
         this.teacher=res;
         this.teacher.photoUrl=environment.imgeurl+this.teacher.photoUrl+"?t="+new Date().getTime();
       }
@@ -56,5 +60,12 @@ export class ProfileComponent implements OnInit {
   }
   openupdatewindow(){
     this.hostman.load({open:true,data:this.teacher,returndata:'',type:'updateprofile'});
+    this.hostman.data.subscribe({
+      next:res=>{
+        if(res.open==false){
+          this.getteacher();
+        }
+      }
+    })
   }
 }

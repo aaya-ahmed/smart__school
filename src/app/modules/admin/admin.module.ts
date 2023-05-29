@@ -25,6 +25,9 @@ import { TeacherDetailsComponent } from './pages/teachers/teacherDetails/teacher
 import { DetailsComponent } from './pages/students/details/details.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { AbsenceComponent } from './pages/students/absence/absence.component';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from 'src/app/interceptor/auth.interceptor';
+import { adminGuard } from 'src/app/guards/admin.guard';
 
 
 @NgModule({
@@ -59,6 +62,7 @@ import { AbsenceComponent } from './pages/students/absence/absence.component';
     FormsModule,
     SharedModule
   ],
+  providers:[{provide:HTTP_INTERCEPTORS,useClass:AuthInterceptor,multi:true}],
   bootstrap:[AdminComponent]
 })
 export class AdminModule { }

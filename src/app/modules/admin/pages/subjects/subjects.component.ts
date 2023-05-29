@@ -20,7 +20,7 @@ export class SubjectsComponent implements OnInit,OnDestroy{
           this.subjects=res;
           this.subjects.sort(function(a, b){
             return b.gradeYearId - a.gradeYearId;
-        })
+        });
       }
     })
   }

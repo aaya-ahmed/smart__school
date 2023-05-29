@@ -1,52 +1,75 @@
-<div class="header">
-    <h2>Exam Result</h2>
-</div>
+<ng-container *ngIf="resulttype!='';then result ;else options"></ng-container>
 <ng-template #options>
-    <section>
-    
+    <section class="container">
+        <div (click)="setresulttype('first')" class="option">
+            <i class="fa-solid fa-square-poll-vertical"></i>
+            <span>First Term</span>
+        </div>
+        <div (click)="setresulttype('second')" class="option">
+            <i class="fa-solid fa-square-poll-vertical"></i>
+            <span>Second Term</span>
+        </div>
     </section>
 </ng-template>
 <ng-template #result>
-    <span>
-        <select (change)="getexamresult($event)">
-            <option></option>
-            <option *ngFor="let item of classies" value="{{item.id}}">{{item.gradeYearName}}-{{item.name}}</option>
-        </select>
-    </span>
-<ng-container *ngIf="examresult.length>0">
-    <div class="tableheader">
-        <div>Name</div>
-        <div>first term</div>
-        <div>second term</div>
-        <div>total</div>
-        <div></div>
+    <div class="header">
+        <span class="title">
+            <i class="fa-solid fa-arrow-left" (click)="resetresulttype()"></i>
+            <h2>Exam Result</h2>
+        </span>
+        <span>
+            <select (change)="getexamresult($event)">
+                <option></option>
+                <option *ngFor="let item of classies" value="{{item.id}}">{{item.gradeYearName}}-{{item.name}}</option>
+            </select>
+        </span>
     </div>
-    <div class="data">
-        <div *ngFor="let item of examresult;let i=index" class="tablebody">
+    <ng-container *ngIf="examresult.length>0">
+        <div class="tableheader">
+            <div>Name</div>
             <div>
-                {{item.studentName}}
+                first term
             </div>
-            <div>
-                <input type="text" value={{item.firstTermGrade}} (change)="updategrade(i,1,$event)"/>
+            <div *ngIf="resulttype=='second'">
+               second term
             </div>
-            <div>
-                <input type="text" value={{item.secondTermGrade}} (change)="updategrade(i,2,$event)"/>
-            </div>
-            <div>
-                {{item.total}}
+            <div>total</div>
+            <div></div>
+        </div>
+        <div class="data">
+            <div *ngFor="let item of examresult;let i=index" class="tablebody">
+                <div>
+                    {{item.studentName}}
+                </div>
+                <ng-container [ngSwitch]="resulttype">
+                    <div *ngSwitchCase="'first'">
+                        <input  type="text" [ngStyle]="{'color':item.firstTermGrade==75?'red':'black'}" [(ngModel)]="item.firstTermGrade" (change)="updategrade(i,$event)"/>
+                    </div>
+                    <div *ngSwitchCase="'first'">
+                        {{item.totalSubjectMark/2}}
+                    </div>
+                    <div *ngSwitchCase="'second'">
+                        {{item.firstTermGrade}}
+                    </div>
+                    <div *ngSwitchCase="'second'">
+                        <input  type="text" [ngStyle]="{'color':item.secondTermGrade==75?'red':'black'}" [(ngModel)]="item.secondTermGrade" (change)="updategrade(i,$event)"/>
+                    </div>
+                    <div *ngSwitchCase="'second'">
+                        {{item.totalSubjectMark}}
+                    </div>
+                </ng-container>
             </div>
         </div>
-    </div>
-    <footer>
-        <ng-container *ngIf="type!=''">
-            <app-messagerespnce [message]="message" [type]="type" class="message"></app-messagerespnce>
-        </ng-container>
-        <button class="savebtn" (click)="saveresult()">
-            <img src="../../../../../assets/images/Spinner.svg" class="loader" *ngIf="loader"/>
-            <span *ngIf="!loader">save</span>
-        </button>
-    </footer>
-</ng-container>        
+        <footer>
+            <ng-container *ngIf="type!=''">
+                <app-messagerespnce [message]="message" [type]="type" class="message"></app-messagerespnce>
+            </ng-container>
+            <button class="savebtn" (click)="saveresult()">
+                <img src="../../../../../assets/images/Spinner.svg" class="loader" *ngIf="loader"/>
+                <span *ngIf="!loader">save</span>
+            </button>
+        </footer>
+    </ng-container>        
     <ng-container *ngIf="examresult.length==0">
         <div class="notfoundbody">
             Not Found

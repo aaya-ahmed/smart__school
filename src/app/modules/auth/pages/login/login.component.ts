@@ -1,13 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthserviceService } from '../../../../services/authservice.service';
-import { register } from 'src/app/data/register';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css','../style.css']
+  styleUrls: ['../style.css','./login.component.css']
 })
 export class LoginComponent implements OnInit {
   typepassword:string="password";
@@ -44,15 +43,17 @@ export class LoginComponent implements OnInit {
     if(this.loginform.valid){
       this.loadflag=true;
       let user={email:this.loginform.value.email,password:this.loginform.value.password}
-      this.authservice.login(user).subscribe({
+      let subscriber=this.authservice.login(user).subscribe({
         next:(res)=>{
           this.loadflag=false;
+          subscriber.unsubscribe()
           this.authservice.setuser(res);
         },
         error:(err)=>{
           this.errflag=true;
           this.loadflag=false;
           this.message=err.error;
+          subscriber.unsubscribe();
         }
       });
       

@@ -65,7 +65,7 @@
                 <input type="text" formControlName="salary" class="form-control"
                 [ngClass]="{'is-invalid':(salarycontrol.errors&&salarycontrol.touched)||(salarycontrol.errors&&form.submitted)}"/>
                 <div *ngIf="(salarycontrol.errors&&form.submitted)||(salarycontrol.errors&&salarycontrol.touched)" class="invalid">
-                    <p *ngIf="salarycontrol.errors['required']" class="invalid-feedback">name is required</p>
+                    <p *ngIf="salarycontrol.errors['required']" class="invalid-feedback">salary is required</p>
                     <p *ngIf="salarycontrol.errors['pattern']" class="invalid-feedback">must be number more than 2 digit</p>
                 </div>
             </div>
@@ -74,7 +74,7 @@
                 <input type="text" formControlName="phone" class="form-control"
                 [ngClass]="{'is-invalid':(phonecontrol.errors&&phonecontrol.touched)||(phonecontrol.errors&&form.submitted)}"/>
                 <div *ngIf="(phonecontrol.errors&&form.submitted)||(phonecontrol.errors&&phonecontrol.touched)" class="invalid">
-                    <p *ngIf="phonecontrol.errors['required']" class="invalid-feedback">name is required</p>
+                    <p *ngIf="phonecontrol.errors['required']" class="invalid-feedback">phone is required</p>
                     <p *ngIf="phonecontrol.errors['pattern']" class="invalid-feedback">invalid phone</p>
                 </div>
             </div>
@@ -116,7 +116,7 @@
                     <p *ngIf="MaxDayOffcontrol.errors['pattern']" class="invalid-feedback">must be number</p>
                 </div>
             </div>
-            <div class="form-group">
+            <div class="form-group" *ngIf="data">
                 <label>Absence Days</label>
                 <input type="text" formControlName="absenceDays" class="form-control" 
                 [ngClass]="{'is-invalid':(AbsenceDayscontrol.errors&&AbsenceDayscontrol.touched)||(AbsenceDayscontrol.errors&&form.submitted)}"/>

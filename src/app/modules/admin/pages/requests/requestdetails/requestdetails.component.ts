@@ -1,6 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
 import { classroom } from 'src/app/data/classroom';
 import { ClassroomService } from 'src/app/services/classroom.service';
 import { HostmanagerService } from 'src/app/services/hostmanager.service';
@@ -14,6 +13,7 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['../../../../../styles/form.style.css','./requestdetails.component.css']
 })
 export class RequestdetailsComponent {
+  @Input()data:any;
   requestDetails: any;
   errorMessage: string = '';
   requeststatus:number=-1;
@@ -37,24 +37,18 @@ export class RequestdetailsComponent {
         subscriber1.unsubscribe()
       }
     })
-    let subscribe=this.hostman.data.subscribe(
-      {
-        next:res=>{
-          this._RequestService.getRequestDetails(res.data.id).subscribe({
-            next: (response) => {
-              this.requestDetails = response;
-              this.srcimage=[
-                environment.imgeurl+this.requestDetails.studentPhotoUrl,
-                environment.imgeurl+this.requestDetails.identityParentPhotoUrl,
-                environment.imgeurl+this.requestDetails.studentBirthCertPhotoUrl
-              ];
-              this.selectedimage=this.srcimage[0]
-              subscribe.unsubscribe()
-            }
-          });
-        }
+    let subscribe=this._RequestService.getRequestDetails(this.data.id).subscribe({
+      next: (response) => {
+        this.requestDetails = response;
+        this.srcimage=[
+          environment.imgeurl+this.requestDetails.studentPhotoUrl,
+          environment.imgeurl+this.requestDetails.identityParentPhotoUrl,
+          environment.imgeurl+this.requestDetails.studentBirthCertPhotoUrl
+        ];
+        this.selectedimage=this.srcimage[0]
+        subscribe.unsubscribe()
       }
-    )
+    });
   }
   acceptRequest() {
     if(this.classform.valid){ 
@@ -62,7 +56,6 @@ export class RequestdetailsComponent {
       console.log(this.requestDetails.id)
       this._RequestService.acceptRequest(this.requestDetails.id).subscribe({
         next: (response) => {
-          console.log(response)
           this.studentservice.get(response.studentid).subscribe({
             next:res=>{
               res.classRoomID=this.classies[this.classform.controls['class'].value].id;

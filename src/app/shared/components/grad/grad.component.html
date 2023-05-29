@@ -1,0 +1,48 @@
+<section>
+    <section class="stdinfo">
+        <div>
+            <ul>
+                <li>Name</li>
+                <li>class</li>
+                <li *ngIf="resultype=='firstterm'">Year</li>
+            </ul>
+        </div>
+        <div>
+            <ul>
+                <li>{{student.studentFirstName}}</li>
+                <li>{{student.classRoomName}}</li>
+                <li *ngIf="resultype=='firstterm'">{{year}}</li>
+            </ul>
+        </div>
+    </section>
+    <div class="header2" *ngIf="resultype=='fullyear'">
+        <span>
+            grade year
+            <select (change)="getresult($event)">
+                <option></option>
+                <option *ngFor="let item of gradyear;let i=index" value="{{item.id}}">{{item.name}}</option>
+            </select>
+        </span>
+    </div>
+    <section class="result">
+        <header>
+            <ul>
+                <li>Subject</li>
+                <li>Mark</li>
+                <li>Total Mark</li>
+                <li>Passed</li>
+                <li *ngIf="resultype=='fullyear'">Year</li>
+            </ul>
+        </header>
+        <main>
+            <ul *ngFor="let item of examresult">
+                <li>{{item.subjectName}}</li>
+                <li>{{item.firstTermGrade}}</li>
+                <li>{{item.totalSubjectMark}}</li>
+                <li>{{item.passed==false?'No':'Yes'}}</li>
+                <li *ngIf="resultype=='fullyear'">{{item.year}}</li>
+
+            </ul>
+        </main>
+    </section>
+</section>

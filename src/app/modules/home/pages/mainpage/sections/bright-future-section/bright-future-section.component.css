@@ -1,71 +1,91 @@
 /* kids-future */
 .bright-future{
-  padding-block: 80px;
+  padding: 80px 0px;
   position: relative;
   overflow: hidden;
-  background-repeat: no-repeat;
-  background-image: url(../../../../../../../assets/images/wave.svg);
-  background-size: cover;
 }
 .bright-future .container {
-  display: flex;
-  flex-direction: column;
-  gap: 30px;
-  align-items: center;
-  text-align: center;
-}
-.bright-future .container p {
-  color: var(--gray-color);
-}
-.bright-future .container h2{
-  font-weight: 100;
   width: 100%;
-  font-size: 35px;
-}
-.bright-future .container .content{
+  height: 60ex;
   display: flex;
-  gap: 50px;
-  align-items: center;
-  flex-direction: column;
+  gap: 20px;
+  justify-content: center;
 }
-.bright-future .container .content img{
-  width: 400px;
-  border-radius:1px;
-  order: -1;
+.bright-future .container .left-side{
+  width: 40%;
+  height: 100%;
+}
+.bright-future .container .left-side img{
+  display: block;
+  margin: auto;
+  width: 80%;
+  height: 100%;
 }
 
-.bright-future .container .content p{
+.bright-future .container .right-side{
+  width: 50%;
+  margin-top: 2rem;
+}
+
+.bright-future .container .right-side h2{
+  font-weight: 900;
+  width: 65%;
+  font-size: 30px;
+  text-align: left;
+  margin: 1rem 0;
+}
+
+.bright-future .container .right-side .text p{
   line-height: 2;
   margin-block: 0;
-  text-align: center;
   margin-bottom: 20px;
+  color: var(--gray-color);
+
 }
-.bright-future .container .content button:hover{
+.bright-future .container .right-side button:hover{
   background-color: var(--main-color-dark);
 }
+@media(max-width:1050px){
 
-@media (min-width: 768px) {
-
-  .bright-future .container p {
-      font-size: 20px;
-  }
-  .bright-future .container h2{
-  font-size: 45px;
-  width: 500px;
-  }
+.bright-future .container .left-side{
+  width: 40%;
+  height: 100%;
 }
 
+.bright-future .container .right-side{
+  width: 40%;
+}
 
-/* Medium */
-@media (min-width: 992px) {
-  .bright-future .container .content{
-      flex-direction: row;
+.bright-future .container .right-side h2{
+  width: 95%;
+}
+}
+
+@media(max-width:730px){
+  .bright-future .container {
+    flex-direction: column-reverse;
   }
-  .bright-future .container .content img{
-      order:10
+  .bright-future .container .left-side{
+    width: 100%;
+    height: 100%;
   }
-  .bright-future .container .content p{
-  margin-block: 40px;
-  text-align: left;
+  .bright-future .container .right-side{
+    width: 100%;
+    margin-top: 2rem;
+  }
+  
+  .bright-future .container .right-side h2{
+    font-weight: 900;
+    width: 95%;
+    font-size: 1.1375em;
+    text-align: left;
+    margin: 1rem 0;
+    padding-left: 2rem;
+  }
+  .bright-future .container .right-side p{
+    font-size:0.825em;
+    padding-left: 2rem;
+    padding-right: 1.25rem;
+
   }
 }

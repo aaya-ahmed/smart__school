@@ -16,6 +16,8 @@ import { UploadfileComponent } from './pages/materials/uploadfile/uploadfile.com
 import { MaterialModule } from '../material/material.module';
 import { AuthModule } from '../auth/auth.module';
 import { ExamresultComponent } from './pages/examresult/examresult.component';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from 'src/app/interceptor/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -39,6 +41,8 @@ import { ExamresultComponent } from './pages/examresult/examresult.component';
     SharedModule,
     MaterialModule,
     AuthModule
-  ]
+  ],
+  providers:[{provide:HTTP_INTERCEPTORS,useClass:AuthInterceptor,multi:true}]
+
 })
 export class TeacherModule { }

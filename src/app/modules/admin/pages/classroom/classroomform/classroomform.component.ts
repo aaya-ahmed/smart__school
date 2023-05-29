@@ -9,7 +9,7 @@ import { HostmanagerService } from 'src/app/services/hostmanager.service';
 @Component({
   selector: 'app-classroomform',
   templateUrl: './classroomform.component.html',
-  styleUrls: ['./classroomform.component.css','../../../../../styles/form.style.css']
+  styleUrls: ['../../../../../styles/form.style.css']
 })
 export class ClassroomformComponent {
   gradeyears:gradyear[]=[];
@@ -39,8 +39,8 @@ export class ClassroomformComponent {
       let index=this.gradeyears.findIndex(p=>p.id==+this.gradecontrol.value)
         let classroom:classroom={
           id:0,
-          name: this.namecontrol.value,
-          gradeYearId: +this.gradecontrol.value,
+          name:this.namecontrol.value,
+          gradeYearId: + this.gradecontrol.value,
           gradeYearName: this.gradeyears[index].name
         }
         this.classroomservices.post(classroom).subscribe({

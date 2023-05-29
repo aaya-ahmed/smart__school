@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { HomeRoutingModule } from './home.routing';
-import { TestimonialsSectionComponent } from './pages/mainpage/sections/testimonials-section/testimonials-section.component';
 import { LandingsectionComponent } from './pages/mainpage/sections/landing-section/landing-section.component';
 import { BrightFutureSectionComponent } from './pages/mainpage/sections/bright-future-section/bright-future-section.component';
 import { ActivitySectionComponent } from './pages/mainpage/sections/activity-section/activity-section.component';
@@ -11,11 +10,12 @@ import { MainpageComponent } from './pages/mainpage/mainpage.component';
 import { CommonModule } from '@angular/common';
 import { HomeComponent } from './home.component';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { SubjectsComponent } from './pages/subjects/subjects.component';
+import { CarouselModule } from 'ngx-owl-carousel-o';
 
 
 @NgModule({
   declarations: [
-                 TestimonialsSectionComponent,
                  LandingsectionComponent,
                  BrightFutureSectionComponent,
                  ActivitySectionComponent,
@@ -23,9 +23,10 @@ import { SharedModule } from 'src/app/shared/shared.module';
                  TeachersComponent,
                  VideoComponent,
                  MainpageComponent,
-                 HomeComponent
+                 HomeComponent,
+                 SubjectsComponent
                  ],
-  imports: [CommonModule,HomeRoutingModule,SharedModule],
+  imports: [CommonModule,HomeRoutingModule,SharedModule,CarouselModule],
   exports: [],
   providers: []
 })

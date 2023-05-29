@@ -1,43 +1,49 @@
 <header>
   <div class="container">
-      <section>
-          <p class="number">
-              <i class="fa-solid fa-phone"></i>
-              123456789q    
-          </p>
-          <p class="email">
-              <i class="fa-regular fa-envelope"></i>
-              smartschool@gmail.com
-          </p>
+      <section class="logo">
+        <div>
+            <img src="../../../../assets/images/logo.svg" alt="">
+        </div>
       </section>
+      <section class="togglesection">
+        <button class="togglebtn" (click)="settogglebar()">
+            <i class="fa-solid fa-bars"></i>
+        </button>
+      </section>
+      <section class="navigation-bar" [ngClass]="{'show':togglebar}">
+        <button class="closebtn" (click)="settogglebar()">
+            <i class="fa-solid fa-close"></i>
+        </button>
+        <nav>
+            <ul>
+                <li (click)="openpage('home')">
+                    Home
+                </li>
+                <li>
+                    Activity
+                </li>
+                <li>
 
-      <section *ngIf="logoutflag">
-          <p (click)="openlogin()">Login</p>
-          <p (click)="openregister()">Register</p>
-      </section>
-      <section *ngIf="!logoutflag">
-        <p (click)="gotoprofile()">profile</p>
-        <p (click)="logout()">Logout</p>
+                    Contact
+                </li>
+                <li (click)="openpage('home/course')">
+                    Courses
+                </li>
+                <li (click)="openpage('auth/login')" *ngIf="logoutflag">
+                    Login
+                </li>
+                <li (click)="openpage('auth/register')" *ngIf="logoutflag">
+                    Register
+                </li>
+                <li (click)="gotoprofile()" *ngIf="!logoutflag">
+                    profile
+                </li>
+                <li (click)="logout()" *ngIf="!logoutflag">
+                    Logout
+                </li>
+
+            </ul>
+        </nav>
       </section>
   </div>
 </header>
-<nav>
-  <div class="container">
-      <div class="logo">
-          <img src="../../../../assets/images/logo.webp" alt="">
-      </div>
-      <section>
-          <ul>
-              <li class="active"><a class="active" href="">home</a></li>
-              <li><a href=""> pages</a></li>
-              <li><a href=""> courses</a></li>
-              <li><a href=""> events</a></li>
-              <li><a href=""> blog</a></li>
-              <li><a href=""> contact</a></li>
-          </ul>
-          <!-- <i class="fa-solid fa-magnifying-glass"></i>
-          <i class="fa-solid fa-bars-staggered bars"></i>
-          <button>Apply as a Teacher</button> -->
-      </section>
-  </div>
-</nav>

@@ -15,19 +15,23 @@
         <ul>
             <li [ngClass]="{'active':currentpage=='profile'}" (click)="gottopage('profile')">
                 <i class="fa-solid fa-chalkboard-teacher"></i>
-               <span> profile</span>
+               <span> Profile</span>
             </li>
             <li [ngClass]="{'active':currentpage=='schadule'}" (click)="gottopage('schadule')">
                 <i class="fa-solid fa-calendar"></i>
-               <span>Schadule</span>
+               <span>Schedule</span>
             </li>
             <li [ngClass]="{'active':currentpage=='material'}" (click)="gottopage('material')">
                 <i class="fa-solid fa-book"></i>
                <span> Materials</span>
             </li>
-            <li [ngClass]="{'active':currentpage=='grad'}" (click)="gottopage('grad')">
+            <li [ngClass]="{'active':currentpage=='grad/firstterm'}" (click)="gottopagewithparamter('grad','firstterm')">
                 <i class="fa-solid fa-square-poll-vertical"></i>
-               <span>grads</span>
+               <span>First Term Grades</span>
+            </li>
+            <li [ngClass]="{'active':currentpage=='grad/fullyear'}" (click)="gottopagewithparamter('grad','fullyear')">
+                <i class="fa-solid fa-square-poll-vertical"></i>
+               <span>Full Year Grades</span>
             </li>
             <li [ngClass]="{'active':currentpage=='changepassword'}" (click)="gottopage('changepassword')">
                 <i class="fa-solid fa-lock"></i>

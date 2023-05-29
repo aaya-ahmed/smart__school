@@ -6,11 +6,12 @@ import { ChangepasswordComponent } from './pages/changepassword/changepassword.c
 import { LoginComponent } from './pages/login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ForgetPasswordComponent } from './pages/forgetPassword/forgetPassword.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { LayoutauthComponent } from './pages/layoutauth/layoutauth.component';
 import { ConfirmemailComponent } from './pages/confirmemail/confirmemail.component';
 import { RestpasswordComponent } from './pages/restpassword/restpassword.component';
+import { AuthInterceptor } from 'src/app/interceptor/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { RestpasswordComponent } from './pages/restpassword/restpassword.compone
     HttpClientModule,
     SharedModule
   ],
+  providers:[{provide:HTTP_INTERCEPTORS,useClass:AuthInterceptor,multi:true}],
   bootstrap:[    LayoutauthComponent  ],
   exports:[    ChangepasswordComponent  ]
 })
