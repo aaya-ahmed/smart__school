@@ -11,11 +11,13 @@ import { HostmanagerService } from 'src/app/services/hostmanager.service';
 export class ClassroomComponent implements OnInit,OnDestroy{
   classrooms:classroom[]=[];
   subscriber:any;
+  loader:boolean=true;
   constructor(private classroomservice:ClassroomService,private hostman:HostmanagerService){}
 
   ngOnInit(): void {
     this.classroomservice.getall().subscribe({
       next:res=>{
+        this.loader=false;
         if(res.length>0)
           this.classrooms=res;
       }

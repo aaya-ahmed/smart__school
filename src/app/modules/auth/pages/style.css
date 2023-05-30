@@ -64,7 +64,7 @@ form{
     outline: none;
 
 }
-.resetbtn,.loginbtn,.registerbtn{
+.resetbtn,.registerbtn{
     display: block;
     width: 100%;
     padding: 1rem;

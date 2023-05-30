@@ -11,11 +11,13 @@ import { SubjectService } from 'src/app/services/subject.service';
 export class SubjectsComponent implements OnInit,OnDestroy{
   subjects:subject[]=[];
   subscriber:any
+  loader:boolean=true;
   constructor(private subject:SubjectService,private hostman:HostmanagerService){}
 
   ngOnInit(): void {
     this.subscriber=this.subject.getall().subscribe({
       next:res=>{
+        this.loader=false;
         if(res.length>0)
           this.subjects=res;
           this.subjects.sort(function(a, b){

@@ -9,12 +9,13 @@ import { StudentserviceService } from 'src/app/services/studentservice.service';
 })
 export class AbsenceComponent implements OnInit {
   absance:any[]=[]
+  loader:boolean=true;
   constructor(private studentservice:StudentserviceService,private hostman:HostmanagerService ){}
   ngOnInit(): void {
     this.studentservice.getAbsence().subscribe({
       next:res=>{
+        this.loader=false;
         this.absance=res;
-        console.log(this.absance)
       }
     })
   }

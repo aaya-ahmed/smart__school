@@ -9,7 +9,7 @@ import { TeacherService } from 'src/app/services/teacher.service';
 @Component({
   selector: 'app-students',
   templateUrl: './students.component.html',
-  styleUrls: ['./students.component.css']
+  styleUrls: ['../../../../styles/modulesStyle.css','./students.component.css']
 })
 export class StudentsComponent {
   teacher:any;

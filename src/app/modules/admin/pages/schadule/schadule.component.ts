@@ -21,6 +21,7 @@ export class SchaduleComponent implements OnInit , OnDestroy{
   sessions:sessions[]=[];
   schaduleSubscriber:Subscription=new Subscription();
   hostSubscribtion:Subscription=new Subscription();
+  loader:boolean=false;
   get datecontrol(){
     return this.formdata.controls['date'];
   }
@@ -51,9 +52,11 @@ export class SchaduleComponent implements OnInit , OnDestroy{
   }
   getschadule(){
     if(this.formdata.valid){
+      this.loader=true;
       let classid:number=this.classrooms[+this.classcontrol.value-1].id
       this.schaduleSubscriber=this.schaduleservice.getsessions(classid,this.datecontrol.value).subscribe({
         next:res=>{
+          this.loader=false;
           this.sessions=res;
           this.schaduleSubscriber.unsubscribe()
         }

@@ -18,29 +18,24 @@ export class StudentsComponent {
   _subscriber:any;
   first:number=0;
   second:number=0;
+  loader:boolean=false;
+  yearindex:number=0;
   constructor(private examservice:ExamserviceService,private gradeyearservice:GradyearService,private examresultservice:ExamserviceService,private studentsservice:StudentserviceService,private hostman:HostmanagerService) {}
   ngOnInit(): void {
     let subscriber=this.gradeyearservice.getall().subscribe({
       next:res=>{
         this.gradeyear=res;
-        subscriber.unsubscribe()
+        subscriber.unsubscribe();
+        this.getdata();
       }
     })
 }
-getdata(index:any){
-  let id:number=0;
-  if(typeof index=='number'){
-    id=index;
-  }
-  else{
-    id=this.gradeyear[index.target.value].id;
-  }
-  this._subscriber=this.studentsservice.getallByGradeYear(id).subscribe({
+getdata(){
+  this._subscriber=this.studentsservice.getallByGradeYear(this.gradeyear[this.yearindex].id).subscribe({
     next: (response) => {
       this.allstudents = response;
-
       this.allstudents.forEach((item,i)=>{
-        this.examservice.getstudentfullresult(item.id,id).subscribe({
+        this.examservice.getstudentfullresult(item.id,this.gradeyear[this.yearindex].id).subscribe({
           next:res=>{
             res.forEach(item=>{
               this.first=this.first+item.firstTermGrade;
@@ -48,6 +43,7 @@ getdata(index:any){
             });
             this.allstudents[i].firstterm=this.first;
             this.allstudents[i].secondterm=this.second;
+            this.loader=false;
           }
         })
       })
@@ -60,9 +56,10 @@ showdetails(index:number){
 }
 update(index:number){
   this.hostman.load({data:this.allstudents[index],returndata:'',type:'modifystudent',open:true})
-  this.hostman.data.subscribe({
+  let subscriber=this.hostman.data.subscribe({
     next:res=>{
-        this.getdata(1);
+        this.getdata();
+        subscriber.unsubscribe();
     }
   })
 }
@@ -93,7 +90,7 @@ showAbsence(){
 upgradestudents(){
   this.examresultservice.upgradestudents().subscribe({
     next:res=>{
-      this.getdata(0);
+      this.getdata();
     },
     error:err=>{
       console.log(err.error.message)

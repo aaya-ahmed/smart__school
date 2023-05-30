@@ -23,7 +23,10 @@
         </div>
     </form>
 </div>
-<ng-container *ngIf="sessions.length>0">
+<ng-container *ngIf="loader">
+    <app-loader></app-loader>
+</ng-container>
+<ng-container *ngIf="!loader&&sessions.length>0">
     <div class="tableheader">
         <div>No</div>
         <div>Day</div>
@@ -44,7 +47,7 @@
         </div>
     </div>  
 </ng-container>        
-<ng-container *ngIf="sessions.length==0">
+<ng-container *ngIf="!loader&&sessions.length==0">
     <div class="notfoundbody">
         Not Found
     </div>

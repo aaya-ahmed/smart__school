@@ -8,7 +8,10 @@
                 <button (click)="close()"><i class="fa-solid fa-close"></i></button>
             </div>
         </header>
-        <ng-container *ngIf="absance.length>0">
+        <ng-container *ngIf="loader">
+            <app-loader></app-loader>
+        </ng-container>
+        <ng-container *ngIf="!loader&&absance.length>0">
             <div class="tableheader">
                 <div>Class</div>
                 <div>Name</div>
@@ -22,13 +25,13 @@
                     <div>{{absance.ClassRoomName}}</div>
                     <div>{{absance.StudentFirstName}}</div>
                     <div>{{absance.MaxDayOff}}</div>
-                    <div>{{absance.AbsenceDays}}</div>
+                    <div style="color:red">{{absance.AbsenceDays}}</div>
                     <div>{{absance.Address}}</div>
-                    <div>{{absance.Fees}}</div>
+                    <div>{{absance.Fees==true?'yes':'no'}}</div>
                 </div>
             </div>
         </ng-container>        
-        <ng-container *ngIf="absance.length==0">
+        <ng-container *ngIf="!loader&&absance.length==0">
             <div class="notfoundbody">
                 Not Found
             </div>

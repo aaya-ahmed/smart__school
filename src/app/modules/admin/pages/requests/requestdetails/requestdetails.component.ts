@@ -21,6 +21,7 @@ export class RequestdetailsComponent {
   classies:classroom[]=[]
   selectedimage:string=''
   counter:number=0;
+  loader:boolean=false;
   classform:FormGroup=new FormGroup({
     class:new FormControl('',Validators.required)
   })
@@ -51,38 +52,40 @@ export class RequestdetailsComponent {
     });
   }
   acceptRequest() {
-    if(this.classform.valid){ 
-      console.log(this.classform)     
-      console.log(this.requestDetails.id)
+    if(this.classform.valid){
+      this.loader=true;
       this._RequestService.acceptRequest(this.requestDetails.id).subscribe({
         next: (response) => {
           this.studentservice.get(response.studentid).subscribe({
             next:res=>{
               res.classRoomID=this.classies[this.classform.controls['class'].value].id;
               res.classRoomName=this.classies[this.classform.controls['class'].value].name;
-              console.log(res)
-              //err
               this.studentservice.update(res).subscribe({
                 next:res=>{
+                  this.loader=false;
                   this.requeststatus=1;
                   this.close()
                 }
               })
             },
             error:err=>{
+              this.loader=false;
               console.log(err)
             }
           })
         },
         error:err=>{
+          this.loader=false;
           this.errorMessage="request not accepted"
         }
       });
     }
   }
   deleteRequest() {
+    this.loader=true;
     this._RequestService.refuseRequest(this.requestDetails.id).subscribe({
       next: (response) => {
+        this.loader=false;
         if (response === null) {
           this.requeststatus=1;
           this.close();

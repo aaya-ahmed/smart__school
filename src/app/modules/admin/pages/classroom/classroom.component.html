@@ -2,7 +2,10 @@
     <h2>Class room</h2>
     <button (click)="add()" class="addbtn">Add</button>
 </div>
-<ng-container *ngIf="classrooms.length>0">
+<ng-container *ngIf="loader">
+    <app-loader></app-loader>
+</ng-container>
+<ng-container *ngIf="!loader&&classrooms.length>0">
     <div class="tableheader">
         <div>Name</div>
         <div>Grade Name</div>
@@ -22,7 +25,7 @@
         </div>
     </div>  
 </ng-container>        
-<ng-container *ngIf="classrooms.length==0">
+<ng-container *ngIf="!loader&&classrooms.length==0">
     <div class="notfoundbody">
         Not Found
     </div>

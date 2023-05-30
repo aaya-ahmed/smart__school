@@ -29,9 +29,17 @@
             <p *ngIf="passwordcontrol.errors['required']" class="invalid-feedback">password is required</p>
         </div>
         <a [routerLink]="'../forgetpassword'" class="form-link">Forgot Password?</a>
-        <div class="form-group" [ngClass]="{'loading':loadflag&&loginform.valid}">
-            <input type="submit" value="Login" class="loginbtn" [disabled]="loadflag" />
+        <ng-container *ngIf="!loadflag" >
+
+        <div class="form-group submitform" >
+                <input type="submit" value="Login" class="loginbtn" [disabled]="loadflag" />
+                <i class="fa-solid fa-arrow-right"></i>
         </div>
+    </ng-container>
+
+        <ng-container *ngIf="loadflag">
+            <app-loader></app-loader>
+        </ng-container>
         <p style="text-align: center;">You Don't Have Account? <a [routerLink]="'../register'">register</a></p>
         <span class="errmess" *ngIf="errflag">{{message}}</span>
     </form>

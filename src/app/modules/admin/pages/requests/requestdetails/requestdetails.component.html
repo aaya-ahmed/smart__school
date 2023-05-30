@@ -73,10 +73,13 @@
             </tr>  
           </table>
           </form>
-          <div class="rowbtn">
+          <div class="rowbtn" *ngIf="!loader">
             <p>{{errorMessage}}</p>
             <button class="btnaccept" (click)="acceptRequest()">Accept</button>
             <button class="btnrefuse" (click)="deleteRequest()">Refuse</button>
+          </div>
+          <div class="rowbtn" *ngIf="loader">
+            <app-loader></app-loader>
           </div>
         </div>
         <div class="images">

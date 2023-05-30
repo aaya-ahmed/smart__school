@@ -30,7 +30,12 @@
             </div>
             <div class="form-group submit">
                 <span [ngClass]="{'success':mess=='Success','failed':mess!='Success'}">{{mess}}</span>
-                <input type="submit" value="Submit" class="btn"/>
+                <ng-container *ngIf="loader">
+                    <app-loader></app-loader>
+                </ng-container>
+                <ng-container *ngIf="!loader">
+                    <input type="submit" value="Submit" class="btn"/>
+                </ng-container>
             </div>
         </form>
     </div>

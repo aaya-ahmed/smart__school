@@ -16,6 +16,7 @@ export class ScadulesComponent implements OnChanges {
   exist:boolean=false;
   mess:string='';
   type:string='';
+  loader:boolean=false;
   constructor(private schaduleservice:SchaduleSessionService,private hostman:HostmanagerService){}
   ngOnChanges(changes: SimpleChanges): void {
     if(changes['schadule'].firstChange==false){
@@ -54,6 +55,7 @@ export class ScadulesComponent implements OnChanges {
     }
   }
   save(){
+    this.loader=true;
     this.schadules.forEach(ele=>{
       let schadule:schadule={
         day: ele.day.toString(),
@@ -66,22 +68,25 @@ export class ScadulesComponent implements OnChanges {
           ele.sessions.scheduleID=res.id;
           this.schaduleservice.postsession(ele.sessions).subscribe({
             next:res=>{
+              this.loader=false;
               this.mess='Successfully';
               this.type='success';
               this.schadules=[];
               this.reset()
             },
             error:err=>{
+              this.loader=false;
               this.mess=err.error;
               this.type='failed';
-              //this.reset()
+              this.reset()
             }
           })
         },
         error:err=>{
+          this.loader=false;
           this.mess=err.error;
           this.type='failed';
-        //  this.reset()
+          this.reset()
 
         }
       })

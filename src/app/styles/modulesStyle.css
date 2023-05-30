@@ -15,6 +15,7 @@ i{
 .addbtn,.showbtn{
     padding: 5px 30px;
     border-radius: 5px;
+
     box-shadow: 3px 1px 2px 0 #00000052;
     color: black;
     font-weight: 800;
@@ -46,7 +47,7 @@ i{
 .notfoundbody{
     box-shadow: 1px 1px 1px 1px #00000042;
     padding: 1rem 0.5rem;
-    margin: 1rem;
+    margin: 1rem 2rem;
     text-align: center;
 }
 .tableheader div,.tablebody div{

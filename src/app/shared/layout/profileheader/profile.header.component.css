@@ -9,26 +9,16 @@ header{
     border-radius: 10px;
     display: flex;
     color: white;
+    justify-content: space-between;
 }
 #togglebtn{
     position: absolute;
     z-index: -9999;
 }
-.search{
-    width: 150px;
-    border: 0;
-    background-color: transparent;
-    outline: 0;
-    color: white;
-}
-.searchsec{
-    width: 80%;
-}
 i{
     font-size: 15px;
     padding:0 1rem;
 }
-
 button{
     background-color: transparent;
     border: 0;

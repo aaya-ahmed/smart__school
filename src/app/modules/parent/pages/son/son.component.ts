@@ -6,7 +6,7 @@ import { ParentserviceService } from 'src/app/services/parentservice.service';
 @Component({
   selector: 'app-son',
   templateUrl: './son.component.html',
-  styleUrls: ['./son.component.css']
+  styleUrls: ['../../../../styles/modulesStyle.css','./son.component.css']
 })
 export class SonComponent implements OnInit {
   students:student[]=[];

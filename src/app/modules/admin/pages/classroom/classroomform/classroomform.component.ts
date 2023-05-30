@@ -19,6 +19,7 @@ export class ClassroomformComponent {
     name:new FormControl('',[Validators.required,Validators.pattern('^[1-6]{1}/[1-9]{1}$')]),
     gradeYearId:new FormControl('',[Validators.required]),  
   });
+  loader:boolean=false;
   constructor(private gradeyearservice:GradyearService,private classroomservices:ClassroomService,private hostman:HostmanagerService){}
   ngOnInit(): void {
     let subscriber1=this.gradeyearservice.getall().subscribe({
@@ -36,6 +37,7 @@ export class ClassroomformComponent {
   }
   addclassroom(){
     if(this.classroom.valid){
+      this.loader=true;
       let index=this.gradeyears.findIndex(p=>p.id==+this.gradecontrol.value)
         let classroom:classroom={
           id:0,
@@ -45,11 +47,13 @@ export class ClassroomformComponent {
         }
         this.classroomservices.post(classroom).subscribe({
           next:data=>{
+            this.loader=false;
             classroom.id=data.id;
             this.classies.push(classroom);
             this.mess='Success'
           },
           error:err=>{
+            this.loader=false;
             this.mess=err.error;
           }
         })

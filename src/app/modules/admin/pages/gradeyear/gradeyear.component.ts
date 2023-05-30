@@ -12,10 +12,12 @@ export class GradeyearComponent implements OnInit,OnDestroy{
   gradyears:gradyear[]=[];
   deletemess:string='';
   subscriber:any;
+  loader:boolean=true;
   constructor(private gradyear:GradyearService,private hostman:HostmanagerService){}
   ngOnInit(): void {
     this.gradyear.getall().subscribe({
       next:res=>{
+        this.loader=false;
         if(res.length>0)
           this.gradyears=res;
       }

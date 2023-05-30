@@ -11,6 +11,7 @@ import { ChangephotoComponent } from './components/changephoto/changephoto.compo
 import { SchaduleComponent } from './components/schadule/schadule.component';
 import { RouterModule } from '@angular/router';
 import { GradComponent } from './components/grad/grad.component';
+import { LoaderComponent } from './components/loader/loader.component';
 
 
 
@@ -24,7 +25,8 @@ import { GradComponent } from './components/grad/grad.component';
                  ConfirmComponent,
                  MessagerespnceComponent,
                  ProfileHeaderComponent,
-                  GradComponent],
+                  GradComponent,
+                  LoaderComponent],
   imports: [
     CommonModule,
     RouterModule
@@ -37,7 +39,8 @@ import { GradComponent } from './components/grad/grad.component';
            ChangephotoComponent,
            MessagerespnceComponent,
            ProfileHeaderComponent,
-           GradComponent]
+           GradComponent,
+           LoaderComponent]
 
 })
 export class SharedModule { }

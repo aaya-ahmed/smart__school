@@ -1,0 +1,8 @@
+.background-loader{
+    width: 60px;
+    height: 60px;
+    margin: 1rem auto;
+}
+.background-loader img{
+    width: 100%;
+}

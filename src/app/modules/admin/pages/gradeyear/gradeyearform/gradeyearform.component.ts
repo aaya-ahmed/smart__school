@@ -18,6 +18,7 @@ export class GradeyearformComponent implements OnInit , OnDestroy{
     name:new FormControl('',[Validators.required,Validators.pattern("^[a-z A-Z 0-9]{3,}$")]),
     fees:new FormControl(0,[Validators.required,Validators.pattern("^[0-9]{2,}$")])
   });
+  loader:boolean=false;
   constructor(private gradeyearservice:GradyearService,private hostman:HostmanagerService){}
   ngOnInit(): void {
   }
@@ -29,8 +30,10 @@ export class GradeyearformComponent implements OnInit , OnDestroy{
   }
   addgradeyear(){
     if(this.gradeyear.valid){
+      this.loader=true;
        this.subscriber= this.gradeyearservice.post(this.gradeyear.value).subscribe({
           next:(data:any)=>{
+            this.loader=false;
             let grade={
               ...this.gradeyear.value,
               id:data.id
@@ -39,6 +42,7 @@ export class GradeyearformComponent implements OnInit , OnDestroy{
             this.mess='Success';
           },
           error:err=>{
+            this.loader=false;
             this.mess=err.error;
           }
         });

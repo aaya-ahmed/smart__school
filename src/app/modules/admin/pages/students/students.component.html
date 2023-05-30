@@ -9,13 +9,15 @@
 <div class="header2">
     <span>
         grade year
-        <select (change)="getdata($event)">
-            <option></option>
+        <select (change)="getdata()" [(ngModel)]="yearindex">
             <option *ngFor="let item of gradeyear;let i=index" value="{{i}}">{{item.name}}</option>
         </select>
     </span>
 </div>
-<ng-container *ngIf="allstudents.length>0">
+<ng-container *ngIf="loader">
+    <app-loader></app-loader>
+</ng-container>
+<ng-container *ngIf="!loader&&allstudents.length>0">
     <div class="tableheader">
         <div></div>
         <div>Name</div>
@@ -28,7 +30,7 @@
         <div>
             <img src="https://localhost:44309/{{item.studentPhotoUrl}}" class="stdimg"/>
         </div>
-        <div>
+        <div title="{{item.studentFirstName}}">
             {{item.studentFirstName}}
         </div>
         <div>{{item.firstterm}}</div>
@@ -44,7 +46,7 @@
         </div>
         </div>
 </ng-container>        
-<ng-container *ngIf="allstudents.length==0">
+<ng-container *ngIf="!loader&&allstudents.length==0">
     <div class="notfoundbody">
         Not Found
     </div>

@@ -1,7 +1,10 @@
 <div class="header">
     <h2>Requests</h2>
 </div>
-<ng-container *ngIf="allRequests.length>0">
+<ng-container *ngIf="loader">
+    <app-loader></app-loader>
+</ng-container>
+<ng-container *ngIf="!loader&&allRequests.length>0">
     <div class="tableheader">
         <div></div>
         <div>Student Name</div>
@@ -29,7 +32,7 @@
         </div>
     </div>  
 </ng-container>        
-<ng-container *ngIf="allRequests.length==0">
+<ng-container *ngIf="!loader&&allRequests.length==0">
     <div class="notfoundbody">
         Not Found
     </div>

@@ -20,6 +20,7 @@ export class SubjectformComponent {
     TotalMark:new FormControl('',[Validators.required,Validators.pattern("^[1-9][0-9]{1,}$")]),  
     gradeYearId:new FormControl('',[Validators.required]) 
   });
+  loader:boolean=false;
   constructor(private gradeyearservice:GradyearService,private subjectservice:SubjectService,private hostman:HostmanagerService){}
   ngOnInit(): void {
     let subscriber1=this.gradeyearservice.getall().subscribe({
@@ -40,6 +41,7 @@ export class SubjectformComponent {
   }
   addsubject(){
     if(this.subject.valid){
+      this.loader=true;
         let gradeindex=this.gradeyears.findIndex(p=>p.id==+this.gradecontrol.value)
         let subject:subject={
           id:0,
@@ -50,11 +52,13 @@ export class SubjectformComponent {
         }
         this.subjectservice.post(subject).subscribe({
           next:data=>{
+            this.loader=false;
             subject.id=data.id;
             this.subjects.push(subject);
             this.mess="Success";
           },
           error:err=>{
+            this.loader=false;
             this.mess=err.error;
           }
         });

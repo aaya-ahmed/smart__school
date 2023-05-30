@@ -19,15 +19,35 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%,-50%);
-    padding: 3rem 0;
+    padding: 0 0 3rem 0;
 }
 
 .title {
 	text-align: center;
-	margin-top: 30px;
+    margin-top: 0;
+    padding: 1rem 0;
+    background-color: #324864;
+    color: white;
 }
-
-
+.loginbtn{
+    background-color: transparent;
+    outline: none;
+    border: none;
+    font-size: 15px;
+    line-height: 1;
+    color: white;
+    padding: 0 0.4rem;
+    cursor: pointer;
+}
+.submitform{
+    width: fit-content;
+    justify-content: center;
+    background-color: var(--main-color);
+    color: white;
+    padding: 0.7rem;
+    border-radius: 5px;
+    margin: 0.5rem auto;
+}
 #fa-eye{
     position: absolute;
     z-index: -9999;

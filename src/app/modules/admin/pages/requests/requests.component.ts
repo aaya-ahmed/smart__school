@@ -15,6 +15,7 @@ export class RequestsComponent {
   gradeyears:gradyear[]=[];
   requestSubscribtion:Subscription=new Subscription()
   hostSubscribtion:Subscription=new Subscription()
+  loader:boolean=true;
   constructor(private _RequestService: RequestService,private hostman:HostmanagerService) {}
   ngOnInit(): void {
     this.getRequests();
@@ -22,10 +23,12 @@ export class RequestsComponent {
 getRequests(){
   this.requestSubscribtion=this._RequestService.getRequests().subscribe({
     next: (response) => {
+      this.loader=false;
       this.allRequests = response;
       this.requestSubscribtion.unsubscribe();
     },
     error:err=>{
+      this.loader=false;
       this.requestSubscribtion.unsubscribe();
     }
   });
