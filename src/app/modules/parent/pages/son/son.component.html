@@ -12,7 +12,7 @@
     <div class="data">
         <div *ngFor="let item of students;let i=index" class="tablebody">
             <div>
-                <img src="https://localhost:44309/{{item.studentPhotoUrl}}" class="stdimg"/>
+                <img src="{{prefix}}{{item.studentPhotoUrl}}" class="stdimg"/>
             </div>
             <div>
                 {{item.studentFirstName}}
@@ -33,10 +33,13 @@
                 <button title="full year grade" (click)="gotoresult(item.id,'fullyear')">
                     <i class="fa-solid fa-square-poll-vertical"></i>
                 </button>
+                <button title="payment" *ngIf="item.fees == false" (click)="gotopayment(item)">
+                  <i class="fa-solid fa-credit-card"></i>
+              </button>
             </div>
         </div>
     </div>
-</ng-container>        
+</ng-container>
 <ng-container *ngIf="students.length==0">
     <div class="notfoundbody">
         Not Found

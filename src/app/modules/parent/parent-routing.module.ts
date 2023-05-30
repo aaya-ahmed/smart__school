@@ -7,6 +7,7 @@ import { SchaduleComponent } from 'src/app/shared/components/schadule/schadule.c
 import { ChangepasswordComponent } from '../auth/pages/changepassword/changepassword.component';
 import { GradComponent } from 'src/app/shared/components/grad/grad.component';
 import { parentGuard } from 'src/app/guards/parent.guard';
+import { PaymentComponent } from './pages/payment/payment.component';
 
 const routes: Routes = [
   {
@@ -38,6 +39,10 @@ const routes: Routes = [
       {
         path:'grad/:type/:id',
         component:GradComponent
+      },
+      {
+        path:'payment/:parent/:student/:amount',
+        component:PaymentComponent
       }
     ]
   }

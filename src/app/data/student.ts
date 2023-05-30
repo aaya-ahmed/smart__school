@@ -9,6 +9,7 @@ export interface student{
     maxDayOff :number,
     absenceDays :number,
     fees:boolean,
+    gradePrice?: number,
     parentID :string,
     classRoomID :number,
     classRoomName :string,
