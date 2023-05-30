@@ -1,0 +1,51 @@
+<form [formGroup]="payment" #form="ngForm" (ngSubmit)="addpayment()">
+  <div class="form-group">
+      <label>Card Name</label>
+      <input type="text" formControlName="cardName" class="form-control"
+      [ngClass]="{'is-invalid':(cardnamecontrol.errors&&cardnamecontrol.touched)||(cardnamecontrol.errors&&form.submitted)}"/>
+      <div *ngIf="(cardnamecontrol.errors&&form.submitted)||(cardnamecontrol.errors&&cardnamecontrol.touched)" class="invalid">
+          <p *ngIf="cardnamecontrol.errors['required']" class="invalid-feedback">cardname is required</p>
+          <p *ngIf="cardnamecontrol.errors['pattern']" class="invalid-feedback">name must be [1-6]/[1-9]</p>
+      </div>
+  </div>
+  <div class="form-group">
+      <label>Card Number</label>
+      <input type="text" formControlName="cardNumber" class="form-control"
+      [ngClass]="{'is-invalid':(cardnumbercontrol.errors&&cardnumbercontrol.touched)||(cardnumbercontrol.errors&&form.submitted)}"/>
+      <div *ngIf="(cardnumbercontrol.errors&&form.submitted)||(cardnumbercontrol.errors&&cardnumbercontrol.touched)" class="invalid">
+          <p *ngIf="cardnumbercontrol.errors['required']" class="invalid-feedback">cardnumber is required</p>
+          <p *ngIf="cardnumbercontrol.errors['pattern']" class="invalid-feedback">name must be [1-6]/[1-9]</p>
+      </div>
+  </div>
+  <div class="form-group">
+    <label>Exp Year</label>
+    <input type="text" formControlName="cardExpiryYear" class="form-control"
+      [ngClass]="{'is-invalid':(cardexpyearcontrol.errors&&cardexpyearcontrol.touched)||(cardexpyearcontrol.errors&&form.submitted)}"/>
+    <div *ngIf="(cardexpyearcontrol.errors&&form.submitted)||(cardexpyearcontrol.errors&&cardexpyearcontrol.touched)" class="invalid">
+        <p *ngIf="cardexpyearcontrol.errors['required']" class="invalid-feedback">cardexpiryyear is required</p>
+        <p *ngIf="cardexpyearcontrol.errors['pattern']" class="invalid-feedback">name must be [1-6]/[1-9]</p>
+    </div>
+</div>
+<div class="form-group">
+  <label>Exp Month</label>
+  <input type="text" formControlName="cardExpiryMonth" class="form-control"
+      [ngClass]="{'is-invalid':(cardexpmonthcontrol.errors&&cardexpmonthcontrol.touched)||(cardexpmonthcontrol.errors&&form.submitted)}"/>
+  <div *ngIf="(cardexpmonthcontrol.errors&&form.submitted)||(cardexpmonthcontrol.errors&&cardexpmonthcontrol.touched)" class="invalid">
+      <p *ngIf="cardexpmonthcontrol.errors['required']" class="invalid-feedback">cardname is required</p>
+      <p *ngIf="cardexpmonthcontrol.errors['pattern']" class="invalid-feedback">name must be [1-6]/[1-9]</p>
+  </div>
+</div>
+<div class="form-group">
+  <label>Card Cvc</label>
+  <input type="text" formControlName="cardCvc" class="form-control"
+    [ngClass]="{'is-invalid':(cardcvccontrol.errors&&cardcvccontrol.touched)||(cardcvccontrol.errors&&form.submitted)}"/>
+  <div *ngIf="(cardcvccontrol.errors&&form.submitted)||(cardcvccontrol.errors&&cardcvccontrol.touched)" class="invalid">
+      <p *ngIf="cardcvccontrol.errors['required']" class="invalid-feedback">cardname is required</p>
+      <p *ngIf="cardcvccontrol.errors['pattern']" class="invalid-feedback">name must be [1-6]/[1-9]</p>
+  </div>
+</div>
+  <div class="form-group submit">
+      <!-- <span [ngClass]="{'success':mess=='Success','failed':mess!='Success'}">{{mess}}</span> -->
+      <input type="submit" value="Submit" class="btn"/>
+  </div>
+</form>

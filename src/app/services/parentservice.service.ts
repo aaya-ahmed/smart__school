@@ -5,6 +5,7 @@ import { complain } from '../data/complain';
 import { Observable } from 'rxjs';
 import { student } from '../data/student';
 import { parent } from '../data/parent';
+import { payment } from '../data/payment';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,7 @@ import { parent } from '../data/parent';
 export class ParentserviceService {
 
   constructor(private http:HttpClient) { }
-  
+
   public post(complain:complain):Observable<any>{
     return this.http.post<any>(environment.URL+`Complaint`,complain);
   }
@@ -22,6 +23,7 @@ export class ParentserviceService {
   public getstudent(id:string){
     return this.http.get<student[]>(environment.URL+`ParentUser/GetParentStudents?id=`+id);
   }
-  
-  
+  public payment(payment:payment):Observable<any>{
+    return this.http.post<any>(environment.URL+`Payment/parentpayment`,payment);
+  }
 }

@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'parent-navbar',
   templateUrl: './navbar.component.html',
-  styleUrls: ['../../../../styles/navsidestyle.css']
+  styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent {
   @Input()toggleflag:boolean=false;

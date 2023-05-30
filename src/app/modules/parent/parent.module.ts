@@ -12,6 +12,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { AuthModule } from '../auth/auth.module';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from 'src/app/interceptor/auth.interceptor';
+import { PaymentComponent } from './pages/payment/payment.component';
 
 
 @NgModule({
@@ -21,6 +22,7 @@ import { AuthInterceptor } from 'src/app/interceptor/auth.interceptor';
     SonComponent,
     NavbarComponent,
     ParentComponent,
+    PaymentComponent,
 
   ],
   imports: [
