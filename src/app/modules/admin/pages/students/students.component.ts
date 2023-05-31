@@ -35,6 +35,7 @@ getdata(){
     next: (response) => {
       this.allstudents = response;
       this.allstudents.forEach((item,i)=>{
+      
         this.examservice.getstudentfullresult(item.id,this.gradeyear[this.yearindex].id).subscribe({
           next:res=>{
             res.forEach(item=>{
@@ -43,6 +44,8 @@ getdata(){
             });
             this.allstudents[i].firstterm=this.first;
             this.allstudents[i].secondterm=this.second;
+            this.first =0;
+            this.second=0;
             this.loader=false;
           }
         })

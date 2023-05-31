@@ -8,14 +8,14 @@
                 </label>
             </span>
             <span (click)="gottohome()">
-                <img src="../../../../../favicon.ico"/>
-                <h4>School</h4>
+                <img src="../../../../../assets/images/logo.svg"/>
+                <!-- <h4>School</h4> -->
             </span>
         </div>
         <ul>
             <li [ngClass]="{'active':currentpage=='myson'}" (click)="gottopage('myson')">
                 <i class="fa-solid fa-child"></i>
-               <span>My Son</span>
+               <span>My Sons</span>
             </li>
             <li [ngClass]="{'active':currentpage=='complain'}" (click)="gottopage('complain')">
                 <i class="fa-solid fa-comment"></i>

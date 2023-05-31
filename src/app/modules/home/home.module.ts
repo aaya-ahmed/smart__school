@@ -12,6 +12,7 @@ import { HomeComponent } from './home.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { SubjectsComponent } from './pages/subjects/subjects.component';
 import { CarouselModule } from 'ngx-owl-carousel-o';
+import { ScrollService } from "../../services/Scroll.service";
 
 
 @NgModule({
@@ -26,8 +27,8 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
                  HomeComponent,
                  SubjectsComponent
                  ],
-  imports: [CommonModule,HomeRoutingModule,SharedModule,CarouselModule],
+  imports: [CommonModule,HomeRoutingModule,SharedModule,CarouselModule,],
   exports: [],
-  providers: []
+  providers: [ScrollService]
 })
 export class HomeModule {}
