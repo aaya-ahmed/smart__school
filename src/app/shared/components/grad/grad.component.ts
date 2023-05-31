@@ -63,21 +63,24 @@ export class GradComponent implements OnInit {
     })
   }
   getinitialresult(){
-    if(this.student.classRoomID){
-      this.gradservice.getall().subscribe({
-        next:res=>{
-          this.gradyear=res;
-        }
-      });
-      this.gradservice.getByClass(this.student.classRoomID).subscribe({
-        next:res=>{
-          this.studentgradeyear=res[0];
-          if(this.resultype=='firstterm')
-          this.getfirsttermresult(this.studentgradeyear.id);
-          else
-          this.getfullyearresult(this.studentgradeyear.id);
-        }
-      });
+    if(this.student.fees)
+    {
+      if(this.student.classRoomID ){
+        this.gradservice.getall().subscribe({
+          next:res=>{
+            this.gradyear=res;
+          }
+        });
+        this.gradservice.getByClass(this.student.classRoomID).subscribe({
+          next:res=>{
+            this.studentgradeyear=res[0];
+            if(this.resultype=='firstterm')
+            this.getfirsttermresult(this.studentgradeyear.id);
+            else
+            this.getfullyearresult(this.studentgradeyear.id);
+          }
+        });
+      }
     }
   }
   getfirsttermresult(id:number){

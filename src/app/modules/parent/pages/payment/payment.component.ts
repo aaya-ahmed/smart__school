@@ -7,7 +7,7 @@ import { ParentserviceService } from 'src/app/services/parentservice.service';
 @Component({
   selector: 'app-payment',
   templateUrl: './payment.component.html',
-  styleUrls: ['./payment.component.css']
+  styleUrls: ['./payment.component.css','../../../../styles/form.style.css']
 })
 export class PaymentComponent implements OnInit {
   Parent:string = '';

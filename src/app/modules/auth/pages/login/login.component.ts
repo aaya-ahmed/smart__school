@@ -51,6 +51,7 @@ export class LoginComponent implements OnInit {
         },
         error:(err)=>{
           this.errflag=true;
+          console.log(err);
           this.loadflag=false;
           this.message=err.error;
           subscriber.unsubscribe();

@@ -19,16 +19,25 @@
                 <li (click)="openpage('home')">
                     Home
                 </li>
-                <li>
-                    Activity
-                </li>
-                <li>
 
-                    Contact
+                <li (click)="scrollToId('staff')">
+                    Staff
                 </li>
+
                 <li (click)="openpage('home/course')">
                     Courses
                 </li>
+
+                <li (click)="scrollToId('activities')">
+                    Activities
+                </li>
+
+                <li (click)="scrollToId('contact')">
+                    Contact
+                </li>
+
+                
+
                 <li (click)="openpage('auth/login')" *ngIf="logoutflag">
                     Login
                 </li>
@@ -36,7 +45,7 @@
                     Register
                 </li>
                 <li (click)="gotoprofile()" *ngIf="!logoutflag">
-                    profile
+                    Profile
                 </li>
                 <li (click)="logout()" *ngIf="!logoutflag">
                     Logout

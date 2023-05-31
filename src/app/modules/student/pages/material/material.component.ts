@@ -9,19 +9,24 @@ import { SubjectService } from 'src/app/services/subject.service';
   styleUrls: ['./material.component.css']
 })
 export class MaterialComponent implements OnInit {
+  fees :boolean=false;
   subjects:subject[]=[];
   type:string='video';
   subjectid:number=-1;
   subscriber:Subscription=new Subscription();
 constructor(private subjectservice:SubjectService){}
   ngOnInit(): void {
-    let classroomid=JSON.parse(localStorage.getItem('user')||'').classRoomID
-    this.subjectservice.getbyclass(classroomid).subscribe({
-      next:res=>{
-        this.subjects=res;
-        this.subjectid=this.subjects[0].id;
-      }
-    })
+     this.fees = JSON.parse(localStorage.getItem('user')||'').fees;
+    if(this.fees){
+      let classroomid=JSON.parse(localStorage.getItem('user')||'').classRoomID
+      this.subjectservice.getbyclass(classroomid).subscribe({
+        next:res=>{
+          this.subjects=res;
+          this.subjectid=this.subjects[0].id;
+        }
+      })
+    }
+    
   }
   setsubject(event:any){
     this.subjectid=this.subjects[event.target.value].id;
