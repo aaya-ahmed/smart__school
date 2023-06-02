@@ -49,7 +49,7 @@ export class ProfileComponent {
   }
   changephoto(){
     this.hostman.load({open:true,data:this.student,returndata:'',type:'changephoto'});
-    this.hostman.data.subscribe({
+    let subscribe=this.hostman.data.subscribe({
       next:res=>{
         if(res.returndata!=''){
           this.student.studentPhoto=res.returndata;
@@ -59,6 +59,7 @@ export class ProfileComponent {
             }
           })
         }
+        subscribe.unsubscribe()
       }
     })
   }
