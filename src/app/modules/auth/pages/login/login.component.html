@@ -28,7 +28,7 @@
         <div *ngIf="(passwordcontrol.errors&&form.submitted)||(passwordcontrol.errors&&passwordcontrol.touched)" class="invalid">
             <p *ngIf="passwordcontrol.errors['required']" class="invalid-feedback">password is required</p>
         </div>
-        <span class="errmess" *ngIf="errflag">Invalid Email or password{{message}}</span>
+        <span class="errmess" *ngIf="errflag">{{message}}</span>
         <a [routerLink]="'../forgetpassword'" class="form-link">Forgot Password?</a>
         <ng-container *ngIf="!loadflag" >
 

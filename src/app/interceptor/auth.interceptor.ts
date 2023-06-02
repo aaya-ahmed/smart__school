@@ -24,7 +24,7 @@ export class AuthInterceptor implements HttpInterceptor {
         if(error.status==401||error.status==403||error.status==0){
           this.authservice.logout('home')
         }
-        return throwError("unauthorization ");
+        return throwError(error);
       }));
     }
   }

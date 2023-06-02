@@ -34,7 +34,7 @@ video:string=""
     formData.append('Id',"1");
     formData.append('SubjectId',"2");
     formData.append('Type',"Documents");
-    this.http.post('https://localhost:44309/api/Materials/upload',formData, {reportProgress: true, observe: 'events'})
+    this.http.post('http://localhost:5216/api/Materials/upload',formData, {reportProgress: true, observe: 'events'})
       .subscribe({
         next: (event) => {
           console.log(event)
@@ -49,10 +49,10 @@ video:string=""
     });
   }
   showVideos(){
-    this.http.get('https://localhost:44309/api/Materials/get').subscribe({
+    this.http.get('http://localhost:5216/api/Materials/get').subscribe({
       next:(res:any)=>{
         console.log(res)
-        this.video='https://localhost:44309'+'/'+res[0]["path"]
+        this.video='http://localhost:5216'+'/'+res[0]["path"]
         console.log(this.video)
     }
     })

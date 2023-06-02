@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-teacher',
   templateUrl: './teacher.component.html',
-  styleUrls: ['./teacher.component.css']
+  styleUrls: ['../../styles/framemodule.css']
 })
 export class TeacherComponent {
   toggle:boolean=false;

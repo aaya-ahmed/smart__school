@@ -4,13 +4,12 @@
     text-decoration: none;
   }
   .container{
-      max-height: 100vh;
-      min-height: 100vh;
-      width: 280px;
+    height: 100%;
+    width: 280px;
+    position: fixed;
   }
   nav{
-      max-height: 100vh;
-      min-height: 100vh;
+    height: 100%;
       width: 280px;
       overflow:hidden;
       background-color: #324864;;
@@ -51,7 +50,7 @@
       color: white;
   }
   nav ul{
-      max-height: calc(100vh - 180px);
+      max-height: calc(100% - 180px);
       min-height: fit-content;
       overflow-y: auto;
       margin-top: 1rem;
@@ -77,6 +76,7 @@
   input[type="checkbox"]{
       position: absolute;
       z-index: -999;
+      visibility: hidden;
   }
   .logo label{
       display: block;

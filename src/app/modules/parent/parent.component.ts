@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-parent',
   templateUrl: './parent.component.html',
-  styleUrls: ['./parent.component.css']
+  styleUrls: ['../../styles/framemodule.css']
 })
 export class ParentComponent {
   toggle:boolean=true;

@@ -1,7 +1,7 @@
 <div class="container">
     <teacher-navbar [toggleflag]="toggle" (toggleevent)="toggleview($event)"></teacher-navbar>
-    <div class="container-wrapper">
-        <div class="header"  [ngClass]="{'expand':toggle==true}">
+    <div class="container-wrapper" [ngClass]="{'expand':toggle==true}">
+        <div class="header"  >
             <profile-header (toggleevent)="toggleview($event)" ></profile-header>
         </div>
         <div class="main">

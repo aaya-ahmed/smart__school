@@ -1,6 +1,6 @@
 export const environment = {
-    URL:"https://localhost:44309/api/",
-    imgeurl:"https://localhost:44309/",
+    URL:"http://localhost:5216/api/",
+    imgeurl:"http://localhost:5216/",
     email:"smartschoolcomplaints@gmail.com"
 
 };

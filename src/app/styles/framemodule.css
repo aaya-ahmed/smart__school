@@ -5,7 +5,8 @@
     display: flex;
 }
 .container-wrapper{
-    width: 100%;
+    width: calc(100% - 280px);
+    margin-left: 280px;
 }
 .hide{
     display: none;
@@ -19,8 +20,13 @@
 .large-wrapper{
     width: 100%;
 }
+.expand{
+    width: calc(100% - 70px);
+    margin-left: 70px;
+}
 @media(max-width:1000px){
     .container-wrapper{
         width: 100%;
+        margin-left: 0px;
     }
 }
