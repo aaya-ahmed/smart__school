@@ -21,6 +21,8 @@ export class ScadulesComponent implements OnChanges {
   ngOnChanges(changes: SimpleChanges): void {
     if(changes['schadule'].firstChange==false){
       let currentschadule=changes['schadule'].currentValue;
+      console.log("currentschadule")
+      console.log(currentschadule)
       this.schadules.forEach(ele => {
         if(ele.sessions.sessionNo==currentschadule.SessionNum&&currentschadule.Teacherid==ele.sessions.teacherID&&ele.sessions.scheduleDay==currentschadule.Day){
               this.exist=true;
@@ -28,23 +30,23 @@ export class ScadulesComponent implements OnChanges {
             }
       });
       let schaduleindex=this.schadules.findIndex(p=>p.sessions.sessionNo==currentschadule.SessionNum&&p.classId==currentschadule.classId&&p.sessions.scheduleDay==currentschadule.Day);
-      
       if(schaduleindex==-1&&this.exist==false){
-        let session1:sessions={
+        let tempsession:sessions={
           id:0,
           scheduleDay:currentschadule.Day.toString(),
           sessionNo:currentschadule.SessionNum,
           subjectName:currentschadule.Subject,
           scheduleID:0,
           teacherID:currentschadule.Teacherid,
-          teacherName:currentschadule.Teacher
+          teacherName:currentschadule.Teacher,
+          className:currentschadule.classRoom
         }
         let sechadule1:tempschadule={
           day: currentschadule.Day.toString(),
           classId: currentschadule.classId,
-          classRoomName: currentschadule.ClassRoom,
+          classRoomName: currentschadule.classRoom,
           gradeyear:currentschadule.gradeyear,
-          sessions:session1
+          sessions:tempsession
         }
         this.schadules.push(sechadule1)
       }

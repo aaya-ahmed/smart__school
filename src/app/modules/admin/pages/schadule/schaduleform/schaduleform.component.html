@@ -29,9 +29,10 @@
                 </div>
                 <div class="form-group">
                     <label>Class Room</label>
-                    <select formControlName="classId"  class="form-control" 
+                    <select formControlName="classIndex"  class="form-control" 
                     [ngClass]="{'is-invalid':(classcontrol.errors&&classcontrol.touched)||(classcontrol.errors&&form.submitted)}">
-                        <option *ngFor="let item of classrooms" value="{{item.id}}">{{item.name}}-{{item.gradeYearName}}</option>
+                    <option value="">choose class</option>    
+                    <option *ngFor="let item of classrooms;let i=index" value="{{i}}">{{item.name}}-{{item.gradeYearName}}</option>
                     </select>
                     <div *ngIf="(classcontrol.errors&&form.submitted)||(classcontrol.errors&&classcontrol.touched)" class="invalid">
                         <p *ngIf="classcontrol.errors['required']" class="invalid-feedback">classroom is required</p>

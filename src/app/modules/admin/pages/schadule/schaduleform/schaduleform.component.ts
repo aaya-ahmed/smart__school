@@ -21,7 +21,7 @@ export class SchaduleformComponent implements OnInit {
   hostSubscriber:any
   schedule:FormGroup=new FormGroup({
     day:new FormControl('',[Validators.required]) ,
-    classId:new FormControl('',[Validators.required]) ,
+    classIndex:new FormControl(0,[Validators.required]) ,
     sessionNo:new FormControl('',[Validators.required,Validators.pattern("[1-6]")]) ,
     teacherID:new FormControl('',[Validators.required]) 
   })
@@ -30,7 +30,7 @@ export class SchaduleformComponent implements OnInit {
     if(this.data){
       this.schedule.patchValue({
         day:this.data.session.scheduleDay,
-        classId:this.data.classid+'',
+        classIndex:this.classrooms.findIndex(p=>p.id==+this.data.classid),
         sessionNo:this.data.session.sessionNo,
         teacherID:this.data.session.teacherID
       });
@@ -50,7 +50,7 @@ export class SchaduleformComponent implements OnInit {
     return this.schedule.controls['day']
   }
   get classcontrol(){
-    return this.schedule.controls['classId']
+    return this.schedule.controls['classIndex']
   }
   get sessionNocontrol(){
     return this.schedule.controls['sessionNo']
@@ -77,6 +77,7 @@ export class SchaduleformComponent implements OnInit {
   addschedule(){
     if(this.schedule.valid){
       let teacher=this.teachers[this.teachers.findIndex(p=>p.id==this.schedule.value.teacherID)];
+      console.log(this.data)
       if(this.data){
         let session={
           id: this.data.session.id,
@@ -85,13 +86,15 @@ export class SchaduleformComponent implements OnInit {
           teacherID: teacher.id,
           subjectName: teacher.subjectName,
           teacherName: teacher.fullName,
-          scheduleDay: this.schedule.value.day
-      }
+          scheduleDay: this.schedule.value.day,
+          className: this.classrooms[+this.schedule.value.classIndex].name
+        }
+        console.log(session)
       let schadule={
         id:  this.data.session.scheduleID,
         day: this.schedule.value.day,
-        classId:+this.schedule.value.classId,
-        classRoomName: this.classrooms[this.classrooms.findIndex(p=>p.id==this.schedule.value.classId)].name
+        classId:+this.classrooms[+this.schedule.value.classIndex].id,
+        classRoomName: this.classrooms[+this.schedule.value.classIndex].name
       }
         this.schaduleservice.updateschadule(schadule).subscribe({
           next:res=>{
@@ -106,13 +109,13 @@ export class SchaduleformComponent implements OnInit {
       else{
         let schadule={
           Day:this.schedule.value.day,
-          classId:+this.schedule.value.classId,
-          ClassRoom:this.classrooms[this.classrooms.findIndex(p=>p.id==this.schedule.value.classId)].name,
+          classId:+this.classrooms[+this.schedule.value.classIndex].id,
+          classRoom:this.classrooms[+this.schedule.value.classIndex].name,
           Teacherid:this.schedule.value.teacherID,
           Teacher:teacher.fullName,
           Subject:teacher.subjectName,
           SessionNum:this.schedule.value.sessionNo,
-          gradeyear:this.classrooms[this.classrooms.findIndex(p=>p.id==this.schedule.value.classId)].gradeYearName
+          gradeyear:this.classrooms[+this.schedule.value.classIndex].gradeYearName
         }
         this.schaduleitem=schadule;
       }
@@ -120,8 +123,6 @@ export class SchaduleformComponent implements OnInit {
   }
   validatedate($event:any){
     let today=new Date().toISOString();
-    console.log(today)
-    console.log($event.target.value)
     if($event.target.value>today){
       this.daycontrol.setErrors({
       ...this.daycontrol.errors,

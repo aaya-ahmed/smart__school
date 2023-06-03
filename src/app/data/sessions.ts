@@ -5,5 +5,6 @@ export interface sessions{
     teacherID: string,
     subjectName: string,
     teacherName: string,
-    scheduleDay: string
+    scheduleDay: string,
+    className:string
 }
