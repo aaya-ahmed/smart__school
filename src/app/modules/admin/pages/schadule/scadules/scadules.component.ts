@@ -58,29 +58,38 @@ export class ScadulesComponent implements OnChanges {
   }
   save(){
     this.loader=true;
-    this.schadules.forEach(async(ele)=>{
+    // this.schadules.forEach(async(ele)=>{
+      this.schadules.forEach((ele)=>{
       let schadule:schadule={
         day: ele.day.toString(),
         classId: ele.classId,
         classRoomName: ele.classRoomName,
         id: 0
       }
-      await this.schaduleservice.postschadule(schadule).subscribe({
+      // await this.schaduleservice.postschadule(schadule).subscribe({
+         this.schaduleservice.postschadule(schadule).subscribe({
+          
         next:res=>{
+          console.log(schadule)
+          console.log(res);
+          console.log("After Schedule Post");
           ele.sessions.scheduleID=res.id;
           this.schaduleservice.postsession(ele.sessions).subscribe({
             next:res=>{
+              console.log(res);
+               console.log("After session Post");
+
               this.loader=false;
               this.mess='Successfully';
               this.type='success';
               this.schadules=[];
-              this.reset()
+              // this.reset()
             },
             error:err=>{
               this.loader=false;
               this.mess=err.error;
               this.type='failed';
-              this.reset()
+              // this.reset()
             }
           })
         },
@@ -88,20 +97,20 @@ export class ScadulesComponent implements OnChanges {
           this.loader=false;
           this.mess=err.error;
           this.type='failed';
-          this.reset()
+          // this.reset()
 
         }
       })
     });
   }
-  reset(){
-    let timer=setTimeout(()=>{
-      this.type='';
-      this.mess=''
-      clearTimeout(timer)
-    },1000)
+  // reset(){
+  //   let timer=setTimeout(()=>{
+  //     this.type='';
+  //     this.mess=''
+  //     clearTimeout(timer)
+  //   },1000)
 
-  }
+  // }
   delete(index:number){
     this.schadules.splice(index,1)
   }

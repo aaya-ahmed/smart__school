@@ -137,13 +137,13 @@ export class TeacherformComponent {
             this.mess='Successfuly'
             this.type='success';
             this.data=data;
-            this.reset()
+            // this.reset()
           },
           error:err=>{
             console.log(err)
             this.mess=err.error;
             this.type='failed';
-            this.reset()
+            // this.reset()
           }
         })
       }
@@ -159,12 +159,12 @@ export class TeacherformComponent {
           next:data=>{
             this.mess='Successfuly'
             this.type='success';
-            this.reset()
+            // this.reset()
             },
           error:err=>{
             this.mess=err.error;
             this.type='failed';
-            this.reset()
+            // this.reset()
           }
         })
       }
@@ -187,10 +187,10 @@ export class TeacherformComponent {
   close(){
     this.hostman.load({open:false,data:'',returndata:this.data,type:''});
   }
-  reset(){
-    setTimeout(() => {
-      this.mess=''
-      this.type=''
-    }, 1000);
-  }
+  // reset(){
+  //   setTimeout(() => {
+  //     this.mess=''
+  //     this.type=''
+  //   }, 1000);
+  // }
 }

@@ -57,9 +57,7 @@ export class ClassroomformComponent {
             this.mess=err.error;
           }
         })
-        setTimeout(() => {
-          this.mess=''
-        }, 1000);
+      
       }
   }
   close(){

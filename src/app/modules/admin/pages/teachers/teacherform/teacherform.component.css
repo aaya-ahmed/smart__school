@@ -25,12 +25,12 @@ input[type="file"]{
     position: absolute;
     visibility: hidden;
 } 
-.message{
+/* .message{
     position: absolute;
     top: 1rem;
     right: 0;
     background-color: aliceblue;
-}
+} */
 @media screen and (max-width:850px) {
     .container-wraperr{
             width: 80vw!important;

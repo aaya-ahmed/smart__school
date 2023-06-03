@@ -62,9 +62,7 @@ export class SubjectformComponent {
             this.mess=err.error;
           }
         });
-        setTimeout(() => {
-          this.mess=''
-        }, 1000);
+       
       }
   }
   close(){
