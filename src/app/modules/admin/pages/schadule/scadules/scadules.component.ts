@@ -58,14 +58,14 @@ export class ScadulesComponent implements OnChanges {
   }
   save(){
     this.loader=true;
-    this.schadules.forEach(ele=>{
+    this.schadules.forEach(async(ele)=>{
       let schadule:schadule={
         day: ele.day.toString(),
         classId: ele.classId,
         classRoomName: ele.classRoomName,
         id: 0
       }
-      this.schaduleservice.postschadule(schadule).subscribe({
+      await this.schaduleservice.postschadule(schadule).subscribe({
         next:res=>{
           ele.sessions.scheduleID=res.id;
           this.schaduleservice.postsession(ele.sessions).subscribe({

@@ -44,4 +44,9 @@ export class StudentserviceService {
       }))}
     ))
   }
+  public checkStudentForClassRoom(id:number):Observable<any>{
+
+    return this.http.get<any>(environment.URL+`Student/CheckStudentsForClassRoom/`+id)
+
+  }
 }

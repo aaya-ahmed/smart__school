@@ -5,6 +5,7 @@ import { teacher } from 'src/app/data/teacher';
 import { ClassroomService } from 'src/app/services/classroom.service';
 import { HostmanagerService } from 'src/app/services/hostmanager.service';
 import { SchaduleSessionService } from 'src/app/services/schadule.session.service';
+import { StudentserviceService } from 'src/app/services/studentservice.service';
 import { TeacherService } from 'src/app/services/teacher.service';
 
 @Component({
@@ -25,7 +26,7 @@ export class SchaduleformComponent implements OnInit {
     sessionNo:new FormControl('',[Validators.required,Validators.pattern("[1-6]")]) ,
     teacherID:new FormControl('',[Validators.required]) 
   })
-  constructor(private schaduleservice:SchaduleSessionService,private classroomservice:ClassroomService,private teacherservice:TeacherService,private hostman:HostmanagerService){}
+  constructor(private studentservice:StudentserviceService ,private schaduleservice:SchaduleSessionService,private classroomservice:ClassroomService,private teacherservice:TeacherService,private hostman:HostmanagerService){}
   ngOnInit(): void {
     if(this.data){
       this.schedule.patchValue({
@@ -75,51 +76,56 @@ export class SchaduleformComponent implements OnInit {
     this.hostman.load({open:false,data:'',returndata:'',type:''});
   }
   addschedule(){
-    if(this.schedule.valid){
-      let teacher=this.teachers[this.teachers.findIndex(p=>p.id==this.schedule.value.teacherID)];
-      console.log(this.data)
-      if(this.data){
-        let session={
-          id: this.data.session.id,
-          sessionNo: this.sessionNocontrol.value,
-          scheduleID: this.data.session.scheduleID,
-          teacherID: teacher.id,
-          subjectName: teacher.subjectName,
-          teacherName: teacher.fullName,
-          scheduleDay: this.schedule.value.day,
-          classRoomName: this.classrooms[+this.schedule.value.classIndex].name
-        }
-        console.log(session)
-      let schadule={
-        id:  this.data.session.scheduleID,
-        day: this.schedule.value.day,
-        classId:+this.classrooms[+this.schedule.value.classIndex].id,
-        classRoomName: this.classrooms[+this.schedule.value.classIndex].name
-      }
-        this.schaduleservice.updateschadule(schadule).subscribe({
-          next:res=>{
-            this.schaduleservice.updatesession(session).subscribe({
+    this.studentservice.checkStudentForClassRoom(this.classrooms[+this.schedule.value.classIndex].id).subscribe({
+      next:res=>{
+        if(this.schedule.valid&&res.checkStudent){
+          let teacher=this.teachers[this.teachers.findIndex(p=>p.id==this.schedule.value.teacherID)];
+          console.log(this.data)
+          if(this.data){
+            let session={
+              id: this.data.session.id,
+              sessionNo: this.sessionNocontrol.value,
+              scheduleID: this.data.session.scheduleID,
+              teacherID: teacher.id,
+              subjectName: teacher.subjectName,
+              teacherName: teacher.fullName,
+              scheduleDay: this.schedule.value.day,
+              classRoomName: this.classrooms[+this.schedule.value.classIndex].name
+            }
+            console.log(session)
+          let schadule={
+            id:  this.data.session.scheduleID,
+            day: this.schedule.value.day,
+            classId:+this.classrooms[+this.schedule.value.classIndex].id,
+            classRoomName: this.classrooms[+this.schedule.value.classIndex].name
+          }
+            this.schaduleservice.updateschadule(schadule).subscribe({
               next:res=>{
-                this.hostman.load({open:false,data:'',returndata:res,type:''})
+                this.schaduleservice.updatesession(session).subscribe({
+                  next:res=>{
+                    this.hostman.load({open:false,data:'',returndata:res,type:''})
+                  }
+                })
               }
             })
           }
-        })
-      }
-      else{
-        let schadule={
-          Day:this.schedule.value.day,
-          classId:+this.classrooms[+this.schedule.value.classIndex].id,
-          classRoom:this.classrooms[+this.schedule.value.classIndex].name,
-          Teacherid:this.schedule.value.teacherID,
-          Teacher:teacher.fullName,
-          Subject:teacher.subjectName,
-          SessionNum:this.schedule.value.sessionNo,
-          gradeyear:this.classrooms[+this.schedule.value.classIndex].gradeYearName
+          else{
+            let schadule={
+              Day:this.schedule.value.day,
+              classId:+this.classrooms[+this.schedule.value.classIndex].id,
+              classRoom:this.classrooms[+this.schedule.value.classIndex].name,
+              Teacherid:this.schedule.value.teacherID,
+              Teacher:teacher.fullName,
+              Subject:teacher.subjectName,
+              SessionNum:this.schedule.value.sessionNo,
+              gradeyear:this.classrooms[+this.schedule.value.classIndex].gradeYearName
+            }
+            this.schaduleitem=schadule;
+          }
         }
-        this.schaduleitem=schadule;
       }
-    }
+    });
+
   }
   validatedate($event:any){
     let today=new Date().toISOString();
