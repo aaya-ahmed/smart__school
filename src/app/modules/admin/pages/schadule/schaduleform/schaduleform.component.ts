@@ -87,7 +87,7 @@ export class SchaduleformComponent implements OnInit {
           subjectName: teacher.subjectName,
           teacherName: teacher.fullName,
           scheduleDay: this.schedule.value.day,
-          className: this.classrooms[+this.schedule.value.classIndex].name
+          classRoomName: this.classrooms[+this.schedule.value.classIndex].name
         }
         console.log(session)
       let schadule={

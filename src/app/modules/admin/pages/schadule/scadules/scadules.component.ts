@@ -39,7 +39,7 @@ export class ScadulesComponent implements OnChanges {
           scheduleID:0,
           teacherID:currentschadule.Teacherid,
           teacherName:currentschadule.Teacher,
-          className:currentschadule.classRoom
+          classRoomName:currentschadule.classRoom
         }
         let sechadule1:tempschadule={
           day: currentschadule.Day.toString(),

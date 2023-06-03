@@ -6,5 +6,5 @@ export interface sessions{
     subjectName: string,
     teacherName: string,
     scheduleDay: string,
-    className:string
+    classRoomName:string
 }
