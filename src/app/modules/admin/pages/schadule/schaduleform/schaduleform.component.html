@@ -61,6 +61,7 @@
                 <div class="form-group">
                     <input type="submit" value="Add" class="btn" *ngIf="!data"/>
                     <input type="submit" value="Update" class="btn" *ngIf="data"/>
+                    <span class="spanError" *ngIf="isThereStudents">No Students In This Class</span>
                 </div>
             </form>
             <ng-container *ngIf="data==''">

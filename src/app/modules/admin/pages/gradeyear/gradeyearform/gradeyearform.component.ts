@@ -46,9 +46,7 @@ export class GradeyearformComponent implements OnInit , OnDestroy{
             this.mess=err.error;
           }
         });
-        setTimeout(() => {
-          this.mess='';
-        }, 1000);
+      
       }
   }
   close(){

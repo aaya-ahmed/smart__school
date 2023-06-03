@@ -15,6 +15,7 @@ import { TeacherService } from 'src/app/services/teacher.service';
 })
 export class SchaduleformComponent implements OnInit {
   @Input()data:any='';
+  isThereStudents : boolean = false;
   classrooms:classroom[]=[];
   teachers:teacher[]=[];
   schaduleitem:any;
@@ -78,6 +79,8 @@ export class SchaduleformComponent implements OnInit {
   addschedule(){
     this.studentservice.checkStudentForClassRoom(this.classrooms[+this.schedule.value.classIndex].id).subscribe({
       next:res=>{
+        this.isThereStudents = !res.checkStudent;
+        
         if(this.schedule.valid&&res.checkStudent){
           let teacher=this.teachers[this.teachers.findIndex(p=>p.id==this.schedule.value.teacherID)];
           console.log(this.data)

@@ -36,12 +36,12 @@
   box-shadow: 1px 1px 1px 1px #0000004d;
   border-radius: 10px;
 }
-.message{
+/* .message{
   position: absolute;
   top: 0;
   right: 0;
   background-color: aliceblue;
-}
+} */
 @media(max-width:1260px){
   .tableheader{
     display: none;
