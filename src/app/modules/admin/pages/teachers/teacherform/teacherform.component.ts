@@ -171,7 +171,7 @@ export class TeacherformComponent {
       }
   }
   validatename(name:any){
-    if(name.target.value.split(' ').length!=3){
+    if(name.target.value.split(' ').length<3){
       this.namecontrol.setErrors({
         ...this.namecontrol.errors,
         'notvalid':true
@@ -181,7 +181,7 @@ export class TeacherformComponent {
         ...this.namecontrol.errors,
         'notvalid':null
       })
-      this.namecontrol.updateValueAndValidity(); 
+      this.namecontrol.updateValueAndValidity();
     }
   }
   close(){

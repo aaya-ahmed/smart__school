@@ -47,21 +47,19 @@ export class ComplainComponent implements OnInit {
           this.issending=false;
           this.message="complain is send";
           this.typemessage='success';
-          this.reset();
         },
         error:err=>{
           this.issending=false;
           this.message="not send";
           this.typemessage='failed';
-          this.reset();
         }
       })
     }
   }
-reset(){
-  let timer=setTimeout(() => {
-    this.message='';
-    this.typemessage='';
-  }, 2000);
-}
+// reset(){
+//   let timer=setTimeout(() => {
+//     this.message='';
+//     this.typemessage='';
+//   }, 2000);
+// }
 }

@@ -1,5 +1,5 @@
 <section>
-    <ng-container *ngIf="student.fees">
+    <!-- <ng-container *ngIf="student.fees"> -->
         <section class="stdinfo">
             <div>
                 <ul>
@@ -38,19 +38,20 @@
             <main>
                 <ul *ngFor="let item of examresult">
                     <li>{{item.subjectName}}</li>
-                    <li>{{item.firstTermGrade}}</li>
+                    <li *ngIf="resultype=='firstterm'">{{item.firstTermGrade}}</li>
+                    <li *ngIf="resultype=='fullyear'">{{item.total}}</li>
                     <li>{{item.totalSubjectMark}}</li>
                     <li>{{item.passed==false?'No':'Yes'}}</li>
                     <li *ngIf="resultype=='fullyear'">{{item.year}}</li>
-    
+
                 </ul>
             </main>
         </section>
-    </ng-container>
-    
 
-    <ng-container *ngIf="!student.fees">
+
+
+    <ng-container *ngIf="examresult.length==0">
         <p class="latefees">Kindly Pay Your Fees!</p>
-        </ng-container>
+    </ng-container>
 
 </section>

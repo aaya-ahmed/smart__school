@@ -48,6 +48,7 @@ export class ProfileComponent implements OnInit {
     this.hostman.data.subscribe({
       next:res=>{
         if(res.returndata!=''){
+          console.log(res);
           this.teacher.photo=res.returndata;
           this.teacherservice.update(this.teacher).subscribe({
             next:res=>{

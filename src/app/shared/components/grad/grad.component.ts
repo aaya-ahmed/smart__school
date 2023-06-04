@@ -41,7 +41,7 @@ export class GradComponent implements OnInit {
   }
   constructor(private moduleRef: NgModuleRef<any>,private studentservice:StudentserviceService,private gradservice:GradyearService,private examservice:ExamserviceService,private router:ActivatedRoute){
     this.modulename=this.moduleRef.instance.constructor.name;
-    
+
   }
   ngOnInit(): void {
     this.router.params.subscribe({
@@ -63,8 +63,8 @@ export class GradComponent implements OnInit {
     })
   }
   getinitialresult(){
-    if(this.student.fees)
-    {
+
+console.log(this.resultype);
       if(this.student.classRoomID ){
         this.gradservice.getall().subscribe({
           next:res=>{
@@ -81,11 +81,12 @@ export class GradComponent implements OnInit {
           }
         });
       }
-    }
+
   }
   getfirsttermresult(id:number){
     this.examservice.getstudentfirsttermresult(this.student.id,id).subscribe({
       next:res=>{
+        this.examresult=[];
         if(res.length>0){
           this.examresult=res;
           this.year=res[0].year;
@@ -111,7 +112,10 @@ export class GradComponent implements OnInit {
     })
   }
   getresult(event:any){
-    let id=event.target.value;
-    this.getfullyearresult(id)
+    if(this.resultype=='fullyear'){
+      let id=event.target.value;
+      this.getfullyearresult(id)
+    }
+
   }
 }

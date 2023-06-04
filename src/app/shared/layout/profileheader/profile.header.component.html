@@ -6,12 +6,8 @@
         <input type="checkbox" id="togglebtn" name="togglebtn" (change)="togglebtnfun()"/>
     </div>
     <div class="logoutsec">
-        <label for="logoutbtn">
-            <i class="fa-solid fa-arrow-down"></i>
+        <label class="logout" (click)="logout()">
+          <i class="fa-solid fa-arrow-right-from-bracket "></i>
         </label>
-        <input type="checkbox" id="logoutbtn"/>
-        <ul>
-            <li (click)="logout()">logout</li>
-        </ul>
     </div>
 </header>

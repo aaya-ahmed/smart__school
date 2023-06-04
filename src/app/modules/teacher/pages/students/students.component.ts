@@ -5,6 +5,7 @@ import { ClassroomService } from 'src/app/services/classroom.service';
 import { HostmanagerService } from 'src/app/services/hostmanager.service';
 import { StudentserviceService } from 'src/app/services/studentservice.service';
 import { TeacherService } from 'src/app/services/teacher.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-students',
@@ -13,6 +14,7 @@ import { TeacherService } from 'src/app/services/teacher.service';
 })
 export class StudentsComponent {
   teacher:any;
+  baseUrl:string=environment.imgeurl;
   classsies:classroom[]=[]
   allstudents:student[]=[]
   constructor(private teacherservice:TeacherService,private hostman:HostmanagerService,private classservice:ClassroomService,private studentservice:StudentserviceService) { }

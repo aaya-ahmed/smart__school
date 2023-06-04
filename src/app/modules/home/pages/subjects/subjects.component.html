@@ -1,8 +1,8 @@
-<!-- 
+<!--
 <div class="SubjectContainer">
   <select [(ngModel)]="currentId">
     <option value="0">Choose Subject</option>
-    <option *ngFor="let grades of allGradeYears" [value]="grades.id" >{{grades.name}}</option> 
+    <option *ngFor="let grades of allGradeYears" [value]="grades.id" >{{grades.name}}</option>
   </select>
   <p>{{currentId}}</p>
 </div> -->
@@ -22,7 +22,7 @@
           <input type="radio" name="option" [value]="grades.id" (input)="changeGrade($event)" >
           <span class="title animated fadeIn">{{grades.name}}</span>
         </label>
-        
+
       </div>
       <button (click)="chooseSubjectToggler()">
         Get Subjects
@@ -37,7 +37,7 @@
        Choose another grade
     </button>
     <h2>
-      Grade {{choosedGrade}} Subjects
+      {{currentName}} Grade Subjects
     </h2>
     <div class="cards">
       <div class="card" *ngFor="let subjects of allSubjects">
@@ -54,7 +54,7 @@
           </p>
         </div>
       </div>
-      
+
   </div>
 
   </div>

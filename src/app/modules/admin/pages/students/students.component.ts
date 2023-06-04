@@ -5,6 +5,7 @@ import { ExamserviceService } from 'src/app/services/examservice.service';
 import { GradyearService } from 'src/app/services/gradyear.service';
 import { HostmanagerService } from 'src/app/services/hostmanager.service';
 import { StudentserviceService } from 'src/app/services/studentservice.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-students',
@@ -13,6 +14,7 @@ import { StudentserviceService } from 'src/app/services/studentservice.service';
 })
 export class StudentsComponent {
   allstudents: student[] = [];
+  baseUrl:string=environment.imgeurl;
   examresult:{first:number,second:number}[]=[]
   gradeyear:gradyear[]=[];
   _subscriber:any;
@@ -35,7 +37,7 @@ getdata(){
     next: (response) => {
       this.allstudents = response;
       this.allstudents.forEach((item,i)=>{
-      
+
         this.examservice.getstudentfullresult(item.id,this.gradeyear[this.yearindex].id).subscribe({
           next:res=>{
             res.forEach(item=>{
@@ -84,8 +86,8 @@ delete(index:number){
         })
       }
     }
-  }) 
-        
+  })
+
 }
 showAbsence(){
   this.hostman.load({data:'',returndata:'',type:'absance',open:true});
