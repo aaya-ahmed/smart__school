@@ -14,14 +14,14 @@ export class ChangephotoComponent  {
     this.imageobj=new imagebase64();
   }
   changephoto($event:any){
-    if($event.target.files>0){
+    if($event.target.files.length>0){
       var reader = new FileReader();
       reader.readAsDataURL($event.target.files[0]);
       reader.onload = (_event) => {
           this.imageobj.getBase64($event.target.files[0]).then(
             (data:any) => {
               this.image=data;
-              
+
             });
       }
     }

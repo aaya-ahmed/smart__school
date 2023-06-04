@@ -20,7 +20,7 @@
     <div class="data">
         <div *ngFor="let item of allstudents;let i=index" class="tablebody">
             <div>
-                <img src="https://localhost:44309/{{item.studentPhotoUrl}}" class="stdimg"/>
+                <img src="{{baseUrl}}{{item.studentPhotoUrl}}" class="stdimg"/>
             </div>
             <div>
                 {{item.studentFirstName}}
@@ -30,7 +30,7 @@
             </div>
         </div>
     </div>
-</ng-container>        
+</ng-container>
 <ng-container *ngIf="allstudents.length==0">
     <div class="notfoundbody">
         Not Found

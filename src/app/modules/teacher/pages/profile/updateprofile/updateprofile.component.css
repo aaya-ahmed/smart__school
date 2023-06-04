@@ -1,10 +1,9 @@
-.message{
-    position: absolute;
-    top: 0;
-    right: 0;
-    background-color: aliceblue;
-}
+
 .container-wraperr{
-    width: 300px!important;
+    width: 500px!important;
     height: 65vh!important;
+}
+
+.submit{
+  display: flex;
 }

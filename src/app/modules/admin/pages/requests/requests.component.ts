@@ -4,6 +4,7 @@ import { componentconfig } from 'src/app/data/componentconfig';
 import { gradyear } from 'src/app/data/gradyear';
 import { HostmanagerService } from 'src/app/services/hostmanager.service';
 import { RequestService } from 'src/app/services/request.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-requests',
@@ -13,6 +14,7 @@ import { RequestService } from 'src/app/services/request.service';
 export class RequestsComponent {
   allRequests: any[] = [];
   gradeyears:gradyear[]=[];
+  baseUrl:string=environment.imgeurl;
   requestSubscribtion:Subscription=new Subscription()
   hostSubscribtion:Subscription=new Subscription()
   loader:boolean=true;

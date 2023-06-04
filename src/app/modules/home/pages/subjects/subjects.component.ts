@@ -13,6 +13,7 @@ export class SubjectsComponent implements OnInit {
   allGradeYears : gradyear[] = [];
   allSubjects : subject[] = [];
   currentId : number = 0;
+  currentName:string='';
   constructor(private _GradyearService:GradyearService, private _SubjectService:SubjectService){
   }
   ngOnInit(): void {
@@ -21,7 +22,7 @@ export class SubjectsComponent implements OnInit {
       console.log(this.allGradeYears)}
     })
 
-    
+
   }
 
 
@@ -40,7 +41,7 @@ export class SubjectsComponent implements OnInit {
   }
   changeGrade(e:any){
     this.choosedGrade=e.target.value
-   
+    this.currentName=this.allGradeYears.find(p=>p.id==e.target.value)?.name||''
     console.log(this.choosedGrade);
 
     // this._SubjectService.getbygradeyear(+this.choosedGrade).subscribe({
@@ -48,7 +49,7 @@ export class SubjectsComponent implements OnInit {
     //   console.log(this.allSubjects)}
     // })
 
-    
+
   }
 }
 

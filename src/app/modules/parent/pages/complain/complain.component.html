@@ -23,9 +23,9 @@
             <img src="../../../../../assets/images/Spinner.svg" [ngClass]="{'show':issending}"/>
         </span>
         <span>
+          <app-messagerespnce [type]="typemessage" [message]="message" class="message"></app-messagerespnce>
             <i class="fa-solid fa-paper-plane"></i>
             <input type="submit" value="Send"/>
         </span>
     </footer>
 </form>
-<app-messagerespnce [type]="typemessage" [message]="message" class="message"></app-messagerespnce>

@@ -46,7 +46,7 @@ export class UpdateprofileComponent {
         ...this.namecontrol.errors,
         'notvalid':null
       })
-      this.namecontrol.updateValueAndValidity(); 
+      this.namecontrol.updateValueAndValidity();
     }
   }
   save(){
@@ -59,13 +59,13 @@ export class UpdateprofileComponent {
           next:(res:any)=>{
             this.mess='Successfuly';
             this.type='success';
-            this.reset();
+            //this.reset();
           },
           error:(err:any)=>{
             console.log(err)
             this.mess=err.error;
             this.type='failed';
-            this.reset();
+           // this.reset();
           }
         })
     }
@@ -74,10 +74,10 @@ export class UpdateprofileComponent {
   close(){
     this.hostman.load({open:false,data:'',returndata:this.data,type:''});
   }
-  reset(){
-    setTimeout(() => {
-      this.mess=''
-      this.type=''
-    }, 1000);
-  }
+  // reset(){
+  //   setTimeout(() => {
+  //     this.mess=''
+  //     this.type=''
+  //   }, 1000);
+  // }
 }

@@ -51,11 +51,12 @@
                 </div>
             </div>
             <div class="form-group submit">
+              <ng-container *ngIf="mess!=''" >
+                <app-messagerespnce [message]="mess" [type]="type" class="message"></app-messagerespnce>
+              </ng-container>
                 <input type="submit" value="Update" class="btn"/>
             </div>
         </form>
     </div>
-    <ng-container *ngIf="mess!=''" >
-        <app-messagerespnce [message]="mess" [type]="type" class="message"></app-messagerespnce>
-    </ng-container>
+
 </div>

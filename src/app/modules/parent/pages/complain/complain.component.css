@@ -68,8 +68,5 @@ i{
     color: #dc3545;
 }
 .message{
-    position: absolute;
-    top: 0;
-    right: 0;
-    background: aliceblue;
+ display: inline-block;
 }
