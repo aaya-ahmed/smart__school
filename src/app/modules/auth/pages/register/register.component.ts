@@ -6,7 +6,7 @@ import { AuthserviceService } from 'src/app/services/authservice.service';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css','../style.css']
+  styleUrls: ['../style.css','./register.component.css']
 })
 export class RegisterComponent {
   submitted:boolean=false;
@@ -25,7 +25,7 @@ export class RegisterComponent {
     studentPhone: new FormControl('',[Validators.required,Validators.pattern("^(010|011|012|015)[0-9]{8}$")]),
     studentBirthDate: new FormControl('',[Validators.required]),
     address: new FormControl('',[Validators.required,Validators.minLength(5),Validators.maxLength(50)]),
-    parentFullName: new FormControl('',[Validators.pattern('^[a-z A-Z]{11,23}$'),Validators.required,Validators.minLength(11),Validators.maxLength(23)]),
+    parentFullName: new FormControl('',[Validators.pattern('^[a-zA-Z]{2,15}\\s([a-zA-Z]{2,15}\\s)[a-zA-Z]{2,15}$'),Validators.required]),
     parentEmail: new FormControl('',[Validators.required,Validators.email]),
     parentPhone: new FormControl('',[Validators.required,Validators.pattern("^(010|011|012|015)[0-9]{8}$")]),
     StudentPhoto: new FormControl('',[Validators.required]),
@@ -117,23 +117,10 @@ export class RegisterComponent {
       this.stdBDControl.setErrors({'notvalid':true})
     }
   }
-  validateparentname(name:any){
-    if(name.target.value.split(' ').length!=3){
-      this.patFNameControl.setErrors({
-        ...this.patFNameControl.errors,
-        'notvalid':true
-      })
-    }else{
-      this.patFNameControl.setErrors({
-        ...this.patFNameControl.errors,
-        'notvalid':null
-      })
-      this.patFNameControl.updateValueAndValidity(); 
-    }
-    console.log(this.patFNameControl.errors)
-  }
+
   register(){
     this.submitted=true;
+    this.resetform();
     if(this.registerform.valid){
         this.loadflag=true;
         let user:request={
@@ -147,23 +134,20 @@ export class RegisterComponent {
           {
             next:val=>{
               this.formresponce=true;
+              this.loadflag=false;
               this.typemess='success';
               this.message='Registration was successful,waiting accepting email';
-              this.resetform();
             },
             error:err=>{
               this.formresponce=true;
+              this.loadflag=false;
               this.typemess='failed';
               this.message=err.error;
-              this.resetform();
             }
           });
     }
   }
 resetform(){
-  setTimeout(() => {
     this.formresponce=false;
-    this.loadflag=false;
-  }, 2000);
 }
 }

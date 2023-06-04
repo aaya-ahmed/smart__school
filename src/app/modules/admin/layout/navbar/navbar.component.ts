@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -6,9 +6,9 @@ import { Router } from '@angular/router';
   templateUrl: './navbar.component.html',
   styleUrls: ['../../../../styles/navsidestyle.css']
 })
-export class NavbarComponent {
-  @Input()toggleflag:boolean=false;
-  currentpage:string='requests'
+export class NavbarComponent{
+  @Output()toggleview:EventEmitter<boolean>=new EventEmitter<boolean>(false);
+  currentpage:string='requests';
   constructor(private route:Router){
     let index=route.url.lastIndexOf('/');
     this.currentpage=route.url.substring(index+1)
@@ -16,13 +16,11 @@ export class NavbarComponent {
   gottopage(pagename:string){
     this.route.navigate(['admin',pagename]);
     this.currentpage=pagename;
-    if(window.innerWidth<1000)
-    this.toggleflag=!this.toggleflag;
   }
   gottohome(){
     this.route.navigate(['']);
   }
-  toggleview(){
-    this.toggleflag=!this.toggleflag;
+  toggle(){
+    this.toggleview.emit(true)
   }
 }

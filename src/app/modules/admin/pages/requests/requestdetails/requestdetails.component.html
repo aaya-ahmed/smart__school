@@ -73,14 +73,6 @@
             </tr>  
           </table>
           </form>
-          <div class="rowbtn" *ngIf="!loader">
-            <p>{{errorMessage}}</p>
-            <button class="btnaccept" (click)="acceptRequest()">Accept</button>
-            <button class="btnrefuse" (click)="deleteRequest()">Refuse</button>
-          </div>
-          <div class="rowbtn" *ngIf="loader">
-            <app-loader></app-loader>
-          </div>
         </div>
         <div class="images">
           <div>
@@ -94,5 +86,15 @@
           </div>
         </div>
       </main>
+      <div class="rowbtn" *ngIf="!loader">
+        <p>{{Message}}</p>
+        <ng-container *ngIf="Message==''">
+          <button class="btnaccept" (click)="acceptRequest()">Accept</button>
+          <button class="btnrefuse" (click)="deleteRequest()">Refuse</button>
+        </ng-container>
+      </div>
+      <div class="rowbtn" *ngIf="loader">
+        <app-loader></app-loader>
+      </div>
   </div>
 </div>

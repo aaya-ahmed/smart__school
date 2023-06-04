@@ -1,4 +1,5 @@
  .container-wraperr{
+    width: 65vw;
     height: 65vh!important;
     overflow: hidden!important;
  }

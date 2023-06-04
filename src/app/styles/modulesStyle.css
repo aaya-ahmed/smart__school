@@ -55,7 +55,8 @@ i{
     line-height: 3;
 }
 .data{
-    height: 65vh;
+    max-height: 500px;
+    margin-bottom: 1rem;
     overflow-y: auto;
 }
 .data::-webkit-scrollbar{
@@ -68,3 +69,8 @@ i{
     height: 50px;
     border-radius: 50%;
 }
+.tablebody div{
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+  }

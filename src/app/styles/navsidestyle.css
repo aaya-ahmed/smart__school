@@ -88,11 +88,8 @@
       font-size: 25px;
       padding: 0.5rem 1rem;
       color: black;
+      cursor: pointer;
   }
-  /* .hide,
-  .hide nav{
-      width: 0;
-  } */
   .hide nav ul li span{
       display: none;
   }

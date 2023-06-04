@@ -18,11 +18,12 @@ export class TeacherformComponent {
   teacherimage:any='';
   mess:string='';
   type:string='';
+  loader:boolean=false;
   teacherSubscriber:Subscription=new Subscription();
   teacher:FormGroup=this.fb.group({
-    fullName: new FormControl('',[Validators.required,Validators.minLength(11),Validators.maxLength(23)]),
+    fullName: new FormControl('',[Validators.required,Validators.pattern('^[a-zA-Z]{2,15}\\s([a-zA-Z]{2,15}\\s)[a-zA-Z]{2,15}$')]),
     gender: new FormControl('',[Validators.required]),
-    salary: new FormControl(0,[Validators.required,Validators.pattern("^[0-9]{2,}$")]),
+    salary: new FormControl(0,[Validators.required,Validators.pattern("^[1-9]{1}[0-9]{1,}$")]),
     phone: new FormControl('',[Validators.required,Validators.pattern("^(010|011|012|015)[0-9]{8}$")]),
     address: new FormControl('',[Validators.required,Validators.minLength(5),Validators.maxLength(50)]),
     hireDate: new FormControl('',[Validators.required]),
@@ -126,6 +127,7 @@ export class TeacherformComponent {
   }
   save(){
     if(this.teacher.valid){
+      this.loader=true;
       if(this.data){
         let data={
           id:this.data.id,
@@ -137,12 +139,14 @@ export class TeacherformComponent {
             this.mess='Successfuly'
             this.type='success';
             this.data=data;
+            this.loader=false;
             // this.reset()
           },
           error:err=>{
             console.log(err)
             this.mess=err.error;
             this.type='failed';
+            this.loader=false;
             // this.reset()
           }
         })
@@ -159,30 +163,20 @@ export class TeacherformComponent {
           next:data=>{
             this.mess='Successfuly'
             this.type='success';
+            this.loader=false;
+
             // this.reset()
             },
           error:err=>{
             this.mess=err.error;
             this.type='failed';
+            this.loader=false;
+
             // this.reset()
           }
         })
       }
       }
-  }
-  validatename(name:any){
-    if(name.target.value.split(' ').length<3){
-      this.namecontrol.setErrors({
-        ...this.namecontrol.errors,
-        'notvalid':true
-      })
-    }else{
-      this.namecontrol.setErrors({
-        ...this.namecontrol.errors,
-        'notvalid':null
-      })
-      this.namecontrol.updateValueAndValidity();
-    }
   }
   close(){
     this.hostman.load({open:false,data:'',returndata:this.data,type:''});

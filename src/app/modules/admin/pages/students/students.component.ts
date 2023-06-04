@@ -63,8 +63,10 @@ update(index:number){
   this.hostman.load({data:this.allstudents[index],returndata:'',type:'modifystudent',open:true})
   let subscriber=this.hostman.data.subscribe({
     next:res=>{
+      if(res.returndata!=''){
         this.getdata();
         subscriber.unsubscribe();
+      }
     }
   })
 }

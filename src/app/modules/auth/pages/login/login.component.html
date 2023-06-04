@@ -1,7 +1,5 @@
-<div class="container">
-    <form (ngSubmit)="login()" [formGroup]="loginform" #form="ngForm" class="form">
+    <form (ngSubmit)="login()" [formGroup]="loginform" #form="ngForm">
         <h2 class="title">Login</h2>
-
         <div class="form-group">
             <label for="email" class="input-group-text">
                 <span class="fa-sharp fa-solid fa-envelope"></span>
@@ -31,16 +29,13 @@
         <span class="errmess" *ngIf="errflag">{{message}}</span>
         <a [routerLink]="'../forgetpassword'" class="form-link">Forgot Password?</a>
         <ng-container *ngIf="!loadflag" >
-
-        <div class="form-group submitform" >
-                <input type="submit" value="Login" class="loginbtn" [disabled]="loadflag" />
-                <i class="fa-solid fa-arrow-right"></i>
-        </div>
-    </ng-container>
-
+            <div class="form-group submitform" >
+                    <input type="submit" value="Login" class="loginbtn" [disabled]="loadflag" />
+                    <i class="fa-solid fa-arrow-right"></i>
+            </div>
+        </ng-container>
         <ng-container *ngIf="loadflag">
             <app-loader></app-loader>
         </ng-container>
         <p style="text-align: center;">You Don't Have Account? <a [routerLink]="'../register'">register</a></p>
     </form>
-</div>

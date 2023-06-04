@@ -14,10 +14,16 @@ export class ProfileHeaderComponent implements OnInit {
 
   }
   togglebtnfun(){
-    this.toggle=!this.toggle
-      this.toggleevent.emit( this.toggle);
+    if(window.innerWidth>1000){
+      this.toggle=!this.toggle;
+      this.toggleevent.emit(this.toggle)
+    }
+    else{
+      this.toggleevent.emit(false);
+    }
   }
   logout(){
     this.authservice.logout('home');
+  
   }
 }

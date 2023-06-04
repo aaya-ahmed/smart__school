@@ -1,7 +1,7 @@
 <div class="container">
-    <admin-navbar [toggleflag]="toggle"></admin-navbar>
+    <admin-navbar  (toggleview)="toggleview($event)" [ngClass]="{'hide':toggle,'show':!toggle}"></admin-navbar>
     <div class="container-wrapper" [ngClass]="{'expand':toggle}">
-        <profile-header (toggleevent)="toggleview()" ></profile-header>
+        <profile-header (toggleevent)="toggleview($event)" ></profile-header>
         <app-sidehost></app-sidehost>
         <router-outlet></router-outlet>
     </div>

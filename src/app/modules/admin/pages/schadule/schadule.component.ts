@@ -80,9 +80,9 @@ export class SchaduleComponent implements OnInit , OnDestroy{
       next:res=>{
         this.hostSubscribtion.unsubscribe()
         if(res.returndata==true){
-          this.schaduleSubscriber=this.schaduleservice.deleteschadule(id).subscribe({
+          this.schaduleSubscriber=this.schaduleservice.deletesession(id).subscribe({
             next:res=>{
-              this.sessions.splice(this.sessions.findIndex(p=>p.scheduleID==id),1);
+              this.sessions.splice(this.sessions.findIndex(p=>p.id==id),1);
               this.schaduleSubscriber.unsubscribe();
             }
           })

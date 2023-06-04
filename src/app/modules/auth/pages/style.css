@@ -6,20 +6,26 @@
     position: relative;
     box-shadow: 0px -1px 20px 0px #2c27273b;
 }
-.form {
-	display: flex;
-	flex-direction: column;
-    margin: 1rem 0;
-
-}
-
 .title {
-	text-align: center;
-	margin-top: 30px;
+	text-align: left;
+    margin: auto;
+    padding: 1rem 0;
+    width: 80%;
+}
+.title::after{
+    content: "";
+    display: block;
+    width: 15rem;
+    height: 0.25rem;
+    background-color: #324864;
+    margin-top: 0.4rem;
 }
 form{
-    padding: 1rem 0.5rem;
+    display: flex;
+	flex-direction: column;
     margin: 1rem 0;
+    padding: 1rem 0.5rem;
+    box-shadow:1px 1px 18px 1px #00000029
 
 }
 .form-group{
@@ -53,7 +59,6 @@ form{
 .form-control{
     display: inline-block;
     width: 100%;
-    background-color: #f7f7f7;
     padding: 12px 20px 12px 50px;
     color: #000;
     font-weight: 300;
@@ -64,10 +69,9 @@ form{
     outline: none;
 
 }
-.resetbtn,.registerbtn{
+.resetbtn,.registerbtn,.loginbtn{
     display: block;
     width: 100%;
-    padding: 1rem;
     text-align: center;
     font-size: 18px;
     border: none;
@@ -76,7 +80,11 @@ form{
     color: white;
     font-family: 'baloo';
     border-radius: 0.25rem;
-    margin-bottom: 0.5rem;
+    font-size: 15px;
+    line-height: 1;
+    color: white;
+    padding: 0 0.4rem;
+    cursor: pointer;
 }
 .loading::before{
     display: block;
@@ -95,6 +103,20 @@ form{
     width: 80%;
     display: block;
     margin: auto;
+}
+.message{
+    display: block;
+    width: fit-content;
+    margin: auto;
+}
+.submitform{
+    width: fit-content;
+    justify-content: center;
+    background-color: var(--main-color);
+    color: white;
+    padding: 0.7rem;
+    border-radius: 5px;
+    margin: 0.5rem auto;
 }
 @media screen and (max-width: 700px){
     .container{

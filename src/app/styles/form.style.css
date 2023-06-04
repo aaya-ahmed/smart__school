@@ -79,7 +79,7 @@ header div:nth-child(2) button{
 
 }
 .submit{
-    text-align: right;
+    display: flex;
 }
 .btn{
     background-color: #375c78;

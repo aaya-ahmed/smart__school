@@ -17,6 +17,9 @@ header{
     visibility: hidden;
 
 }
+label[for="togglebtn"]{
+    cursor: pointer;
+}
 i{
     font-size: 15px;
     padding:0 1rem;

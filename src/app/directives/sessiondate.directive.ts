@@ -16,7 +16,7 @@ export class SessiondateDirective implements OnInit{
     let index=this.session.findIndex((p:any)=>{ return new Date(p.scheduleDay).getTime()==currentDate&&p.sessionNo==this.currentsession});
     if(index!=-1){
       if(this.modulename=='TeacherModule'){
-        this.elementRef.nativeElement.innerHTML = `<p>Class ${this.session[index].className}</p>`;
+        this.elementRef.nativeElement.innerHTML = `<p>Class ${this.session[index].classRoomName}</p>`;
       }
       else{
         this.elementRef.nativeElement.innerHTML = `<p>${this.session[index].subjectName}<br>${this.session[index].teacherName}</p>`; 

@@ -7,9 +7,11 @@ import { Component } from '@angular/core';
 })
 export class AdminComponent {
   toggle:boolean=false;
-
-  toggleview(){
-    this.toggle=!this.toggle;
-
+  constructor(){
+    if(window.innerWidth<1000)
+    this.toggle=true
+  }
+  toggleview(event:any){
+    this.toggle=event
   }
 }

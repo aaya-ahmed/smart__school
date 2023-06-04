@@ -22,13 +22,11 @@
             </div>
             <div class="form-group">
                 <label>Name</label>
-                <input type="text" formControlName="fullName" class="form-control" (change)="validatename($event)"
+                <input type="text" formControlName="fullName" class="form-control"
                 [ngClass]="{'is-invalid':(namecontrol.errors&&namecontrol.touched)||(namecontrol.errors&&form.submitted)}"/>
                 <div *ngIf="(namecontrol.errors&&form.submitted)||(namecontrol.errors&&namecontrol.touched)" class="invalid">
                     <p *ngIf="namecontrol.errors['required']" class="invalid-feedback">name is required</p>
-                    <p *ngIf="namecontrol.errors['minlength']" class="invalid-feedback">minlength is 11 char</p>
-                    <p *ngIf="namecontrol.errors['maxlength']" class="invalid-feedback">minlength is 23 char</p>
-                    <p *ngIf="namecontrol.errors['notvalid']" class="invalid-feedback">enter three names</p>
+                    <p *ngIf="namecontrol.errors['pattern']" class="invalid-feedback">enter three names,max length 15 char</p>
                 </div>
             </div>
             <div class="form-group" *ngIf="!data">
@@ -126,10 +124,15 @@
                 </div>
             </div>
             <div class="form-group submit">
-                <input type="submit" value="Add" class="btn" *ngIf="!data"/>
-                <input type="submit" value="Update" class="btn" *ngIf="data"/>
+                <ng-container *ngIf="!loader">
+                    <input type="submit" value="Add" class="btn" *ngIf="!data"/>
+                    <input type="submit" value="Update" class="btn" *ngIf="data"/>
+                </ng-container>
                 <ng-container *ngIf="mess!=''" >
                     <app-messagerespnce [message]="mess" [type]="type" class="message"></app-messagerespnce>
+                </ng-container>
+                <ng-container *ngIf="loader">
+                        <app-loader></app-loader>
                 </ng-container>
             </div>
         </form>

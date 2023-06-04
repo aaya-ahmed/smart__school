@@ -15,7 +15,7 @@ import { environment } from 'src/environments/environment';
 export class RequestdetailsComponent {
   @Input()data:any;
   requestDetails: any;
-  errorMessage: string = '';
+  Message: string = '';
   requeststatus:number=-1;
   srcimage:string[]=[]
   classies:classroom[]=[]
@@ -54,29 +54,34 @@ export class RequestdetailsComponent {
   acceptRequest() {
     if(this.classform.valid){
       this.loader=true;
-      this._RequestService.acceptRequest(this.requestDetails.id).subscribe({
+      let subscriber=this._RequestService.acceptRequest(this.requestDetails.id).subscribe({
         next: (response) => {
-          this.studentservice.get(response.studentid).subscribe({
+          let subscriber2=this.studentservice.get(response.studentid).subscribe({
             next:res=>{
               res.classRoomID=this.classies[this.classform.controls['class'].value].id;
               res.classRoomName=this.classies[this.classform.controls['class'].value].name;
-              this.studentservice.update(res).subscribe({
+              let subscriber3=this.studentservice.update(res).subscribe({
                 next:res=>{
                   this.loader=false;
                   this.requeststatus=1;
-                  this.close()
+                  this.Message='Accepted'
+                  subscriber.unsubscribe();
+                  subscriber2.unsubscribe()
+                  subscriber3.unsubscribe();
                 }
               })
             },
             error:err=>{
               this.loader=false;
-              console.log(err)
+              subscriber.unsubscribe();
+              subscriber2.unsubscribe()
             }
           })
         },
         error:err=>{
           this.loader=false;
-          this.errorMessage="request not accepted"
+          subscriber.unsubscribe();
+          this.Message="request not accepted"
         }
       });
     }
@@ -88,9 +93,10 @@ export class RequestdetailsComponent {
         this.loader=false;
         if (response === null) {
           this.requeststatus=1;
-          this.close();
+          this.Message="request is refused"
+
         } else {
-          this.errorMessage="request not refused"
+          this.Message="request is not refused"
         }
       },
     });

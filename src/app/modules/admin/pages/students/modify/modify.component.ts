@@ -27,8 +27,9 @@ export class ModifyComponent implements OnInit ,OnDestroy {
     studentFirstName :new FormControl('',[Validators.required,Validators.pattern("^[a-z A-Z]{15,31}$")]),
     studentPhone :new FormControl('',[Validators.required,Validators.pattern("^01[0125][0-9]{8}$")])
   });
-  mess:string=''
-  type:string=''
+  mess:string='';
+  type:string='';
+  loader:boolean=false;
   constructor(private classservice:ClassroomService,private studentservice:StudentserviceService,private hostman:HostmanagerService){}
 
   get fnamecontrol(){
@@ -73,6 +74,7 @@ export class ModifyComponent implements OnInit ,OnDestroy {
   }
   modify(){
     if(this.student.valid){
+      this.loader=true;
       let index=this.student.controls['classRoomID'].value;
       this.data={
         ...this.data,
@@ -82,26 +84,20 @@ export class ModifyComponent implements OnInit ,OnDestroy {
       }
       this.subscriber=this.studentservice.update(this.data).subscribe({
         next:res=>{
+          this.loader=false;
           this.mess="succcess"
           this.type="success"
-          this.reset();
         },
         error:err=>{
+          this.loader=false;
           this.mess="failed"
           this.type="falied"
-          this.reset();
         }
       });
     }
   }
   close(){
     this.hostman.load({open:false,data:'',returndata:'',type:''});
-  }
-  reset(){
-    setTimeout(() => {
-      this.mess=""
-      this.type=""
-    }, 1000);
   }
   ngOnDestroy(): void {
     if(this.subscriber)

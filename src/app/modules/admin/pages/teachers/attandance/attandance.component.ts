@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { IteacherAttendance } from 'src/app/data/iteacher-attendance';
 import { AttendeceService } from 'src/app/services/attendece.service';
@@ -8,12 +7,13 @@ import { HostmanagerService } from 'src/app/services/hostmanager.service';
 @Component({
   selector: 'app-attandance',
   templateUrl: './attandance.component.html',
-  styleUrls: ['./attandance.component.css','../../../../../styles/form.style.css','../../../../../styles/modulesStyle.css']
+  styleUrls: ['../../../../../styles/form.style.css','../../../../../styles/modulesStyle.css','./attandance.component.css']
 })
 export class AttandanceComponent {
   attendenceList: IteacherAttendance[] = [];
   isBoolValue:boolean=false;
   attandanceSubscriber:Subscription=new Subscription();
+  loader:boolean=true;
   constructor(private _teacherAttendanceService: AttendeceService,private hostman:HostmanagerService) {}
   ngOnInit(): void {
       this.attandanceSubscriber=this._teacherAttendanceService.generateTeacherAttendnce().subscribe({
@@ -30,21 +30,26 @@ export class AttandanceComponent {
               this.isBoolValue=true;
           }
         }
+        this.loader=false;
         this.attandanceSubscriber.unsubscribe()
       },
       error:(error) =>{
+        this.loader=false;
         this.attandanceSubscriber.unsubscribe()
       }
     });
 }
 save(){
+  this.loader=true;
   this.attandanceSubscriber=this._teacherAttendanceService.saveTeacherAttendnce(this.attendenceList).subscribe({
     next: (response) => {
-      this.hostman.load({open:false,data:'',returndata:'',type:''});
+      this.attendenceList=this.attendenceList.filter(p=>!p.state);
+      this.loader=false;
       this.attandanceSubscriber.unsubscribe()
     },
     error: (error) => {
-      this.hostman.load({open:false,data:'',returndata:'',type:''});
+      this.loader=false;
+
       this.attandanceSubscriber.unsubscribe()
     }
   });

@@ -6,9 +6,12 @@ import { Component } from '@angular/core';
   styleUrls: ['../../styles/framemodule.css']
 })
 export class StudentComponent {
-  toggle:boolean=true;
-
-  toggleview($event:any){
-    this.toggle=$event;
+  toggle:boolean=false;
+  constructor(){
+    if(window.innerWidth<1000)
+    this.toggle=true
+  }
+  toggleview(event:any){
+    this.toggle=event
   }
 }
