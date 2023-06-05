@@ -13,6 +13,7 @@ export class SonComponent implements OnInit {
   students:student[]=[];
   parent:any;
   prefix:string = environment.imgeurl;
+  loader:boolean=true;
   constructor(private parentservice:ParentserviceService,private route:Router){}
   ngOnInit(): void {
     let id=localStorage.getItem('uid')?.replace(/"/g,"")||'';
@@ -27,7 +28,7 @@ export class SonComponent implements OnInit {
     this.parentservice.getstudent(userid).subscribe({
       next:res=>{
         this.students=res;
-        console.log(res)
+        this.loader=false;
       }
      }) ;
   }
