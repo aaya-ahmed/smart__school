@@ -1,13 +1,13 @@
 <main>
     <section class="photo-profile">
         <div class="image">
-            <img src="{{student.studentPhotoUrl}}"/>
+            <img src="{{student?.studentPhotoUrl}}"/>
             <label (click)="changephoto()"><i class="fa-solid fa-camera"></i></label>
         </div>
         <div class="sub-info">  
             <div>
-                <h3>{{student.studentFirstName}}</h3>
-                <h4>Class {{student.classRoomName}}</h4>     
+                <h3>{{student?.studentFirstName}}</h3>
+                <h4>Class {{student?.classRoomName}}</h4>     
             </div>    
         </div>
     </section>
@@ -17,15 +17,15 @@
                 <tbody>
                     <tr>
                         <th>Phone</th>
-                        <td>{{student.studentPhone}}</td>
+                        <td>{{student?.studentPhone}}</td>
                     </tr>
                     <tr>
                         <th>Fees</th>
-                        <td>{{student.fees==false?'No':'Yes'}}</td>
+                        <td>{{student?.fees==false?'No':'Yes'}}</td>
                     </tr>
                     <tr>
                         <th>Birth Date</th>
-                        <td>{{student.studentBirthDate|date:"yyyy-MM-dd"}}</td>
+                        <td>{{student?.studentBirthDate|date:"yyyy-MM-dd"}}</td>
                     </tr>
                 </tbody>
             </table>
@@ -35,15 +35,15 @@
                 <tbody>
                     <tr>
                         <th>Gender</th>
-                        <td>{{student.gender==0?'Boy':'Girl'}}</td>
+                        <td>{{student?.gender=='male'?'Boy':'Girl'}}</td>
                     </tr>
                     <tr>
                         <th>MaxDayOff</th>
-                        <td>{{student.maxDayOff}}</td>
+                        <td>{{student?.maxDayOff}}</td>
                     </tr>
                     <tr>
                         <th>AbsenceDays</th>
-                        <td>{{student.absenceDays}}</td>
+                        <td>{{student?.absenceDays}}</td>
                     </tr>
                 </tbody>
             </table>         

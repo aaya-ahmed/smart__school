@@ -10,6 +10,9 @@
   font-weight: 800;
   background-color: #fcd2b1;
 }
+.header span{
+  display: flex;
+}
 select{
     padding: 0.5rem 1rem;
 }

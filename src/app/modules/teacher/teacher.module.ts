@@ -6,7 +6,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NavbarComponent } from './Layout/navbar/navbar.component';
 import { TeacherComponent } from './teacher.component';
 import { StudentsComponent } from './pages/students/students.component';
-import { GradsComponent } from './pages/grads/grads.component';
 import { MaterialsComponent } from './pages/materials/materials.component';
 import { SidehostComponent } from './sidehost/sidehost.component';
 import { StudentattandanceComponent } from './pages/students/studentattandance/studentattandance.component';
@@ -25,7 +24,6 @@ import { AuthInterceptor } from 'src/app/interceptor/auth.interceptor';
     NavbarComponent,
     TeacherComponent,
     StudentsComponent,
-    GradsComponent,
     MaterialsComponent,
     SidehostComponent,
     StudentattandanceComponent,

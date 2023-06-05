@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 export class NavbarComponent {
   @Input()toggleflag:boolean=false;
   currentpage:string='profile'
-  @Output()toggleevent:EventEmitter<boolean>=new EventEmitter(false);
+  @Output()toggleview:EventEmitter<boolean>=new EventEmitter<boolean>(false);
 
   constructor(private route:Router){
     let index=route.url.lastIndexOf('/');
@@ -24,8 +24,7 @@ export class NavbarComponent {
   gottohome(){
     this.route.navigate(['']);
   }
-  togglebtnfun(){
-    this.toggleflag=!this.toggleflag
-    this.toggleevent.emit( this.toggleflag);
+  toggle(){
+    this.toggleview.emit(true)
   }
 }

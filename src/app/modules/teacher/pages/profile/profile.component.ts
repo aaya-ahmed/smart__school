@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { teacher } from 'src/app/data/teacher';
 import { HostmanagerService } from 'src/app/services/hostmanager.service';
 import { TeacherService } from 'src/app/services/teacher.service';
@@ -28,6 +29,7 @@ export class ProfileComponent implements OnInit {
     subjectName: '',
     identityUserId: ''
   }
+  subscriber:Subscription=new Subscription();
   constructor(private teacherservice:TeacherService,private hostman:HostmanagerService){
   }
   ngOnInit(): void {
@@ -35,26 +37,26 @@ export class ProfileComponent implements OnInit {
   }
   getteacher(){
     let id=localStorage.getItem("uid")?.replace(/"/g,'')||''
-    this.teacherservice.getbyidentity(id).subscribe({
+    let subscriber=this.teacherservice.getbyidentity(id).subscribe({
       next:res=>{
-        console.log(res)
         this.teacher=res;
         this.teacher.photoUrl=environment.imgeurl+this.teacher.photoUrl+"?t="+new Date().getTime();
+        subscriber.unsubscribe()
       }
     })
   }
   changephoto(){
     this.hostman.load({open:true,data:this.teacher,returndata:'',type:'changephoto'});
-    this.hostman.data.subscribe({
+    this.subscriber=this.hostman.data.subscribe({
       next:res=>{
         if(res.returndata!=''){
-          console.log(res);
           this.teacher.photo=res.returndata;
           this.teacherservice.update(this.teacher).subscribe({
             next:res=>{
               this.teacher.photoUrl=environment.imgeurl+res.photoUrl+"?t="+new Date().getTime()
             }
-          })
+          });
+          this.subscriber.unsubscribe()
         }
       }
     })
@@ -68,5 +70,9 @@ export class ProfileComponent implements OnInit {
         }
       }
     })
+  }
+  ngOnDestroy(): void {
+    if(this.subscriber)
+    this.subscriber.unsubscribe()
   }
 }

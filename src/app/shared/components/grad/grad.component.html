@@ -35,6 +35,9 @@
                     <li *ngIf="resultype=='fullyear'">Year</li>
                 </ul>
             </header>
+            <ng-container *ngIf="examresult.length==0">
+                <p class="latefees">Kindly Pay Your Fees!</p>
+            </ng-container>
             <main>
                 <ul *ngFor="let item of examresult">
                     <li>{{item.subjectName}}</li>
@@ -47,11 +50,4 @@
                 </ul>
             </main>
         </section>
-
-
-
-    <ng-container *ngIf="examresult.length==0">
-        <p class="latefees">Kindly Pay Your Fees!</p>
-    </ng-container>
-
 </section>

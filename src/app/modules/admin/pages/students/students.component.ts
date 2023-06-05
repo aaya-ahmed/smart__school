@@ -22,6 +22,7 @@ export class StudentsComponent {
   second:number=0;
   loader:boolean=false;
   yearindex:number=0;
+  upgradeloader:boolean=false;
   constructor(private examservice:ExamserviceService,private gradeyearservice:GradyearService,private examresultservice:ExamserviceService,private studentsservice:StudentserviceService,private hostman:HostmanagerService) {}
   ngOnInit(): void {
     let subscriber=this.gradeyearservice.getall().subscribe({
@@ -95,8 +96,10 @@ showAbsence(){
   this.hostman.load({data:'',returndata:'',type:'absance',open:true});
 }
 upgradestudents(){
+  this.upgradeloader=true;
   this.examresultservice.upgradestudents().subscribe({
     next:res=>{
+      this.upgradeloader=false;
       this.getdata();
     },
     error:err=>{

@@ -1,29 +1,35 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { parent } from 'src/app/data/parent';
 import { payment } from 'src/app/data/payment';
 import { ParentserviceService } from 'src/app/services/parentservice.service';
 
 @Component({
   selector: 'app-payment',
   templateUrl: './payment.component.html',
-  styleUrls: ['./payment.component.css','../../../../styles/form.style.css']
+  styleUrls: ['./payment.component.css']
 })
 export class PaymentComponent implements OnInit {
   Parent:string = '';
   Student:string = '';
   Amount:number = 0 ;
-
-  constructor(private router:ActivatedRoute, private parentService:ParentserviceService, private route:Router) {
-
+  mess:string=''
+  loader:boolean=false;
+  parent:any;
+  constructor(private parentservice:ParentserviceService,private router:ActivatedRoute, private parentService:ParentserviceService, private route:Router) {
   }
-
   ngOnInit(): void {
+    let id=localStorage.getItem('uid')?.replace(/"/g,"")||'';
+    this.parentservice.getbyidentity(id).subscribe({
+      next:res=>{
+        this.parent = res;
+      }
+    });
     this.Parent = this.router.snapshot.paramMap.get('parent') || ''
     this.Student = this.router.snapshot.paramMap.get('student') || ''
     this.Amount = +(this.router.snapshot.paramMap.get('amount') || '')
   }
-
   payment:FormGroup = new FormGroup({
     cardName: new FormControl('',[Validators.required]),
     cardNumber: new FormControl('',[Validators.required, Validators.pattern("^[0-9]{16}$")]),
@@ -46,6 +52,7 @@ export class PaymentComponent implements OnInit {
 
   addpayment(){
     if(this.payment.valid){
+      this.loader=true;
       let payment:payment = {
         parentID:this.Parent,
         studentID:this.Student,
@@ -55,10 +62,12 @@ export class PaymentComponent implements OnInit {
       console.log(payment);
       this.parentService.payment(payment).subscribe({
         next:res =>{
-          this.route.navigate(['parent']);
-          console.log(res);
+          this.mess='Success'
+          this.loader=false;
+          //this.route.navigate(['parent']);
         },error:e => {
-          console.log(e);
+          this.loader=false;
+          this.mess='Failed'
         }
 
       });
