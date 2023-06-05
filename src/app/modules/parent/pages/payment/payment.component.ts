@@ -17,6 +17,7 @@ export class PaymentComponent implements OnInit {
   mess:string=''
   loader:boolean=false;
   parent:any;
+  today:Date=new Date();
   constructor(private parentservice:ParentserviceService,private router:ActivatedRoute, private parentService:ParentserviceService, private route:Router) {
   }
   ngOnInit(): void {
@@ -34,7 +35,7 @@ export class PaymentComponent implements OnInit {
     cardName: new FormControl('',[Validators.required]),
     cardNumber: new FormControl('',[Validators.required, Validators.pattern("^[0-9]{16}$")]),
     cardExpiryYear: new FormControl('',[Validators.required]),
-    cardExpiryMonth: new FormControl('',[Validators.required]),
+    cardExpiryMonth: new FormControl('',[Validators.required,Validators.pattern("^([1-9]{1}|10|1[1-2]{1})$")]),
     cardCvc: new FormControl('',[Validators.required, Validators.pattern("^[0-9]{3}$")])
   });
 
@@ -49,7 +50,11 @@ export class PaymentComponent implements OnInit {
   }get cardcvccontrol(){
     return this.payment.controls['cardCvc']
   }
-
+  validateyear(){
+    if(+this.cardexpyearcontrol.value<this.today.getFullYear()){
+      this.cardexpyearcontrol.setErrors({'invalidyear':true});
+    }
+  }
   addpayment(){
     if(this.payment.valid){
       this.loader=true;
@@ -59,12 +64,13 @@ export class PaymentComponent implements OnInit {
         amount:this.Amount,
         ...this.payment.value
       }
-      console.log(payment);
       this.parentService.payment(payment).subscribe({
         next:res =>{
           this.mess='Success'
           this.loader=false;
-          //this.route.navigate(['parent']);
+          setTimeout(() => {
+            this.route.navigate(['parent']);
+          }, 3000);
         },error:e => {
           this.loader=false;
           this.mess='Failed'

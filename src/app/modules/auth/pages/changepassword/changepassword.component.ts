@@ -5,7 +5,7 @@ import { AuthserviceService } from 'src/app/services/authservice.service';
 @Component({
   selector: 'app-changepassword',
   templateUrl: './changepassword.component.html',
-  styleUrls: ['./changepassword.component.css','../style.css']
+  styleUrls: ['../style.css','./changepassword.component.css']
 })
 export class ChangepasswordComponent {
   loadflag:boolean=false;
@@ -32,18 +32,17 @@ export class ChangepasswordComponent {
       this.authservice.changepassword(this.changepasswordform.value).subscribe({
         next:res=>{
           this.typemess='success';
-          this.message='password is changed'
+          this.message='password is changed';
+          this.loadflag=false;
           setTimeout(() => {
             this.authservice.logout('login')
-          }, 1000);
+          }, 2000);
         },
         error:err=>{
           this.typemess='failed';
-          this.message=err.error.meesage;
-          setTimeout(() => {
-            this.typemess='';
-            this.message='';
-          }, 1000);
+          this.message=err.error['message'];
+          this.loadflag=false;
+
         }
       })
     }

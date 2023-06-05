@@ -70,3 +70,6 @@ i{
 .message{
  display: inline-block;
 }
+.submitting{
+    display: flex;
+}

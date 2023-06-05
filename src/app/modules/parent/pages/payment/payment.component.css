@@ -35,6 +35,7 @@
     border-radius: 10px;
 }
 
+
 .container form .row{
   display: flex;
   flex-wrap: wrap;
@@ -87,17 +88,17 @@
   margin-top: 5px;
   filter: drop-shadow(0 0 1px #000);
 }
-
-.container form .submit-btn{
-  width: 100%;
-  padding:12px;
-  font-size: 17px;
-  background: #27ae60;
-  color:#fff;
-  margin-top: 5px;
-  cursor: pointer;
+button{
+    background-color: transparent;
+    border-radius: 0px;
+    color:black;
+    font-size: 15px;
+    border: none;
+    outline: none;
 }
-
-.container form .submit-btn:hover{
-  background: #2ecc71;
+.success{
+    color: green;
+}
+.failed{
+    color: red;
 }
