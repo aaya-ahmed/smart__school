@@ -17,6 +17,7 @@ export class StudentsComponent {
   baseUrl:string=environment.imgeurl;
   classsies:classroom[]=[]
   allstudents:student[]=[]
+  loader:boolean=true;
   constructor(private teacherservice:TeacherService,private hostman:HostmanagerService,private classservice:ClassroomService,private studentservice:StudentserviceService) { }
   ngOnInit() {
     let id=localStorage.getItem('uid')?.replace(/"/g,'')||'';
@@ -38,7 +39,7 @@ export class StudentsComponent {
     this.studentservice.getstudentbyclassid(event.target.value).subscribe({
       next:res=>{
         this.allstudents=res;
-        console.log(res)
+        this.loader=false;
       }
     })
   }

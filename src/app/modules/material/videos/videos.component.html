@@ -1,4 +1,7 @@
-<ng-container *ngIf="videos.length>0">
+<ng-container *ngIf="loader">
+    <app-loader></app-loader>
+</ng-container>
+<ng-container *ngIf="!loader&&videos.length>0">
     <section class="table">
         <div class="video">
             <video controls  [src]='path'>
@@ -17,7 +20,7 @@
         </div>
     </section>
 </ng-container>
-<ng-container *ngIf="videos.length==0">
+<ng-container *ngIf="!loader&&videos.length==0">
     <div class="notfoundbody">
         Not Found
     </div>

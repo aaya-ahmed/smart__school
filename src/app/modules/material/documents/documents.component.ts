@@ -13,6 +13,7 @@ export class DocumentsComponent implements OnChanges {
   @Input()subjectId:number=-1;
   @Input()reloaddocument:boolean=false;
   documents:material[]=[];
+  loader:boolean=true;
   constructor(private materialservice:MaterialService,private hostman:HostmanagerService) { }
   ngOnChanges(changes: SimpleChanges): void {
     if(this.subjectId!=null){
@@ -20,12 +21,15 @@ export class DocumentsComponent implements OnChanges {
     }
   }
   getDocuments(){
+    this.loader=true;
     this.materialservice.getfilebysubject(this.subjectId,"documents").subscribe({
       next:(res:any)=>{
         if(res.length>0){
+          this.loader=false;
           this.documents=res;
         }
         else{
+          this.loader=false;
           this.documents=[]
         }
     }

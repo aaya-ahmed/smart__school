@@ -54,13 +54,14 @@ export class ExamresultComponent implements OnInit {
     })
   }
   getexamresult(classid:any){
+    this.loader=true;
     this.examservice.getexamresultlist(classid.target.value,this.teacher.subjectId).subscribe({
       next:res=>{
-        console.log(res)
         if(res.length>0)
         this.examresult=res;
         else
         this.examresult=[];
+        this.loader=false;
       }
     });
   }
@@ -88,7 +89,6 @@ export class ExamresultComponent implements OnInit {
     this.loader=true;
     this.examservice.updateexamresult(this.examresult).subscribe({
       next:(res:any)=>{
-        console.log(res)
         this.examresult=res;
         this.message='success';
         this.type='success';
@@ -108,7 +108,7 @@ export class ExamresultComponent implements OnInit {
       this.message='';
       this.type='';
       clearTimeout(timer)
-    }, 1000);
+    }, 4000);
   }
   resetresulttype(){
     this.resulttype='';

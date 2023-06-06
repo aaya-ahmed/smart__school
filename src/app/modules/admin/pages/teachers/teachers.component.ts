@@ -13,19 +13,23 @@ export class TeachersComponent {
   teachers:any[]=[];
   teacherSubscriber:Subscription=new Subscription();
   hostSubscribtion:Subscription=new Subscription();
+  loader:boolean=true;
   constructor(private teacher:TeacherService,private hostman:HostmanagerService){}
   ngOnInit(): void {
     this.getteachers();
   }
   getteachers(){
+    this.loader=true;
     this.teacherSubscriber=this.teacher.getall().subscribe({
       next:res=>{
         if(res.length>0){
           this.teachers=res;
+          this.loader=false;
           this.teacherSubscriber.unsubscribe();
         }
       },
       error:err=>{
+        this.loader=false;
         this.teacherSubscriber.unsubscribe();
       }
     })

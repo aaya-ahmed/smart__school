@@ -5,7 +5,10 @@
         <button (click)="takeattandance()" class="addbtn">Take Attandance</button>
     </span>
 </div>
-<ng-container *ngIf="teachers.length>0">
+<ng-container *ngIf="loader">
+    <app-loader></app-loader>
+</ng-container>
+<ng-container *ngIf="!loader&&teachers.length>0">
     <div class="tableheader">
         <div>Name</div>
         <div>subject</div>
@@ -35,7 +38,7 @@
         </div>
     </div>  
 </ng-container>        
-<ng-container *ngIf="teachers.length==0">
+<ng-container *ngIf="!loader&&teachers.length==0">
     <div class="notfoundbody">
         Not Found
     </div>

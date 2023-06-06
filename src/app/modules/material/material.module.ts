@@ -4,6 +4,7 @@ import { VideosComponent } from './videos/videos.component';
 import { DocumentsComponent } from './documents/documents.component';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from 'src/app/interceptor/auth.interceptor';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 
 
@@ -13,7 +14,8 @@ import { AuthInterceptor } from 'src/app/interceptor/auth.interceptor';
     DocumentsComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    SharedModule
   ],
   exports:[
     VideosComponent,

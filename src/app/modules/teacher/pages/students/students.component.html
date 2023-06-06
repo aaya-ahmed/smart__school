@@ -11,7 +11,10 @@
         </select>
     </span>
 </div>
-<ng-container *ngIf="allstudents.length>0">
+<ng-container *ngIf="loader">
+    <app-loader></app-loader>
+</ng-container>
+<ng-container *ngIf="!loader&&allstudents.length>0">
     <div class="tableheader">
         <div></div>
         <div>Name</div>
@@ -31,7 +34,7 @@
         </div>
     </div>
 </ng-container>
-<ng-container *ngIf="allstudents.length==0">
+<ng-container *ngIf="!loader&&allstudents.length==0">
     <div class="notfoundbody">
         Not Found
     </div>

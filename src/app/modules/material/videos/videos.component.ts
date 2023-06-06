@@ -15,6 +15,7 @@ export class VideosComponent implements OnChanges {
   tempvideos:material[]=[];
   videos:material[]=[];
   path:string='';
+  loader:boolean=true;
   constructor(private materialservice:MaterialService) { }
   ngOnChanges(changes: SimpleChanges): void {
     if(this.subjectId!=null){
@@ -22,14 +23,17 @@ export class VideosComponent implements OnChanges {
     }
   }  
   showVideos(){
+    this.loader=true;
     this.materialservice.getfilebysubject(this.subjectId,"videos").subscribe({
       next:(res:any)=>{
         if(res.length>0){
           this.videos=res;
           this.tempvideos=res;
+          this.loader=false;
           this.path=environment.imgeurl+this.tempvideos[0].path+"?t="+new Date().getTime();
         }
         else{
+          this.loader=false;
           this.videos=[]
           this.tempvideos=[]
         }
