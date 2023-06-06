@@ -24,9 +24,9 @@ export class TeachersComponent {
       next:res=>{
         if(res.length>0){
           this.teachers=res;
-          this.loader=false;
           this.teacherSubscriber.unsubscribe();
         }
+        this.loader=false;
       },
       error:err=>{
         this.loader=false;
@@ -75,12 +75,11 @@ export class TeachersComponent {
         if(res.returndata==true){
           this.teacher.delete(id).subscribe({
             next:res=>{
-              let index=this.teachers.findIndex(p=>p.Id==id);
+              let index=this.teachers.findIndex(p=>p.id==id);
               this.teachers.splice(index,1)
               this.teacherSubscriber.unsubscribe()
             },
             error:err=>{
-              console.log(err)
             }
           })
         }

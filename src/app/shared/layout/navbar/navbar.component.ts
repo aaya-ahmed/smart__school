@@ -34,7 +34,6 @@ export class NavbarComponent implements OnInit {
   }
 
   scrollToId(id: string) {
-    console.log("element id : ", id);
     this.scrollService.scrollToElementById(id);
   }
 }

@@ -46,9 +46,6 @@ export class TeachersComponent{
       next:(response) =>
       {
         this.teachers = response;
-      
-        console.log(response);
-
       }
 
     })

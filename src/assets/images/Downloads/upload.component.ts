@@ -37,7 +37,6 @@ video:string=""
     this.http.post('https://localhost:44309/api/Materials/upload',formData, {reportProgress: true, observe: 'events'})
       .subscribe({
         next: (event) => {
-          console.log(event)
         if (event.type === HttpEventType.UploadProgress&&event.total !== undefined) {
           this.progress = Math.round(100 * event.loaded / event.total);}
         else if (event.type === HttpEventType.Response) {
@@ -45,15 +44,13 @@ video:string=""
           this.onUploadFinished.emit(event.body);
         }
       },
-      error: (err: HttpErrorResponse) => console.log(err)
+      error: (err: HttpErrorResponse) => {}
     });
   }
   showVideos(){
     this.http.get('https://localhost:44309/api/Materials/get').subscribe({
       next:(res:any)=>{
-        console.log(res)
         this.video='https://localhost:44309'+'/'+res[0]["path"]
-        console.log(this.video)
     }
     })
   }

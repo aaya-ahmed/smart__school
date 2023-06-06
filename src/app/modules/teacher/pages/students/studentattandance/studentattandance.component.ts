@@ -11,8 +11,9 @@ import { StudentserviceService } from 'src/app/services/studentservice.service';
   styleUrls: ['./studentattandance.component.css','../../../../../styles/form.style.css','../../../../../styles/modulesStyle.css']
 })
 export class StudentattandanceComponent implements OnInit {
-  classies:classroom[]=[]
-  attantancelist:studentAttendence[]=[]
+  classies:classroom[]=[];
+  attantancelist:studentAttendence[]=[];
+  loader:boolean=false;
   constructor(private hostman:HostmanagerService,private attandanceservice:AttendeceService){}
   ngOnInit(): void {
     this.hostman.data.subscribe({
@@ -24,9 +25,11 @@ export class StudentattandanceComponent implements OnInit {
     })
   }
   getattantancelist(event:any){
+    this.loader=true;
     this.attandanceservice.generateStudentAttendnce(event.target.value).subscribe({
       next:res=>{
         this.attantancelist=res;
+        this.loader=false
       }
     })
   }

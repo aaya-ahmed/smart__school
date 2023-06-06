@@ -21,8 +21,6 @@ export class ScadulesComponent implements OnChanges {
   ngOnChanges(changes: SimpleChanges): void {
     if(changes['schadule'].firstChange==false){
       let currentschadule=changes['schadule'].currentValue;
-      console.log("currentschadule")
-      console.log(currentschadule)
       this.schadules.forEach(ele => {
         if(ele.sessions.sessionNo==currentschadule.SessionNum&&currentschadule.Teacherid==ele.sessions.teacherID&&ele.sessions.scheduleDay==currentschadule.Day){
               this.exist=true;
@@ -70,15 +68,9 @@ export class ScadulesComponent implements OnChanges {
          this.schaduleservice.postschadule(schadule).subscribe({
           
         next:res=>{
-          console.log(schadule)
-          console.log(res);
-          console.log("After Schedule Post");
           ele.sessions.scheduleID=res.id;
           this.schaduleservice.postsession(ele.sessions).subscribe({
             next:res=>{
-              console.log(res);
-               console.log("After session Post");
-
               this.loader=false;
               this.mess='Successfully';
               this.type='success';

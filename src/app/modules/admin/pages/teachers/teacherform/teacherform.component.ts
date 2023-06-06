@@ -133,7 +133,6 @@ export class TeacherformComponent {
           id:this.data.id,
           ...this.teacher.value
         }
-        console.log(data)
         this.teacherservice.update(data).subscribe({
           next:res=>{
             this.mess='Successfuly'
@@ -143,7 +142,6 @@ export class TeacherformComponent {
             // this.reset()
           },
           error:err=>{
-            console.log(err)
             this.mess=err.error;
             this.type='failed';
             this.loader=false;

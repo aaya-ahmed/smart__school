@@ -39,7 +39,6 @@ export class SonComponent implements OnInit {
     this.route.navigate(['parent/grad/',type,id])
   }
   gotopayment(item:student){
-    console.log(item);
     this.route.navigate(['parent/payment/', this.parent.id, item.id, item.gradePrice])
   }
 

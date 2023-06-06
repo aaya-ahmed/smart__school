@@ -43,7 +43,7 @@ save(){
   this.loader=true;
   this.attandanceSubscriber=this._teacherAttendanceService.saveTeacherAttendnce(this.attendenceList).subscribe({
     next: (response) => {
-      this.attendenceList=this.attendenceList.filter(p=>!p.state);
+      this.attendenceList=[];
       this.loader=false;
       this.attandanceSubscriber.unsubscribe()
     },

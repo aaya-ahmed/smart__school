@@ -1,9 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { ParentRoutingModule } from './parent-routing.module';
 import { ComplainComponent } from './pages/complain/complain.component';
-import { UpdateProfileComponent } from './pages/update-profile/update-profile.component';
 import { SonComponent } from './pages/son/son.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NavbarComponent } from './Layout/navbar/navbar.component';
@@ -18,7 +16,6 @@ import { PaymentComponent } from './pages/payment/payment.component';
 @NgModule({
   declarations: [
     ComplainComponent,
-    UpdateProfileComponent,
     SonComponent,
     NavbarComponent,
     ParentComponent,

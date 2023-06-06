@@ -52,7 +52,6 @@ export class RestpasswordComponent {
         },
         error:err=>{
           this.load=false;
-          console.log(err)
           this.message=err.error.message;
           this.typemessage='failed'
         }

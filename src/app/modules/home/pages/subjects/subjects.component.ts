@@ -18,8 +18,7 @@ export class SubjectsComponent implements OnInit {
   }
   ngOnInit(): void {
     this._GradyearService.getall().subscribe({
-      next : (response) => {this.allGradeYears = response;
-      console.log(this.allGradeYears)}
+      next : (response) => {this.allGradeYears = response;}
     })
 
 
@@ -30,25 +29,17 @@ export class SubjectsComponent implements OnInit {
   choosedGrade:string="1"
   chooseSubjectToggler(){
     this.isChoosed=!this.isChoosed;
-    console.log(this.isChoosed);
     if(this.isChoosed)
     {
       this._SubjectService.getbygradeyear(+this.choosedGrade).subscribe({
         next : (response) => {this.allSubjects = response;
-        console.log(this.allSubjects)}
+        }
       })
     }
   }
   changeGrade(e:any){
     this.choosedGrade=e.target.value
     this.currentName=this.allGradeYears.find(p=>p.id==e.target.value)?.name||''
-    console.log(this.choosedGrade);
-
-    // this._SubjectService.getbygradeyear(+this.choosedGrade).subscribe({
-    //   next : (response) => {this.allSubjects = response;
-    //   console.log(this.allSubjects)}
-    // })
-
 
   }
 }

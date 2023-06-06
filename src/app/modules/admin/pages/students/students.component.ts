@@ -38,7 +38,6 @@ getdata(){
     next: (response) => {
       this.allstudents = response;
       this.allstudents.forEach((item,i)=>{
-
         this.examservice.getstudentfullresult(item.id,this.gradeyear[this.yearindex].id).subscribe({
           next:res=>{
             res.forEach(item=>{
@@ -64,7 +63,7 @@ update(index:number){
   this.hostman.load({data:this.allstudents[index],returndata:'',type:'modifystudent',open:true})
   let subscriber=this.hostman.data.subscribe({
     next:res=>{
-      if(res.returndata!=''){
+      if(res.open==false){
         this.getdata();
         subscriber.unsubscribe();
       }
@@ -84,7 +83,6 @@ delete(index:number){
             this.allstudents.splice(index,1)
           },
           error:err=>{
-            console.log(err)
           }
         })
       }
@@ -103,7 +101,6 @@ upgradestudents(){
       this.getdata();
     },
     error:err=>{
-      console.log(err.error.message)
     }
   });
 }

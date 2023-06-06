@@ -29,6 +29,6 @@ export class TeacherService {
     return this.http.get<teacher[]>(environment.URL+"Teacher/GetAll")
   }
   public delete(id:string){
-    return this.http.delete(environment.URL+"Teacher/Delete?id="+id)
+    return this.http.delete(environment.URL+"Teacher/Delete/"+id)
   }
 }

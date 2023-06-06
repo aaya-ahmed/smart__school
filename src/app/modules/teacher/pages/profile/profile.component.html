@@ -1,8 +1,13 @@
 <main>
     <section class="photo-profile">
         <div class="image">
-            <img src="{{teacher.photoUrl}}"/>
-            <label (click)="changephoto()"><i class="fa-solid fa-camera"></i></label>
+            <ng-container *ngIf="loader">
+                <app-loader></app-loader>
+            </ng-container>
+            <ng-container *ngIf="!loader">
+                <img src="{{teacher.photoUrl}}"/>
+                <label (click)="changephoto()"><i class="fa-solid fa-camera"></i></label>
+            </ng-container>
         </div>
         <div class="sub-info">  
             <div>

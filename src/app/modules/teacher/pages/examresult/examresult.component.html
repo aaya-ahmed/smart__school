@@ -46,7 +46,7 @@
                 </div>
                 <ng-container [ngSwitch]="resulttype">
                     <div *ngSwitchCase="'first'">
-                        <input  type="text" [ngStyle]="{'color':item.firstTermGrade==75?'red':'black'}" [(ngModel)]="item.firstTermGrade" (change)="updategrade(i,$event)"/>
+                        <input  type="text" [ngStyle]="{'color':item.firstTermGrade==item.totalSubjectMark/2?'red':'black'}" [(ngModel)]="item.firstTermGrade" (change)="updategrade(i,$event)"/>
                     </div>
                     <div *ngSwitchCase="'first'">
                         {{item.totalSubjectMark/2}}
@@ -55,7 +55,7 @@
                         {{item.firstTermGrade}}
                     </div>
                     <div *ngSwitchCase="'second'">
-                        <input  type="text" [ngStyle]="{'color':item.secondTermGrade==75?'red':'black'}" [(ngModel)]="item.secondTermGrade" (change)="updategrade(i,$event)"/>
+                        <input  type="text" [ngStyle]="{'color':item.secondTermGrade==item.totalSubjectMark/2?'red':'black'}" [(ngModel)]="item.secondTermGrade" (change)="updategrade(i,$event)"/>
                     </div>
                     <div *ngSwitchCase="'second'">
                         {{item.totalSubjectMark}}

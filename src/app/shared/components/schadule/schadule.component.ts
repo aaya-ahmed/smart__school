@@ -16,12 +16,14 @@ export class SchaduleComponent implements OnInit,OnDestroy {
   sessionNumbers:number[]=[];
   classid:string=''
   schaduleSubscribtion:Subscription=new Subscription();
+  loader:boolean=false;
   constructor(private sessionsservice:SchaduleSessionService,private moduleRef: NgModuleRef<any>,private route:ActivatedRoute){}
   ngOnInit(): void {
     this.moduleName = this.moduleRef.instance.constructor.name;
       this.getschadule();
   }
   getschadule(){
+    this.loader=true;
     this.sessions=[];
     this.setDay();
     switch(this.moduleName){
@@ -47,6 +49,7 @@ export class SchaduleComponent implements OnInit,OnDestroy {
           return new Date(a.scheduleDay).getTime() - new Date(b.scheduleDay).getTime()
         });
         this.setSessionNumber();
+        this.loader=false;
         this.schaduleSubscribtion.unsubscribe();
       }
     });
@@ -59,6 +62,7 @@ export class SchaduleComponent implements OnInit,OnDestroy {
           return new Date(a.scheduleDay).getTime() - new Date(b.scheduleDay).getTime()
         });
         this.setSessionNumber();
+        this.loader=false;
         this.schaduleSubscribtion.unsubscribe();
       }
     });

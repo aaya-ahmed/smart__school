@@ -67,18 +67,30 @@ export class ExamresultComponent implements OnInit {
   }
   updategrade(index:number,result:any){
     let examresult=this.examresult[index];
-      if(this.resulttype=='first'&&result.target.value<=examresult.totalSubjectMark/2){
-        examresult.firstTermGrade=+result.target.value;
-      }
-      else if(this.resulttype=='first'&&result.target.value>examresult.totalSubjectMark/2){
-        examresult.firstTermGrade=75;
-      }
-      if(this.resulttype=='second'&&result.target.value<=examresult.totalSubjectMark/2){
-        examresult.secondTermGrade=+result.target.value;
-      }
-      else if(this.resulttype=='second'&&result.target.value>examresult.totalSubjectMark/2){
-        examresult.secondTermGrade=75;
-      }
+    switch(this.resulttype){
+      case 'first':
+        if(result.target.value<=examresult.totalSubjectMark/2){
+          examresult.firstTermGrade=+result.target.value;
+        }
+        else if(result.target.value>examresult.totalSubjectMark/2){
+          examresult.firstTermGrade=examresult.totalSubjectMark/2;
+        }
+        else{
+          examresult.firstTermGrade=0;
+        }
+        break;
+      case 'second':
+        if(result.target.value<=examresult.totalSubjectMark/2){
+          examresult.secondTermGrade=+result.target.value;
+        }
+        else if(result.target.value>examresult.totalSubjectMark/2){
+          examresult.secondTermGrade=examresult.totalSubjectMark/2;
+        }
+        else{
+          examresult.secondTermGrade=0;
+        }
+        break;
+    }
       examresult.total=examresult.firstTermGrade + examresult.secondTermGrade;
       this.examresult[index]=examresult;
   }

@@ -83,7 +83,6 @@ export class SchaduleformComponent implements OnInit {
         
         if(this.schedule.valid&&res.checkStudent){
           let teacher=this.teachers[this.teachers.findIndex(p=>p.id==this.schedule.value.teacherID)];
-          console.log(this.data)
           if(this.data){
             let session={
               id: this.data.session.id,
@@ -95,7 +94,6 @@ export class SchaduleformComponent implements OnInit {
               scheduleDay: this.schedule.value.day,
               classRoomName: this.classrooms[+this.schedule.value.classIndex].name
             }
-            console.log(session)
           let schadule={
             id:  this.data.session.scheduleID,
             day: this.schedule.value.day,

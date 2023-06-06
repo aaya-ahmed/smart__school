@@ -49,7 +49,6 @@ export class SubjectsComponent implements OnInit,OnDestroy{
               this.subjects.splice(index,1)
             },
             error:err=>{
-              console.log(err)
             }
           })
         }

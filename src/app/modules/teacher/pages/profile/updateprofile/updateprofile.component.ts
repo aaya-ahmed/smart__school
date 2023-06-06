@@ -13,6 +13,7 @@ export class UpdateprofileComponent {
   teacher:FormGroup=new FormGroup({});
   mess:string='';
   type:string='';
+  loader:boolean=false;
   constructor(private fb:FormBuilder,private teacherservice:TeacherService,private hostman:HostmanagerService){
   }
   ngOnInit(): void {
@@ -51,18 +52,24 @@ export class UpdateprofileComponent {
   }
   save(){
     if(this.teacher.valid){
+      this.loader=true;
+
       this.data={
           ...this.data,
           ...this.teacher.value
       }
+
         this.teacherservice.update(this.data).subscribe({
           next:(res:any)=>{
+            this.loader=false;
+
             this.mess='Successfuly';
             this.type='success';
             //this.reset();
           },
           error:(err:any)=>{
-            console.log(err)
+            this.loader=false;
+
             this.mess=err.error;
             this.type='failed';
            // this.reset();

@@ -29,7 +29,6 @@ export class ProfileComponent implements OnDestroy {
         this.subjectservice. getbyclass(this.student.classRoomID).subscribe({
           next:res=>{
             this.subject=res;
-            console.log(this.subject)
           }
         });
       }
@@ -42,11 +41,6 @@ export class ProfileComponent implements OnDestroy {
       next:res=>{
         if(res.returndata!=''){
           this.student.studentPhoto=res.returndata;
-          this.studentservice.update(this.student).subscribe({
-            next:res=>{
-              this.student.studentPhotoUrl=environment.imgeurl+res.studentPhotoUrl+"?t="+new Date().getTime()
-            }
-          });
           this.subscriber.unsubscribe()
         }
         

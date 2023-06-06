@@ -19,6 +19,7 @@ export class GradComponent implements OnInit {
   resultype:string='';
   year:number=new Date().getFullYear();
   modulename:string='';
+  loader:boolean=false;
   studentgradeyear:gradyear={
     id: 0,
     name: '',
@@ -44,6 +45,7 @@ export class GradComponent implements OnInit {
 
   }
   ngOnInit(): void {
+    this.loader=true;
     this.router.params.subscribe({
       next:res=>{
         this.resultype=res['type'];
@@ -63,8 +65,6 @@ export class GradComponent implements OnInit {
     })
   }
   getinitialresult(){
-
-console.log(this.resultype);
       if(this.student.classRoomID ){
         this.gradservice.getall().subscribe({
           next:res=>{
@@ -100,7 +100,7 @@ console.log(this.resultype);
         else{
           this.nodata=true;
         }
-
+        this.loader=false;
       }
     })
   }
@@ -108,10 +108,12 @@ console.log(this.resultype);
     this.examservice.getstudentresult(this.student.id,id).subscribe({
       next:res=>{
         this.examresult=res;
+        this.loader=false;
       }
     })
   }
   getresult(event:any){
+    this.loader=true;
     if(this.resultype=='fullyear'){
       let id=event.target.value;
       this.getfullyearresult(id)

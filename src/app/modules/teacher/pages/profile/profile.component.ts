@@ -29,6 +29,7 @@ export class ProfileComponent implements OnInit {
     subjectName: '',
     identityUserId: ''
   }
+  loader:boolean=false;
   subscriber:Subscription=new Subscription();
   constructor(private teacherservice:TeacherService,private hostman:HostmanagerService){
   }
@@ -50,12 +51,7 @@ export class ProfileComponent implements OnInit {
     this.subscriber=this.hostman.data.subscribe({
       next:res=>{
         if(res.returndata!=''){
-          this.teacher.photo=res.returndata;
-          this.teacherservice.update(this.teacher).subscribe({
-            next:res=>{
-              this.teacher.photoUrl=environment.imgeurl+res.photoUrl+"?t="+new Date().getTime()
-            }
-          });
+          this.teacher.photoUrl=res.returndata;
           this.subscriber.unsubscribe()
         }
       }

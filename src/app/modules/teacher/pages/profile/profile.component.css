@@ -6,11 +6,13 @@ main{
     width: 100%;
     display: flex;
     margin: 3rem 0;
+    align-items: center;
 }
 .image{
     width: 50%;
     text-align: right;
     position: relative;
+
 }
 .image img{
     width: 200px;
