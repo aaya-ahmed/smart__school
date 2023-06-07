@@ -19,6 +19,7 @@ export class SchaduleComponent implements OnInit , OnDestroy{
   });
   classrooms:classroom[]=[];
   sessions:sessions[]=[];
+  enableedit:boolean=false;
   schaduleSubscriber:Subscription=new Subscription();
   hostSubscribtion:Subscription=new Subscription();
   loader:boolean=false;
@@ -53,6 +54,9 @@ export class SchaduleComponent implements OnInit , OnDestroy{
   getschadule(){
     if(this.formdata.valid){
       this.loader=true;
+      let searchdate=new Date(this.formdata.controls['date'].value).getTime() / 1000;
+      let currentdate=new Date().getTime() / 1000;
+      if(searchdate>currentdate)this.enableedit=true ;else this.enableedit=false
       let classid:number=this.classrooms[+this.classcontrol.value-1].id
       this.schaduleSubscriber=this.schaduleservice.getsessions(classid,this.datecontrol.value).subscribe({
         next:res=>{

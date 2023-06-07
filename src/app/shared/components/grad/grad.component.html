@@ -39,11 +39,11 @@
                         <li *ngIf="resultype=='fullyear'">Year</li>
                     </ul>
                 </header>
-                <ng-container *ngIf="resultype=='firstterm'&&examresult.length==0">
+                <ng-container *ngIf="examresult.length==0&&student.fees==false">
                     <p class="latefees">Kindly Pay Your Fees!</p>
                 </ng-container>
-                <ng-container *ngIf="resultype=='fullyear'&&examresult.length==0">
-                    <p class="latefees">Not Found!</p>
+                <ng-container *ngIf="examresult.length==0&&student.fees==true">
+                    <p class="latefees">Result in progress...</p>
                 </ng-container>
                 <main>
                     <ul *ngFor="let item of examresult">

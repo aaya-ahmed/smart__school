@@ -40,7 +40,7 @@ export class ProfileComponent implements OnDestroy {
     this.subscriber=this.hostman.data.subscribe({
       next:res=>{
         if(res.returndata!=''){
-          this.student.studentPhoto=res.returndata;
+          this.student.studentPhotoUrl=environment.imgeurl+res.returndata+"?t="+new Date().getTime();;
           this.subscriber.unsubscribe()
         }
         

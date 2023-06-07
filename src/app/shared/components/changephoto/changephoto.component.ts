@@ -38,8 +38,9 @@ export class ChangephotoComponent  {
       this.data.studentPhoto=this.image.split(",").pop();
       this.studentservice.update(this.data).subscribe({
         next:res=>{
+          console.log(res)
           this.loader=false;
-          this.hostman.load({open:false,data:'',returndata:environment.imgeurl+res.studentPhotoUrl+"?t="+new Date().getTime(),type:''})
+          this.hostman.load({open:false,data:'',returndata:res.studentPhotoUrl,type:''})
 
         }
       });

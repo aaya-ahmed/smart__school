@@ -77,11 +77,11 @@ export class SchaduleformComponent implements OnInit {
     this.hostman.load({open:false,data:'',returndata:'',type:''});
   }
   addschedule(){
+    if(this.schedule.valid){
     this.studentservice.checkStudentForClassRoom(this.classrooms[+this.schedule.value.classIndex].id).subscribe({
       next:res=>{
         this.isThereStudents = !res.checkStudent;
-        
-        if(this.schedule.valid&&res.checkStudent){
+        if(res.checkStudent){
           let teacher=this.teachers[this.teachers.findIndex(p=>p.id==this.schedule.value.teacherID)];
           if(this.data){
             let session={
@@ -126,7 +126,7 @@ export class SchaduleformComponent implements OnInit {
         }
       }
     });
-
+  }
   }
   validatedate($event:any){
     let today=new Date().toISOString();
