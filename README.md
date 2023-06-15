@@ -10,10 +10,15 @@ smart0school.netlify.app
 
 we provide this website to schools to can manage their operation .there are four person type can use this website:-
 1- school manager as admin
+
 he can manage school grade year ,class ,teachers ,and students.
+
 he can receive requests from users,their want their sons join to the school
+
 can take daily attandance to teachers
+
 can set schadules for class and teachers
+
 can see student grades and make upgrade for them to new grade year
 2- teacher
 can show his/her students 
