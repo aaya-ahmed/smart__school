@@ -2,26 +2,53 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.0.0.
 
-## Development server
+## Website
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+<a href="smart0school.netlify.app">smart school</a>
 
-## Code scaffolding
+## Aim from this site
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+we provide this website to schools to can manage their operation .there are four person type can use this website:-
 
-## Build
+1- school manager as admin
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+he can manage school grade year ,class ,teachers ,and students.
 
-## Running unit tests
+he can receive requests from users,their want their sons join to the school
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+can take daily attandance to teachers
 
-## Running end-to-end tests
+can set schadules for class and teachers
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+can see student grades and make upgrade for them to new grade year
 
-## Further help
+2- teacher
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+can show his/her students 
+
+can add grades for students in his/her subject and class
+
+can take attandance for his/her students
+
+can show his/her schadule
+
+can upload videos and documents for his subject
+
+3-student
+
+can show
+-shadule for his/her class
+
+-his/her first and second term result
+
+-can show videos and document for his/her subjects
+
+4- parent
+
+can make payment fees for grade year for his son
+
+can show first and second term result for his son
+
+can show shadule for his son
+
+can send complaint to school
