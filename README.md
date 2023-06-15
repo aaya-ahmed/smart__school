@@ -4,7 +4,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## Website
 
-<a href="superschool.netlify.app">smart school</a>
+<a href="https://superschool.netlify.app/" target="_blank">smart school</a>
 
 ## Aim from this site
 
