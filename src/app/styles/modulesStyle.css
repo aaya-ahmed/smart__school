@@ -74,3 +74,8 @@ i{
     overflow: hidden;
     white-space: nowrap;
   }
+  @media (max-width:650px){
+    .header,.header span {
+      flex-direction: column;
+    }
+  }

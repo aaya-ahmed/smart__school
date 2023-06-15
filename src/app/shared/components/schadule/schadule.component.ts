@@ -42,30 +42,39 @@ export class SchaduleComponent implements OnInit,OnDestroy {
     }
   }
   getteacherschadule(id:string){
+    console.log(" start")
+
     this.schaduleSubscribtion=this.sessionsservice.getteachersession(id,this.sevsnDays[0],this.sevsnDays[this.sevsnDays.length-1]).subscribe({
       next:res=>{
-        this.sessions=res;
-        this.sessions.sort((a,b)=>{
-          return new Date(a.scheduleDay).getTime() - new Date(b.scheduleDay).getTime()
-        });
-        this.setSessionNumber();
+        this.setschadule(res)
+      },
+      error:err=>{
         this.loader=false;
-        this.schaduleSubscribtion.unsubscribe();
+        this.sessions=[];
       }
     });
   }
   getstudentschadule(classid:number){
+    console.log(" start")
     this.schaduleSubscribtion=this.sessionsservice.getstudentsession(classid,this.sevsnDays[0],this.sevsnDays[this.sevsnDays.length-1]).subscribe({
       next:res=>{
-        this.sessions=res;
-        this.sessions.sort((a,b)=>{
-          return new Date(a.scheduleDay).getTime() - new Date(b.scheduleDay).getTime()
-        });
-        this.setSessionNumber();
+        this.setschadule(res)
+      },
+      error:err=>{
         this.loader=false;
-        this.schaduleSubscribtion.unsubscribe();
+        this.sessions=[];
       }
     });
+  }
+  setschadule(responce:any){
+    console.log("set start")
+    this.sessions=responce;
+    this.sessions.sort((a,b)=>{
+      return new Date(a.scheduleDay).getTime() - new Date(b.scheduleDay).getTime()
+    });
+    this.setSessionNumber();
+    this.loader=false;
+    this.schaduleSubscribtion.unsubscribe();
   }
   setDay(){
     this.sevsnDays=[];

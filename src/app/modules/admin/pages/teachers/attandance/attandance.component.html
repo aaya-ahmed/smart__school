@@ -21,7 +21,7 @@
                     <div class="data">
                         <div *ngFor="let atten of attendenceList" class="tablebody">
                             <div>{{atten.teacherName}}</div>
-                            <div>{{atten.state}}</div>
+                            <div>{{atten.state==true?'present':'absent'}}</div>
                             <div><input type="checkbox" [(ngModel)]="atten.state" *ngIf="isBoolValue"></div>
                         </div>
                     </div>  

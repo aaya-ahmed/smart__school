@@ -32,11 +32,15 @@ header div{
     padding: 0.4rem 1rem;
 }
 header div:nth-child(1){
-    width: 90%;
+    width: 85%;
     text-align: left;
 }
 header div:nth-child(2){
-    width: 10%;
+    width: 15%;
+    padding: 0;
+    height: 100%;
+    display: flex;
+    padding: 0;
     text-align: center;
     background-color: black;
     display: block;
@@ -48,11 +52,14 @@ header div:nth-child(2){
     font-size: 15px;
 }
 header div:nth-child(2) button{
+    display: block;
+
     background-color: transparent;
     border-radius: 0;
     color: white;
     width: 100%;
     padding: 0.4rem 0;
+    height: 100%;
 }
 .form-group{
     width: 70%;
@@ -102,11 +109,6 @@ header div:nth-child(2) button{
 }
 @media screen and (max-width:850px) {
     .container-wraperr{
-            width: 70vw;
-    }
-}
-@media screen and (max-width:500px) {
-    .container-wraperr{
-            width: 100vw;
+            width: 90vw;
     }
 }

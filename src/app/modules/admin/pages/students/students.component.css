@@ -57,4 +57,7 @@ select{
     .tablebody div:nth-child(3){
       display: none!important;
     }
+    .header,.header span {
+      flex-direction: column;
+    }
   }

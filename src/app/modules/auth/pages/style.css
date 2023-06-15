@@ -26,7 +26,6 @@ form{
     margin: 1rem 0;
     padding: 1rem 0.5rem;
     box-shadow:1px 1px 18px 1px #00000029
-
 }
 .form-group{
     display: flex;
@@ -117,6 +116,12 @@ form{
     padding: 0.7rem;
     border-radius: 5px;
     margin: 0.5rem auto;
+}
+@media screen and (max-width:400px) {
+    form{
+        box-shadow:none
+    }
+    
 }
 @media screen and (max-width: 700px){
     .container{

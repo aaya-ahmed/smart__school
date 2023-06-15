@@ -1,5 +1,4 @@
  .container-wraperr{
-    width: 65vw;
     height: 65vh!important;
     overflow: hidden!important;
  }
@@ -15,6 +14,9 @@
   .tablebody div:nth-child(2),
   .tableheader div:nth-child(2){
     width: 30%!important;
+  }
+  .tablebody div:nth-last-child(1){
+    text-align: right;
   }
   .save{
     text-align: right;
