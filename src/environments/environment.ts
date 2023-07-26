@@ -1,6 +1,6 @@
 export const environment = {
-     URL:"https://ahmedelkadafy-001-site1.atempurl.com/api/",
-     imgeurl:"https://ahmedelkadafy-001-site1.atempurl.com/",
+     URL:"https://smartschool99.somee.com/api/",
+     imgeurl:"https://smartschool99.somee.com/",
      email:"smartschoolcomplaints@gmail.com"
 
 };
