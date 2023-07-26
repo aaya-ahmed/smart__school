@@ -42,7 +42,6 @@ export class SchaduleComponent implements OnInit,OnDestroy {
     }
   }
   getteacherschadule(id:string){
-    console.log(" start")
 
     this.schaduleSubscribtion=this.sessionsservice.getteachersession(id,this.sevsnDays[0],this.sevsnDays[this.sevsnDays.length-1]).subscribe({
       next:res=>{
