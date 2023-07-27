@@ -16,8 +16,8 @@ export class ChangephotoComponent  {
   @Input()data:any;
   ref:string='';
   loader:boolean=false;
-  constructor(private teacherservice:TeacherService,private studentservice:StudentserviceService,private hostman:HostmanagerService,private moduleref: NgModuleRef<any>){
-    this.ref=this.moduleref.instance.constructor.name;
+  constructor(private teacherservice:TeacherService,private studentservice:StudentserviceService,private hostman:HostmanagerService){
+    this.ref=localStorage.getItem('role')?.replace(/"/g,'')||'';
     this.imageobj=new imagebase64();
   }
   changephoto($event:any){
@@ -34,7 +34,7 @@ export class ChangephotoComponent  {
   }
   save(){
     this.loader=true;
-    if(this.ref=="StudentModule"){
+    if(this.ref=="student"){
       this.data.studentPhoto=this.image.split(",").pop();
       this.studentservice.update(this.data).subscribe({
         next:res=>{
@@ -45,7 +45,7 @@ export class ChangephotoComponent  {
         }
       });
     }
-    else if(this.ref=="TeacherModule"){
+    else if(this.ref=="teacher"){
       this.data.photo=this.image.split(",").pop();
       this.teacherservice.update(this.data).subscribe({
         next:res=>{

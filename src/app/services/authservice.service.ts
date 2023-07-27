@@ -34,8 +34,8 @@ export class AuthserviceService {
   public setuser(user:register){
     localStorage.setItem('schooltoken',JSON.stringify(user.token));
     let userinfo=this.decodetoken(user.token);
-    localStorage.setItem('role',JSON.stringify(userinfo.roles.toLocaleLowerCase()));
-    localStorage.setItem('uid',JSON.stringify(userinfo.uid));
+    localStorage.setItem('role',userinfo.roles.toLocaleLowerCase());
+    localStorage.setItem('uid',userinfo.uid);
     this.logoutflag.next(false);
     this.profile(userinfo.roles);
   }

@@ -41,7 +41,7 @@ export class GradComponent implements OnInit {
     classRoomName: ''
   }
   constructor(private studentservice:StudentserviceService,private gradservice:GradyearService,private examservice:ExamserviceService,private router:ActivatedRoute){
-    this.modulename=localStorage.getItem('role')||'';
+    this.modulename=localStorage.getItem('role')?.replace(/"/g,'')||'';
 
   }
   ngOnInit(): void {
@@ -57,7 +57,7 @@ export class GradComponent implements OnInit {
             }
           })
         }
-        if(this.modulename=='student'){
+        if(this.modulename=="student"){
           this.student=JSON.parse(localStorage.getItem('user')||'');
           this.getinitialresult();
         }

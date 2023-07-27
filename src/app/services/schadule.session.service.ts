@@ -45,8 +45,6 @@ export class SchaduleSessionService {
     return this.http.get<sessions[]>(environment.URL+`TeacherUser/Getsessions/${id}/${start}/${end}`)
   }
   public getstudentsession(id:number,start:string,end:string):Observable<sessions[]>{
-    console.log("service start")
-
     return this.http.get<sessions[]>(environment.URL+`StudentUser/GetMySchedule/${id}/${start}/${end}`)
   }
 }

@@ -16,6 +16,7 @@ export class SchaduleComponent implements OnInit,OnDestroy {
   classid:string=''
   schaduleSubscribtion:Subscription=new Subscription();
   loader:boolean=false;
+  role=localStorage.getItem('role')?.replace(/"/g,'');
   constructor(private sessionsservice:SchaduleSessionService,private route:ActivatedRoute){}
   ngOnInit(): void {
       this.getschadule();
@@ -25,7 +26,10 @@ export class SchaduleComponent implements OnInit,OnDestroy {
     this.sessions=[];
     this.setDay();
     this.classid= this.route.snapshot.paramMap.get('id')||'';
+    if(this.role=='student')
     this.getstudentschadule(+this.classid);
+    else
+    this.getteacherschadule(localStorage.getItem('uid')?.replace(/"/g,'')||'');
   }
   getteacherschadule(id:string){
     this.schaduleSubscribtion=this.sessionsservice.getteachersession(id,this.sevsnDays[0],this.sevsnDays[this.sevsnDays.length-1]).subscribe({

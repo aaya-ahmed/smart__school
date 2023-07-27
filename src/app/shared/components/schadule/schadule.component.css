@@ -7,7 +7,7 @@ main{
 }
 .table-section{
   width: 80%;
-  height: 100%;
+  max-height: 100%;
 
   }
 
@@ -32,7 +32,7 @@ header{
 .table {
   text-align: center;
   overflow-x: auto;
-  height: 80%;
+  max-height: 80%;
 }
 .table::-webkit-scrollbar{
   height: 4px;             
