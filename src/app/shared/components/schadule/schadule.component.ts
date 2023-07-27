@@ -27,15 +27,12 @@ export class SchaduleComponent implements OnInit,OnDestroy {
     this.loader=true;
     this.sessions=[];
     this.setDay();
-    setTimeout(() => {
-      this.x=10;
-    }, 2000);
     switch(this.moduleName){
       case 'TeacherModule':
         this.classid=localStorage.getItem('uid')?.replace(/"/g,'')||'';
         this.getteacherschadule(this.classid)
         break;
-      case 'StudentModule':
+      case 'e':
         this.classid=JSON.parse(localStorage.getItem('user')||'').classRoomID;
         this.getstudentschadule(+this.classid);
         break;
