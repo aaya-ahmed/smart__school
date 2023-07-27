@@ -26,8 +26,8 @@
                     </tr>
                 </tbody>
               </ng-container>
-              <ng-container *ngIf="!loader&&sessions.length>0">
-                <tbody >
+              <tbody *ngIf="!loader&&sessions.length>0;then data;else nodata"></tbody>
+              <ng-template #data>
                     <tr *ngFor="let sessionNum of sessionNumbers">
                         <td>{{sessionNum}}</td>
                         <ng-container *ngFor="let date of sevsnDays" >
@@ -35,15 +35,12 @@
                             </td>
                         </ng-container>
                     </tr>
-                  </tbody>
-              </ng-container>
-              <ng-container *ngIf="!loader&&sessions.length==0">
-                <tbody>
+              </ng-template>
+              <ng-template #nodata>
                     <tr>
                         <td colspan="8" rowspan="6" class="notfoundsection"> Not Found</td>
                     </tr>
-                </tbody>
-              </ng-container>
+              </ng-template>
         
         </table>
         </div>
