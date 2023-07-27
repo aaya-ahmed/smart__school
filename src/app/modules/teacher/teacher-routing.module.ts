@@ -28,7 +28,7 @@ const routes: Routes = [
         component:StudentsComponent
       },
       {
-        path:'schadule',
+        path:'schadule/:id',
         component:SchaduleComponent
       },
       {

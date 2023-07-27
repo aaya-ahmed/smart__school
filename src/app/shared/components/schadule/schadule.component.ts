@@ -27,20 +27,8 @@ export class SchaduleComponent implements OnInit,OnDestroy {
     this.loader=true;
     this.sessions=[];
     this.setDay();
-    switch(this.moduleName){
-      case 'TeacherModule':
-        this.classid=localStorage.getItem('uid')?.replace(/"/g,'')||'';
-        this.getteacherschadule(this.classid)
-        break;
-      case 'e':
-        this.classid=JSON.parse(localStorage.getItem('user')||'').classRoomID;
-        this.getstudentschadule(+this.classid);
-        break;
-      case 'ParentModule':
-        this.classid= this.route.snapshot.paramMap.get('id')||'';
-        this.getstudentschadule(+this.classid);
-        break;
-    }
+    this.classid= this.route.snapshot.paramMap.get('id')||'';
+    this.getstudentschadule(+this.classid);
   }
   getteacherschadule(id:string){
     this.schaduleSubscribtion=this.sessionsservice.getteachersession(id,this.sevsnDays[0],this.sevsnDays[this.sevsnDays.length-1]).subscribe({

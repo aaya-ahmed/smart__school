@@ -21,6 +21,10 @@ export class NavbarComponent {
     if(window.innerWidth<1000)
     this.toggleflag=!this.toggleflag;
   }
+  gotoschadule(pagename:string){
+    let classid=localStorage.getItem('uid')?.replace(/"/g,'')||'';
+    this.route.navigate(['teacher',pagename,classid]);
+  }
   gottohome(){
     this.route.navigate(['']);
   }

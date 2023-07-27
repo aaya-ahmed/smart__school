@@ -23,7 +23,7 @@ const routes: Routes = [
         component:ProfileComponent
       },
       {
-        path:'schadule',
+        path:'schadule/:id',
         component:SchaduleComponent
       },
       {

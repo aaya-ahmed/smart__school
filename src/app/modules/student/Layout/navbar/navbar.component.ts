@@ -21,6 +21,10 @@ export class NavbarComponent {
     if(window.innerWidth<1000)
     this.toggleflag=!this.toggleflag;
   }
+  gotoschadule(pagename:string){
+    let classid=JSON.parse(localStorage.getItem('user')||'').classRoomID;
+    this.route.navigate(['student',pagename,classid]);
+  }
   gottopagewithparamter(pagename:string,paramter:string){
     this.route.navigate(['student',pagename,paramter]);
     this.currentpage=pagename+'/'+paramter;
