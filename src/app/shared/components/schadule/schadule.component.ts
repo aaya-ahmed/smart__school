@@ -41,8 +41,11 @@ export class SchaduleComponent implements OnInit,OnDestroy {
         break;
     }
   }
+  x:number=0;
   getteacherschadule(id:string){
-
+    setTimeout(() => {
+      this.x=9;
+    }, 2000);
     this.schaduleSubscribtion=this.sessionsservice.getteachersession(id,this.sevsnDays[0],this.sevsnDays[this.sevsnDays.length-1]).subscribe({
       next:res=>{
         this.ngZone.run( () => {
@@ -57,6 +60,9 @@ export class SchaduleComponent implements OnInit,OnDestroy {
   }
   getstudentschadule(classid:number){
     console.log(" start")
+    setTimeout(() => {
+      this.x=10;
+    }, 2000);
     this.schaduleSubscribtion=this.sessionsservice.getstudentsession(classid,this.sevsnDays[0],this.sevsnDays[this.sevsnDays.length-1]).subscribe({
       next:res=>{
         this.ngZone.run( () => {
