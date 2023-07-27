@@ -1,4 +1,4 @@
-import { Component, NgModuleRef, OnDestroy, OnInit } from '@angular/core';
+import { Component, NgModuleRef, NgZone, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Route, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { SchaduleSessionService } from 'src/app/services/schadule.session.service';
@@ -17,7 +17,7 @@ export class SchaduleComponent implements OnInit,OnDestroy {
   classid:string=''
   schaduleSubscribtion:Subscription=new Subscription();
   loader:boolean=false;
-  constructor(private sessionsservice:SchaduleSessionService,private moduleRef: NgModuleRef<any>,private route:ActivatedRoute){}
+  constructor(private ngZone: NgZone ,private sessionsservice:SchaduleSessionService,private moduleRef: NgModuleRef<any>,private route:ActivatedRoute){}
   ngOnInit(): void {
     this.moduleName = this.moduleRef.instance.constructor.name;
       this.getschadule();
@@ -45,7 +45,9 @@ export class SchaduleComponent implements OnInit,OnDestroy {
 
     this.schaduleSubscribtion=this.sessionsservice.getteachersession(id,this.sevsnDays[0],this.sevsnDays[this.sevsnDays.length-1]).subscribe({
       next:res=>{
-        this.setschadule(res)
+        this.ngZone.run( () => {
+          this.setschadule(res)
+        });
       },
       error:err=>{
         this.loader=false;
@@ -57,7 +59,9 @@ export class SchaduleComponent implements OnInit,OnDestroy {
     console.log(" start")
     this.schaduleSubscribtion=this.sessionsservice.getstudentsession(classid,this.sevsnDays[0],this.sevsnDays[this.sevsnDays.length-1]).subscribe({
       next:res=>{
+        this.ngZone.run( () => {
         this.setschadule(res)
+      });
       },
       error:err=>{
         this.loader=false;
