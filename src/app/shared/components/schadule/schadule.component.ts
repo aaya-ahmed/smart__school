@@ -1,4 +1,4 @@
-import { Component, NgModuleRef, NgZone, OnDestroy, OnInit } from '@angular/core';
+import { Component, NgModuleRef, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Route, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { SchaduleSessionService } from 'src/app/services/schadule.session.service';
@@ -17,7 +17,8 @@ export class SchaduleComponent implements OnInit,OnDestroy {
   classid:string=''
   schaduleSubscribtion:Subscription=new Subscription();
   loader:boolean=false;
-  constructor(private ngZone: NgZone ,private sessionsservice:SchaduleSessionService,private moduleRef: NgModuleRef<any>,private route:ActivatedRoute){}
+  x=0;
+  constructor(private sessionsservice:SchaduleSessionService,private moduleRef: NgModuleRef<any>,private route:ActivatedRoute){}
   ngOnInit(): void {
     this.moduleName = this.moduleRef.instance.constructor.name;
       this.getschadule();
@@ -26,6 +27,9 @@ export class SchaduleComponent implements OnInit,OnDestroy {
     this.loader=true;
     this.sessions=[];
     this.setDay();
+    setTimeout(() => {
+      this.x=10;
+    }, 2000);
     switch(this.moduleName){
       case 'TeacherModule':
         this.classid=localStorage.getItem('uid')?.replace(/"/g,'')||'';
@@ -41,16 +45,10 @@ export class SchaduleComponent implements OnInit,OnDestroy {
         break;
     }
   }
-  x:number=0;
   getteacherschadule(id:string){
-    setTimeout(() => {
-      this.x=9;
-    }, 2000);
     this.schaduleSubscribtion=this.sessionsservice.getteachersession(id,this.sevsnDays[0],this.sevsnDays[this.sevsnDays.length-1]).subscribe({
       next:res=>{
-        this.ngZone.run( () => {
-          this.setschadule(res)
-        });
+        this.setschadule(res)
       },
       error:err=>{
         this.loader=false;
@@ -59,15 +57,9 @@ export class SchaduleComponent implements OnInit,OnDestroy {
     });
   }
   getstudentschadule(classid:number){
-    console.log(" start")
-    setTimeout(() => {
-      this.x=10;
-    }, 2000);
     this.schaduleSubscribtion=this.sessionsservice.getstudentsession(classid,this.sevsnDays[0],this.sevsnDays[this.sevsnDays.length-1]).subscribe({
       next:res=>{
-        this.ngZone.run( () => {
         this.setschadule(res)
-      });
       },
       error:err=>{
         this.loader=false;
