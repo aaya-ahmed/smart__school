@@ -49,18 +49,12 @@ export class GradComponent implements OnInit {
     this.router.params.subscribe({
       next:res=>{
         this.resultype=res['type'];
-        if(this.modulename=='ParentModule'){
-          this.studentservice.get(res['id']).subscribe({
-            next:res=>{
-              this.student=res;
-              this.getinitialresult();
-            }
-          })
-        }
-        if(this.modulename=='StudentModule'){
-          this.student=JSON.parse(localStorage.getItem('user')||'');
-          this.getinitialresult();
-        }
+        this.studentservice.get(res['id']).subscribe({
+          next:res=>{
+            this.student=res;
+            this.getinitialresult();
+          }
+        })
       }
     })
   }

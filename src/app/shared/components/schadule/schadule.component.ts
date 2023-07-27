@@ -12,15 +12,12 @@ export class SchaduleComponent implements OnInit,OnDestroy {
   sessions:any[]=[];
   currentDate:Date=new Date();
   sevsnDays:any[]=[];
-  moduleName:string=''
   sessionNumbers:number[]=[];
   classid:string=''
   schaduleSubscribtion:Subscription=new Subscription();
   loader:boolean=false;
-  x=0;
-  constructor(private sessionsservice:SchaduleSessionService,private moduleRef: NgModuleRef<any>,private route:ActivatedRoute){}
+  constructor(private sessionsservice:SchaduleSessionService,private route:ActivatedRoute){}
   ngOnInit(): void {
-    this.moduleName = this.moduleRef.instance.constructor.name;
       this.getschadule();
   }
   getschadule(){

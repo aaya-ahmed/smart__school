@@ -26,7 +26,8 @@ export class NavbarComponent {
     this.route.navigate(['student',pagename,classid]);
   }
   gottopagewithparamter(pagename:string,paramter:string){
-    this.route.navigate(['student',pagename,paramter]);
+    let id=JSON.parse(localStorage.getItem('user')||'').id;
+    this.route.navigate(['student',pagename,paramter,id]);
     this.currentpage=pagename+'/'+paramter;
     if(window.innerWidth<1000)
     this.toggleflag=!this.toggleflag;
