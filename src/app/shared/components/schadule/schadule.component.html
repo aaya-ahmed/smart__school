@@ -17,7 +17,8 @@
                         <th *ngFor="let date of sevsnDays"><p>{{date|date:"EEE"}}<br>{{date|date:"MM-dd"}}</p></th>
                     </tr>
               </thead>
-              <ng-container *ngIf="loader">
+              <tbody *ngIf="loader;then loading;else dataloaded"></tbody>
+              <ng-template #loading>
                 <tbody>
                     <tr>
                         <td colspan="8" rowspan="6" class="notfoundsection">
@@ -25,8 +26,8 @@
                         </td>
                     </tr>
                 </tbody>
-              </ng-container>
-              <ng-container *ngIf="!loader">
+              </ng-template>
+              <ng-template #dataloaded>
                 <tbody *ngIf="sessions.length>0;then data;else nodata"></tbody>
                 <ng-template #data>
                       <tr *ngFor="let sessionNum of sessionNumbers">
@@ -42,7 +43,7 @@
                           <td colspan="8" rowspan="6" class="notfoundsection"> Not Found</td>
                       </tr>
                 </ng-template>
-              </ng-container>        
+              </ng-template>        
         </table>
         </div>
     </div>
