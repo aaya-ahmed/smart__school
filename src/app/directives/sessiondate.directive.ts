@@ -9,7 +9,7 @@ export class SessiondateDirective implements OnInit{
   modulename:string=''
   @Input() currentDate:string='';
   constructor(private elementRef: ElementRef) {
-    this.modulename=localStorage.getItem('role')||''
+    this.modulename=localStorage.getItem('role')?.replace(/"/g,'')||''
    }
   ngOnInit(): void {
     let currentDate=new Date(this.currentDate).getTime();
