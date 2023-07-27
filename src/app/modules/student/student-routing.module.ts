@@ -27,7 +27,7 @@ const routes: Routes = [
         component:SchaduleComponent
       },
       {
-        path:'grad/:type/:id',
+        path:'grad/:type',
         component:GradComponent
       },
       {

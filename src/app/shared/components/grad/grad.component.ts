@@ -40,8 +40,8 @@ export class GradComponent implements OnInit {
     classRoomID: 0,
     classRoomName: ''
   }
-  constructor(private moduleRef: NgModuleRef<any>,private studentservice:StudentserviceService,private gradservice:GradyearService,private examservice:ExamserviceService,private router:ActivatedRoute){
-    this.modulename=this.moduleRef.instance.constructor.name;
+  constructor(private studentservice:StudentserviceService,private gradservice:GradyearService,private examservice:ExamserviceService,private router:ActivatedRoute){
+    this.modulename=localStorage.getItem('role')||'';
 
   }
   ngOnInit(): void {
@@ -49,12 +49,18 @@ export class GradComponent implements OnInit {
     this.router.params.subscribe({
       next:res=>{
         this.resultype=res['type'];
-        this.studentservice.get(res['id']).subscribe({
-          next:res=>{
-            this.student=res;
-            this.getinitialresult();
-          }
-        })
+        if(this.modulename=='parent'){
+          this.studentservice.get(res['id']).subscribe({
+            next:res=>{
+              this.student=res;
+              this.getinitialresult();
+            }
+          })
+        }
+        if(this.modulename=='student'){
+          this.student=JSON.parse(localStorage.getItem('user')||'');
+          this.getinitialresult();
+        }
       }
     })
   }
