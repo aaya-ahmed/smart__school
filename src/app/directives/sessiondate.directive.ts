@@ -8,14 +8,14 @@ export class SessiondateDirective implements OnInit{
   @Input() currentsession:any;
   modulename:string=''
   @Input() currentDate:string='';
-  constructor(private elementRef: ElementRef,private ModuleRef:NgModuleRef<any>) {
-    this.modulename=this.ModuleRef.instance.constructor.name
+  constructor(private elementRef: ElementRef) {
+    this.modulename=localStorage.getItem('role')||''
    }
   ngOnInit(): void {
     let currentDate=new Date(this.currentDate).getTime();
     let index=this.session.findIndex((p:any)=>{ return new Date(p.scheduleDay).getTime()==currentDate&&p.sessionNo==this.currentsession});
     if(index!=-1){
-      if(this.modulename=='TeacherModule'){
+      if(this.modulename=='teacher'){
         this.elementRef.nativeElement.innerHTML = `<p>Class ${this.session[index].classRoomName}</p>`;
       }
       else{
