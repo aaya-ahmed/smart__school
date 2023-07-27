@@ -25,11 +25,11 @@
                 <i class="fa-solid fa-book"></i>
                <span> Materials</span>
             </li>
-            <li [ngClass]="{'active':currentpage=='grad/firstterm'}" (click)="gottopagewithparamter('grad','firstterm')">
+            <li [ngClass]="{'active':currentpage=='grad/firstterm'}" (click)="gotograde('grad','firstterm')">
                 <i class="fa-solid fa-square-poll-vertical"></i>
                <span>First Term Grades</span>
             </li>
-            <li [ngClass]="{'active':currentpage=='grad/fullyear'}" (click)="gottopagewithparamter('grad','fullyear')">
+            <li [ngClass]="{'active':currentpage=='grad/fullyear'}" (click)="gotograde('grad','fullyear')">
                 <i class="fa-solid fa-square-poll-vertical"></i>
                <span>Full Year Grades</span>
             </li>

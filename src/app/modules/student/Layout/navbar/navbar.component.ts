@@ -25,8 +25,8 @@ export class NavbarComponent {
     let classid=JSON.parse(localStorage.getItem('user')||'').classRoomID;
     this.route.navigate(['student',pagename,classid]);
   }
-  gottopagewithparamter(pagename:string,paramter:string){
-    let id=JSON.parse(localStorage.getItem('user')||'').id;
+  gotograde(pagename:string,paramter:string){
+    let id=JSON.parse(localStorage.getItem('uid')||'');
     this.route.navigate(['student',pagename,paramter,id]);
     this.currentpage=pagename+'/'+paramter;
     if(window.innerWidth<1000)
