@@ -1,0 +1,6 @@
+admin==>Admin2@gmail.com
+teacher==>HadeerSayed@gmail.com
+parent==>SayedAboSrea@gmail.com
+student==>AliaaSayed@gmail.com
+
+password====>#Smartschool2023
